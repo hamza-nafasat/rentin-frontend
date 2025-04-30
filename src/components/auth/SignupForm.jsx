@@ -9,11 +9,14 @@ import Dropdown from '../shared/small/Dropdown';
 import Link from 'next/link';
 
 const options = [
-  { option: 'Property Owner', value: 'property-owner' },
+  { option: 'Owner', value: 'owner' },
   { option: 'Tenant', value: 'tenant' },
+  { option: 'Agent', value: 'agent' },
 ];
 
 const SignupForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showOtp, setShowOtp] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -21,73 +24,67 @@ const SignupForm = () => {
     phone: '',
     password: '',
     role: '',
+    otp: '',
     agreeToTerms: false,
     consent: false,
   });
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleInputChange = e => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleCheckboxChange = e => {
-    const { name, checked } = e.target;
-    setFormData(prev => ({ ...prev, [name]: checked }));
-  };
-
   const isFormValid =
     formData.firstName.trim() !== '' &&
     formData.lastName.trim() !== '' &&
     formData.email.trim() !== '' &&
     formData.phone.trim() !== '' &&
     formData.password.trim() !== '' &&
+    formData.otp.trim() !== '' &&
     formData.role.trim() !== '';
-
+  const handleInputChange = e => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+  const handleCheckboxChange = e => {
+    const { name, checked } = e.target;
+    setFormData(prev => ({ ...prev, [name]: checked }));
+  };
   const handleForm = e => {
     e.preventDefault();
     console.log('formData', formData);
   };
 
+  const handleVerifyEmail = () => {
+    // Add verification logic here
+    setShowOtp(true);
+    console.log('Verifying email');
+  };
+
   return (
     <form className="w-full rounded-xl bg-white p-5 lg:px-[8%] lg:py-8" onSubmit={handleForm}>
-      <h6 className="text-text-textColor text-center text-xl font-semibold md:text-left lg:text-2xl">
-        Sign up now
-      </h6>
+      <h6 className="text-text-textColor text-center text-xl font-semibold md:text-left lg:text-2xl">Sign up now</h6>
       <div className="mt-5 grid grid-cols-1 gap-4 lg:mt-7 lg:grid-cols-12">
         <div className="lg:col-span-6">
-          <Input
-            label="First name"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleInputChange}
-          />
+          <Input label="First name" name="firstName" value={formData.firstName} onChange={handleInputChange} />
         </div>
         <div className="lg:col-span-6">
-          <Input
-            label="Last name"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleInputChange}
-          />
+          <Input label="Last name" name="lastName" value={formData.lastName} onChange={handleInputChange} />
         </div>
         <div className="lg:col-span-9">
-          <Input
-            label="Email address"
-            name="email"
-            type="email"
-            value={formData.email}
-            onChange={handleInputChange}
-          />
+          <Input label="Email address" name="email" type="email" value={formData.email} onChange={handleInputChange} />
         </div>
         <div className="flex items-end lg:col-span-3">
-          <button className="bg-primary h-[56px] w-full rounded-xl px-4 text-sm font-medium text-white md:text-base">
+          <button
+            disabled={!formData.email}
+            onClick={handleVerifyEmail}
+            className={`${!formData.email ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'} bg-primary h-[3.5rem] w-full rounded-xl px-4 text-sm font-medium text-white md:text-base`}
+          >
             Verify Email
           </button>
         </div>
+        {showOtp && (
+          <div className="lg:col-span-12">
+            <Input label="Enter OTP" name="otp" type="text" value={formData.otp} onChange={handleInputChange} />
+          </div>
+        )}
         <div className="lg:col-span-12">
           <PhoneInput
-            country={'us'}
+            country={'pk'}
             value={formData.phone}
             onChange={phone => setFormData(prev => ({ ...prev, phone }))}
             containerClass="phone-input-container"
@@ -160,8 +157,8 @@ const SignupForm = () => {
         </div>
         <div className="flex flex-col items-center justify-center gap-6 md:flex-row lg:col-span-12 lg:justify-start">
           <Button
-            width="w-full md:w-[184px]"
-            height="h-[43px]"
+            width="w-full md:w-[11.5rem]"
+            height="h-[2.6875rem]"
             text="Sign up"
             type="submit"
             disabled={!isFormValid}
@@ -189,7 +186,7 @@ const CheckBox = ({ label, checked, onChange, name }) => {
         name={name}
         checked={checked}
         onChange={onChange}
-        className="mt-[3px] cursor-pointer"
+        className="mt-[.1875rem] cursor-pointer"
       />
       <span className="text-sm leading-5 text-[#333333CC] lg:text-base">{label}</span>
     </label>
