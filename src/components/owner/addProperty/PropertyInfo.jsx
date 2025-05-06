@@ -6,6 +6,7 @@ import Dropdown from '@/components/shared/small/Dropdown';
 import Input from '@/components/shared/small/Input';
 import InputDropdown from '@/components/shared/small/InputDropdown';
 import { FaUser } from 'react-icons/fa'; // Example icon from react-icons
+import ValueAdjuster from '@/components/shared/small/ValueAdjuster';
 
 // Static data moved outside component to prevent recreation on each render
 const BEDROOM_OPTIONS = [
@@ -17,8 +18,12 @@ const BEDROOM_OPTIONS = [
 
 const BATHROOM_OPTIONS = [
   { option: '1 Bathroom', value: '1' },
+  { option: '1.5 Bathrooms', value: '1.5' },
   { option: '2 Bathrooms', value: '2' },
-  { option: '3+ Bathrooms', value: '3plus' },
+  { option: '2.5 Bathrooms', value: '2.5' },
+  { option: '3 Bathrooms', value: '3' },
+  { option: '3.5 Bathrooms', value: '3.5' },
+  { option: '4+ Bathrooms', value: '4plus' },
 ];
 
 const FREQUENCY_OPTIONS = [
@@ -66,11 +71,12 @@ const Building = [
   { option: 'Low ', value: 'low ' },
 ];
 
-const PropertyInfo = ({ setCurrentStep }) => {
+const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) => {
   const fileInputRef = useRef(null);
   const [image, setImage] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
   const [inputValue, setInputValue] = useState('');
+  console.log('formData', formData[0].propertyType);
 
   // Memoized handlers
   const handleNext = useCallback(() => setCurrentStep(prevStep => prevStep + 1), [setCurrentStep]);
@@ -117,16 +123,24 @@ const PropertyInfo = ({ setCurrentStep }) => {
       }
     };
   }, [image]);
-
+  const [count, setCount] = useState(1);
   return (
     <div>
       <h4 className="text-textColor text-center text-base font-medium md:text-lg">Property Information</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
-        <div className="lg:col-span-6">
-          <Dropdown placeholder="select" label="Bedrooms" options={BEDROOM_OPTIONS} shadow />
+        <div className="flex items-end lg:col-span-6">
+          {formData[0].propertyType === 'condo' ? (
+            <ValueAdjuster label="Bedrooms" value={count} onChange={setCount} />
+          ) : (
+            <Dropdown placeholder="select" label="Bedrooms" options={BEDROOM_OPTIONS} shadow />
+          )}
         </div>
         <div className="lg:col-span-6">
-          <Dropdown placeholder="select" label="BathRooms" options={BATHROOM_OPTIONS} shadow />
+          {formData[0].propertyType === 'condo' ? (
+            <ValueAdjuster label="BathRooms" value={count} onChange={setCount} />
+          ) : (
+            <Dropdown placeholder="select" label="BathRooms" options={BATHROOM_OPTIONS} shadow />
+          )}
         </div>
         <div className="lg:col-span-6">
           <InputDropdown

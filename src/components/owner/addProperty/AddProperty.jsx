@@ -8,22 +8,71 @@ import { useState, useMemo } from 'react';
 import Step from './Step';
 
 const AddProperty = () => {
-  const [currentStep, setCurrentStep] = useState(4);
-
+  const [currentStep, setCurrentStep] = useState(0);
   const steps = useMemo(
     () => ['Basic Info', 'Property Info', 'Feature & Amenities', 'Photos & Details', 'Pricing'],
     []
   );
 
+  const [formData, setFormData] = useState([
+    { propertyType: '', projectName: '', region: '', day: '', time: '', location: '', district: '', street: '' }, // for Component 1
+    { input1: '', input2: '', dropdown1: '', dropdown2: '' }, // for Component 2
+    { input1: '', input2: '', dropdown1: '', dropdown2: '' }, // ...
+    { input1: '', input2: '', dropdown1: '', dropdown2: '' },
+    { input1: '', input2: '', dropdown1: '', dropdown2: '' },
+  ]);
+  const updateField = (index, field, value) => {
+    setFormData(prev => {
+      const updated = [...prev];
+      updated[index][field] = value;
+      return updated;
+    });
+  };
+  console.log('data', formData);
   const stepComponents = useMemo(
     () => [
-      <BasicInfo key="basic-info" setCurrentStep={setCurrentStep} />,
-      <PropertyInfo key="property-info" setCurrentStep={setCurrentStep} />,
-      <FeatureAndAmenities key="feature-amenities" setCurrentStep={setCurrentStep} />,
-      <PhotosAndDetails key="photos-details" setCurrentStep={setCurrentStep} />,
-      <Pricing key="pricing" setCurrentStep={setCurrentStep} />,
+      <BasicInfo
+        key="basic-info"
+        setCurrentStep={setCurrentStep}
+        data={formData[0]}
+        index={0}
+        updateField={updateField}
+        formData={formData}
+      />,
+      <PropertyInfo
+        key="property-info"
+        setCurrentStep={setCurrentStep}
+        data={formData[1]}
+        index={1}
+        updateField={updateField}
+        formData={formData}
+      />,
+      <FeatureAndAmenities
+        key="feature-amenities"
+        setCurrentStep={setCurrentStep}
+        data={formData[2]}
+        index={2}
+        updateField={updateField}
+        formData={formData}
+      />,
+      <PhotosAndDetails
+        key="photos-details"
+        setCurrentStep={setCurrentStep}
+        data={formData[3]}
+        index={3}
+        updateField={updateField}
+        formData={formData}
+      />,
+      <Pricing
+        key="pricing"
+        setCurrentStep={setCurrentStep}
+        data={formData[4]}
+        index={4}
+        updateField={updateField}
+        formData={formData}
+      />,
     ],
-    [setCurrentStep]
+    [formData, setCurrentStep]
   );
 
   return (

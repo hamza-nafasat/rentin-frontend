@@ -31,7 +31,7 @@ const showHoursOptions = [{ option: 'Withing 12 hours', value: '12-hours' }];
 const locationOptions = [{ option: 'Thailand', value: 'thailand' }];
 const subDistrictOptions = [{ option: 'Thailand', value: 'thailand' }];
 
-const BasicInfo = memo(({ setCurrentStep }) => {
+const BasicInfo = memo(({ data, index, updateField, setCurrentStep }) => {
   const [streetAddress, setStreetAddress] = useState('thailand');
 
   // Memoize handlers to prevent unnecessary re-renders
@@ -51,35 +51,66 @@ const BasicInfo = memo(({ setCurrentStep }) => {
 
   return (
     <div>
-      <h4 className="text-textColor text-center text-base font-medium md:text-lg">
-        Property Information
-      </h4>
+      <h4 className="text-textColor text-center text-base font-medium md:text-lg">Property Information</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-12">
           <Dropdown
             label="Type of property"
-            onSelect={handlePropertySelect}
+            onSelect={option => updateField(index, 'propertyType', option.value)}
             options={propertyOptions}
             shadow
           />
         </div>
         <div className="lg:col-span-6">
-          <Input label="Project Name" shadow />
+          <Input
+            label="Project Name"
+            value={data.projectName}
+            onChange={e => updateField(index, 'projectName', e.target.value)}
+            shadow
+          />
+          {/* label="Name"
+        value={data.name}
+        onChange={e => updateField(index, 'name', e.target.value)} */}
         </div>
         <div className="lg:col-span-6">
-          <Dropdown label="Region" options={regionOptions} shadow />
+          <Dropdown
+            label="Region"
+            options={regionOptions}
+            onSelect={option => updateField(index, 'region', option.value)}
+            shadow
+          />
         </div>
         <div className="lg:col-span-6">
-          <Dropdown label="Buildings can be shown in (Days)" options={showDaysOptions} shadow />
+          <Dropdown
+            label="Buildings can be shown in (Days)"
+            options={showDaysOptions}
+            onSelect={option => updateField(index, 'day', option.value)}
+            shadow
+          />
         </div>
         <div className="lg:col-span-6">
-          <Dropdown label="Buildings can be shown in (Hours)" options={showHoursOptions} shadow />
+          <Dropdown
+            label="Buildings can be shown in (Hours)"
+            options={showHoursOptions}
+            onSelect={option => updateField(index, 'time', option.value)}
+            shadow
+          />
         </div>
         <div className="lg:col-span-6">
-          <Dropdown label="Location" options={locationOptions} shadow />
+          <Dropdown
+            label="Location"
+            options={locationOptions}
+            onSelect={option => updateField(index, 'location', option.value)}
+            shadow
+          />
         </div>
         <div className="lg:col-span-6">
-          <Dropdown label="Sub district" options={subDistrictOptions} shadow />
+          <Dropdown
+            label="Sub district"
+            options={subDistrictOptions}
+            onSelect={option => updateField(index, 'district', option.value)}
+            shadow
+          />
         </div>
         <div className="lg:col-span-12">
           <Input
