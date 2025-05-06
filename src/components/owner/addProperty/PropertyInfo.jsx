@@ -73,12 +73,13 @@ const Building = [
 
 const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) => {
   const fileInputRef = useRef(null);
+  const floorFileInputRef = useRef(null);
   const [image, setImage] = useState(null);
+  const [floorImage, setFloorImage] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
   const [inputValue, setInputValue] = useState('');
   console.log('formData', formData[0].propertyType);
 
-  // Memoized handlers
   const handleNext = useCallback(() => setCurrentStep(prevStep => prevStep + 1), [setCurrentStep]);
   const handlePrevious = useCallback(() => setCurrentStep(prevStep => prevStep - 1), [setCurrentStep]);
 
@@ -87,6 +88,13 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setImage(imageUrl);
+    }
+  }, []);
+  const handleFloorImageUpload = useCallback(e => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const floorImageUrl = URL.createObjectURL(file);
+      setFloorImage(floorImageUrl);
     }
   }, []);
 
@@ -98,9 +106,20 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
       setImage(imageUrl);
     }
   }, []);
+  const handleFloorDrop = useCallback(e => {
+    e.preventDefault();
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      const floorImageUrl = URL.createObjectURL(file);
+      setFloorImage(floorImageUrl);
+    }
+  }, []);
 
   const handleClick = useCallback(() => {
     fileInputRef.current?.click();
+  }, []);
+  const handleFloorClick = useCallback(() => {
+    floorFileInputRef.current?.click();
   }, []);
 
   const handleButtonClick = useCallback(
@@ -109,6 +128,13 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
       handleClick();
     },
     [handleClick]
+  );
+  const handleFloorButtonClick = useCallback(
+    event => {
+      event.stopPropagation();
+      handleFloorClick();
+    },
+    [handleFloorClick]
   );
 
   const handleSelect = useCallback(option => {
@@ -123,6 +149,12 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
       }
     };
   }, [image]);
+  const [isChecked, setIsChecked] = useState(false);
+
+  // Function to handle checkbox change
+  const handleCheckboxChange = event => {
+    setIsChecked(event.target.checked);
+  };
   const [count, setCount] = useState(1);
   return (
     <div>
@@ -159,9 +191,9 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
         <div className="lg:col-span-6">
           <Input placeholder="i. e A302" label="Unit Number (optional)" shadow />
         </div>
-        <div className="lg:col-span-6">
+        {/* <div className="lg:col-span-6">
           <Dropdown placeholder="select" label="Floor" options={FLOOR_OPTIONS} shadow />
-        </div>
+        </div> */}
         <div className="lg:col-span-6">
           <Dropdown placeholder="Unfurnished" label="Property Condition" options={CONDITION_OPTIONS} shadow />
         </div>
@@ -186,7 +218,18 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
           /> */}
           <Dropdown placeholder="Building " label="Classification" options={Building} shadow />
         </div>
-        <div className="lg:col-span-12">
+        <div className="flex items-center lg:col-span-6">
+          <label className="flex cursor-pointer items-center space-x-2">
+            <input
+              type="checkbox"
+              id="myCheckbox"
+              className="h-[18px] w-[18px] text-blue-600"
+              onChange={handleCheckboxChange}
+            />
+            <span className="text-base font-medium">Do you have floor plan?</span>
+          </label>
+        </div>
+        <div className="grid grid-cols-2 gap-4 lg:col-span-12">
           <div
             className="flex w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-4 hover:border-blue-500"
             onDragOver={e => e.preventDefault()}
@@ -213,6 +256,40 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
               </div>
             )}
           </div>
+          {isChecked && (
+            <div
+              className="flex w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-4 hover:border-blue-500"
+              onDragOver={e => e.preventDefault()}
+              onDrop={handleFloorDrop}
+              onClick={handleFloorClick}
+            >
+              <AiOutlineCloudUpload className="text-primary h-10 w-10" />
+              <p className="mt-2 text-xs text-[#0245a5]">Click here to upload your floor plan</p>
+              <p className="mt-2 text-sm text-[#0245a5]">(Condo Title Deed, House Book, Land Title, Etc.)</p>
+
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                ref={floorFileInputRef}
+                onChange={handleFloorImageUpload}
+              />
+
+              <button
+                type="button"
+                onClick={handleFloorButtonClick}
+                className="bg-primary mt-3 cursor-pointer rounded-lg px-4 py-2 text-white hover:bg-blue-600"
+              >
+                Browse
+              </button>
+
+              {floorImage && (
+                <div className="relative mt-3 h-40 w-40">
+                  <Image src={floorImage} alt="Uploaded" fill className="rounded-lg object-cover" priority />
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="flex justify-end gap-[14px] lg:col-span-12">
