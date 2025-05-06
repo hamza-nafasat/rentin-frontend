@@ -26,7 +26,7 @@ function BrowsePropertyCard({ data }) {
           </div>
         </div>
         <div className="absolute right-2 bottom-2">
-          <div className="text-primary rounded-full bg-[#32343C80] px-2.5 py-1 text-sm shadow">
+          <div className="text-primary rounded-full bg-[#0245a580] px-2.5 py-1 text-sm shadow">
             <p className="text-white">1/10</p>
           </div>
         </div>
@@ -51,18 +51,18 @@ function BrowsePropertyCard({ data }) {
         <div className="flex items-center justify-between">
           <div className="flex flex-col items-center justify-center gap-2 lg:flex-row">
             <BedIcons />
-            <p className="text-sm font-semibold text-[#32343CCC]/50">{data?.beds}</p>
-            <p className="text-sm font-semibold text-[#32343CCC]/50"> Beds</p>
+            <p className="text-sm font-semibold text-[#0245a5CC]/50">{data?.beds}</p>
+            <p className="text-sm font-semibold text-[#0245a5CC]/50"> Beds</p>
           </div>
           <div className="flex flex-col items-center justify-center gap-2 lg:flex-row">
             <Bath />
-            <p className="text-sm font-semibold text-[#32343CCC]/50">{data?.baths} </p>
-            <p className="text-sm font-semibold text-[#32343CCC]/50"> Bath</p>
+            <p className="text-sm font-semibold text-[#0245a5CC]/50">{data?.baths} </p>
+            <p className="text-sm font-semibold text-[#0245a5CC]/50"> Bath</p>
           </div>
           <div className="flex flex-col items-center justify-center gap-2 lg:flex-row">
             <SqftIcon />
-            <p className="text-sm font-semibold text-[#32343CCC]/50">{data?.area} </p>
-            <p className="text-sm font-semibold text-[#32343CCC]/50"> Sqft</p>
+            <p className="text-sm font-semibold text-[#0245a5CC]/50">{data?.area} </p>
+            <p className="text-sm font-semibold text-[#0245a5CC]/50"> Sqft</p>
           </div>
         </div>
       </div>

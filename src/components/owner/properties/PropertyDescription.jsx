@@ -129,7 +129,7 @@ function PropertyDescription() {
         <div className="pb-3">
           <h1 className="text-sm font-semibold">Map View</h1>
         </div>
-        <div className="border-t border-[#32343C] py-3"></div>
+        <div className="border-t border-[#0245a5] py-3"></div>
         {/* <ShowMap /> */}
         <HouseMap
           location={'lahore'}

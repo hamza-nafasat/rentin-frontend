@@ -6,10 +6,10 @@ function TransactionSlip({ selectedRow }) {
   return (
     <div className="h-full p-4">
       <div className="mt-[28px] flex flex-col items-center justify-center gap-2">
-        <span className="text-2xl font-semibold text-[#32343C]">Transaction {paymentStatus}</span>
-        <p className="text-2xl text-[#32343C]">Invoice ID {invoiceID}</p>
-        <p className="text-lg text-[#32343C]">Date: {date}</p>
-        <p className="mt-4 mb-3.5 text-3xl font-semibold text-[#32343C]">{amount}</p>
+        <span className="text-2xl font-semibold text-[#0245a5]">Transaction {paymentStatus}</span>
+        <p className="text-2xl text-[#0245a5]">Invoice ID {invoiceID}</p>
+        <p className="text-lg text-[#0245a5]">Date: {date}</p>
+        <p className="mt-4 mb-3.5 text-3xl font-semibold text-[#0245a5]">{amount}</p>
       </div>
       <div className="h-full">
         <div className="border-t-2 border-dashed"></div>

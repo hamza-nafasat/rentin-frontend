@@ -8,7 +8,7 @@ import { useState, useMemo } from 'react';
 import Step from './Step';
 
 const AddProperty = () => {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(4);
 
   const steps = useMemo(
     () => ['Basic Info', 'Property Info', 'Feature & Amenities', 'Photos & Details', 'Pricing'],
@@ -28,9 +28,7 @@ const AddProperty = () => {
 
   return (
     <div className="shadow-custom rounded-[10px] bg-white px-5 py-[30px] md:px-10">
-      <h2 className="text-textColor text-center text-xl font-semibold md:text-[22px]">
-        Add Property
-      </h2>
+      <h2 className="text-textColor text-center text-xl font-semibold md:text-[22px]">Add Property</h2>
       <div className="mx-auto mt-4 flex max-w-[900px] flex-wrap items-center justify-between gap-4 md:mt-5 md:gap-8">
         {steps.map((step, index) => (
           <Step

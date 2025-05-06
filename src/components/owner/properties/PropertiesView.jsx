@@ -90,7 +90,7 @@ function PropertiesView() {
                   </div>
                   <div className="flex flex-col justify-between p-1">
                     <div>
-                      <h1 className="text-base font-semibold text-[#32343C]">{property.title}</h1>
+                      <h1 className="text-base font-semibold text-[#0245a5]">{property.title}</h1>
                     </div>
                     <div>
                       <h6 className="text-xs font-normal text-[#969696]">{property.address}</h6>
@@ -98,9 +98,7 @@ function PropertiesView() {
                     <div>
                       <span className="text-base font-semibold">
                         {property.price}
-                        <span className="text-[8px] font-semibold text-[#969696]">
-                          {property.period}
-                        </span>
+                        <span className="text-[8px] font-semibold text-[#969696]">{property.period}</span>
                       </span>
                     </div>
                   </div>

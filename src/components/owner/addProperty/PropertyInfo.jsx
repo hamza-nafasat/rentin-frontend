@@ -74,10 +74,7 @@ const PropertyInfo = ({ setCurrentStep }) => {
 
   // Memoized handlers
   const handleNext = useCallback(() => setCurrentStep(prevStep => prevStep + 1), [setCurrentStep]);
-  const handlePrevious = useCallback(
-    () => setCurrentStep(prevStep => prevStep - 1),
-    [setCurrentStep]
-  );
+  const handlePrevious = useCallback(() => setCurrentStep(prevStep => prevStep - 1), [setCurrentStep]);
 
   const handleImageUpload = useCallback(e => {
     const file = e.target.files?.[0];
@@ -123,9 +120,7 @@ const PropertyInfo = ({ setCurrentStep }) => {
 
   return (
     <div>
-      <h4 className="text-textColor text-center text-base font-medium md:text-lg">
-        Property Information
-      </h4>
+      <h4 className="text-textColor text-center text-base font-medium md:text-lg">Property Information</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <Dropdown placeholder="select" label="Bedrooms" options={BEDROOM_OPTIONS} shadow />
@@ -154,12 +149,7 @@ const PropertyInfo = ({ setCurrentStep }) => {
           <Dropdown placeholder="select" label="Floor" options={FLOOR_OPTIONS} shadow />
         </div>
         <div className="lg:col-span-6">
-          <Dropdown
-            placeholder="Unfurnished"
-            label="Property Condition"
-            options={CONDITION_OPTIONS}
-            shadow
-          />
+          <Dropdown placeholder="Unfurnished" label="Property Condition" options={CONDITION_OPTIONS} shadow />
         </div>
         <div className="lg:col-span-6">
           <Dropdown
@@ -180,7 +170,7 @@ const PropertyInfo = ({ setCurrentStep }) => {
             dropdownIcon={'$ '}
             width="w--[79px]"
           /> */}
-          <Dropdown placeholder="Building " label="Building" options={Building} shadow />
+          <Dropdown placeholder="Building " label="Classification" options={Building} shadow />
         </div>
         <div className="lg:col-span-12">
           <div
@@ -190,20 +180,10 @@ const PropertyInfo = ({ setCurrentStep }) => {
             onClick={handleClick}
           >
             <AiOutlineCloudUpload className="text-primary h-10 w-10" />
-            <p className="mt-2 text-xs text-[#32343C]">
-              Click here to upload your ownership documents
-            </p>
-            <p className="mt-2 text-sm text-[#32343C]">
-              (Condo Title Deed, House Book, Land Title, Etc.)
-            </p>
+            <p className="mt-2 text-xs text-[#0245a5]">Click here to upload your ownership documents</p>
+            <p className="mt-2 text-sm text-[#0245a5]">(Condo Title Deed, House Book, Land Title, Etc.)</p>
 
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              ref={fileInputRef}
-              onChange={handleImageUpload}
-            />
+            <input type="file" accept="image/*" className="hidden" ref={fileInputRef} onChange={handleImageUpload} />
 
             <button
               type="button"
@@ -215,13 +195,7 @@ const PropertyInfo = ({ setCurrentStep }) => {
 
             {image && (
               <div className="relative mt-3 h-40 w-40">
-                <Image
-                  src={image}
-                  alt="Uploaded"
-                  fill
-                  className="rounded-lg object-cover"
-                  priority
-                />
+                <Image src={image} alt="Uploaded" fill className="rounded-lg object-cover" priority />
               </div>
             )}
           </div>

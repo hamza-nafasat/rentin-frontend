@@ -27,9 +27,8 @@ const OnDemandService = () => {
             <p className="text-2xl font-semibold">Property Inspection</p>
           </div>
           <div className="w-[300px] text-center lg:w-[445px]">
-            <p className="text-base font-normal text-[#32343C]">
-              Ensure your property is verified and inspected before listing. Get a professional
-              inspection report.
+            <p className="text-base font-normal text-[#0245a5]">
+              Ensure your property is verified and inspected before listing. Get a professional inspection report.
             </p>
           </div>
         </div>
@@ -44,9 +43,8 @@ const OnDemandService = () => {
             <p className="text-2xl font-semibold">Showing Agent</p>
           </div>
           <div className="w-[300px] text-center lg:w-[445px]">
-            <p className="text-base font-normal text-[#32343C]">
-              A professional agent will manage all property showings, coordinate with tenants, and
-              provide guided tours.
+            <p className="text-base font-normal text-[#0245a5]">
+              A professional agent will manage all property showings, coordinate with tenants, and provide guided tours.
             </p>
           </div>
         </div>

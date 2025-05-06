@@ -11,12 +11,9 @@ function LinkPropertyCards() {
         <p>My Properties</p>
       </div>
       <div className="w-[67vw]">
-        <div className="scrollbar-hide flex w-[100vw] gap-4 overflow-x-auto pb-4">
+        <div className="scrollbar-hide flex w-[89vw] gap-4 overflow-x-auto pb-4 md:w-[94vw] lg:w-[87vw]">
           {myPropertiesData.map((card, i) => (
-            <div
-              key={i}
-              className="w-[280px] flex-shrink-0 sm:w-[300px] md:w-[300px] lg:w-[320px] xl:w-[350px]"
-            >
+            <div key={i} className="w-[280px] flex-shrink-0 sm:w-[300px] md:w-[300px] lg:w-[320px] xl:w-[350px]">
               <LinkedOwnerPropertyCard data={card} />
             </div>
           ))}

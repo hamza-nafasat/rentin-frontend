@@ -103,60 +103,52 @@ const AgentProposalDetails = () => {
         </button>
       </div>
       {modal && selectedRow && (
-        <ProposalModal
-          onClose={modalCloseHandler}
-          title="Proposal Overview"
-          width="w-[300px] md:w-[500px]"
-        >
+        <ProposalModal onClose={modalCloseHandler} title="Proposal Overview" width="w-[300px] md:w-[500px]">
           <div>
             <p className="text-textColor text-center text-base md:text-2xl">
               <strong className="text-2xl font-semibold">Proposal Overview</strong>
             </p>
-            <p className="text-textColor text-center text-base md:text-2xl">
-              Proposal ID: {selectedRow.proposalId}
-            </p>
-            <p className="text-textColor text-center text-sm md:text-base">
-              {selectedRow.dateSent} 10:54 PM
-            </p>
+            <p className="text-textColor text-center text-base md:text-2xl">Proposal ID: {selectedRow.proposalId}</p>
+            <p className="text-textColor text-center text-sm md:text-base">{selectedRow.dateSent} 10:54 PM</p>
             <hr className="border-textColor my-2 border-dashed" />
             <div className="space-y-2">
-              <div className="border-b border-[#32343C] px-8 py-6">
+              <div className="border-b border-[#0245a5] px-8 py-6">
                 <p className="flex justify-between">
                   <strong>Sent To:</strong>
                   <span>{selectedRow.sentTo}</span>
                 </p>
               </div>
-              <div className="border-b border-[#32343C] px-8 py-6">
+              <div className="border-b border-[#0245a5] px-8 py-6">
                 <p className="flex justify-between">
                   <strong>Property Name:</strong>
                   <span>{selectedRow.propertyName}</span>
                 </p>
               </div>
-              <div className="border-b border-[#32343C] px-8 py-6">
+              <div className="border-b border-[#0245a5] px-8 py-6">
                 <p className="flex justify-between">
                   <strong>Property Address:</strong>
                   <span>{selectedRow.proposalType}</span>
                 </p>
               </div>
-              <div className="border-b border-[#32343C] px-8 py-6">
+              <div className="border-b border-[#0245a5] px-8 py-6">
                 <p className="flex justify-between">
                   <strong>Rent Amount:</strong>
                   <span>{selectedRow.dateSent}</span>
                 </p>
               </div>
-              <div className="border-b border-[#32343C] px-8 py-6">
+              <div className="border-b border-[#0245a5] px-8 py-6">
                 <p className="flex justify-between">
                   <strong>Contact Duration:</strong>
                   <span>{selectedRow.dateSent}</span>
                 </p>
               </div>
-              <div className="border-b border-[#32343C] px-8 py-6">
+              <div className="border-b border-[#0245a5] px-8 py-6">
                 <p className="flex justify-between">
                   <strong>Proposed Move-in Date:</strong>
                   <span>{selectedRow.dateSent}</span>
                 </p>
               </div>
-              <div className="border-b border-[#32343C] px-8 py-6">
+              <div className="border-b border-[#0245a5] px-8 py-6">
                 <p className="flex justify-between">
                   <strong>Status:</strong>{' '}
                   <span

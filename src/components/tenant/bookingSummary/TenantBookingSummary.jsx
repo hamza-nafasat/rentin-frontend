@@ -77,7 +77,7 @@ function TenantBookingSummary() {
                 <Image src={row.image} width={182} height={100} alt="Property View" />
               </div>
               <div className="flex flex-col justify-between p-1">
-                <h1 className="text-base font-semibold text-[#32343C]">{row.title}</h1>
+                <h1 className="text-base font-semibold text-[#0245a5]">{row.title}</h1>
                 <h6 className="text-xs font-normal text-[#969696]">{row.address}</h6>
                 <div>
                   <span className="text-base font-semibold">
@@ -114,16 +114,8 @@ function TenantBookingSummary() {
           // Determine color based on paymentStatus value
           const status = row.paymentStatus ? row.paymentStatus.toLowerCase() : '';
           const statusClass =
-            status === 'active'
-              ? 'text-[#34C759]'
-              : status === 'expire'
-                ? 'text-[#E35454]'
-                : 'text-gray-500';
-          return (
-            <span className={`w-[65px] rounded px-2 py-1 text-center ${statusClass}`}>
-              {row.paymentStatus}
-            </span>
-          );
+            status === 'active' ? 'text-[#34C759]' : status === 'expire' ? 'text-[#E35454]' : 'text-gray-500';
+          return <span className={`w-[65px] rounded px-2 py-1 text-center ${statusClass}`}>{row.paymentStatus}</span>;
         },
       },
       {
@@ -172,9 +164,7 @@ const Modal = ({ onClose, children, width }) => {
       onClick={onClose}
     >
       <div
-        className={`overflow-hidden rounded-[12px] bg-white shadow-lg ${
-          width ? width : 'w-[500px]'
-        } h-[488px]`}
+        className={`overflow-hidden rounded-[12px] bg-white shadow-lg ${width ? width : 'w-[500px]'} h-[488px]`}
         onClick={e => e.stopPropagation()}
       >
         {children}

@@ -107,11 +107,7 @@ const PropertiesImageSlider = ({
         {/* Right Section */}
         <div className="grid grid-cols-2 grid-rows-2 gap-4 lg:col-span-4">
           {sideImages.slice(0, 3).map((img, i) => (
-            <div
-              key={i}
-              className="relative cursor-pointer"
-              onClick={() => openModal(mainImages.length + i)}
-            >
+            <div key={i} className="relative cursor-pointer" onClick={() => openModal(mainImages.length + i)}>
               <Image
                 src={img}
                 alt={`Side image ${i + 1}`}
@@ -122,10 +118,7 @@ const PropertiesImageSlider = ({
             </div>
           ))}
           {sideImages.length > 3 && (
-            <div
-              className="relative cursor-pointer"
-              onClick={() => openModal(mainImages.length + 3)}
-            >
+            <div className="relative cursor-pointer" onClick={() => openModal(mainImages.length + 3)}>
               <Image
                 src={sideImages[3]}
                 alt="Side image 4"
@@ -149,10 +142,10 @@ const PropertiesImageSlider = ({
                 {propertyInfo.status}
               </span>
             </div>
-            <span className="block text-lg text-[#32343C]">{propertyInfo.address}</span>
+            <span className="block text-lg text-[#0245a5]">{propertyInfo.address}</span>
             <div className="text-[43px] font-bold">
               ${propertyInfo.price}
-              <span className="text-base text-[#32343C]"> / month</span>
+              <span className="text-base text-[#0245a5]"> / month</span>
             </div>
             <button className="bg-primary flex h-10 w-[87px] cursor-pointer items-center justify-center gap-2 rounded-xl text-base font-medium text-white lg:text-xl">
               <FaEdit className="text-base text-white lg:text-xl" />

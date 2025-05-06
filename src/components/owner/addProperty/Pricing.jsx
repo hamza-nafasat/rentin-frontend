@@ -1,13 +1,13 @@
 'use client';
-import IconButton from '@/components/shared/small/IconButton';
-import InputDropdown from '@/components/shared/small/InputDropdown';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { FaUser } from 'react-icons/fa'; // Example icon from react-icons
-import { BsPlus } from 'react-icons/bs';
-import Input from '@/components/shared/small/Input';
 import Dropdown from '@/components/shared/small/Dropdown';
-import { IoClose } from 'react-icons/io5';
+import IconButton from '@/components/shared/small/IconButton';
+import Input from '@/components/shared/small/Input';
+import InputDropdown from '@/components/shared/small/InputDropdown';
+import InputWithRightContent from '@/components/shared/small/InputWithRightContent';
 import { useState } from 'react';
+import { BsPlus } from 'react-icons/bs';
+import { FaSearch } from 'react-icons/fa';
+import { IoClose } from 'react-icons/io5';
 
 const Pricing = ({ setCurrentStep }) => {
   const handlePrevious = () => setCurrentStep(prevStep => prevStep - 1);
@@ -51,22 +51,17 @@ const Pricing = ({ setCurrentStep }) => {
         <div className="lg:col-span-12">
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-9">
-              <InputDropdown
-                placeholder="0"
-                type="date"
+              <InputWithRightContent
                 label="1 Month Contract"
-                options={frequencyOptions}
-                defaultText="/month"
-                onSelect={handleSelect}
-                mainClassName="custom-dropdown"
-                dropdownIcon={'THB - $'}
-                // width="w-[79px]"
+                // value={searchValue}
+                // onChange={e => setSearchValue(e.target.value)}
+                rightContent={'Per month'}
               />
             </div>
             <div className="col-span-3">
               <div className="flex h-full items-end justify-end">
                 <IconButton
-                  text="Add Deal"
+                  text="contract duration"
                   leftIcon={<BsPlus />}
                   // rightIcon={<FaArrowRight />}
                   cn="!px-2"
@@ -82,32 +77,12 @@ const Pricing = ({ setCurrentStep }) => {
         {customFields.map(field => (
           <div key={field.id} className="lg:col-span-12">
             <div className="grid grid-cols-12 gap-4">
-              <div className="col-span-10">
-                <div className="relative w-full">
-                  {/* Label for the parent input */}
-                  <label className="text-sm text-[#666666] lg:text-base">Customize</label>
-
-                  {/* Parent input field */}
-                  <div className="relative flex w-full items-center">
-                    <input
-                      type="text"
-                      className="shadow-input h-[56px] w-full rounded-xl border-[0.5px] border-[#66666659] px-4 pr-12 text-sm text-[#666666] outline-none lg:text-base"
-                    />
-
-                    {/* Nested input field (right-aligned) */}
-                    <div className="absolute right-0 flex h-[56px] w-[150px] items-center rounded-xl rounded-tl-none rounded-bl-none border-[0.5px] border-[#66666659] bg-[#E9F2FF] pl-12 text-sm text-[#666666] lg:text-base">
-                      <input
-                        type="text"
-                        className="h-full w-full border-none px-4 text-sm text-[#666666] outline-none"
-                        placeholder="Enter"
-                      />
-
-                      {/* Div containing "hallo" inside the nested input */}
-                      <div className="absolute top-1/2 left-2 -translate-y-1/2 transform text-sm text-[#666666]">
-                        Month
-                      </div>
-                    </div>
-                  </div>
+              <div className="col-span-10 grid grid-cols-2 gap-4">
+                <div>
+                  <Input label={'How many month ?'} />
+                </div>
+                <div>
+                  <Input label={'Price'} />
                 </div>
               </div>
               <div className="col-span-2">
@@ -124,11 +99,7 @@ const Pricing = ({ setCurrentStep }) => {
           </div>
         ))}
         <div className="lg:col-span-12">
-          <Dropdown
-            label="Security Deposit per Contract"
-            options={[{ option: 'Condo', value: 'condo' }]}
-            shadow
-          />
+          <Dropdown label="Security Deposit per Contract" options={[{ option: 'Condo', value: 'condo' }]} shadow />
         </div>
         {/* <div> */}
         <div className="lg:col-span-12">

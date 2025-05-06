@@ -37,9 +37,7 @@ const PhotosAndDetails = ({ setCurrentStep }) => {
 
   return (
     <div>
-      <h4 className="text-textColor text-center text-base font-medium md:text-lg">
-        Photos & Details
-      </h4>
+      <h4 className="text-textColor text-center text-base font-medium md:text-lg">Photos & Details</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-12">
           <Input label="Property Title" shadow />
@@ -48,11 +46,7 @@ const PhotosAndDetails = ({ setCurrentStep }) => {
           <Input label="Project Name" shadow />
         </div> */}
         <div className="lg:col-span-12">
-          <Textarea
-            label="Description"
-            placeholder="Enter a description for the image..."
-            shadow={true}
-          />
+          <Textarea label="Description" placeholder="Enter a description for the image..." shadow={true} />
         </div>
         <div className="grid grid-cols-12 gap-4 lg:col-span-12">
           <div
@@ -62,12 +56,8 @@ const PhotosAndDetails = ({ setCurrentStep }) => {
             onClick={handleClick}
           >
             <AiOutlineCloudUpload className="text-primary h-10 w-10" />
-            <p className="mt-2 text-xs text-[#32343C]">
-              Click or drag here to upload ownership documents
-            </p>
-            <p className="mt-2 text-sm text-[#32343C]">
-              (Condo Title Deed, House Book, Land Title, Etc.)
-            </p>
+            <p className="mt-2 text-xs text-[#0245a5]">Click or drag here to upload ownership documents</p>
+            <p className="mt-2 text-sm text-[#0245a5]">(Condo Title Deed, House Book, Land Title, Etc.)</p>
 
             <input
               type="file"
@@ -108,7 +98,7 @@ const PhotosAndDetails = ({ setCurrentStep }) => {
             ) : (
               <div className="flex h-full w-full flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-4">
                 <AiOutlineCloudUpload className="text-primary h-10 w-10" />
-                <p className="mt-2 text-xs text-[#32343C]">No image uploaded yet</p>
+                <p className="mt-2 text-xs text-[#0245a5]">No image uploaded yet</p>
               </div>
             )}
           </div>

@@ -46,9 +46,7 @@ const AgentCard = ({ data, role }) => {
         <div className="flex items-end justify-between gap-2">
           <div>
             <h6 className="text-xs font-bold text-[#FDAC3B]">{data?.speciality}</h6>
-            <h4 className="text-textColor text-sm leading-none font-semibold md:text-base">
-              {data?.name}
-            </h4>
+            <h4 className="text-textColor text-sm leading-none font-semibold md:text-base">{data?.name}</h4>
           </div>
           <span
             className={`flex size-[18px] items-center justify-center rounded-xs bg-[#1D7FFF1A] text-xs font-semibold text-[#0245A5]`}
@@ -62,7 +60,7 @@ const AgentCard = ({ data, role }) => {
         </p>
         <div className="item center flex justify-between">
           <div>
-            <p className="text-xs text-[#32343C]">Task:</p>
+            <p className="text-xs text-[#0245a5]">Task:</p>
           </div>
           <div>
             <p className="text-xs font-semibold">{data?.task}</p>

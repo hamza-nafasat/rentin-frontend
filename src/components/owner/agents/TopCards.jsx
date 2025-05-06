@@ -23,7 +23,7 @@ const Card = ({ card }) => {
       <div className="mt-6">
         <div className="flex items-end gap-2">
           <h4 className="text-textColor text-lg font-medium md:text-2xl">{card.value}</h4>
-          <span className="text-base font-medium text-[#32343C99]">
+          <span className="text-base font-medium text-[#0245a599]">
             {card.title === 'Total Properties'
               ? 'Total'
               : card.title === 'Free Property'
@@ -35,10 +35,7 @@ const Card = ({ card }) => {
                     : 'Agents'}
           </span>
         </div>
-        <p
-          className="mt-2 text-xs text-[#969696]"
-          dangerouslySetInnerHTML={{ __html: card.para }}
-        ></p>
+        <p className="mt-2 text-xs text-[#969696]" dangerouslySetInnerHTML={{ __html: card.para }}></p>
       </div>
     </div>
   );
