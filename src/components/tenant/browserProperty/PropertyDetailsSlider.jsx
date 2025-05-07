@@ -145,12 +145,7 @@ function PropertyDetailsSlider({ data, onClose }) {
                 <Button text="Book Now" />
               </div>
               <div className="mt-5">
-                <HouseMap
-                  location={data?.address}
-                  image={data?.images[0]}
-                  name={'Dream house'}
-                  status={data?.type}
-                />
+                <HouseMap location={data?.address} image={data?.images[0]} name={'Dream house'} status={data?.type} />
               </div>
             </div>
           )}

@@ -2358,7 +2358,27 @@ export const houses = [
     status: 'reserved',
   },
 ];
-
+export const bookingHouses = [
+  // Bangkok
+  {
+    id: 1,
+    city: 'Bangkok',
+    address: '123 Sukhumvit Rd, Bangkok',
+    type: 'For Sale',
+    images: ['/images/browser-property/Properties.png', '/images/browser-property/Properties.png'],
+    price: '$450,000',
+    rentPrice: '$2,500',
+    beds: 3,
+    baths: 2,
+    area: 1800,
+    kitchens: 1,
+    garages: 2,
+    latitude: 13.736717,
+    longitude: 100.523186,
+    rooms: 7,
+    description: 'Beautiful home in Sukhumvit area, with cozy bedrooms and a spacious living area.',
+    status: 'free',
+  },]
 export const agentIncomeOverview = [
   { name: 'Received', value: 2000 },
   { name: 'Pending', value: 1200 },
