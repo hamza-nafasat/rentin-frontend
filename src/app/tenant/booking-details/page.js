@@ -15,7 +15,7 @@ function BookingDetails() {
         <p className="text-xl font-semibold">Booking Details</p>
       </div>
       <div className="mt-6 grid grid-cols-12 gap-6">
-        <div className="col-span-4 grid gap-4">
+        <div className="col-span-12 grid gap-4 lg:col-span-4">
           {bookingHouses?.map(property => (
             <div key={property.id}>
               <BrowsePropertyCard data={property} />
@@ -23,19 +23,23 @@ function BookingDetails() {
           ))}
           <div className="rounded-md border bg-white p-5 shadow-lg">
             <h3 className="text-lg font-semibold">Your booking details</h3>
-            <div className="mt-6 flex justify-between">
+            <div className="mt-6 flex items-stretch justify-between space-x-8">
               <div>
                 <p className="font-medium">Move-in</p>
                 <p className="text-lg font-semibold">Sun 27 Apr 2025</p>
                 <p className="font-medium">14:00-15:00</p>
               </div>
-              <div className="border border-l"></div>
+
+              {/* Vertical divider */}
+              <div className="w-px bg-gray-300" />
+
               <div>
-                <p className="font-medium">Move-in</p>
-                <p className="text-lg font-semibold">Sun 27 Apr 2025</p>
-                <p className="font-medium">14:00-15:00</p>
+                <p className="font-medium">Move-out</p>
+                <p className="text-lg font-semibold">Mon 28 Apr 2025</p>
+                <p className="font-medium">10:00-11:00</p>
               </div>
             </div>
+
             <div className="mt-4">
               <h4 className="font-medium">Total Length of Stay:</h4>
               <h4 className="text-lg font-semibold">1 Month</h4>
@@ -65,7 +69,7 @@ function BookingDetails() {
             </div>
           </div>
         </div>
-        <div className="col-span-8">
+        <div className="col-span-12 lg:col-span-8">
           <div className="rounded-lg bg-[#F3F3F3] p-3.5">
             <div className="flex items-center gap-2">
               <div>
@@ -78,34 +82,34 @@ function BookingDetails() {
             </div>
           </div>
           <div className="mt-6 grid grid-cols-12 gap-4">
-            <div className="mt-2 lg:col-span-6">
+            <div className="col-span-12 mt-2 lg:col-span-6">
               <Input label={'Full Name'} />
             </div>
-            <div className="mt-2 lg:col-span-6">
+            <div className="col-span-12 mt-2 lg:col-span-6">
               <Input label={'Current City'} />
             </div>
-            <div className="mt-2 lg:col-span-6">
+            <div className="col-span-12 mt-2 lg:col-span-6">
               <Input label={'Nationality'} />
             </div>
-            <div className="mt-2 lg:col-span-6">
+            <div className="col-span-12 mt-2 lg:col-span-6">
               <Input label={'People Staying'} />
             </div>
-            <div className="mt-2 lg:col-span-6">
+            <div className="col-span-12 mt-2 lg:col-span-6">
               <Input label={'Occupation'} />
             </div>
-            <div className="mt-2 lg:col-span-6">
+            <div className="col-span-12 mt-2 lg:col-span-6">
               <Input label={'Designation'} />
             </div>
-            <div className="mt-2 lg:col-span-6">
+            <div className="col-span-12 mt-2 lg:col-span-6">
               <Input label={'Visa type'} />
             </div>
-            <div className="mt-2 lg:col-span-6">
+            <div className="col-span-12 mt-2 lg:col-span-6">
               <Dropdown label="Purpose of rental" options={subDistrictOptions} shadow />
             </div>
-            <div className="mt-2 lg:col-span-6">
+            <div className="col-span-12 mt-2 lg:col-span-6">
               <Dropdown label="Move In - Move Out" options={subDistrictOptions} shadow />
             </div>
-            <div className="mt-2 lg:col-span-6">
+            <div className="col-span-12 mt-2 lg:col-span-6">
               <Dropdown label="Your arrival time" options={subDistrictOptions} shadow />
             </div>
           </div>
@@ -136,7 +140,7 @@ function BookingDetails() {
           />
           <Button
             cn={'!text-base !font-semibold !py-2 !px-4 !rounded-md'}
-            text={'CancSend: Booking Requestel'}
+            text={'CancSend: Booking Request'}
             height={'40px'}
           />
         </div>

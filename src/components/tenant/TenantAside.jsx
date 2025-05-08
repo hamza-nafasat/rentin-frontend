@@ -65,9 +65,21 @@ const TenantAside = ({ mobileNav, setMobileNav }) => {
       icon: <FavoriteIcon />,
     },
     {
-      id: 7,
+      id: 8,
       title: 'Booking Details',
       link: ['/tenant/booking-details'],
+      icon: <FavoriteIcon />,
+    },
+    {
+      id: 9,
+      title: 'Payment Details',
+      link: ['/tenant/payment-details'],
+      icon: <FavoriteIcon />,
+    },
+    {
+      id: 10,
+      title: 'All Modals',
+      link: ['/tenant/all-modals'],
       icon: <FavoriteIcon />,
     },
   ];
