@@ -115,14 +115,20 @@ function AgentTransactionHistory() {
           const status = row.paymentStatus.toLowerCase();
           const bgClass =
             status === 'pending'
-              ? 'bg-yellow-500'
+              ? 'bg-[#FCD34D1A] text-[#F59E0B]'
               : status === 'rejected'
-                ? 'bg-red-500'
+                ? 'bg-[#FF3B301A] text-[#FF3B30]'
                 : status === 'paid'
-                  ? 'bg-green-500'
+                  ? 'bg-[#34C7591A] text-[#34C759]'
                   : '';
           return (
-            <span className={`w-[65px] rounded px-2 py-1 text-center text-white ${bgClass}`}>{row.paymentStatus}</span>
+            <div className="flex items-center gap-2">
+              <span
+                className={`${bgClass} w-[80px] rounded-sm px-[10px] py-[3px] text-center text-sm font-semibold capitalize`}
+              >
+                {row.paymentStatus}
+              </span>
+            </div>
           );
         },
       },

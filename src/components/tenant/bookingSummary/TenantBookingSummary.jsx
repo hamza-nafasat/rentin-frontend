@@ -114,7 +114,11 @@ function TenantBookingSummary() {
           // Determine color based on paymentStatus value
           const status = row.paymentStatus ? row.paymentStatus.toLowerCase() : '';
           const statusClass =
-            status === 'active' ? 'text-[#34C759]' : status === 'expire' ? 'text-[#E35454]' : 'text-gray-500';
+            status === 'active'
+              ? 'bg-[#FCD34D1A] text-[#F59E0B]'
+              : status === 'expire'
+                ? 'bg-[#FF3B301A] text-[#FF3B30]'
+                : 'text-gray-500';
           return <span className={`w-[65px] rounded px-2 py-1 text-center ${statusClass}`}>{row.paymentStatus}</span>;
         },
       },

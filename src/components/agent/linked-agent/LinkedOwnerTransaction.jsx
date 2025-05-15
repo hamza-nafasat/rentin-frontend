@@ -73,18 +73,36 @@ function LinkedOwnerTransaction() {
       },
       {
         name: 'Payment Status',
+        // cell: row => {
+        //   const status = row.paymentStatus.toLowerCase();
+        //   return (
+        //     <span
+        //       className={`w-[80px] rounded px-2 py-1 text-center text-white ${getStatusStyle(
+        //         status
+        //       )}`}
+        //       role="status"
+        //       aria-label={`Payment status: ${row.paymentStatus}`}
+        //     >
+        //       {row.paymentStatus}
+        //     </span>
+        //   );
+        // },
         cell: row => {
           const status = row.paymentStatus.toLowerCase();
+          const bgClass =
+            status === 'pending'
+              ? 'bg-[#FCD34D1A] text-[#F59E0B]'
+              : status === 'rejected'
+                ? 'bg-[#FF3B301A] text-[#FF3B30]'
+                : status === 'paid'
+                  ? 'bg-[#34C7591A] text-[#34C759]'
+                  : '';
           return (
-            <span
-              className={`w-[80px] rounded px-2 py-1 text-center text-white ${getStatusStyle(
-                status
-              )}`}
-              role="status"
-              aria-label={`Payment status: ${row.paymentStatus}`}
-            >
-              {row.paymentStatus}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className={`${bgClass} w-[85px] rounded-sm px-[10px] py-[3px] text-center capitalize`}>
+                {row.paymentStatus}
+              </span>
+            </div>
           );
         },
         // width: '20%',

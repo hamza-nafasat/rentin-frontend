@@ -38,16 +38,18 @@ function TransactionHistory() {
           const status = row.paymentStatus.toLowerCase();
           const bgClass =
             status === 'pending'
-              ? 'bg-yellow-500'
+              ? 'bg-[#FCD34D1A] text-[#F59E0B]'
               : status === 'rejected'
-                ? 'bg-red-500'
+                ? 'bg-[#FF3B301A] text-[#FF3B30]'
                 : status === 'paid'
-                  ? 'bg-green-500'
+                  ? 'bg-[#34C7591A] text-[#34C759]'
                   : '';
           return (
-            <span className={`w-[65px] rounded px-2 py-1 text-center text-white ${bgClass}`}>
-              {row.paymentStatus}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className={`${bgClass} w-[85px] rounded-sm px-[10px] py-[3px] text-center capitalize`}>
+                {row.paymentStatus}
+              </span>
+            </div>
           );
         },
       },
@@ -87,21 +89,3 @@ function TransactionHistory() {
 }
 
 export default TransactionHistory;
-
-const Modal = ({ onClose, children, width }) => {
-  return (
-    <div
-      className="modal fixed inset-0 top-0 left-0 z-[99] flex items-center justify-center bg-[#000000c5] p-6"
-      onClick={onClose}
-    >
-      <div
-        className={`overflow-hidden rounded-[12px] bg-white shadow-lg ${
-          width ? width : 'w-[500px]'
-        } h-[488px]`}
-        onClick={e => e.stopPropagation()}
-      >
-        {children}
-      </div>
-    </div>
-  );
-};

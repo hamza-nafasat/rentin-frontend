@@ -8,14 +8,21 @@ import { useState, useMemo } from 'react';
 import Step from './Step';
 
 const AddProperty = () => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const steps = useMemo(
-    () => ['Basic Info', 'Property Info', 'Feature & Amenities', 'Photos & Details', 'Pricing'],
-    []
-  );
+  const [currentStep, setCurrentStep] = useState(3);
+  const steps = useMemo(() => ['Basic Info', 'Property Info', 'Feature & Amenities', 'Photos ', 'Pricing'], []);
 
   const [formData, setFormData] = useState([
-    { propertyType: '', projectName: '', region: '', day: '', time: '', location: '', district: '', street: '' }, // for Component 1
+    {
+      propertyType: '',
+      projectName: '',
+      region: '',
+      day: [],
+      startTime: '',
+      endTime: '',
+      location: '',
+      district: '',
+      street: '',
+    }, // for Component 1
     { input1: '', input2: '', dropdown1: '', dropdown2: '' }, // for Component 2
     { input1: '', input2: '', dropdown1: '', dropdown2: '' }, // ...
     { input1: '', input2: '', dropdown1: '', dropdown2: '' },

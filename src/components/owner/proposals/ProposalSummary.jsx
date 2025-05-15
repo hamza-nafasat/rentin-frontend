@@ -52,11 +52,24 @@ const ProposalSummary = () => {
       },
       {
         name: 'Status',
-        selector: row => (
-          <span className="flex items-center gap-1 capitalize">
-            {row.status === 'accepted' ? '✅' : row.status === 'pending' ? '⌛' : '❌'} {row.status}
-          </span>
-        ),
+        cell: row => {
+          const status = row.status.toLowerCase();
+          const bgClass =
+            status === 'pending'
+              ? 'bg-[#FCD34D1A] text-[#F59E0B]'
+              : status === 'rejected'
+                ? 'bg-[#FF3B301A] text-[#FF3B30]'
+                : status === 'accepted'
+                  ? 'bg-[#34C7591A] text-[#34C759]'
+                  : '';
+          return (
+            <div className="flex items-center gap-2">
+              <span className={`${bgClass} w-[85px] rounded-sm px-[10px] py-[3px] text-center capitalize`}>
+                {row.status}
+              </span>
+            </div>
+          );
+        },
       },
       {
         name: 'Actions',

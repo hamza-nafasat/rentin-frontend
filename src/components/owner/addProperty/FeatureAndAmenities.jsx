@@ -59,6 +59,7 @@ const rentalFeatures = [
   { option: 'Air Conditioning', value: 'air_conditioning' },
   { option: 'Dishwasher', value: 'dishwasher' },
   { option: 'Refrigerator', value: 'refrigerator' },
+  { option: 'Others', value: 'others' },
 ];
 
 const propertyViews = [
@@ -78,6 +79,7 @@ const propertyViews = [
   { option: 'Sunrise View', value: 'sunrise_view' },
   { option: 'Street View', value: 'street_view' },
   { option: 'Beach View', value: 'beach_view' },
+  { option: 'Others', value: 'others' },
 ];
 
 const Button = ({ onClick, children, className }) => (
@@ -91,18 +93,13 @@ const Button = ({ onClick, children, className }) => (
 
 const FeatureAndAmenities = ({ setCurrentStep }) => {
   const handleNext = useCallback(() => setCurrentStep(prevStep => prevStep + 1), [setCurrentStep]);
-  const handlePrevious = useCallback(
-    () => setCurrentStep(prevStep => prevStep - 1),
-    [setCurrentStep]
-  );
+  const handlePrevious = useCallback(() => setCurrentStep(prevStep => prevStep - 1), [setCurrentStep]);
   const handleSelect = selectedValues => {
     console.log('Checked items:', selectedValues);
   };
   return (
     <div>
-      <h4 className="text-textColor text-center text-base font-medium md:text-lg">
-        Features & Amenities
-      </h4>
+      <h4 className="text-textColor text-center text-base font-medium md:text-lg">Features & Amenities</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <DropdownCheckbox label="Property Feature" options={propertyFeatures} shadow />

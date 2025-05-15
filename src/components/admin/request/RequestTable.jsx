@@ -1,10 +1,5 @@
 'use client';
-import {
-  agentRequestData,
-  paymentTransactionData,
-  requestTableStyles,
-  transactionTableStyles,
-} from '@/data/data';
+import { agentRequestData, paymentTransactionData, requestTableStyles, transactionTableStyles } from '@/data/data';
 import { useMemo, useState } from 'react';
 // import DataTable from 'react-data-table-component';
 // import PaymentTransactionSlip from './PaymentTransactionSlip';
@@ -69,16 +64,17 @@ function RequestTable({ title, data }) {
           const status = row.agentStatus.toLowerCase();
           const bgClass =
             status === 'pending'
-              ? 'text-yellow-500'
+              ? 'bg-[#FCD34D1A] text-[#F59E0B]'
               : status === 'rejected'
-                ? 'text-red-500'
+                ? 'bg-[#FF3B301A] text-[#FF3B30]'
                 : status === 'paid'
-                  ? 'text-green-500'
+                  ? 'bg-[#34C7591A] text-[#34C759]'
                   : '';
           return (
             <div className="flex items-center gap-2">
-              {/* <div className={`${bgClass} h-2.5 w-2.5 rounded-full`}></div> */}
-              <span className={`${bgClass}`}>{row.agentStatus}</span>
+              <span className={`${bgClass} w-[85px] rounded-sm px-[10px] py-[3px] text-center capitalize`}>
+                {row.agentStatus}
+              </span>
             </div>
           );
         },
@@ -130,9 +126,7 @@ const Modal = ({ onClose, children, width }) => {
       onClick={onClose}
     >
       <div
-        className={`overflow-hidden rounded-[12px] bg-white p-6 shadow-lg ${
-          width ? width : 'w-[700px]'
-        } `}
+        className={`overflow-hidden rounded-[12px] bg-white p-6 shadow-lg ${width ? width : 'w-[700px]'} `}
         onClick={e => e.stopPropagation()}
       >
         {children}

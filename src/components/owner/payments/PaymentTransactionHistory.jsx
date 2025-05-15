@@ -57,16 +57,17 @@ function PaymentTransactionHistory() {
           const status = row.paymentStatus.toLowerCase();
           const bgClass =
             status === 'pending'
-              ? 'bg-yellow-500'
+              ? 'bg-[#FCD34D1A] text-[#F59E0B]'
               : status === 'rejected'
-                ? 'bg-red-500'
+                ? 'bg-[#FF3B301A] text-[#FF3B30]'
                 : status === 'paid'
-                  ? 'bg-green-500'
+                  ? 'bg-[#34C7591A] text-[#34C759]'
                   : '';
           return (
             <div className="flex items-center gap-2">
-              <div className={`${bgClass} h-2.5 w-2.5 rounded-full`}></div>
-              <span>{row.paymentStatus}</span>
+              <span className={`${bgClass} w-[85px] rounded-sm px-[10px] py-[3px] text-center capitalize`}>
+                {row.paymentStatus}
+              </span>
             </div>
           );
         },
@@ -135,9 +136,7 @@ const Modal = ({ onClose, children, width }) => {
       onClick={onClose}
     >
       <div
-        className={`overflow-hidden rounded-[12px] bg-white shadow-lg ${
-          width ? width : 'w-[500px]'
-        } h-[488px]`}
+        className={`overflow-hidden rounded-[12px] bg-white shadow-lg ${width ? width : 'w-[500px]'} h-[488px]`}
         onClick={e => e.stopPropagation()}
       >
         {children}

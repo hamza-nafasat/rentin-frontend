@@ -7,6 +7,7 @@ import Input from '@/components/shared/small/Input';
 import InputDropdown from '@/components/shared/small/InputDropdown';
 import { FaUser } from 'react-icons/fa'; // Example icon from react-icons
 import ValueAdjuster from '@/components/shared/small/ValueAdjuster';
+import Textarea from '@/components/shared/small/Textarea';
 
 // Static data moved outside component to prevent recreation on each render
 const BEDROOM_OPTIONS = [
@@ -54,7 +55,6 @@ const CONDITION_OPTIONS = [
   { option: 'Unfurnished', value: 'unfurnished' },
   { option: 'Fully Furnished', value: 'fully_furnished' },
   { option: 'Partly Furnished', value: 'partly_furnished' },
-  { option: 'Negotiable', value: 'negotiable' },
 ];
 
 const BUILDING_OPTIONS = [
@@ -160,19 +160,21 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
     <div>
       <h4 className="text-textColor text-center text-base font-medium md:text-lg">Property Information</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
+        <div className="lg:col-span-12">
+          <Input label="Property Title" shadow />
+        </div>
+        <div className="lg:col-span-12">
+          <Textarea label="Description" placeholder="Enter a description for the image..." shadow={true} />
+        </div>
         <div className="flex items-end lg:col-span-6">
-          {formData[0].propertyType === 'condo' ? (
-            <ValueAdjuster label="Bedrooms" value={count} onChange={setCount} />
-          ) : (
-            <Dropdown placeholder="select" label="Bedrooms" options={BEDROOM_OPTIONS} shadow />
-          )}
+          <ValueAdjuster label="Bedrooms" value={count} onChange={setCount} />
         </div>
         <div className="lg:col-span-6">
-          {formData[0].propertyType === 'condo' ? (
-            <ValueAdjuster label="BathRooms" value={count} onChange={setCount} />
-          ) : (
+          {/* {formData[0].propertyType === 'condo' ? ( */}
+          <ValueAdjuster label="BathRooms" value={count} onChange={setCount} />
+          {/* ) : (
             <Dropdown placeholder="select" label="BathRooms" options={BATHROOM_OPTIONS} shadow />
-          )}
+          )} */}
         </div>
         <div className="lg:col-span-6">
           <InputDropdown
@@ -206,90 +208,10 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
           />
         </div>
         <div className="lg:col-span-6">
-          {/* <InputDropdown
-            placeholder="0"
-            label="Common Area Maintenance Fee"
-            options={CommonAreaMaintenanceFee}
-            defaultText=""
-            onSelect={handleSelect}
-            mainClassName="custom-dropdown"
-            dropdownIcon={'$ '}
-            width="w--[79px]"
-          /> */}
-          <Dropdown placeholder="Building " label="Classification" options={Building} shadow />
+          <Dropdown placeholder="Building " label="Building Height" options={Building} shadow />
         </div>
-        <div className="flex items-center lg:col-span-6">
-          <label className="flex cursor-pointer items-center space-x-2">
-            <input
-              type="checkbox"
-              id="myCheckbox"
-              className="h-[18px] w-[18px] text-blue-600"
-              onChange={handleCheckboxChange}
-            />
-            <span className="text-base font-medium">Do you have floor plan?</span>
-          </label>
-        </div>
-        <div className="grid grid-cols-2 gap-4 lg:col-span-12">
-          <div
-            className="flex w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-4 hover:border-blue-500"
-            onDragOver={e => e.preventDefault()}
-            onDrop={handleDrop}
-            onClick={handleClick}
-          >
-            <AiOutlineCloudUpload className="text-primary h-10 w-10" />
-            <p className="mt-2 text-xs text-[#0245a5]">Click here to upload your ownership documents</p>
-            <p className="mt-2 text-sm text-[#0245a5]">(Condo Title Deed, House Book, Land Title, Etc.)</p>
-
-            <input type="file" accept="image/*" className="hidden" ref={fileInputRef} onChange={handleImageUpload} />
-
-            <button
-              type="button"
-              onClick={handleButtonClick}
-              className="bg-primary mt-3 cursor-pointer rounded-lg px-4 py-2 text-white hover:bg-blue-600"
-            >
-              Browse
-            </button>
-
-            {image && (
-              <div className="relative mt-3 h-40 w-40">
-                <Image src={image} alt="Uploaded" fill className="rounded-lg object-cover" priority />
-              </div>
-            )}
-          </div>
-          {isChecked && (
-            <div
-              className="flex w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-4 hover:border-blue-500"
-              onDragOver={e => e.preventDefault()}
-              onDrop={handleFloorDrop}
-              onClick={handleFloorClick}
-            >
-              <AiOutlineCloudUpload className="text-primary h-10 w-10" />
-              <p className="mt-2 text-xs text-[#0245a5]">Click here to upload your floor plan</p>
-              <p className="mt-2 text-sm text-[#0245a5]">(Condo Title Deed, House Book, Land Title, Etc.)</p>
-
-              <input
-                type="file"
-                accept="image/*"
-                className="hidden"
-                ref={floorFileInputRef}
-                onChange={handleFloorImageUpload}
-              />
-
-              <button
-                type="button"
-                onClick={handleFloorButtonClick}
-                className="bg-primary mt-3 cursor-pointer rounded-lg px-4 py-2 text-white hover:bg-blue-600"
-              >
-                Browse
-              </button>
-
-              {floorImage && (
-                <div className="relative mt-3 h-40 w-40">
-                  <Image src={floorImage} alt="Uploaded" fill className="rounded-lg object-cover" priority />
-                </div>
-              )}
-            </div>
-          )}
+        <div className="flex items-end lg:col-span-6">
+          <ValueAdjuster label="Floor Plan" value={count} onChange={setCount} />
         </div>
 
         <div className="flex justify-end gap-[14px] lg:col-span-12">

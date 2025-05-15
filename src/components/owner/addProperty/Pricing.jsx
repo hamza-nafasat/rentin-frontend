@@ -50,7 +50,7 @@ const Pricing = ({ setCurrentStep }) => {
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-12">
           <div className="grid grid-cols-12 gap-4">
-            <div className="col-span-9">
+            <div className="col-span-6">
               <InputWithRightContent
                 label="1 Month Contract"
                 // value={searchValue}
@@ -58,31 +58,42 @@ const Pricing = ({ setCurrentStep }) => {
                 rightContent={'Per month'}
               />
             </div>
-            <div className="col-span-3">
-              <div className="flex h-full items-end justify-end">
-                <IconButton
-                  text="contract duration"
-                  leftIcon={<BsPlus />}
-                  // rightIcon={<FaArrowRight />}
-                  cn="!px-2"
-                  width="w-full"
-                  // height="h-12"
-                  // onClick={}
-                  onClick={handleAddCustomField} // Add new custom field
-                />
-              </div>
+            <div className="col-span-6">
+              <Input label={'Price'} />
             </div>
+          </div>
+        </div>
+
+        <div className="lg:col-span-12">
+          <Dropdown label="Security Deposit per Contract" options={[{ option: 'Condo', value: 'condo' }]} shadow />
+        </div>
+        {/* <div> */}
+        <div className="col-span-2">
+          <div className="flex h-full">
+            <IconButton
+              text="contract duration"
+              leftIcon={<BsPlus />}
+              // rightIcon={<FaArrowRight />}
+              cn="!px-2"
+              width="w-full"
+              // height="h-12"
+              // onClick={}
+              onClick={handleAddCustomField} // Add new custom field
+            />
           </div>
         </div>
         {customFields.map(field => (
           <div key={field.id} className="lg:col-span-12">
             <div className="grid grid-cols-12 gap-4">
-              <div className="col-span-10 grid grid-cols-2 gap-4">
+              <div className="col-span-10 grid grid-cols-3 gap-4">
                 <div>
                   <Input label={'How many month ?'} />
                 </div>
                 <div>
                   <Input label={'Price'} />
+                </div>
+                <div>
+                  <Input label={'Security Deposit of Contract'} />
                 </div>
               </div>
               <div className="col-span-2">
@@ -98,27 +109,6 @@ const Pricing = ({ setCurrentStep }) => {
             </div>
           </div>
         ))}
-        <div className="lg:col-span-12">
-          <Dropdown label="Security Deposit per Contract" options={[{ option: 'Condo', value: 'condo' }]} shadow />
-        </div>
-        {/* <div> */}
-        <div className="lg:col-span-12">
-          <label className="flex cursor-pointer items-center space-x-2">
-            <input
-              type="checkbox"
-              id="myCheckbox"
-              className="h-[18px] w-[18px] text-blue-600"
-              onChange={handleCheckboxChange}
-            />
-            <span className="text-base font-medium">I want to set custom price</span>
-          </label>
-        </div>
-
-        {isChecked && (
-          <div className="lg:col-span-12">
-            <Input label="Custom Price" shadow />
-          </div>
-        )}
         {/* </div> */}
         <div className="flex justify-end gap-[14px] lg:col-span-12">
           <button
