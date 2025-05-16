@@ -1,6 +1,6 @@
 const Input = ({ label, type = 'text', shadow = false, ...rest }) => {
   return (
-    <>
+    <div>
       <label className="text-sm text-[#666666] lg:text-base">{label}</label>
       <input
         {...rest}
@@ -9,7 +9,7 @@ const Input = ({ label, type = 'text', shadow = false, ...rest }) => {
           shadow && 'shadow-input'
         }`}
       />
-    </>
+    </div>
   );
 };
 

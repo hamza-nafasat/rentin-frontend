@@ -207,13 +207,14 @@ const ProfileSec = ({ isMenuOpen }) => {
               ref={menuRef}
               className="absolute right-0 bottom-full mb-2 w-32 rounded border border-gray-200 bg-white shadow-md"
             >
-              <button
+              <Link
+                href="/tenant/settings"
                 onClick={() => console.log('Settings clicked')}
                 className="flex w-full items-center justify-between px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
               >
                 <p>Settings</p>
                 <IoSettingsOutline />
-              </button>
+              </Link>
               <button
                 onClick={() => console.log('Logout clicked')}
                 className="flex w-full items-center justify-between px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"

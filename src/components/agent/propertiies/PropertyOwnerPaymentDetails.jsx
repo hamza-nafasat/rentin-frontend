@@ -1,10 +1,6 @@
 'use client';
 import React, { useState, useMemo } from 'react';
-import {
-  agentTransactionTableStyles,
-  transactionHistoryData,
-  transactionTableStyles,
-} from '@/data/data';
+import { agentTransactionTableStyles, transactionHistoryData, transactionTableStyles } from '@/data/data';
 import AgentTransactionSlip from '@/components/owner/agentProfile/AgentTransactionSlip';
 import dynamic from 'next/dynamic';
 import Modal from '@/components/shared/small/Modal';
@@ -59,16 +55,14 @@ function PropertyOwnerPaymentDetails() {
           const status = row.paymentStatus.toLowerCase();
           const bgClass =
             status === 'pending'
-              ? 'bg-yellow-500'
+              ? '!bg-[#FCD34D1A] !text-[#F59E0B]'
               : status === 'rejected'
-                ? 'bg-red-500'
+                ? '!bg-[#FF3B301A] !text-[#FF3B30]'
                 : status === 'paid'
-                  ? 'bg-green-500'
+                  ? '!bg-[#34C7591A] !text-[#34C759]'
                   : '';
           return (
-            <span className={`w-[80px] rounded px-2 py-1 text-center text-white ${bgClass}`}>
-              {row.paymentStatus}
-            </span>
+            <span className={`w-[80px] rounded px-2 py-1 text-center text-white ${bgClass}`}>{row.paymentStatus}</span>
           );
         },
       },

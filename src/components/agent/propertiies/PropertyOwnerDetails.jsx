@@ -94,11 +94,7 @@ function PropertyOwnerDetails() {
           </div>
         </div>
         <div className="col-span-12 rounded-md border bg-white shadow-xl md:col-span-4">
-          <RentOverview
-            title={'Income OverView'}
-            data={agentIncomeOverview}
-            totalTitle={'Total Income'}
-          />
+          <RentOverview title={'Income OverView'} data={agentIncomeOverview} totalTitle={'Total Income'} />
         </div>
       </div>
       <div className="mt-3.5 grid grid-cols-12 gap-4">

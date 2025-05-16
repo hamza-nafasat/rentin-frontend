@@ -37,17 +37,21 @@ const columns = [
     name: 'Status',
     cell: row => {
       const status = row.status.toLowerCase();
-      const bgClass =
-        status === 'pending'
-          ? 'bg-[#FCD34D1A] text-[#F59E0B]'
-          : status === 'rejected'
-            ? 'bg-[#FF3B301A] text-[#FF3B30]'
-            : status === 'accepted'
-              ? 'bg-[#34C7591A] text-[#34C759]'
-              : '';
       return (
         <div className="flex items-center gap-2">
-          <span className={`${bgClass} w-[85px] rounded-sm px-[10px] py-[3px] text-center capitalize`}>
+          <span
+            className={`${
+              status === 'active'
+                ? 'bg-[#34C7591A] text-[#34C759]'
+                : status === 'pending'
+                  ? 'bg-[#FCD34D1A] text-[#F59E0B]'
+                  : status === 'expired'
+                    ? 'bg-[#FF3B301A] text-[#FF3B30]'
+                    : status === 'rejected'
+                      ? 'bg-[#FF3B301A] text-[#FF3B30]'
+                      : ''
+            } w-[85px] rounded-sm px-[10px] py-[3px] text-center capitalize`}
+          >
             {row.status}
           </span>
         </div>

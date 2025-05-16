@@ -19,6 +19,8 @@ import Tab13 from '@/components/tenant/popups/Tab13';
 import Tab15 from '@/components/tenant/popups/Tab15';
 import Tab16 from '@/components/tenant/popups/Tab16';
 import Tab17 from '@/components/tenant/popups/Tab17';
+import AgentProfile from '@/components/tenant/popups/AgentProfile';
+import LinkedProperties from '@/components/tenant/popups/LinkedProperties';
 
 function AllModals() {
   return (
@@ -80,12 +82,19 @@ function AllModals() {
           <Tab15 />
           <Tab16 />
         </div>
-        <h1 className="text-[24px] font-bold">
-          Agent received inspection proposal in chat and check details and also send inspection report
-        </h1>
-        <div className="flex">
-          <Tab17 />
+        <div>
+          <h1 className="text-[24px] font-bold">
+            Agent received inspection proposal in chat and check details and also send inspection report
+          </h1>
+          <div className="flex">
+            <Tab17 />
+          </div>
         </div>
+        <h1 className="text-center text-[24px] font-bold">Agent Profile</h1>
+        <AgentProfile />
+      </div>
+      <div className="mt-5">
+        <LinkedProperties />
       </div>
     </div>
   );

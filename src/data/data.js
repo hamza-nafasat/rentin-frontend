@@ -51,6 +51,7 @@ const transactionTableStyles = {
     },
   },
 };
+
 export const requestTableStyles = {
   headCells: {
     style: {
@@ -1925,7 +1926,7 @@ const alreadySubscribedData = [
     startDate: '01-Feb-2025',
     endDate: '01-Mar-2025',
     amount: '$600',
-    status: 'Active',
+    status: 'Pending',
   },
   {
     _id: 3,
@@ -1949,7 +1950,7 @@ const alreadySubscribedData = [
     startDate: '10-Mar-2025',
     endDate: '10-Apr-2025',
     amount: '$600',
-    status: 'Cancelled',
+    status: 'Rejected',
   },
   {
     _id: 6,
@@ -2378,7 +2379,8 @@ export const bookingHouses = [
     rooms: 7,
     description: 'Beautiful home in Sukhumvit area, with cozy bedrooms and a spacious living area.',
     status: 'free',
-  },]
+  },
+];
 export const agentIncomeOverview = [
   { name: 'Received', value: 2000 },
   { name: 'Pending', value: 1200 },

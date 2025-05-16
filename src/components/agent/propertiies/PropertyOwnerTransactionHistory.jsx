@@ -1,10 +1,6 @@
 'use client';
 import React, { useState, useMemo, useCallback } from 'react';
-import {
-  agentTransactionTableStyles,
-  transactionHistoryData,
-  transactionTableStyles,
-} from '@/data/data';
+import { agentTransactionTableStyles, transactionHistoryData, transactionTableStyles } from '@/data/data';
 import AgentTransactionSlip from '@/components/owner/agentProfile/AgentTransactionSlip';
 // import Modal from '@/components/shared/common/Modal';
 import dynamic from 'next/dynamic';
@@ -20,9 +16,9 @@ const DataTable = dynamic(() => import('react-data-table-component'), {
 // Status styling utility function
 const getStatusStyle = status => {
   const statusMap = {
-    pending: 'bg-yellow-500',
-    rejected: 'bg-red-500',
-    paid: 'bg-green-500',
+    pending: '!bg-[#FCD34D1A] !text-[#F59E0B]',
+    rejected: '!bg-[#FF3B301A] !text-[#FF3B30]',
+    paid: '!bg-[#34C7591A] !text-[#34C759]',
   };
   return statusMap[status.toLowerCase()] || '';
 };
@@ -81,9 +77,7 @@ function PropertyOwnerTransactionHistory() {
           const status = row.paymentStatus.toLowerCase();
           return (
             <span
-              className={`w-[80px] rounded px-2 py-1 text-center text-white ${getStatusStyle(
-                status
-              )}`}
+              className={`w-[80px] rounded px-2 py-1 text-center text-white ${getStatusStyle(status)}`}
               role="status"
               aria-label={`Payment status: ${row.paymentStatus}`}
             >

@@ -1,14 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { LuChevronRight } from 'react-icons/lu';
 import { ListIcon } from '@/assets/icon';
 import { IoIosArrowDown } from 'react-icons/io';
@@ -48,13 +40,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-const CustomLineChart = ({
-  title,
-  earningsData,
-  width = '100%',
-  height = 350,
-  isLoading = false,
-}) => {
+const CustomLineChart = ({ title, earningsData, width = '100%', height = 350, isLoading = false }) => {
   const [selectedRange, setSelectedRange] = useState('daily');
   const [filteredData, setFilteredData] = useState(earningsData);
 
@@ -76,9 +62,7 @@ const CustomLineChart = ({
       <div style={{ width, height }} className="p-4 lg:p-5">
         <div className="flex items-center justify-between">
           <div>
-            <h6 className="text-textColor text-sm font-semibold md:text-base">
-              {title || 'Earnings'}
-            </h6>
+            <h6 className="text-textColor text-sm font-semibold md:text-base">{title || 'Earnings'}</h6>
           </div>
           <div className="">
             <CustomDropDown lists={['Week', 'Month', 'Year']} />
@@ -93,9 +77,7 @@ const CustomLineChart = ({
     <div style={{ width, height }} className="p-4 lg:p-5">
       <div className="flex items-center justify-between">
         <div>
-          <h6 className="text-textColor text-sm font-semibold md:text-base">
-            {title || 'Earnings'}
-          </h6>
+          <h6 className="text-textColor text-sm font-semibold md:text-base">{title || 'Earnings'}</h6>
         </div>
         <div className="">
           <CustomDropDown lists={['Week', 'Month', 'Year']} />

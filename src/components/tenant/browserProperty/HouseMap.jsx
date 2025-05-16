@@ -7,9 +7,7 @@ import { MapContainer, Marker, TileLayer, Tooltip, useMap } from 'react-leaflet'
 import MapHover from './MapHover';
 
 // Create a custom icon using an icon from react-icons.
-const iconMarkup = renderToStaticMarkup(
-  <FaMapMarkerAlt style={{ color: 'red', fontSize: '2rem' }} />
-);
+const iconMarkup = renderToStaticMarkup(<FaMapMarkerAlt style={{ color: 'red', fontSize: '2rem' }} />);
 const customDivIcon = L.divIcon({
   html: iconMarkup,
   className: '',
@@ -28,9 +26,7 @@ const RecenterAutomatically = ({ latlng }) => {
 };
 
 const getCoordinates = async locationName => {
-  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-    locationName
-  )}&limit=1`;
+  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationName)}&limit=1`;
   try {
     const response = await fetch(url);
     const data = await response.json();

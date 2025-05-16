@@ -102,18 +102,10 @@ const AgentAside = ({ mobileNav, setMobileNav }) => {
           className="mx-auto"
         />
         <div className="mt-5">
-          <h4 className={`text-xs font-bold text-[#545454] ${isMenuOpen ? 'text-center' : 'pl-2'}`}>
-            MENU
-          </h4>
+          <h4 className={`text-xs font-bold text-[#545454] ${isMenuOpen ? 'text-center' : 'pl-2'}`}>MENU</h4>
           <div className="mt-3 flex flex-col gap-2">
             {pages.map((page, i) => (
-              <LinkItem
-                key={i}
-                page={page}
-                pathname={pathname}
-                isMenuOpen={isMenuOpen}
-                setMobileNav={setMobileNav}
-              />
+              <LinkItem key={i} page={page} pathname={pathname} isMenuOpen={isMenuOpen} setMobileNav={setMobileNav} />
             ))}
           </div>
           <div className="mt-5 h-[1px] w-full bg-[#EBEBEB] lg:mt-[50px]"></div>
@@ -196,10 +188,7 @@ const ProfileSec = ({ isMenuOpen }) => {
       {!isMenuOpen && (
         <div className="relative inline-block">
           {/* Three dots icon - click to toggle the menu */}
-          <BsThreeDots
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="cursor-pointer text-base text-[#141B34]"
-          />
+          <BsThreeDots onClick={() => setMenuOpen(!menuOpen)} className="cursor-pointer text-base text-[#141B34]" />
 
           {/* Dropdown Menu positioned above the icon */}
           {menuOpen && (
@@ -207,13 +196,14 @@ const ProfileSec = ({ isMenuOpen }) => {
               ref={menuRef}
               className="absolute right-0 bottom-full mb-2 w-32 rounded border border-gray-200 bg-white shadow-md"
             >
-              <button
+              <Link
+                href="/agent/settings"
                 onClick={() => console.log('Settings clicked')}
                 className="flex w-full items-center justify-between px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
               >
                 <p>Settings</p>
                 <IoSettingsOutline />
-              </button>
+              </Link>
               <button
                 onClick={() => console.log('Logout clicked')}
                 className="flex w-full items-center justify-between px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"

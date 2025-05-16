@@ -10,7 +10,7 @@ function Stripe() {
 
   return (
     <div className="flex h-full flex-col items-center justify-center gap-3">
-      <Image src="/images/payment/Stripe.png" width={354} height={107} alt="icon" />
+      <Image className="mt-4" src="/images/payment/stripe.svg" width={354} height={107} alt="icon" />
       <div className="flex flex-col items-center gap-3">
         <p className="text-lg font-bold">Available Balance</p>
         <p className="text-[34px] font-bold">$144,000.00</p>
@@ -18,7 +18,7 @@ function Stripe() {
       <div className="mb-3.5">
         <button
           onClick={() => setIsModalOpen(true)}
-          className="bg-primary rounded-md px-3 py-2 text-white"
+          className="bg-primary cursor-pointer rounded-md px-3 py-2 text-white"
         >
           <div className="flex items-center gap-1">
             <p className="text-sm font-medium">Connect Account</p>
@@ -29,21 +29,15 @@ function Stripe() {
 
       {/* Modal */}
       {isModalOpen && (
-        <Modal onClose={() => setIsModalOpen(false)}>
+        <Modal onClose={() => setIsModalOpen(false)} title={'Withdraw Amount'}>
           <div className="flex flex-col items-center p-5">
-            <Image src="/images/payment/Stripe.png" width={354} height={107} alt="icon" />
+            <Image src="/images/payment/stripe.svg" width={354} height={107} alt="icon" />
             <Input placeholder="Enter amount" />
             <div className="mt-4 flex gap-3">
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="rounded-md bg-gray-400 px-4 py-2 text-white"
-              >
+              <button onClick={() => setIsModalOpen(false)} className="rounded-md bg-gray-400 px-4 py-2 text-white">
                 Cancel
               </button>
-              <button
-                onClick={() => alert('Amount Confirmed!')}
-                className="bg-primary rounded-md px-4 py-2 text-white"
-              >
+              <button onClick={() => alert('Amount Confirmed!')} className="bg-primary rounded-md px-4 py-2 text-white">
                 Confirm
               </button>
             </div>

@@ -21,9 +21,7 @@ const AdminAside = ({ mobileNav, setMobileNav }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openMenuId, setOpenMenuId] = useState(null); // ⭐ New
   useEffect(() => {
-    const matchedPage = pages.find(
-      page => page.children && page.children.some(child => child.link === pathname)
-    );
+    const matchedPage = pages.find(page => page.children && page.children.some(child => child.link === pathname));
     if (matchedPage) {
       setOpenMenuId(matchedPage.id);
     }
@@ -108,13 +106,12 @@ const AdminAside = ({ mobileNav, setMobileNav }) => {
           height={isMenuOpen ? 35 : 38}
           alt="logo"
           className="mx-auto"
+          z
         />
 
         {/* Menu */}
         <div className="mt-5">
-          <h4 className={`text-xs font-bold text-[#545454] ${isMenuOpen ? 'text-center' : 'pl-2'}`}>
-            MENU
-          </h4>
+          <h4 className={`text-xs font-bold text-[#545454] ${isMenuOpen ? 'text-center' : 'pl-2'}`}>MENU</h4>
 
           <div className="mt-3 flex flex-col gap-2">
             {pages.map(page => (
@@ -179,22 +176,20 @@ const ProfileSec = ({ isMenuOpen }) => {
       </div>
       {!isMenuOpen && (
         <div className="relative inline-block">
-          <BsThreeDots
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="cursor-pointer text-base text-[#141B34]"
-          />
+          <BsThreeDots onClick={() => setMenuOpen(!menuOpen)} className="cursor-pointer text-base text-[#141B34]" />
           {menuOpen && (
             <div
               ref={menuRef}
               className="absolute right-0 bottom-full mb-2 w-32 rounded border border-gray-200 bg-white shadow-md"
             >
-              <button
+              <Link
+                href="/admin/settings"
                 onClick={() => console.log('Settings clicked')}
                 className="flex w-full items-center justify-between px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
               >
                 <p>Settings</p>
                 <IoSettingsOutline />
-              </button>
+              </Link>
               <button
                 onClick={() => console.log('Logout clicked')}
                 className="flex w-full items-center justify-between px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
