@@ -51,11 +51,11 @@ const ImageCarousel = ({ images = [] }) => {
         ))}
       </Swiper>
 
-      <button className="swiper-prev absolute top-1/2 left-3 z-50 -translate-y-1/2 rounded-full bg-white p-2 shadow">
-        <IoIosArrowBack className="text-xl text-gray-700" />
+      <button className="swiper-prev bg-primary absolute top-1/2 left-3 z-50 -translate-y-1/2 cursor-pointer rounded-full p-2 shadow">
+        <IoIosArrowBack className="text-xl text-white" />
       </button>
-      <button className="swiper-next absolute top-1/2 right-3 z-50 -translate-y-1/2 rounded-full bg-white p-2 shadow">
-        <IoIosArrowBack className="rotate-180 text-xl text-gray-700" />
+      <button className="swiper-next bg-primary absolute top-1/2 right-3 z-50 -translate-y-1/2 cursor-pointer rounded-full p-2 shadow">
+        <IoIosArrowBack className="rotate-180 text-xl text-white" />
       </button>
     </div>
   );
@@ -97,11 +97,6 @@ const PhotosAndDetails = ({ setCurrentStep }) => {
     <div>
       <h4 className="text-textColor text-center text-base font-medium md:text-lg">Photos & Details</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
-        {/* Title */}
-        <div className="lg:col-span-12">
-          <Input label="Property Title" shadow />
-        </div>
-
         {/* Property Images Uploader */}
         <div className="lg:col-span-12">
           <label className="text-base font-medium">Property Images</label>

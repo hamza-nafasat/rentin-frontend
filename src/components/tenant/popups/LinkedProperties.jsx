@@ -119,73 +119,70 @@ function AgentTransactionHistory() {
     setModalOpen(false);
   };
 
-  const columns = useMemo(
-    () => [
-      {
-        name: 'Property',
-        cell: row => {
-          return (
-            <div className="flex gap-3">
-              <div>
-                <Image src={row.image} width={182} height={100} alt="Property View" />
-              </div>
-              <div className="flex flex-col justify-between p-0.5">
-                <h1 className="text-base font-semibold text-[#32343C]">{row.title}</h1>
-                <h6 className="text-xs font-normal text-[#969696]">{row.address}</h6>
-                <div className="flex gap-1">
-                  <span className="text-base font-semibold text-[#32343C]">
-                    {row.price}
-                    <span className="text-[8px] font-semibold text-[#969696]">{row.period}</span>
-                  </span>
-                </div>
+  const columns = useMemo(() => [
+    {
+      name: 'Property',
+      cell: row => {
+        return (
+          <div className="flex gap-3">
+            <div>
+              <Image src={row.image} width={182} height={100} alt="Property View" />
+            </div>
+            <div className="flex flex-col justify-between p-0.5">
+              <h1 className="text-base font-semibold text-[#32343C]">{row.title}</h1>
+              <h6 className="text-xs font-normal text-[#969696]">{row.address}</h6>
+              <div className="flex gap-1">
+                <span className="text-base font-semibold text-[#32343C]">
+                  {row.price}
+                  <span className="text-[8px] font-semibold text-[#969696]">{row.period}</span>
+                </span>
               </div>
             </div>
-          );
-        },
-        width: '44%',
-      },
-      {
-        name: 'Monthly Rent',
-        selector: row => row.monthlyRent,
-      },
-      {
-        name: 'Start - End',
-
-        cell: row => (
-          <div className="flex flex-col">
-            <div>{row.startDate}</div>
-            <div>{row.endDate}</div>
           </div>
-        ),
+        );
       },
-      {
-        name: 'Role',
-        selector: row => row.Role,
+      width: '44%',
+    },
+    {
+      name: 'Monthly Rent',
+      selector: row => row.monthlyRent,
+    },
+    {
+      name: 'Start - End',
+
+      cell: row => (
+        <div className="flex flex-col">
+          <div>{row.startDate}</div>
+          <div>{row.endDate}</div>
+        </div>
+      ),
+    },
+    {
+      name: 'Role',
+      selector: row => row.Role,
+    },
+    {
+      name: 'Commission',
+      selector: row => row.commission,
+    },
+    {
+      name: 'Payment Status',
+      cell: row => {
+        const status = row.paymentStatus.toLowerCase();
+        const bgClass =
+          status === 'pending'
+            ? 'bg-[#E99E3426] text-[14px] !text-[#FF9500]'
+            : status === 'rejected'
+              ? 'bg-[#E3545421] text-[14px] !text-[#E35454]'
+              : status === 'paid'
+                ? 'bg-[#34E94912] text-[14px] !text-[#39DA4C]'
+                : '';
+        return (
+          <span className={`w-[74px] rounded px-2 py-1 text-center text-white ${bgClass}`}>{row.paymentStatus}</span>
+        );
       },
-      {
-        name: 'Commission',
-        selector: row => row.commission,
-      },
-      {
-        name: 'Payment Status',
-        cell: row => {
-          const status = row.paymentStatus.toLowerCase();
-          const bgClass =
-            status === 'pending'
-              ? 'bg-[#E99E3426] text-[14px] w-fit !text-[#FF9500]'
-              : status === 'rejected'
-                ? 'bg-[#E3545421] text-[14px] w-fit !text-[#E35454]'
-                : status === 'paid'
-                  ? 'bg-[#34E94912] text-[14px] !text-[#39DA4C]'
-                  : '';
-          return (
-            <span className={`w-[65px] rounded px-2 py-1 text-center text-white ${bgClass}`}>{row.paymentStatus}</span>
-          );
-        },
-      },
-    ],
-    []
-  );
+    },
+  ]);
 
   return (
     <div className="rounded-lg bg-white px-5 py-4 shadow-lg">

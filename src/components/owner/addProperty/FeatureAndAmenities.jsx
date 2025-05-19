@@ -19,6 +19,7 @@ const propertyFeatures = [
   { option: 'Smart Home', value: 'smart_home' },
   { option: 'Media Room / Home Theater', value: 'media_room_home_theater' },
   { option: 'Balcony / Outdoor Terrace', value: 'balcony_outdoor_terrace' },
+  { option: 'Others', value: 'others' },
 ];
 
 const amenities = [

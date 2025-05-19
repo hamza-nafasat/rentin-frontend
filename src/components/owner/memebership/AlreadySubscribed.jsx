@@ -50,7 +50,7 @@ const columns = [
                     : status === 'rejected'
                       ? 'bg-[#FF3B301A] text-[#FF3B30]'
                       : ''
-            } w-[85px] rounded-sm px-[10px] font-bold py-[3px] text-center capitalize`}
+            } w-[85px] rounded-sm px-[10px] py-[3px] text-center font-bold capitalize`}
           >
             {row.status}
           </span>

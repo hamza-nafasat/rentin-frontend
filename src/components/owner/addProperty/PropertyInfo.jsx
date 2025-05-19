@@ -66,9 +66,8 @@ const BUILDING_OPTIONS = [
   { option: 'Other', value: 'other' },
 ];
 const Building = [
-  { option: 'High ', value: 'high ' },
-  { option: 'Rise', value: 'rise' },
-  { option: 'Low ', value: 'low ' },
+  { option: 'High rise', value: 'high ' },
+  { option: 'Low rise', value: 'rise' },
 ];
 
 const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) => {
