@@ -8,6 +8,7 @@ import InputDropdown from '@/components/shared/small/InputDropdown';
 import { FaUser } from 'react-icons/fa'; // Example icon from react-icons
 import ValueAdjuster from '@/components/shared/small/ValueAdjuster';
 import Textarea from '@/components/shared/small/Textarea';
+import RadioButton from '@/components/shared/small/RadioButton';
 
 // Static data moved outside component to prevent recreation on each render
 const BEDROOM_OPTIONS = [
@@ -77,6 +78,13 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
   const [floorImage, setFloorImage] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
   const [inputValue, setInputValue] = useState('');
+  const [selected, setSelected] = useState('option1');
+  const options = [
+    { label: 'Building A', value: 'buildinga' },
+    { label: 'Building B', value: 'buildinga' },
+    { label: 'Building C', value: 'buildinga' },
+    { label: 'Building D', value: 'buildinga' },
+  ];
   console.log('formData', formData[0].propertyType);
 
   const handleNext = useCallback(() => setCurrentStep(prevStep => prevStep + 1), [setCurrentStep]);
@@ -199,18 +207,34 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
           <Dropdown placeholder="Unfurnished" label="Property Condition" options={CONDITION_OPTIONS} shadow />
         </div>
         <div className="lg:col-span-6">
-          <Dropdown
+          {/* <h1>Select Building</h1> */}
+          {/* <Dropdown
             placeholder="Only 1 Bldg"
             label="Building Your Property Located"
             options={BUILDING_OPTIONS}
             shadow
-          />
+          /> */}
+          <div className="h-full space-y-3">
+            <label className="text-sm font-medium text-[#666666] lg:text-base">Select Building</label>
+            <div className="flex h-full items-center gap-4">
+              {options.map(option => (
+                <RadioButton
+                  key={option.value}
+                  label={option.label}
+                  value={option.value}
+                  checked={selected === option.value}
+                  onChange={setSelected}
+                />
+              ))}
+            </div>
+            {/* <p className="mt-2 text-sm text-gray-600">Selected: {selected}</p> */}
+          </div>
         </div>
         <div className="lg:col-span-6">
           <Dropdown placeholder="Building " label="Building Height" options={Building} shadow />
         </div>
         <div className="flex items-end lg:col-span-6">
-          <ValueAdjuster label="Floor Plan" value={count} onChange={setCount} />
+          <ValueAdjuster label="Floor" value={count} onChange={setCount} />
         </div>
 
         <div className="flex justify-end gap-[14px] lg:col-span-12">

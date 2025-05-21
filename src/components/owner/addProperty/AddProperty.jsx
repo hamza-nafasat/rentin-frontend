@@ -8,7 +8,7 @@ import { useState, useMemo } from 'react';
 import Step from './Step';
 
 const AddProperty = () => {
-  const [currentStep, setCurrentStep] = useState(3);
+  const [currentStep, setCurrentStep] = useState(0);
   const steps = useMemo(() => ['Basic Info', 'Property Info', 'Feature & Amenities', 'Photos ', 'Pricing'], []);
 
   const [formData, setFormData] = useState([

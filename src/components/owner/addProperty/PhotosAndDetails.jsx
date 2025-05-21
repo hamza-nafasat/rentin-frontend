@@ -143,7 +143,7 @@ const PhotosAndDetails = ({ setCurrentStep }) => {
               onChange={e => setHasFloorPlan(e.target.checked)}
               className="h-5 w-5 text-blue-600"
             />
-            <span className="text-base font-medium">Do you have a floor plan?</span>
+            <span className="text-base font-medium">I have a floor plan?</span>
           </label>
         </div>
 

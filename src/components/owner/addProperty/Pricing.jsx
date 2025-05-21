@@ -59,7 +59,7 @@ const Pricing = ({ setCurrentStep }) => {
               />
             </div>
             <div className="col-span-6">
-              <Input label={'Price'} />
+              <Input label={'Security Deposit of Contract'} />
             </div>
           </div>
         </div>

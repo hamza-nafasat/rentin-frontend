@@ -18,7 +18,7 @@ const tableStyles = {
   cells: {
     style: {
       color: '#0245a5',
-      fontSize: '13px',
+      fontSize: '14px',
     },
   },
 };
@@ -1673,7 +1673,7 @@ export const PropertyPerformanceTableStyles = {
   cells: {
     style: {
       color: '#0245a5',
-      fontSize: '13px',
+      fontSize: '14px',
     },
   },
 };
