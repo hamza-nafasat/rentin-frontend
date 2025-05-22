@@ -4,6 +4,7 @@ import DropdownCheckbox from '@/components/shared/small/DropdownCheckbox';
 import Input from '@/components/shared/small/Input';
 import dynamic from 'next/dynamic';
 import { useState, useCallback, memo } from 'react';
+import ShowBuildingHours from './ShowBuildingHours';
 
 const MapWithLocation = dynamic(() => import('./MapWithLocation'), {
   ssr: false,
@@ -137,35 +138,11 @@ const BasicInfo = memo(({ data, index, updateField, setCurrentStep }) => {
             shadow
           />
         </div>
-
-        <div className="lg:col-span-6">
-          <DropdownCheckbox
-            label="Buildings can be shown in (Days)"
-            options={weekDayOptions}
-            onSelect={option => updateField(index, 'day', option.value)}
-            defaultText="Select fruits"
-          />
-        </div>
-        <div className="grid grid-cols-2 gap-4 lg:col-span-6">
-          <div>
-            <Input
-              label="Start time"
-              value={data.startTime}
-              onChange={e => updateField(index, 'startTime', e.target.value)}
-              shadow
-            />
-          </div>
-          <div>
-            <Input
-              label="End Time"
-              value={data.endTime}
-              onChange={e => updateField(index, 'endTime', e.target.value)}
-              shadow
-            />
+        <div className="flex overflow-auto lg:col-span-12">
+          <div className="mx-auto rounded-2xl border bg-white px-5 shadow-md">
+            <ShowBuildingHours />
           </div>
         </div>
-
-        {/* MAP (iframe) */}
         <div className="h-[300px] md:h-[400px] lg:col-span-12">
           <MapWithLocation location={streetAddress} />
         </div>
