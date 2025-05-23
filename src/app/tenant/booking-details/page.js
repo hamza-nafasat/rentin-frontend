@@ -4,15 +4,50 @@ import Dropdown from '@/components/shared/small/Dropdown';
 import Input from '@/components/shared/small/Input';
 import BrowsePropertyCard from '@/components/tenant/browserProperty/BrowsePropertyCard';
 import { bookingHouses } from '@/data/data';
-import Image from 'next/image';
 import React, { useState } from 'react';
 
 function BookingDetails() {
-  const [showInput, setShowInput] = useState(true);
-  const subDistrictOptions = [
-    { option: 'Thailand', value: 'thailand' },
-    { option: 'Others', value: 'others' },
+  const [showInput1, setShowInput1] = useState(false);
+  const [showInput2, setShowInput2] = useState(false);
+  const [showInput3, setShowInput3] = useState(false);
+
+  const handleRentReasonChange1 = e => {
+    setShowInput1(e.target.id === 'rentOther1');
+  };
+
+  const handleRentReasonChange2 = e => {
+    setShowInput2(e.target.id === 'rentOther2');
+  };
+
+  const handleRentReasonChange3 = e => {
+    setShowInput3(e.target.id === 'rentOther3');
+  };
+
+  const reasonOptions1 = [
+    { id: 'vacation1', label: '1(Solo)' },
+    { id: 'study1', label: '2(Couple)' },
+    { id: 'family1', label: '3-5(Family/Small Group)' },
+    { id: 'rentOther1', label: '5+ (Custom)' },
   ];
+
+  const reasonOptions2 = [
+    { id: 'remote2', label: 'Vacation/Holiday' },
+    { id: 'relocation2', label: 'Remote Work (Digital Nomad)' },
+    { id: 'healthcare2', label: 'Business/Working Assignment' },
+    { id: 'healthcare2', label: 'Retirement/Long-Term Stay' },
+    { id: 'rentOther2', label: 'Other (Specify:)' },
+  ];
+
+  const reasonOptions3 = [
+    { id: 'business3', label: 'Tourist Visa (TR)' },
+    { id: 'conference3', label: 'Visa on Arrival (VoA)' },
+    { id: 'extended3', label: 'Work Permit' },
+    { id: 'extended3', label: 'Digital Nomad Visa (DTV) (New!)' },
+    { id: 'extended3', label: 'Retirement Visa (O-A/O-X)' },
+    { id: 'extended3', label: 'Education Visa (ED)' },
+    { id: 'rentOther3', label: 'Other (Specify:)' },
+  ];
+
   const countryOptions = [
     { option: 'Thailand', value: 'thailand' },
     { option: 'Japan', value: 'japan' },
@@ -60,6 +95,7 @@ function BookingDetails() {
         <p className="text-xl font-semibold">Rent Form</p>
       </div>
       <div className="mt-6 grid grid-cols-12 gap-6">
+        {/* LEFT COLUMN */}
         <div className="col-span-12 grid gap-4 lg:col-span-4">
           {bookingHouses?.map(property => (
             <div key={property.id}>
@@ -74,17 +110,13 @@ function BookingDetails() {
                 <p className="text-lg font-semibold">Sun 27 Apr 2025</p>
                 <p className="font-medium">14:00-15:00</p>
               </div>
-
-              {/* Vertical divider */}
               <div className="w-px bg-gray-300" />
-
               <div>
                 <p className="font-medium">Move-out</p>
                 <p className="text-lg font-semibold">Mon 28 Apr 2025</p>
                 <p className="font-medium">10:00-11:00</p>
               </div>
             </div>
-
             <div className="mt-4">
               <h4 className="font-medium">Total Length of Stay:</h4>
               <h4 className="text-lg font-semibold">1 Month</h4>
@@ -98,15 +130,13 @@ function BookingDetails() {
             </div>
             <div className="mt-3">
               <div className="flex justify-between">
-                <h3 className="font-medium">Security Amount: Amount:</h3>
+                <h3 className="font-medium">Security Deposit:</h3>
                 <h3 className="text-base font-bold">$450</h3>
               </div>
-              <div>
-                <p className="text-xs font-medium text-[#32343CB2]/70">
-                  A security deposit is required at the time of booking and will be fully refunded when you vacate the
-                  property in its original condition.
-                </p>
-              </div>
+              <p className="mt-1 text-xs font-medium text-[#32343CB2]/70">
+                A security deposit is required at the time of booking and will be fully refunded when you vacate the
+                property in its original condition.
+              </p>
             </div>
             <div className="mt-5 flex justify-between">
               <h1 className="text-[22px] font-medium">Total Amount</h1>
@@ -114,180 +144,98 @@ function BookingDetails() {
             </div>
           </div>
         </div>
+
+        {/* RIGHT COLUMN */}
         <div className="col-span-12 lg:col-span-8">
-          <div className="rounded-lg bg-[#F3F3F3] p-3.5">
-            <div className="flex items-center gap-2">
-              <div>
-                <Image src="/images/dashboard/rental.png" width={42} height={42} alt="icon" className="rounded-full" />
-              </div>
-              <div>
-                <h1 className="text-primary font-bold">You are signed in</h1>
-                <h1 className="text-xs text-[#06060699]/60">katesmith@gmail.com</h1>
-              </div>
+          <div className="grid grid-cols-12 gap-4">
+            <div className="col-span-12">
+              <h1 className="text-lg font-medium">Sign in Information</h1>
             </div>
-          </div>
-          <div className="mt-6 grid grid-cols-12 gap-4">
-            <div className="col-span-12 mt-2 lg:col-span-6">
-              <Input label={'Full Legal Name (as per passport)'} />
+            <div className="col-span-12 md:col-span-6">
+              <Input label="Full Legal Name" placeholder="Enter first name" type="text" />
             </div>
-            <div className="col-span-12 mt-2 lg:col-span-6">
-              <Dropdown label="Current Country" options={countryOptions} shadow />
+            <div className="col-span-12 md:col-span-6">
+              <Input label="Last Name" placeholder="Enter last name" type="text" />
             </div>
-            <div className="col-span-12 mt-2 lg:col-span-6">
-              <Dropdown label="City of Residence" options={cityOptions} shadow />
+            <div className="col-span-12 md:col-span-6">
+              <Dropdown label="Country" options={countryOptions} />
             </div>
-            <div className="col-span-12 mt-2 lg:col-span-6">
-              <Dropdown label="Nationality" options={nationalityOptions} shadow />
+            <div className="col-span-12 md:col-span-6">
+              <Dropdown label="City" options={cityOptions} />
             </div>
-            <div className="col-span-12 mt-2 lg:col-span-6">
-              <Dropdown label="Occupation" options={occupationOptions} shadow />
+            <div className="col-span-12 md:col-span-6">
+              <Dropdown label="Nationality" options={nationalityOptions} />
             </div>
-            <div className="col-span-12 mt-2 lg:col-span-6">
+            <div className="col-span-12 md:col-span-6">
+              <Dropdown label="Occupation" options={occupationOptions} />
+            </div>
+
+            {/* Reason for Renting */}
+            {/* Section 1 */}
+            <div className="col-span-6">
               <h1 className="text-[#32343CB2]">Number of Guests Staying</h1>
-              <div className="relative top-2.5 grid grid-cols-2 items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <input id="solo" type="radio" />
-                  <label className="text-[13px]" htmlFor="solo">
-                    1 (Solo)
-                  </label>
-                </div>
-                <div className="flex items-center gap-2">
-                  <input id="couple" type="radio" />
-                  <label className="text-[13px]" htmlFor="couple">
-                    Couple
-                  </label>
-                </div>
-                <div className="flex items-center gap-2">
-                  <input id="group" type="radio" />
-                  <label className="text-[12px]" htmlFor="group">
-                    3-5 (Family/Small Group)
-                  </label>
-                </div>
-                <div className="flex items-center gap-2">
-                  <input id="custom" type="radio" />
-                  <label className="text-[13px]" htmlFor="custom">
-                    5+ (Custom)
-                  </label>
-                </div>
+              <div className="mt-2.5 grid grid-cols-1 gap-2">
+                {reasonOptions1.map(({ id, label }) => (
+                  <div key={id} className="flex items-center gap-2">
+                    <input id={id} type="radio" name="rentReason1" onChange={handleRentReasonChange1} />
+                    <label className="text-[13px]" htmlFor={id}>
+                      {label}
+                    </label>
+                  </div>
+                ))}
+                {showInput1 && (
+                  <div className="mt-1">
+                    <Input type="text" placeholder="Enter reason" />
+                  </div>
+                )}
               </div>
             </div>
-            <div className="col-span-12 lg:col-span-6">
-              <div className="col-span-12 h-fit lg:col-span-6">
-                <h1 className="text-[#32343CB2]">Visa Type</h1>
-                <div className="mt-2.5 grid grid-cols-1 gap-2">
-                  <div className="flex items-center gap-2">
-                    <input id="tr" type="radio" name="visaType" />
-                    <label className="text-[13px]" htmlFor="tr">
-                      Tourist Visa (TR)
+
+            {/* Section 2 */}
+            <div className="col-span-6">
+              <h1 className="text-[#32343CB2]">Primary Reason for Renting</h1>
+              <div className="mt-2.5 grid grid-cols-1 gap-2">
+                {reasonOptions2.map(({ id, label }) => (
+                  <div key={id} className="flex items-center gap-2">
+                    <input id={id} type="radio" name="rentReason2" onChange={handleRentReasonChange2} />
+                    <label className="text-[13px]" htmlFor={id}>
+                      {label}
                     </label>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <input id="voa" type="radio" name="visaType" />
-                    <label className="text-[13px]" htmlFor="voa">
-                      Visa on Arrival (VoA)
-                    </label>
+                ))}
+                {showInput2 && (
+                  <div className="mt-1">
+                    <Input type="text" placeholder="Enter reason" />
                   </div>
-                  <div className="flex items-center gap-2">
-                    <input id="work" type="radio" name="visaType" />
-                    <label className="text-[13px]" htmlFor="work">
-                      Work Permit
-                    </label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <input id="dtv" type="radio" name="visaType" />
-                    <label className="text-[13px]" htmlFor="dtv">
-                      Digital Nomad Visa (DTV) <span className="font-semibold text-green-600">(New!)</span>
-                    </label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <input id="retire" type="radio" name="visaType" />
-                    <label className="text-[13px]" htmlFor="retire">
-                      Retirement Visa (O-A/O-X)
-                    </label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <input id="ed" type="radio" name="visaType" />
-                    <label className="text-[13px]" htmlFor="ed">
-                      Education Visa (ED)
-                    </label>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <input id="other" type="radio" name="visaType" />
-                    <label className="text-[13px]" htmlFor="other">
-                      Other (Specify:)
-                    </label>
-                    <input
-                      type="text"
-                      className="ml-2 w-1/2 rounded border border-gray-300 px-2 py-1 text-[13px]"
-                      placeholder="Enter visa type"
-                    />
-                  </div>
-                </div>
+                )}
               </div>
             </div>
-            <div className="col-span-12 lg:col-span-6">
-              <div className="col-span-12 lg:col-span-6">
-                <div className="col-span-12 h-fit lg:col-span-6">
-                  <h1 className="text-[#32343CB2]">Primary Reason for Renting</h1>
-                  <div className="mt-2.5 grid grid-cols-1 gap-2">
-                    <div className="flex items-center gap-2">
-                      <input id="vacation" type="radio" name="rentReason" />
-                      <label className="text-[13px]" htmlFor="vacation">
-                        Vacation/Holiday
-                      </label>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <input id="remote" type="radio" name="rentReason" />
-                      <label className="text-[13px]" htmlFor="remote">
-                        Remote Work (Digital Nomad)
-                      </label>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <input id="business" type="radio" name="rentReason" />
-                      <label className="text-[13px]" htmlFor="business">
-                        Business/Work Assignment
-                      </label>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <input id="retirement" type="radio" name="rentReason" />
-                      <label className="text-[13px]" htmlFor="retirement">
-                        Retirement/Long-Term Stay
-                      </label>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <input
-                        id="rentOther"
-                        type="radio"
-                        onChange={() => {
-                          setShowInput(prev => !prev);
-                        }}
-                        name="rentReason"
-                      />
-                      <label
-                        onChange={() => {
-                          setShowInput(prev => !prev);
-                        }}
-                        className="text-[13px]"
-                        htmlFor="rentOther"
-                      >
-                        Other (Specify:)
-                      </label>
-                    </div>
-                    <div>{showInput && <Input type={'text'} placeholder="Enter reason" />}</div>
+
+            {/* Section 3 */}
+            <div className="col-span-6">
+              <h1 className="text-[#32343CB2]">Visa Type for Thailand</h1>
+              <div className="mt-2.5 grid grid-cols-1 gap-2">
+                {reasonOptions3.map(({ id, label }) => (
+                  <div key={id} className="flex items-center gap-2">
+                    <input id={id} type="radio" name="rentReason3" onChange={handleRentReasonChange3} />
+                    <label className="text-[13px]" htmlFor={id}>
+                      {label}
+                    </label>
                   </div>
-                </div>
+                ))}
+                {showInput3 && (
+                  <div className="mt-1">
+                    <Input type="text" placeholder="Enter reason" />
+                  </div>
+                )}
               </div>
             </div>
-            <div className="col-span-12 mt-2">
-              <h1>Requested Rental Period (Minimum 1 month)</h1>
-              <div className="flex w-full justify-between">
-                <div className="basis-[49%]">
-                  <Input type={'date'} label="Start Date" />
-                </div>
-                <div className="basis-[49%]">
-                  <Input type={'date'} label="End Date" />
-                </div>
-              </div>
+            <div className="col-span-6"></div>
+            <div className="col-span-12 md:col-span-6">
+              <Input label="Start Date" placeholder="Enter first name" type="text" />
+            </div>
+            <div className="col-span-12 md:col-span-6">
+              <Input label="End Date" placeholder="Enter last name" type="text" />
             </div>
           </div>
           <div className="mt-6">
@@ -307,15 +255,17 @@ function BookingDetails() {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-end">
+
+      {/* Footer Buttons */}
+      <div className="mt-6 flex items-center justify-end">
         <div className="flex gap-4">
           <Button
-            cn={'!text-base !font-semibold !py-2 !px-4 !rounded-md !bg-[#E35454]'}
-            text={'Cancel'}
-            width={'90px'}
-            height={'40px'}
+            cn="!text-base !font-semibold !py-2 !px-4 !rounded-md !bg-[#E35454]"
+            text="Cancel"
+            width="90px"
+            height="40px"
           />
-          <Button cn={'!text-base !font-semibold !py-2 !px-4 !rounded-md'} text={'Send Rent Request'} height={'40px'} />
+          <Button cn="!text-base !font-semibold !py-2 !px-4 !rounded-md" text="Send Rent Request" height="40px" />
         </div>
       </div>
     </div>
