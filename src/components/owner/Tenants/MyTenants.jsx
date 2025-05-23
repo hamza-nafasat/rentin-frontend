@@ -15,16 +15,13 @@ function MyTenants() {
   const router = useRouter();
 
   return (
-    <section
-      className="mt-4 rounded-lg bg-white p-4"
-      style={{ boxShadow: '0px 2px 12px 0px #3582E71A' }}
-    >
+    <section className="mt-4 rounded-lg bg-white p-4" style={{ boxShadow: '0px 2px 12px 0px #3582E71A' }}>
       <MyTenantsHeader />
-      <div className="mg:grid-cols-2 scroll-0 mt-3 grid max-h-[800px] grid-cols-1 gap-6 overflow-y-scroll lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4">
+      <div className="scroll-0 mt-3 grid max-h-[800px] grid-cols-1 gap-6 overflow-y-scroll md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
         {tenants.map((tenant, index) => (
           <div
             key={`${tenant.id}-${index}`}
-            className="h-full min-h-[330px] w-full min-w-[360px] rounded-md border border-[#D5E0F6] bg-white px-[9px] py-[5px]"
+            className="h-full min-h-[330px] w-full min-w-[360px] rounded-md border border-[#D5E0F6] bg-white px-[9px] py-[5px] lg:min-w-[320px]"
           >
             <div className="relative overflow-visible">
               <Image
@@ -45,7 +42,7 @@ function MyTenants() {
               </div>
             </div>
 
-            <div className="mt-8 flex flex-col px-3.5">
+            <div className="mt-8 flex flex-col px-3.5 md:mt-9 lg:mt-12">
               <div className="flex justify-between">
                 <div>
                   <h1 className="text-base font-semibold">{tenant.name}</h1>

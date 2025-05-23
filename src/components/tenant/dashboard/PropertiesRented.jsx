@@ -75,12 +75,7 @@ const PropertiesRented = ({ data, title }) => {
         <p className="text-sm text-[#76808D]">Overview</p>
         <div className="mt-3.5 flex justify-between gap-4">
           {data.map((status, index) => (
-            <PropertyStatus
-              key={index}
-              count={status.count}
-              color={status.color}
-              label={status.label}
-            />
+            <PropertyStatus key={index} count={status.count} color={status.color} label={status.label} />
           ))}
         </div>
       </div>

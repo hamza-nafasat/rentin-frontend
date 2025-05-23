@@ -39,10 +39,12 @@ const regionOptions = [
   { option: 'East Region', value: 'east-region' },
   { option: 'West Region', value: 'west-region' },
 ];
-const showDaysOptions = [{ option: 'Withing 7 days', value: '7-days' }];
-const showHoursOptions = [{ option: 'Withing 12 hours', value: '12-hours' }];
-const locationOptions = [{ option: 'Thailand', value: 'thailand' }];
+
 const subDistrictOptions = [{ option: 'Thailand', value: 'thailand' }];
+const propertyStatus = [
+  { option: 'Available', value: 'available' },
+  { option: 'Rented', value: 'rented' },
+];
 
 const BasicInfo = memo(({ data, index, updateField, setCurrentStep }) => {
   const [streetAddress, setStreetAddress] = useState('thailand');
@@ -92,7 +94,7 @@ const BasicInfo = memo(({ data, index, updateField, setCurrentStep }) => {
         </div>
         <div className="lg:col-span-6">
           <Input
-            label="Rode/Soi"
+            label="Road"
             value={data.projectName}
             onChange={e => updateField(index, 'projectName', e.target.value)}
             shadow
@@ -135,6 +137,14 @@ const BasicInfo = memo(({ data, index, updateField, setCurrentStep }) => {
             label="Zip Code"
             value={data.projectName}
             onChange={e => updateField(index, 'projectName', e.target.value)}
+            shadow
+          />
+        </div>
+        <div className="lg:col-span-6">
+          <Dropdown
+            label="Property Status"
+            options={propertyStatus}
+            onSelect={option => updateField(index, 'propertyStatus', option.value)}
             shadow
           />
         </div>

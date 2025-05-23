@@ -67,41 +67,55 @@ const PropertiesImageSlider = ({
   const closeModal = () => {
     setModalOpen(false);
   };
+  const [currentIndex, setCurrentIndex] = useState(0);
+  console.log('currentIndex', currentIndex);
 
   return (
     <>
       <section className="grid grid-cols-1 gap-4 rounded-lg bg-white p-4 lg:grid-cols-12">
         {/* Left Slider Section */}
         <div className="relative lg:col-span-8">
-          <Swiper
-            modules={[Navigation, Pagination]}
-            slidesPerView={1}
-            spaceBetween={10}
-            loop
-            navigation={{ nextEl: '.custom-next', prevEl: '.custom-prev' }}
-            pagination={{ clickable: true }}
-          >
-            {mainImages.map((img, i) => (
-              <SwiperSlide key={i}>
-                <div onClick={() => openModal(i)} className="cursor-pointer">
-                  <Image
-                    src={img}
-                    width={700}
-                    height={380}
-                    alt={`Main image ${i + 1}`}
-                    className="h-[380px] w-full rounded-lg object-cover"
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div className="absolute top-[50%] z-50 flex w-full translate-y-[-50%] items-center justify-between px-6">
-            <div className="custom-next grid place-items-center rounded-full bg-white p-1">
-              <IoIosArrowBack className="text-primary -ml-[2px] cursor-pointer text-base" />
+          <div>
+            <Swiper
+              modules={[Navigation, Pagination]}
+              slidesPerView={1}
+              spaceBetween={10}
+              loop
+              navigation={{ nextEl: '.custom-prev', prevEl: '.custom-next' }}
+              pagination={{ clickable: true }}
+              onSlideChange={swiper => {
+                // Swiper uses realIndex for actual index (ignores duplicated slides in loop)
+                setCurrentIndex(swiper.realIndex);
+              }}
+            >
+              {mainImages.map((img, i) => (
+                <SwiperSlide key={i}>
+                  <div>
+                    <Image
+                      src={img}
+                      width={700}
+                      height={380}
+                      alt={`Main image ${i + 1}`}
+                      className="h-[380px] w-full rounded-lg object-cover"
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <div className="absolute top-[50%] z-50 flex w-full translate-y-[-50%] items-center justify-between px-6">
+              <div className="custom-next grid place-items-center rounded-full bg-white p-1">
+                <IoIosArrowBack className="text-primary -ml-[2px] cursor-pointer text-base" />
+              </div>
+              <div className="custom-prev grid place-items-center rounded-full bg-white p-1">
+                <IoIosArrowBack className="text-primary -mr-[2px] rotate-180 cursor-pointer text-base" />
+              </div>
             </div>
-            <div className="custom-prev grid place-items-center rounded-full bg-white p-1">
-              <IoIosArrowBack className="text-primary -mr-[2px] rotate-180 cursor-pointer text-base" />
-            </div>
+            <button
+              onClick={() => openModal(currentIndex)}
+              className="bg-primary absolute top-[90%] left-[88%] z-50 cursor-pointer rounded-md px-4 py-1.5 text-[12px] text-white"
+            >
+              Expand
+            </button>
           </div>
         </div>
         {/* Right Section */}

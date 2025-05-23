@@ -123,14 +123,14 @@ function TenantBookingSummary() {
         },
       },
       {
-        name: 'Agreement Slip',
+        name: 'Contract Slip',
         cell: row => {
           return (
             <button
               onClick={() => openModal(row)}
-              className="rounded bg-[#34C759]/20 px-2 py-1 text-center text-nowrap text-[#34C759]"
+              className="bg-primary cursor-pointer rounded px-2 py-1 text-center text-nowrap text-white"
             >
-              Agreement
+              View
             </button>
           );
         },

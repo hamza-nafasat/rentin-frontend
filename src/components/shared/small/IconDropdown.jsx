@@ -34,9 +34,7 @@ const IconDropdown = ({
         </div>
       </div>
       {isOptionOpen && (
-        <ul
-          className={`absolute top-[40px] left-0 flex w-full flex-col rounded-lg bg-white shadow-md ${optionClass}`}
-        >
+        <ul className={`absolute top-[40px] left-0 flex w-full flex-col rounded-lg bg-white shadow-md ${optionClass}`}>
           {lists.map((list, i) => (
             <li
               key={i}

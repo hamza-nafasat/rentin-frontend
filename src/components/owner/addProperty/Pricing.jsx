@@ -2,6 +2,7 @@
 import Dropdown from '@/components/shared/small/Dropdown';
 import IconButton from '@/components/shared/small/IconButton';
 import Input from '@/components/shared/small/Input';
+import ValueAdjuster from '@/components/shared/small/ValueAdjuster';
 import InputDropdown from '@/components/shared/small/InputDropdown';
 import InputWithRightContent from '@/components/shared/small/InputWithRightContent';
 import { useState } from 'react';
@@ -10,6 +11,7 @@ import { FaSearch } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
 
 const Pricing = ({ setCurrentStep }) => {
+  const [count, setCount] = useState(2);
   const handlePrevious = () => setCurrentStep(prevStep => prevStep - 1);
   const frequencyOptions = [
     { value: 'monthly', label: 'Monthly' },
@@ -86,8 +88,12 @@ const Pricing = ({ setCurrentStep }) => {
           <div key={field.id} className="lg:col-span-12">
             <div className="grid grid-cols-12 gap-4">
               <div className="col-span-10 grid grid-cols-3 gap-4">
-                <div>
-                  <Input label={'How many month ?'} />
+                <div className="mt-6">
+                  <ValueAdjuster
+                    label="Months?"
+                    value={count}
+                    onChange={value => setCount(Math.max(2, Math.min(24, value)))}
+                  />
                 </div>
                 <div>
                   <Input label={'Price'} />

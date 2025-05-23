@@ -80,10 +80,10 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
   const [inputValue, setInputValue] = useState('');
   const [selected, setSelected] = useState('option1');
   const options = [
-    { label: 'Building A', value: 'buildinga' },
-    { label: 'Building B', value: 'buildinga' },
-    { label: 'Building C', value: 'buildinga' },
-    { label: 'Building D', value: 'buildinga' },
+    { label: 'Building A', value: 'building-a' },
+    { label: 'Building B', value: 'building-b' },
+    { label: 'Building C', value: 'building-c' },
+    { label: 'Building D', value: 'building-d' },
   ];
   console.log('formData', formData[0].propertyType);
 

@@ -1178,12 +1178,12 @@ const agentCardsData = [
 export const dummyPropertyStatuses = [
   {
     count: '02',
-    color: '#049478',
+    color: '#0245A5',
     label: 'Paid Properties',
   },
   {
     count: '02',
-    color: '#FF8D42',
+    color: '#A7CBFF',
     label: 'Unpaid Properties',
   },
 ];

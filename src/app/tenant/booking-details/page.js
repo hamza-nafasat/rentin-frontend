@@ -12,7 +12,7 @@ function BookingDetails() {
   return (
     <div className="rounded-lg bg-white p-6">
       <div className="flex items-center justify-center">
-        <p className="text-xl font-semibold">Booking Details</p>
+        <p className="text-xl font-semibold">Rent Form</p>
       </div>
       <div className="mt-6 grid grid-cols-12 gap-6">
         <div className="col-span-12 grid gap-4 lg:col-span-4">
@@ -138,11 +138,7 @@ function BookingDetails() {
             width={'90px'}
             height={'40px'}
           />
-          <Button
-            cn={'!text-base !font-semibold !py-2 !px-4 !rounded-md'}
-            text={'CancSend: Booking Request'}
-            height={'40px'}
-          />
+          <Button cn={'!text-base !font-semibold !py-2 !px-4 !rounded-md'} text={'Send Rent Request'} height={'40px'} />
         </div>
       </div>
     </div>

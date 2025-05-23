@@ -164,7 +164,7 @@ function PropertyDetailsSlider({ data, onClose }) {
 export default PropertyDetailsSlider;
 
 const FeatureItem = ({ icon: Icon, value, label }) => (
-  <div className="flex items-center justify-center gap-1 rounded-md border px-[14px] py-2">
+  <div className="flex items-center justify-between gap-2 rounded-md border px-2 py-1.5 text-[14px]">
     <Icon />
     {value} {label}
   </div>

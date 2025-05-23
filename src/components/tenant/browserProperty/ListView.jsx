@@ -12,13 +12,11 @@ function ListView({ handleCloseSlider, handleCardClick, selectedProperty, houses
         </div>
       ))}
       <div
-        className={`fixed top-24 right-0 h-full w-full bg-white shadow-lg transition-transform duration-300 lg:w-1/3 xl:w-1/4 ${
+        className={`fixed top-24 right-0 h-full w-full bg-white shadow-lg transition-transform duration-300 lg:w-1/3 xl:w-7/23 ${
           selectedProperty ? 'translate-x-0' : 'translate-x-full'
         } z-50`}
       >
-        {selectedProperty && (
-          <PropertyDetailsSlider data={selectedProperty} onClose={handleCloseSlider} />
-        )}
+        {selectedProperty && <PropertyDetailsSlider data={selectedProperty} onClose={handleCloseSlider} />}
       </div>
     </div>
   );
