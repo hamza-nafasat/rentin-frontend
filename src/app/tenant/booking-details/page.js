@@ -164,7 +164,7 @@ function BookingDetails() {
               <Dropdown label="Occupation" options={occupationOptions} />
             </div>
 
-            <div className="col-span-6">
+            <div className="col-span-12 sm:col-span-6">
               <h1 className="text-[#32343CB2]">Number of Guests Staying</h1>
               <div className="mt-2.5 grid grid-cols-1 gap-2">
                 {reasonOptions1.map(({ id, label }) => (
@@ -182,7 +182,7 @@ function BookingDetails() {
                 )}
               </div>
             </div>
-            <div className="col-span-6">
+            <div className="col-span-12 sm:col-span-6">
               <h1 className="text-[#32343CB2]">Primary Reason for Renting</h1>
               <div className="mt-2.5 grid grid-cols-1 gap-2">
                 {reasonOptions2.map(({ id, label }) => (
@@ -201,7 +201,7 @@ function BookingDetails() {
               </div>
             </div>
 
-            <div className="col-span-6">
+            <div className="col-span-12 sm:col-span-6">
               <h1 className="text-[#32343CB2]">Visa Type for Thailand</h1>
               <div className="mt-2.5 grid grid-cols-1 gap-2">
                 {reasonOptions3.map(({ id, label }) => (
@@ -219,7 +219,7 @@ function BookingDetails() {
                 )}
               </div>
             </div>
-            <div className="col-span-6"></div>
+            <div className="col-span-12 md:col-span-6"></div>
             <div className="col-span-12 md:col-span-6">
               <Input label="Start Date" placeholder="Enter Start Date" type="date" />
             </div>
