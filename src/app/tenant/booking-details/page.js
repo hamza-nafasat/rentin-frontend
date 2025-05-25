@@ -34,16 +34,16 @@ function BookingDetails() {
     { id: 'remote2', label: 'Vacation/Holiday' },
     { id: 'relocation2', label: 'Remote Work (Digital Nomad)' },
     { id: 'healthcare2', label: 'Business/Working Assignment' },
-    { id: 'healthcare2', label: 'Retirement/Long-Term Stay' },
+    { id: 'healthcare', label: 'Retirement/Long-Term Stay' },
     { id: 'rentOther2', label: 'Other (Specify:)' },
   ];
 
   const reasonOptions3 = [
     { id: 'business3', label: 'Tourist Visa (TR)' },
     { id: 'conference3', label: 'Visa on Arrival (VoA)' },
-    { id: 'extended3', label: 'Work Permit' },
-    { id: 'extended3', label: 'Digital Nomad Visa (DTV) (New!)' },
-    { id: 'extended3', label: 'Retirement Visa (O-A/O-X)' },
+    { id: 'extended', label: 'Work Permit' },
+    { id: 'extended1', label: 'Digital Nomad Visa (DTV) (New!)' },
+    { id: 'extended2', label: 'Retirement Visa (O-A/O-X)' },
     { id: 'extended3', label: 'Education Visa (ED)' },
     { id: 'rentOther3', label: 'Other (Specify:)' },
   ];
@@ -148,14 +148,8 @@ function BookingDetails() {
         {/* RIGHT COLUMN */}
         <div className="col-span-12 lg:col-span-8">
           <div className="grid grid-cols-12 gap-4">
-            <div className="col-span-12">
-              <h1 className="text-lg font-medium">Sign in Information</h1>
-            </div>
             <div className="col-span-12 md:col-span-6">
               <Input label="Full Legal Name" placeholder="Enter first name" type="text" />
-            </div>
-            <div className="col-span-12 md:col-span-6">
-              <Input label="Last Name" placeholder="Enter last name" type="text" />
             </div>
             <div className="col-span-12 md:col-span-6">
               <Dropdown label="Country" options={countryOptions} />
@@ -166,12 +160,10 @@ function BookingDetails() {
             <div className="col-span-12 md:col-span-6">
               <Dropdown label="Nationality" options={nationalityOptions} />
             </div>
-            <div className="col-span-12 md:col-span-6">
+            <div className="col-span-12">
               <Dropdown label="Occupation" options={occupationOptions} />
             </div>
 
-            {/* Reason for Renting */}
-            {/* Section 1 */}
             <div className="col-span-6">
               <h1 className="text-[#32343CB2]">Number of Guests Staying</h1>
               <div className="mt-2.5 grid grid-cols-1 gap-2">
@@ -190,8 +182,6 @@ function BookingDetails() {
                 )}
               </div>
             </div>
-
-            {/* Section 2 */}
             <div className="col-span-6">
               <h1 className="text-[#32343CB2]">Primary Reason for Renting</h1>
               <div className="mt-2.5 grid grid-cols-1 gap-2">
@@ -211,7 +201,6 @@ function BookingDetails() {
               </div>
             </div>
 
-            {/* Section 3 */}
             <div className="col-span-6">
               <h1 className="text-[#32343CB2]">Visa Type for Thailand</h1>
               <div className="mt-2.5 grid grid-cols-1 gap-2">
@@ -232,10 +221,10 @@ function BookingDetails() {
             </div>
             <div className="col-span-6"></div>
             <div className="col-span-12 md:col-span-6">
-              <Input label="Start Date" placeholder="Enter first name" type="text" />
+              <Input label="Start Date" placeholder="Enter Start Date" type="date" />
             </div>
             <div className="col-span-12 md:col-span-6">
-              <Input label="End Date" placeholder="Enter last name" type="text" />
+              <Input label="End Date" placeholder="Enter End Date" type="date" />
             </div>
           </div>
           <div className="mt-6">
