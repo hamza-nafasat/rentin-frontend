@@ -96,7 +96,7 @@ function BookingDetails() {
       </div>
       <div className="mt-6 grid grid-cols-12 gap-6">
         {/* LEFT COLUMN */}
-        <div className="col-span-12 grid gap-4 lg:col-span-4">
+        <div className="col-span-12 space-y-4 lg:col-span-4">
           {bookingHouses?.map(property => (
             <div key={property.id}>
               <BrowsePropertyCard data={property} />
@@ -152,10 +152,10 @@ function BookingDetails() {
               <Input label="Full Legal Name" placeholder="Enter first name" type="text" />
             </div>
             <div className="col-span-12 md:col-span-6">
-              <Dropdown label="Country" options={countryOptions} />
+              <Dropdown label="Current Country" options={countryOptions} />
             </div>
             <div className="col-span-12 md:col-span-6">
-              <Dropdown label="City" options={cityOptions} />
+              <Dropdown label="City of Residence" options={cityOptions} />
             </div>
             <div className="col-span-12 md:col-span-6">
               <Dropdown label="Nationality" options={nationalityOptions} />
@@ -163,7 +163,12 @@ function BookingDetails() {
             <div className="col-span-12">
               <Dropdown label="Occupation" options={occupationOptions} />
             </div>
-
+            <div className="col-span-12 md:col-span-6">
+              <Input label="Start Date" placeholder="Enter Start Date" type="date" />
+            </div>
+            <div className="col-span-12 md:col-span-6">
+              <Input label="End Date" placeholder="Enter End Date" type="date" />
+            </div>
             <div className="col-span-12 sm:col-span-6">
               <h1 className="text-[#32343CB2]">Number of Guests Staying</h1>
               <div className="mt-2.5 grid grid-cols-1 gap-2">
@@ -176,8 +181,8 @@ function BookingDetails() {
                   </div>
                 ))}
                 {showInput1 && (
-                  <div className="mt-1">
-                    <Input type="text" placeholder="Enter reason" />
+                  <div className="mt-8">
+                    <Input type="text" placeholder="Enter" />
                   </div>
                 )}
               </div>
@@ -195,37 +200,32 @@ function BookingDetails() {
                 ))}
                 {showInput2 && (
                   <div className="mt-1">
-                    <Input type="text" placeholder="Enter reason" />
+                    <Input type="text" placeholder="Enter" />
                   </div>
                 )}
               </div>
             </div>
 
-            <div className="col-span-12 sm:col-span-6">
+            <div className="col-span-12 sm:col-span-12">
               <h1 className="text-[#32343CB2]">Visa Type for Thailand</h1>
-              <div className="mt-2.5 grid grid-cols-1 gap-2">
+              <div className="mt-2.5 flex flex-wrap gap-2">
                 {reasonOptions3.map(({ id, label }) => (
-                  <div key={id} className="flex items-center gap-2">
+                  <div key={id} className="flex items-center gap-1 rounded px-2 py-1">
                     <input id={id} type="radio" name="rentReason3" onChange={handleRentReasonChange3} />
                     <label className="text-[13px]" htmlFor={id}>
                       {label}
                     </label>
                   </div>
                 ))}
-                {showInput3 && (
-                  <div className="mt-1">
-                    <Input type="text" placeholder="Enter reason" />
-                  </div>
-                )}
               </div>
+              {showInput3 && (
+                <div className="mt-1">
+                  <Input type="text" placeholder="Enter" />
+                </div>
+              )}
             </div>
-            <div className="col-span-12 md:col-span-6"></div>
-            <div className="col-span-12 md:col-span-6">
-              <Input label="Start Date" placeholder="Enter Start Date" type="date" />
-            </div>
-            <div className="col-span-12 md:col-span-6">
-              <Input label="End Date" placeholder="Enter End Date" type="date" />
-            </div>
+
+            {/* <div className="col-span-12 md:col-span-6"></div> */}
           </div>
           <div className="mt-6">
             <div>
