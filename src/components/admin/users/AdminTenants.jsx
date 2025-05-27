@@ -17,16 +17,13 @@ function AdminTenants() {
   const router = useRouter();
 
   return (
-    <section
-      className="mt-4 rounded-lg bg-white p-4"
-      style={{ boxShadow: '0px 2px 12px 0px #3582E71A' }}
-    >
+    <section className="shadow-card mt-4 rounded-lg bg-white p-4">
       <MyTenantsHeader />
-      <div className="mg:grid-cols-2 scroll-0 mt-3 grid max-h-[800px] grid-cols-1 gap-6 overflow-y-scroll lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4">
+      <div className="scroll-0 mt-3 grid max-h-[800px] grid-cols-1 gap-6 overflow-y-scroll md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4">
         {tenants.map((tenant, index) => (
           <div
             key={`${tenant.id}-${index}`}
-            className="h-full min-h-[330px] w-full min-w-[360px] rounded-md border border-[#D5E0F6] bg-white px-[9px] py-[5px]"
+            className="shadow-card h-full min-h-[330px] w-full min-w-[360px] rounded-lg border border-[#D5E0F6] bg-white px-[9px] py-[5px]"
           >
             <div className="relative overflow-visible">
               <Image
@@ -42,7 +39,7 @@ function AdminTenants() {
                   width={103}
                   height={103}
                   alt="Profile Image"
-                  className="h-full w-full rounded-full border-4 border-white shadow-md"
+                  className="shadow-card h-full w-full rounded-full border-4 border-white"
                 />
               </div>
             </div>

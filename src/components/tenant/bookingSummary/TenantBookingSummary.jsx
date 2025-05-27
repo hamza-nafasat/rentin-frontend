@@ -119,7 +119,11 @@ function TenantBookingSummary() {
               : status === 'expire'
                 ? 'bg-[#FF3B301A] text-[#FF3B30]'
                 : 'text-gray-500';
-          return <span className={`w-[65px] rounded px-2 py-1 text-center ${statusClass}`}>{row.paymentStatus}</span>;
+          return (
+            <span className={`w-[65px] rounded px-2 py-1 text-center capitalize ${statusClass}`}>
+              {row.paymentStatus}
+            </span>
+          );
         },
       },
       {
@@ -140,7 +144,7 @@ function TenantBookingSummary() {
   );
 
   return (
-    <div className="rounded-lg bg-white px-5 py-4 shadow-lg">
+    <div className="shadow-card rounded-lg bg-white px-5 py-4">
       <h1 className="mb-2 text-sm font-semibold">Transaction History</h1>
       <DataTable
         data={properties}
@@ -168,7 +172,7 @@ const Modal = ({ onClose, children, width }) => {
       onClick={onClose}
     >
       <div
-        className={`overflow-hidden rounded-[12px] bg-white shadow-lg ${width ? width : 'w-[500px]'} h-[488px]`}
+        className={`shadow-card overflow-hidden rounded-[12px] bg-white ${width ? width : 'w-[500px]'} h-[488px]`}
         onClick={e => e.stopPropagation()}
       >
         {children}

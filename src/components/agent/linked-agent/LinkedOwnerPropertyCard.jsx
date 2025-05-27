@@ -26,27 +26,25 @@ const LinkedOwnerPropertyCard = ({ data }) => {
   );
 
   return (
-    <div className="relative h-full min-h-[255px] rounded-md bg-white">
+    <div className="shadow-card relative h-full min-h-[255px] rounded-lg bg-white">
       <Image
         src={data?.image}
         width={270}
         height={215}
-        className="absolute inset-0 h-[200px] w-full rounded-md object-cover"
+        className="absolute inset-0 h-[200px] w-full rounded-lg object-cover"
         alt="property image"
         priority
       />
-      <div className="absolute inset-0 h-full w-full rounded-md"></div>
+      <div className="absolute inset-0 h-full w-full rounded-lg"></div>
       <div className="absolute top-0 left-0 rounded-br-xs bg-white px-2 py-1 text-[10px] font-semibold text-[#3582E7]">
         {data?.house}
       </div>
 
-      <div className="absolute bottom-16 left-3 w-[calc(100%-24px)] rounded-md bg-white p-3">
+      <div className="absolute bottom-16 left-3 w-[calc(100%-24px)] rounded-lg bg-white p-3">
         <div className="flex items-end justify-between gap-2">
           <div>
             <h6 className="text-xs font-bold text-[#FDAC3B]">{data?.speciality}</h6>
-            <h4 className="text-textColor text-sm leading-none font-semibold md:text-base">
-              {data?.name}
-            </h4>
+            <h4 className="text-textColor text-sm leading-none font-semibold md:text-base">{data?.name}</h4>
           </div>
           <span className={propertyType.className}>{propertyType.text}</span>
         </div>
@@ -65,7 +63,7 @@ const LinkedOwnerPropertyCard = ({ data }) => {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-1 w-full rounded-md p-2">
+      <div className="absolute bottom-1 w-full rounded-lg p-2">
         <div className="flex items-center justify-between">
           <div className="flex items-end">
             <p className="text-primary text-lg font-semibold">{data.price}$</p>

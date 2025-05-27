@@ -205,7 +205,7 @@ const ProfileSec = ({ isMenuOpen }) => {
           {menuOpen && (
             <div
               ref={menuRef}
-              className="absolute right-0 bottom-full mb-2 w-32 rounded border border-gray-200 bg-white shadow-md"
+              className="shadow-card absolute right-0 bottom-full mb-2 w-32 rounded border border-gray-200 bg-white"
             >
               <Link
                 href="/tenant/settings"

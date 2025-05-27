@@ -24,7 +24,7 @@ function PaymentDetails() {
               <BrowsePropertyCard data={property} />
             </div>
           ))}
-          <div className="rounded-md border bg-white p-5 shadow-lg">
+          <div className="shadow-card rounded-lg border bg-white p-5">
             <h3 className="text-lg font-semibold">Your booking details</h3>
             <div className="mt-6 flex items-stretch justify-between space-x-8">
               <div>
@@ -48,7 +48,7 @@ function PaymentDetails() {
               <h4 className="text-lg font-semibold">1 Month</h4>
             </div>
           </div>
-          <div className="rounded-md border bg-white p-5 shadow-lg">
+          <div className="shadow-card rounded-lg border bg-white p-5">
             <h1 className="text-lg font-semibold">Your Price Summary</h1>
             <div className="mt-6 flex justify-between">
               <h3 className="font-medium">Rental Amount:</h3>
@@ -97,16 +97,16 @@ function PaymentDetails() {
 
             <div className="mt-7">
               <form action="">
-                <Input type={'text'} label={'Cardholder’s Name*'} placeholder="Michal jhon" />
+                <Input shadow type={'text'} label={'Cardholder’s Name*'} placeholder="Michal jhon" />
                 <div className="mt-3">
-                  <Input type={'number'} label={'Card Number*'} />
+                  <Input shadow type={'number'} label={'Card Number*'} />
                 </div>
                 <div className="mt-3 flex flex-wrap justify-between">
                   <div className="basis-[100%] sm:basis-[49%]">
-                    <Input type={'date'} label={'Expiry Date*'} value={'2025-05-05'} />
+                    <Input shadow type={'date'} label={'Expiry Date*'} value={'2025-05-05'} />
                   </div>
                   <div className="basis-[100%] sm:basis-[49%]">
-                    <Input type={'text'} label={'CVC*'} />
+                    <Input shadow type={'text'} label={'CVC*'} />
                   </div>
                 </div>
                 <div className="relative mt-3 flex items-center gap-2">
@@ -118,7 +118,7 @@ function PaymentDetails() {
                     />
                     <label
                       htmlFor="switch-component"
-                      className="absolute top-0 left-0 h-5 w-5 cursor-pointer rounded-full border border-slate-300 bg-white shadow-sm transition-transform duration-300 peer-checked:translate-x-6 peer-checked:border-slate-800"
+                      className="shadow-card absolute top-0 left-0 h-5 w-5 cursor-pointer rounded-full border border-slate-300 bg-white transition-transform duration-300 peer-checked:translate-x-6 peer-checked:border-slate-800"
                     ></label>
                   </div>
                   <label htmlFor="switch-component" className="flex w-full text-[13px] text-[#32343CB2] sm:text-[16px]">
@@ -138,12 +138,12 @@ function PaymentDetails() {
           <div className="flex w-full items-center justify-end">
             <div className="flex w-[330px] gap-4">
               <Button
-                cn={'!text-base !font-medium !py-2 !px-4 !rounded-md !bg-[#E35454]'}
+                cn={'!text-base !font-medium !py-2 !px-4 !rounded-lg !bg-[#E35454]'}
                 text={'Cancel Request'}
                 // width={'115px'}
                 height={'40px'}
               />
-              <Button cn={'!text-base !font-medium !py-2 !px-4 !rounded-md'} text={'Confirm Booking'} height={'40px'} />
+              <Button cn={'!text-base !font-medium !py-2 !px-4 !rounded-lg'} text={'Confirm Booking'} height={'40px'} />
             </div>
           </div>
         </div>

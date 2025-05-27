@@ -9,7 +9,7 @@ function Content15() {
   const [selectedType, setSelectedType] = useState('Type');
   const [selectedPrice, setSelectedPrice] = useState('Status');
   return (
-    <div className="bg-white shadow-md">
+    <div className="shadow-card bg-white">
       <div className="flex flex-col border-b pb-4 sm:flex-row">
         <div className="mt-3 flex w-[200px] items-center gap-2">
           <Image src="/images/default/building.png" width={32} height={30} alt="icon" />

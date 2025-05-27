@@ -84,7 +84,7 @@ function RequestTable({ title, data }) {
         cell: row => (
           <span
             onClick={() => openModal(row)}
-            className="bg-primary flex h-[23px] w-[60px] cursor-pointer items-center justify-center rounded-md text-[13px] font-medium text-white"
+            className="bg-primary flex h-[23px] w-[60px] cursor-pointer items-center justify-center rounded-lg text-[13px] font-medium text-white"
           >
             View
           </span>
@@ -95,7 +95,7 @@ function RequestTable({ title, data }) {
   );
 
   return (
-    <div className="w-full rounded-lg bg-white px-5 py-4 shadow-lg">
+    <div className="shadow-card w-full rounded-lg bg-white px-5 py-4">
       <div className="mb-4 flex flex-col items-center justify-between md:flex-row">
         <h1 className="text-lg font-semibold">{title}</h1>
       </div>
@@ -126,7 +126,7 @@ const Modal = ({ onClose, children, width }) => {
       onClick={onClose}
     >
       <div
-        className={`overflow-hidden rounded-[12px] bg-white p-6 shadow-lg ${width ? width : 'w-[700px]'} `}
+        className={`shadow-card overflow-hidden rounded-[12px] bg-white p-6 ${width ? width : 'w-[700px]'} `}
         onClick={e => e.stopPropagation()}
       >
         {children}

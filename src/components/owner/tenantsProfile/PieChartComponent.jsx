@@ -14,7 +14,7 @@ const COLORS = ['#002E7A', '#004FBE', '#297BFF', '#85AFFF'];
 
 const PieChartComponent = () => {
   return (
-    <div className="flex h-[337px] flex-col items-center rounded-lg bg-white px-5 py-4 shadow-lg">
+    <div className="shadow-card flex h-[337px] flex-col items-center rounded-lg bg-white px-5 py-4">
       {/* Chart Title */}
       <h1 className="mb-2 text-sm font-semibold">Tenant Feedback & Ratings</h1>
 
@@ -50,10 +50,7 @@ const PieChartComponent = () => {
           <div key={index} className="flex gap-2 space-y-4 text-sm">
             {/* Colored circle for each slice */}
             <div>
-              <span
-                className="inline-block h-3 w-3 rounded-full"
-                style={{ backgroundColor: COLORS[index] }}
-              />
+              <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: COLORS[index] }} />
             </div>
             <div>
               <span className="text-xs">{entry.name}</span>

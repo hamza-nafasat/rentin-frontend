@@ -15,7 +15,7 @@ function TenantsProfileDetails() {
         <RentChart />
         <PieChartComponent />
       </div>
-      <div className="col-span-12 space-y-4">
+      <div className="shadow-card col-span-12 space-y-4">
         <TransactionHistory />
       </div>
     </div>

@@ -17,7 +17,7 @@ const Modal = ({ onClose, children, width }) => {
       onClick={onClose}
     >
       <div
-        className={`overflow-hidden rounded-[12px] bg-white shadow-lg ${width ? width : 'w-[300px] md:w-[400px] lg:w-[700px] xl:w-[900px]'} h-[400px]`}
+        className={`shadow-card overflow-hidden rounded-[12px] bg-white ${width ? width : 'w-[300px] md:w-[400px] lg:w-[700px] xl:w-[900px]'} h-[400px]`}
         onClick={e => e.stopPropagation()}
       >
         {children}
@@ -72,7 +72,7 @@ const PropertiesImageSlider = ({
 
   return (
     <>
-      <section className="grid grid-cols-1 gap-4 rounded-lg bg-white p-4 lg:grid-cols-12">
+      <section className="shadow-card grid grid-cols-1 gap-4 rounded-lg bg-white p-4 lg:grid-cols-12">
         {/* Left Slider Section */}
         <div className="relative lg:col-span-8">
           <div>
@@ -112,7 +112,7 @@ const PropertiesImageSlider = ({
             </div>
             <button
               onClick={() => openModal(currentIndex)}
-              className="bg-primary absolute top-[90%] left-[88%] z-50 cursor-pointer rounded-md px-4 py-1.5 text-[12px] text-white"
+              className="bg-primary absolute top-[90%] left-[88%] z-50 cursor-pointer rounded-lg px-4 py-1.5 text-[12px] text-white"
             >
               Expand
             </button>

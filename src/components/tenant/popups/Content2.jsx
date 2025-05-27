@@ -120,21 +120,21 @@ function Content2() {
 
       <div className="mt-3 mb-3">
         <form action="">
-          <Input label="Full Name" placeholder="Jamie Fox" />
+          <Input shadow label="Full Name" placeholder="Jamie Fox" />
           <div className="mt-3 flex flex-wrap justify-between">
             <div className="flex basis-[100%] flex-wrap justify-between sm:basis-[49%]">
               <Move />
             </div>
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input label="Nationality" placeholder="NYC" />
+              <Input shadow label="Nationality" placeholder="NYC" />
             </div>
           </div>
           <div className="mt-3 flex flex-wrap justify-between">
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input label="Number of Occupants" placeholder="Jamie Fox" />
+              <Input shadow label="Number of Occupants" placeholder="Jamie Fox" />
             </div>
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input label="Purpose of Rental" placeholder="For Study" />
+              <Input shadow label="Purpose of Rental" placeholder="For Study" />
             </div>
           </div>
         </form>

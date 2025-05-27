@@ -1,16 +1,7 @@
 'use client';
 
 import React from 'react';
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
   { name: 'Jan', paidRent: 400, dueRent: 2400, overdueRent: 1000 },
@@ -29,7 +20,7 @@ const data = [
 
 const ChartComponent = () => {
   return (
-    <div className='shadow-lg" h-[238px] rounded-lg bg-white px-5 py-2.5'>
+    <div className="shadow-card h-[238px] rounded-lg bg-white px-5 py-2.5">
       <h1 className="text-sm font-semibold">Rent Payment Trend</h1>
       <ResponsiveContainer width="100%" height="90%">
         <LineChart data={data} margin={{ top: 5, right: 10, left: -10, bottom: 5 }}>

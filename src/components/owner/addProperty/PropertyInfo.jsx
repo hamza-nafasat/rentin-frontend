@@ -168,7 +168,7 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
       <h4 className="text-textColor text-center text-base font-medium md:text-lg">Property Information</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-12">
-          <Input label="Property Title" shadow />
+          <Input shadow label="Property Title" shadow />
         </div>
         <div className="lg:col-span-12">
           <Textarea label="Description" placeholder="Enter a description for the image..." shadow={true} />
@@ -184,7 +184,8 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
           )} */}
         </div>
         <div className="lg:col-span-6">
-          <InputDropdown
+          <Input
+            shadowDropdown
             placeholder="0"
             label="Unit Area"
             options={FREQUENCY_OPTIONS}
@@ -198,7 +199,7 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
           />
         </div>
         <div className="lg:col-span-6">
-          <Input placeholder="i. e A302" label="Unit Number (optional)" shadow />
+          <Input shadow placeholder="i. e A302" label="Unit Number (optional)" shadow />
         </div>
         {/* <div className="lg:col-span-6">
           <Dropdown placeholder="select" label="Floor" options={FLOOR_OPTIONS} shadow />

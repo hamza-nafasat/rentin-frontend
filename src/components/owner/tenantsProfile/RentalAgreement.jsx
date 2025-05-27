@@ -11,7 +11,7 @@ const DetailItem = ({ label, value, valueClass = 'font-medium' }) => (
 );
 
 const Section = ({ title, subTitle, extraHeader, children }) => (
-  <section className="rounded-lg bg-white px-5 py-3.5 shadow-lg">
+  <section className="shadow-card rounded-lg bg-white px-5 py-3.5">
     {subTitle ? (
       <>
         <h1 className="text-lg font-semibold">{title}</h1>
@@ -70,28 +70,12 @@ const RentalAgreement = () => {
       {/* Lease Actions & Control */}
       <Section title="Lease Actions & Control">
         <div className="flex flex-col gap-2.5">
-          <DetailItem
-            label="Contract Documents"
-            value="View"
-            valueClass="text-sm text-primary font-medium"
-          />
-          <DetailItem
-            label="Notice to Vacate"
-            value="Send Notice"
-            valueClass="text-sm text-primary font-medium"
-          />
+          <DetailItem label="Contract Documents" value="View" valueClass="text-sm text-primary font-medium" />
+          <DetailItem label="Notice to Vacate" value="Send Notice" valueClass="text-sm text-primary font-medium" />
         </div>
         <div className="flex flex-col gap-2.5">
-          <DetailItem
-            label="New Contract"
-            value="Add"
-            valueClass="text-sm text-primary font-medium"
-          />
-          <DetailItem
-            label="Agreement"
-            value="View"
-            valueClass="text-sm text-primary font-medium"
-          />
+          <DetailItem label="New Contract" value="Add" valueClass="text-sm text-primary font-medium" />
+          <DetailItem label="Agreement" value="View" valueClass="text-sm text-primary font-medium" />
         </div>
       </Section>
 

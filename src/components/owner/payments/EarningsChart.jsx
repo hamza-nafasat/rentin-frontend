@@ -1,16 +1,7 @@
 'use client';
 import { Arrow } from '@/assets/icon';
 import React, { useState } from 'react';
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 // Sample data for each time period
 const weekData = [
@@ -81,7 +72,7 @@ const EarningsChart = () => {
             <p className="text-xs font-bold">12%</p>
           </div>
         </div>
-        <div className="h-full rounded-md border p-1">
+        <div className="h-full rounded-lg border p-1">
           <select value={timePeriod} onChange={e => setTimePeriod(e.target.value)}>
             <option value="week">Week</option>
             <option value="monthly">Monthly</option>

@@ -8,7 +8,7 @@ import DetailedEdit from './DetailedEdit';
 function AgentOtherDetails() {
   const [tab, setTab] = useState('Edit');
   return (
-    <div className="rounded-md bg-white p-4">
+    <div className="rounded-lg bg-white p-4">
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center sm:gap-0">
         <div className="flex items-center gap-4">
           <div>
@@ -29,7 +29,7 @@ function AgentOtherDetails() {
           {['Change Password', 'Edit'].map((item, i) => (
             <div key={i}>
               <button
-                className={`cursor-pointer rounded-md px-4 py-2 text-[16px] text-white ${
+                className={`cursor-pointer rounded-lg px-4 py-2 text-[16px] text-white ${
                   tab === item ? 'bg-[#112C33] font-semibold' : 'bg-[#A7A7A7] font-medium text-[#474950]'
                 }`}
                 onClick={() => setTab(item)}

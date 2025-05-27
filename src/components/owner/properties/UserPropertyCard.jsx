@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const UserPropertyCard = () => {
   return (
-    <section className="relative flex flex-col gap-8 rounded-lg border-[#D5E0F6] p-4 shadow-lg">
+    <section className="shadow-card relative flex flex-col gap-8 rounded-lg border-[#D5E0F6] p-4">
       <div className="relative">
         <Image
           src="/images/properties/Bg.png"
@@ -19,7 +19,7 @@ const UserPropertyCard = () => {
             width={103}
             height={103}
             alt="Profile Image"
-            className="h-full w-full rounded-full border-4 border-white shadow-md"
+            className="shadow-card h-full w-full rounded-full border-4 border-white"
           />
         </div>
       </div>

@@ -38,37 +38,31 @@ const AdminDashboard = () => {
         Welcome! <span className="font-normal">Alexander</span>
       </h3>
       <HomeCards data={adminHomeCardsData} />
-      <div className="mt-4 grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-12">
-        <div className="grid grid-cols-1 gap-4 md:gap-6 lg:col-span-7 lg:grid-cols-12">
-          <div className="lg:col-span-6 xl:col-span-12 2xl:col-span-6">
-            <PieChartHalf
-              title="Earning Breakdown"
-              data={totalEarningsChartData}
-              config={totalEarningschartConfig}
-              totalLabel="Total Earnings"
-            />
-          </div>
-          <div className="lg:col-span-6 xl:col-span-12 2xl:col-span-6">
-            <CustomPieChart
-              title="Properties Status"
-              data={incomeBreakdata}
-              legend={incomeLegendLabels}
-            />
-          </div>
-          <div className="lg:col-span-12">
-            <div className="rounded-lg border bg-white p-4 shadow-sm lg:p-5">
-              <CustomLineChart
-                title={'Revenue Growth'}
-                earningsData={earningsData}
-                isLoading={isLoading}
+      <div className="mt-4 grid grid-cols-1 gap-5 lg:grid-cols-5">
+        <div className="col-span-5 grid gap-5 lg:grid-cols-5">
+          <div className="col-span-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-3">
+            <div className="col-span-2 sm:col-span-1">
+              <PieChartHalf
+                title="Earning Breakdown"
+                data={totalEarningsChartData}
+                config={totalEarningschartConfig}
+                totalLabel="Total Earnings"
               />
             </div>
+            <div className="col-span-2 sm:col-span-1">
+              <CustomPieChart title="Properties Status" data={incomeBreakdata} legend={incomeLegendLabels} />
+            </div>
+            <div className="col-span-2">
+              <div className="shadow-card rounded-lg border bg-white p-4 lg:p-5">
+                <CustomLineChart title={'Revenue Growth'} earningsData={earningsData} isLoading={isLoading} />
+              </div>
+            </div>
+          </div>
+          <div className="shadow-card col-span-5 rounded-lg bg-white lg:col-span-2">
+            <RecentActivities cn={'h-[650px]'} data={activitiesData} />
           </div>
         </div>
-        <div className="rounded-lg border bg-white p-4 shadow-sm lg:col-span-5">
-          <RecentActivities cn={'h-[650px]'} data={activitiesData} />
-        </div>
-        <div className="lg:col-span-12">
+        <div className="shadow-card col-span-5">
           <BookingSummary title={'Financial Summary'} />
         </div>
       </div>

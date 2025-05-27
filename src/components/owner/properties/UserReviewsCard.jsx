@@ -28,26 +28,18 @@ function UserReviewsCard({ reviews }) {
   };
 
   return (
-    <div className="mt-2 flex w-full flex-col items-center rounded-lg border-[#D5E0F6] p-4 shadow-lg">
+    <div className="shadow-card mt-2 flex w-full flex-col items-center rounded-lg border-[#D5E0F6] p-4">
       {/* User Info & Rating */}
       <div className="flex w-full flex-col items-center justify-between lg:flex-row">
         <div className="flex items-center gap-2">
-          <Image
-            src={currentReview.image}
-            width={32}
-            height={32}
-            alt="User Profile"
-            className="size-8 rounded-full"
-          />
+          <Image src={currentReview.image} width={32} height={32} alt="User Profile" className="size-8 rounded-full" />
           <div className="flex gap-1 text-sm font-semibold">
             <span>{currentReview.name}</span> <span>-</span> <span>{currentReview.date}</span>
           </div>
         </div>
         {/* Star Rating */}
         <div className="flex text-[#ECBA0B]">
-          {[...Array(5)].map((_, i) =>
-            i < currentReview.rating ? <FaStar key={i} /> : <FaRegStar key={i} />
-          )}
+          {[...Array(5)].map((_, i) => (i < currentReview.rating ? <FaStar key={i} /> : <FaRegStar key={i} />))}
         </div>
       </div>
 

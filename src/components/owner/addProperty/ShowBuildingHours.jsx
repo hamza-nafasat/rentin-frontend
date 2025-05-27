@@ -40,7 +40,7 @@ function ShowBuildingHours() {
                   />
                   <label
                     htmlFor={day.toLowerCase()}
-                    className="absolute top-0 left-0 h-5 w-5 cursor-pointer rounded-full border border-slate-300 bg-white shadow-sm transition-transform duration-300 peer-checked:translate-x-6 peer-checked:border-slate-800"
+                    className="shadow-card absolute top-0 left-0 h-5 w-5 cursor-pointer rounded-full border border-slate-300 bg-white transition-transform duration-300 peer-checked:translate-x-6 peer-checked:border-slate-800"
                   ></label>
                 </div>
               </div>

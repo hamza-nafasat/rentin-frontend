@@ -18,10 +18,10 @@ function QrcodeContent() {
         <form action="">
           <div className="mt-3 flex flex-wrap justify-between">
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'date'} defaultValue={'2025-05-05'} label={'Date'} />
+              <Input shadow type={'date'} defaultValue={'2025-05-05'} label={'Date'} />
             </div>
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'time'} label={'Time'} value={'14:30'} />
+              <Input shadow type={'time'} label={'Time'} value={'14:30'} />
             </div>
           </div>
         </form>
@@ -29,13 +29,7 @@ function QrcodeContent() {
       <div className="my-3 flex flex-col items-center justify-between sm:flex-row">
         <div className="basis-[49%]">
           <h1 className="text-center text-[17px] font-bold text-[#32343C]">Showing Agent</h1>
-          <Image
-            className="mx-auto"
-            src="/images/default/kartikk-k.png"
-            width={168}
-            height={168}
-            alt="icon"
-          />
+          <Image className="mx-auto" src="/images/default/kartikk-k.png" width={168} height={168} alt="icon" />
           <h1 className="text-[34px] font-bold text-[#32343C]">John Doe </h1>
           <p className="flex items-center gap-2 text-[16px] text-[#32343C]">
             Certified Inspection Officer
@@ -47,25 +41,23 @@ function QrcodeContent() {
         </div>
       </div>
       <div className="my-3">
-        <h1 className="mb-3 text-[16px] font-bold text-[#32343C]">
-          Guidelines for Showing the QR Code to the Agent
-        </h1>
+        <h1 className="mb-3 text-[16px] font-bold text-[#32343C]">Guidelines for Showing the QR Code to the Agent</h1>
         <ul>
           <li className="flex items-center gap-2 text-[14px] font-semibold text-[#32343C]">
-            <span className="h-1 w-1 rounded-[50%] bg-[#32343C]"></span> Show the QR code and
-            digital code only after seeing the full property.
+            <span className="h-1 w-1 rounded-[50%] bg-[#32343C]"></span> Show the QR code and digital code only after
+            seeing the full property.
           </li>
           <li className="flex items-center gap-2 text-[14px] font-semibold text-[#32343C]">
-            <span className="h-1 w-1 rounded-[50%] bg-[#32343C]"></span> Make sure you check all
-            rooms before sharing the code.
+            <span className="h-1 w-1 rounded-[50%] bg-[#32343C]"></span> Make sure you check all rooms before sharing
+            the code.
           </li>
           <li className="flex items-center gap-2 text-[14px] font-semibold text-[#32343C]">
-            <span className="h-1 w-1 rounded-[50%] bg-[#32343C]"></span> The agent will verify the
-            code to confirm your visit.
+            <span className="h-1 w-1 rounded-[50%] bg-[#32343C]"></span> The agent will verify the code to confirm your
+            visit.
           </li>
           <li className="flex items-center gap-2 text-[14px] font-semibold text-[#32343C]">
-            <span className="h-1 w-1 rounded-[50%] bg-[#32343C]"></span> Once verified, your visit
-            will be marked as complete.
+            <span className="h-1 w-1 rounded-[50%] bg-[#32343C]"></span> Once verified, your visit will be marked as
+            complete.
           </li>
         </ul>
       </div>

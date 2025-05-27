@@ -4,7 +4,7 @@ import DataTable from 'react-data-table-component';
 
 const AlreadySubscribed = () => {
   return (
-    <section className="rounded-lg border bg-white p-4 shadow-sm lg:p-5">
+    <section className="shadow-card rounded-lg border bg-white p-4 lg:p-5">
       <div className="text-textColor text-sm font-semibold">Proposal Summary</div>
       <DataTable
         data={alreadySubscribedData}

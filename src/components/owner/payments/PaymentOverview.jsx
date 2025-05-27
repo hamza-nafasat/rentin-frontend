@@ -52,7 +52,7 @@ const PaymentOverview = () => {
   };
 
   return (
-    <div className="flex h-[337px] flex-col rounded-lg bg-white px-5 py-4 shadow-lg">
+    <div className="flex h-[337px] flex-col rounded-lg bg-white px-5 py-4">
       {/* Chart Title */}
       <div className="flex flex-col">
         <h1 className="mb-2 text-sm font-semibold">Payment Overview</h1>
@@ -99,10 +99,7 @@ const PaymentOverview = () => {
       <div className="mt-4 grid w-full grid-cols-2 gap-4">
         {/* Collected Rent */}
         <div className="flex items-center justify-center space-x-2">
-          <span
-            className="inline-block h-3 w-3 rounded-full"
-            style={{ backgroundColor: collectedColor }}
-          />
+          <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: collectedColor }} />
           <div>
             <span className="block text-xs font-semibold">Collected Rent</span>
             <span className="block text-xs">{collectedRent}</span>
@@ -110,10 +107,7 @@ const PaymentOverview = () => {
         </div>
         {/* Pending Rent */}
         <div className="flex items-center justify-center space-x-2">
-          <span
-            className="inline-block h-3 w-3 rounded-full"
-            style={{ backgroundColor: pendingColor }}
-          />
+          <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: pendingColor }} />
           <div>
             <span className="block text-xs font-semibold">Pending Rent</span>
             <span className="block text-xs">{pendingRent}</span>

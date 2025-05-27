@@ -55,7 +55,7 @@ function OwnerProfileDetails() {
               layout="responsive"
               width={1190}
               height={225}
-              className="rounded-md object-cover"
+              className="rounded-lg object-cover"
               priority
             />
             {/* Profile image positioned relative to the frame image */}
@@ -89,25 +89,21 @@ function OwnerProfileDetails() {
           </div>
         </div>
         <div className="mt-4 grid grid-cols-12 gap-4">
-          <div className="col-span-12 h-[250px] rounded-lg bg-white p-3 shadow-xl lg:col-span-8">
-            <Suspense fallback={<ChartLoading />}>
+          <div className="shadow-card col-span-12 h-[250px] rounded-lg bg-white p-3 lg:col-span-8">
+            <Suspense se fallback={<ChartLoading />}>
               <OwnerPaymentOverview title="Payment Overview" />
             </Suspense>
           </div>
-          <div className="col-span-12 h-[250px] rounded-lg bg-white shadow-xl lg:col-span-4">
+          <div className="shadow-card col-span-12 h-[250px] rounded-lg bg-white lg:col-span-4">
             <Suspense fallback={<ChartLoading />}>
-              <RentOverview
-                title={'Payment OverView'}
-                data={agentIncomeOverview}
-                totalTitle={'Total Payment'}
-              />
+              <RentOverview title={'Payment OverView'} data={agentIncomeOverview} totalTitle={'Total Payment'} />
             </Suspense>
           </div>
         </div>
-        <div className="w-full rounded-lg bg-white shadow-xl">
+        <div className="shadow-card w-full rounded-lg bg-white">
           <LinkPropertyCards />
         </div>
-        <div className="gird rounded-md border bg-white shadow-xl md:col-span-5">
+        <div className="gird shadow-card rounded-lg border bg-white md:col-span-5">
           <LinkedOwnerTransaction />
         </div>
       </div>

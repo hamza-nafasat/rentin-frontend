@@ -12,7 +12,7 @@ const COLORS = ['#003480', '#90BEFF'];
 
 const Sales = () => {
   return (
-    <div className="flex h-[337px] flex-col rounded-lg bg-white px-5 py-4 shadow-lg">
+    <div className="flex h-[337px] flex-col rounded-lg bg-white px-5 py-4">
       {/* Chart Title */}
       <div className="flex flex-col">
         <h1 className="mb-2 text-sm font-semibold">Sales vs. Rentals Revenue</h1>
@@ -50,10 +50,7 @@ const Sales = () => {
           <div key={index} className="flex items-center justify-center gap-2 space-y-4 text-sm">
             {/* Colored circle for each slice */}
             <div className="flex items-center justify-center">
-              <span
-                className="inline-block h-3 w-3 rounded-full"
-                style={{ backgroundColor: COLORS[index] }}
-              />
+              <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: COLORS[index] }} />
             </div>
             <div>
               <span className="text-xs">{entry.name}</span>

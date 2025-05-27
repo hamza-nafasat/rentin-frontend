@@ -8,7 +8,7 @@ const ProposalModal = ({ onClose, children, width }) => {
       onClick={onClose}
     >
       <div
-        className={`custom-scroll h-fit max-h-full overflow-y-auto rounded-[12px] bg-white shadow-lg ${
+        className={`custom-scroll shadow-card h-fit max-h-full overflow-y-auto rounded-[12px] bg-white ${
           width ? width : 'w-[300px] md:w-[400px] lg:w-[700px] xl:w-[900px]'
         }`}
         onClick={e => e.stopPropagation()}

@@ -33,9 +33,9 @@ const Step = ({ step, index, currentStep, setCurrentStep, stepsLength }) => {
             isClickable ? 'cursor-pointer hover:scale-105' : 'cursor-not-allowed'
           } ${
             isCompleted
-              ? 'bg-primary shadow-sm'
+              ? 'bg-primary shadow-card'
               : isActive
-                ? 'xs:border-2 border-primary border-[1.5px] bg-white shadow-sm'
+                ? 'xs:border-2 border-primary shadow-card border-[1.5px] bg-white'
                 : 'xs:border-2 border-[1.5px] border-gray-200 bg-white'
           }`}
           onClick={() => isClickable && setCurrentStep(index)}
@@ -64,11 +64,7 @@ const Step = ({ step, index, currentStep, setCurrentStep, stepsLength }) => {
         {/* Label */}
         <span
           className={`xs:mt-1.5 xs:text-[11px] xs:max-w-[85px] mt-1 w-full max-w-[70px] truncate text-center text-[10px] transition-colors duration-300 sm:mt-2 sm:max-w-[110px] sm:text-xs md:max-w-[140px] md:text-sm lg:max-w-none ${
-            isCompleted
-              ? 'text-primary font-medium'
-              : isActive
-                ? 'text-textColor font-medium'
-                : 'text-gray-400'
+            isCompleted ? 'text-primary font-medium' : isActive ? 'text-textColor font-medium' : 'text-gray-400'
           }`}
         >
           {step}

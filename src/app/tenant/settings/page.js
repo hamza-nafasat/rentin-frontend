@@ -13,7 +13,7 @@ function Setting() {
           <div key={i} className="w-[50%]">
             <button
               key={i}
-              className={`w-[100%] cursor-pointer rounded-md px-4 py-2 text-[16px] text-[#71717A] ${
+              className={`w-[100%] cursor-pointer rounded-lg px-4 py-2 text-[16px] text-[#71717A] ${
                 tab === item ? 'bg-white font-semibold text-black' : ''
               }`}
               onClick={() => setTab(item)}

@@ -18,7 +18,7 @@ function Stripe() {
       <div className="mb-3.5 text-center">
         <button
           onClick={() => setIsModalOpen(true)}
-          className="bg-primary cursor-pointer rounded-md px-3 py-2 text-white"
+          className="bg-primary cursor-pointer rounded-lg px-3 py-2 text-white"
         >
           <div className="flex items-center gap-1">
             <p className="text-sm font-medium">Connect Account</p>
@@ -33,18 +33,18 @@ function Stripe() {
           <div className="flex flex-col items-center p-5">
             <Image src="/images/default/stripe-logo.png" width={220} height={107} alt="icon" />
             <div className="mt-4 w-full text-center">
-              <Input cn={'!w-[70%] !h-[47px] !rounded-[6px] !mt-0'} placeholder="Enter amount" />
+              <Input shadow cn={'!w-[70%] !h-[47px] !rounded-[6px] !mt-0'} placeholder="Enter amount" />
             </div>
             <div className="mt-4 flex gap-3">
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="cursor-pointer rounded-md bg-gray-400 px-4 py-2 text-white"
+                className="cursor-pointer rounded-lg bg-gray-400 px-4 py-2 text-white"
               >
                 Cancel
               </button>
               <button
                 onClick={() => alert('Amount Confirmed!')}
-                className="bg-primary cursor-pointer rounded-md px-4 py-2 text-white"
+                className="bg-primary cursor-pointer rounded-lg px-4 py-2 text-white"
               >
                 Confirm
               </button>

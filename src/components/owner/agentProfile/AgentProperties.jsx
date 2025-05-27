@@ -137,7 +137,7 @@ function AgentTransactionHistory() {
   );
 
   return (
-    <div className="rounded-lg bg-white px-5 py-4 shadow-lg">
+    <div className="shadow-card rounded-lg bg-white px-5 py-4">
       <h1 className="mb-2 text-sm font-semibold">Transaction History</h1>
       <DataTable
         data={properties}
@@ -165,7 +165,7 @@ const Modal = ({ onClose, children, width }) => {
       onClick={onClose}
     >
       <div
-        className={`overflow-hidden rounded-[12px] bg-white shadow-lg ${width ? width : 'w-[500px]'} h-[488px]`}
+        className={`shadow-card overflow-hidden rounded-[12px] bg-white ${width ? width : 'w-[500px]'} h-[488px]`}
         onClick={e => e.stopPropagation()}
       >
         {children}

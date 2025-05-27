@@ -28,13 +28,13 @@ const AgentTaskHeader = ({ tabView, setTabView }) => {
           text={'Inspection'}
           height={'30px'}
           width={'74px'}
-          cn={'!rounded-md !bg-[#7C848DB2]/70 p-3 !text-sm !font-medium  '}
+          cn={'!rounded-lg !bg-[#7C848DB2]/70 p-3 !text-sm !font-medium  '}
         />
         <Button
           text={'Property Showing'}
           height={'30px'}
           width={'115px'}
-          cn={'!rounded-md p-3 !text-sm !font-medium  '}
+          cn={'!rounded-lg p-3 !text-sm !font-medium  '}
         />
       </div>
     </section>

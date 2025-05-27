@@ -19,6 +19,7 @@ const ForgotPasswordForm = () => {
       <div className="mt-5 grid grid-cols-1 gap-4 lg:mt-7 lg:grid-cols-12">
         <div className="lg:col-span-12">
           <Input
+            shadow
             label="Email address"
             name="email"
             type="email"
@@ -27,12 +28,7 @@ const ForgotPasswordForm = () => {
           />
         </div>
         <div className="flex flex-col items-center justify-center gap-6 md:flex-row lg:col-span-12 lg:justify-start">
-          <Button
-            width="w-full md:w-[184px]"
-            height="h-[43px]"
-            text="Send Reset Link"
-            type="submit"
-          />
+          <Button width="w-full md:w-[184px]" height="h-[43px]" text="Send Reset Link" type="submit" />
           <div className="text-sm text-[#666666] lg:text-base">
             Don’t have an Account?{' '}
             <Link href="/signup" className="text-primary font-semibold">

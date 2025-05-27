@@ -36,7 +36,7 @@ const Selector = ({ lists, selectedOption, setSelectedOption, cn }) => {
         </div>
       </div>
       {isOptionOpen && (
-        <ul className="absolute top-[40px] left-0 flex w-full flex-col rounded-lg bg-white shadow-md">
+        <ul className="shadow-card absolute top-[40px] left-0 flex w-full flex-col rounded-lg bg-white">
           {lists.map((list, i) => (
             <li
               key={i}

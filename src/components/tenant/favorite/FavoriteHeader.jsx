@@ -34,7 +34,7 @@ function FavoriteHeader() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="rounded-md bg-white px-6 py-3.5 shadow-md">
+      <div className="shadow-card rounded-lg bg-white px-6 py-3.5">
         {/* Top Header */}
         <div className="flex flex-wrap items-center justify-between gap-4">
           <HeaderGreeting />
@@ -51,7 +51,7 @@ function FavoriteHeader() {
           setSelectedLocation={setSelectedLocation}
         />
       </div>
-      <div className="rounded-md bg-white px-6 py-4 shadow-md">
+      <div className="shadow-card rounded-lg bg-white px-6 py-4">
         <section className="flex flex-col items-center justify-between gap-5 border-b border-[#395d8c4d] pb-4 md:flex-row">
           <div className="text-textColor flex items-center gap-[10px] text-sm font-semibold">
             <Image src="/images/dashboard/rental.png" width={40} height={40} alt="icon" />

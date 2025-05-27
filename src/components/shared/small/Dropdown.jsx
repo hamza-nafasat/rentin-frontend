@@ -71,9 +71,7 @@ const Dropdown = memo(
 
     return (
       <div className={`relative ${width || 'w-full'}`} ref={dropdownRef}>
-        {label && (
-          <label className="text-sm font-medium text-[#666666] lg:text-base">{label}</label>
-        )}
+        {label && <label className="text-sm font-medium text-[#666666] lg:text-base">{label}</label>}
         <button
           type="button"
           aria-expanded={isOpen}
@@ -90,10 +88,10 @@ const Dropdown = memo(
           </div>
         </button>
         {isOpen && !readOnly && (
-          <ul className="absolute z-10 mt-1 max-h-[200px] w-full cursor-pointer overflow-y-auto rounded-md bg-[#f7f7f7] shadow-md">
+          <ul className="shadow-card absolute z-10 mt-1 max-h-[200px] w-full cursor-pointer overflow-y-auto rounded-lg bg-[#f7f7f7]">
             {options.map(option => (
               <li
-                className="rounded-md border-b border-[#d3d3d3] px-4 py-4 text-sm hover:bg-[hsl(208,100%,95%)]"
+                className="rounded-lg border-b border-[#d3d3d3] px-4 py-4 text-sm hover:bg-[hsl(208,100%,95%)]"
                 key={option.value}
                 onClick={() => selectHandler(option)}
               >

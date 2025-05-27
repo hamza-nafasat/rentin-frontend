@@ -93,11 +93,11 @@ function TenantTransactionHistory() {
       <div className="mb-4 flex flex-col items-center justify-center space-y-2 md:flex-row md:justify-between md:space-y-0">
         <h1 className="text-lg font-semibold">Transaction History</h1>
         <div className="flex gap-4">
-          <button className="bg-primary flex items-center gap-1 rounded-md p-2 text-white">
+          <button className="bg-primary flex items-center gap-1 rounded-lg p-2 text-white">
             <CiFilter />
             <span>Filter</span>
           </button>
-          <div className="flex items-center rounded-md bg-gray-500 p-2 text-white">
+          <div className="flex items-center rounded-lg bg-gray-500 p-2 text-white">
             <HiOutlineAdjustmentsHorizontal />
             <select
               className="flex items-center text-white"
@@ -137,7 +137,7 @@ const Modal = ({ onClose, children, width }) => {
       onClick={onClose}
     >
       <div
-        className={`overflow-hidden rounded-[12px] bg-white shadow-lg ${width ? width : 'w-[500px]'} h-[488px]`}
+        className={`shadow-card overflow-hidden rounded-[12px] bg-white ${width ? width : 'w-[500px]'} h-[488px]`}
         onClick={e => e.stopPropagation()}
       >
         {children}

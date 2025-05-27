@@ -102,7 +102,7 @@ function BookingDetails() {
               <BrowsePropertyCard data={property} />
             </div>
           ))}
-          <div className="rounded-md border bg-white p-5 shadow-lg">
+          <div className="shadow-card rounded-lg border bg-white p-5">
             <h3 className="text-lg font-semibold">Your booking details</h3>
             <div className="mt-6 flex items-stretch justify-between space-x-8">
               <div>
@@ -122,7 +122,7 @@ function BookingDetails() {
               <h4 className="text-lg font-semibold">1 Month</h4>
             </div>
           </div>
-          <div className="rounded-md border bg-white p-5 shadow-lg">
+          <div className="shadow-card rounded-lg border bg-white p-5">
             <h1 className="text-lg font-semibold">Your Price Summary</h1>
             <div className="mt-6 flex justify-between">
               <h3 className="font-medium">Rental Amount:</h3>
@@ -149,7 +149,7 @@ function BookingDetails() {
         <div className="col-span-12 lg:col-span-8">
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 md:col-span-6">
-              <Input label="Full Legal Name" placeholder="Enter first name" type="text" />
+              <Input shadow label="Full Legal Name" placeholder="Enter first name" type="text" />
             </div>
             <div className="col-span-12 md:col-span-6">
               <Dropdown label="Current Country" options={countryOptions} />
@@ -164,10 +164,10 @@ function BookingDetails() {
               <Dropdown label="Occupation" options={occupationOptions} />
             </div>
             <div className="col-span-12 md:col-span-6">
-              <Input label="Start Date" placeholder="Enter Start Date" type="date" />
+              <Input shadow label="Start Date" placeholder="Enter Start Date" type="date" />
             </div>
             <div className="col-span-12 md:col-span-6">
-              <Input label="End Date" placeholder="Enter End Date" type="date" />
+              <Input shadow label="End Date" placeholder="Enter End Date" type="date" />
             </div>
             <div className="col-span-12 sm:col-span-6">
               <h1 className="text-[#32343CB2]">Number of Guests Staying</h1>
@@ -182,7 +182,7 @@ function BookingDetails() {
                 ))}
                 {showInput1 && (
                   <div className="mt-8">
-                    <Input type="text" placeholder="Enter" />
+                    <Input shadow type="text" placeholder="Enter" />
                   </div>
                 )}
               </div>
@@ -200,7 +200,7 @@ function BookingDetails() {
                 ))}
                 {showInput2 && (
                   <div className="mt-1">
-                    <Input type="text" placeholder="Enter" />
+                    <Input shadow type="text" placeholder="Enter" />
                   </div>
                 )}
               </div>
@@ -220,7 +220,7 @@ function BookingDetails() {
               </div>
               {showInput3 && (
                 <div className="mt-1">
-                  <Input type="text" placeholder="Enter" />
+                  <Input shadow type="text" placeholder="Enter" />
                 </div>
               )}
             </div>
@@ -239,7 +239,7 @@ function BookingDetails() {
               <h1 className="">
                 Please write your requests in English or Thai. <span className="text-[10px]">(optional)</span>
               </h1>
-              <textarea className="h-[200px] w-full rounded-md border" />
+              <textarea className="h-[200px] w-full rounded-lg border" />
             </div>
           </div>
         </div>
@@ -249,12 +249,12 @@ function BookingDetails() {
       <div className="mt-6 flex items-center justify-end">
         <div className="flex gap-4">
           <Button
-            cn="!text-base !font-semibold !py-2 !px-4 !rounded-md !bg-[#E35454]"
+            cn="!text-base !font-semibold !py-2 !px-4 !rounded-lg !bg-[#E35454]"
             text="Cancel"
             width="90px"
             height="40px"
           />
-          <Button cn="!text-base !font-semibold !py-2 !px-4 !rounded-md" text="Send Rent Request" height="40px" />
+          <Button cn="!text-base !font-semibold !py-2 !px-4 !rounded-lg" text="Send Rent Request" height="40px" />
         </div>
       </div>
     </div>

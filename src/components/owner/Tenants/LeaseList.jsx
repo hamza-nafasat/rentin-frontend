@@ -38,7 +38,7 @@ function LeaseDuration({ startDate, endDate, spendDays }) {
   });
 
   return (
-    <div className="my-[11px] rounded-lg bg-white p-[4px] shadow-lg">
+    <div className="shadow-card my-[11px] rounded-lg bg-white p-[4px]">
       <div className="flex w-full items-center justify-center">
         <span className="text-xs font-medium">Lease Duration</span>
       </div>
@@ -67,12 +67,7 @@ function LeaseList() {
   return (
     <div className="">
       {leases.map(lease => (
-        <LeaseDuration
-          key={lease.id}
-          startDate={lease.startDate}
-          endDate={lease.endDate}
-          spendDays={lease.spendDays}
-        />
+        <LeaseDuration key={lease.id} startDate={lease.startDate} endDate={lease.endDate} spendDays={lease.spendDays} />
       ))}
     </div>
   );

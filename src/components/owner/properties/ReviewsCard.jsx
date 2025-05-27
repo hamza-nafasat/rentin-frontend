@@ -5,7 +5,7 @@ function ReviewsCard() {
   return (
     <section className="mt-5">
       <h1 className="text-lg font-semibold">Reviews</h1>
-      <div className="flex h-[146px] flex-col items-center rounded-lg border-[#D5E0F6] p-4 shadow-lg">
+      <div className="shadow-card flex h-[146px] flex-col items-center rounded-lg border-[#D5E0F6] p-4">
         <h1 className="text-[22px] font-semibold">Average Rating</h1>
         <div className="flex items-center">
           <span className="text-[42px] font-bold">4.0</span>

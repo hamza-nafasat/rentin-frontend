@@ -32,10 +32,10 @@ const Dashboard = () => {
     <>
       <Welcome />
       <HomeCards data={homeCardsData} />
-      <div className="mt-4 grid grid-cols-5 gap-5">
+      <div className="mt-4 grid grid-cols-5 gap-5 px-1">
         <div className="col-span-5 grid grid-cols-5 gap-5 lg:h-[700px]">
           <div className="col-span-5 grid grid-cols-12 gap-5 lg:col-span-3">
-            <div className="col-span-12 lg:col-span-6">
+            <div className="shadow-card col-span-12 rounded-lg lg:col-span-6">
               <PieChartHalf
                 title="Payment Overview"
                 data={totalEarningsChartData}
@@ -43,18 +43,18 @@ const Dashboard = () => {
                 totalLabel="Total Earnings"
               />
             </div>
-            <div className="col-span-12 lg:col-span-6">
+            <div className="shadow-card col-span-12 rounded-lg lg:col-span-6">
               <CustomPieChart title="Income Breakdown" data={incomeBreakdata} legend={incomeLegendLabels} />
             </div>
-            <div className="col-span-12 rounded-lg border bg-white">
+            <div className="shadow-card col-span-12 rounded-lg border bg-white">
               <CustomLineChart earningsData={earningsData} isLoading={isLoading} />
             </div>
           </div>
-          <div className="col-span-5 h-[100%] overflow-auto lg:col-span-2">
+          <div className="shadow-card col-span-5 h-[100%] overflow-auto lg:col-span-2">
             <MyProperties />
           </div>
         </div>
-        <div className="col-span-5">
+        <div className="shadow-card col-span-5">
           <BookingSummary title={'Booking Summary'} />
         </div>
       </div>

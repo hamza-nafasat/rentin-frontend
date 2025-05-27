@@ -15,22 +15,22 @@ function AdminInsights() {
       <h3 className="text-textColor text-lg font-semibold md:text-[22px]">Insight Details</h3>
       <TopCards data={insightCardsData} />
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
-        <div className="flex h-[247px] grid-cols-12 rounded-md bg-white shadow-md lg:col-span-4">
+        <div className="shadow-card flex h-[247px] grid-cols-12 rounded-lg bg-white lg:col-span-4">
           <TenantIntent title="Tenant Intent" data={tenantIntent} legend={tenantIncomeLegendLabels} />
         </div>
-        <div className="flex h-[247px] grid-cols-12 rounded-md bg-white shadow-md lg:col-span-4">
+        <div className="shadow-card flex h-[247px] grid-cols-12 rounded-lg bg-white lg:col-span-4">
           <TotalRevenue />
         </div>
-        <div className="flex h-[247px] grid-cols-12 rounded-md bg-white shadow-md lg:col-span-4">
+        <div className="shadow-card flex h-[247px] grid-cols-12 rounded-lg bg-white lg:col-span-4">
           <InquiryRate />
         </div>
       </div>
       <div className="grid w-full grid-cols-1">
-        <div className="rounded-md bg-white">
+        <div className="shadow-card rounded-lg bg-white">
           <PaymentTransactionHistory />
         </div>
       </div>
-      <div className="grid h-[370px] grid-cols-1 rounded-md bg-white p-5 shadow-md">
+      <div className="shadow-card grid h-[370px] grid-cols-1 rounded-lg bg-white p-5">
         <InsightEarning data={earningsData} />
       </div>
     </div>

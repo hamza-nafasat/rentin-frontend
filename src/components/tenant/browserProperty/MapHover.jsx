@@ -6,8 +6,8 @@ import { PiMapPinFill } from 'react-icons/pi';
 function MapHover({ image, name, status, location }) {
   return (
     <div className="flex items-center justify-between gap-1" style={{ width: '355px' }}>
-      <div className="relative h-[92px] w-[115px] overflow-hidden rounded-md bg-red-200">
-        <Image src={image} alt={name} layout="fill" objectFit="cover" unoptimized={true} className="rounded-md" />
+      <div className="relative h-[92px] w-[115px] overflow-hidden rounded-lg bg-red-200">
+        <Image src={image} alt={name} layout="fill" objectFit="cover" unoptimized={true} className="rounded-lg" />
       </div>
       <div className="w-full p-1">
         <div className="flex flex-col">
@@ -16,7 +16,7 @@ function MapHover({ image, name, status, location }) {
           </div>
           <div className="flex justify-between">
             <p className="text-sm font-semibold">{name}</p>
-            <div className="rounded-md bg-red-200 px-[6px] py-[3px]">
+            <div className="rounded-lg bg-red-200 px-[6px] py-[3px]">
               <p className="text-[#E35454]">{status}</p>
             </div>
           </div>

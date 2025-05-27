@@ -45,7 +45,7 @@ const FiltersSection = ({
 
       {/* Clear Filter Button */}
       <div className="w-[122px]">
-        <button className="bg-primary flex items-center gap-2 rounded-md p-2.5 px-4 text-white">
+        <button className="bg-primary flex items-center gap-2 rounded-lg p-2.5 px-4 text-white">
           <ListIcon className="text-base" />
           <div className="text-sm">Clear Filter</div>
         </button>

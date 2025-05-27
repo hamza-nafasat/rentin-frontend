@@ -65,6 +65,7 @@ const PhotosAndDetails = ({ setCurrentStep }) => {
   const [propertyImages, setPropertyImages] = useState([]);
   const [floorImages, setFloorImages] = useState([]);
   const [hasFloorPlan, setHasFloorPlan] = useState(false);
+  const [radioInput, setInputRadio] = useState('');
 
   const propInputRef = useRef(null);
   const floorInputRef = useRef(null);
@@ -115,7 +116,7 @@ const PhotosAndDetails = ({ setCurrentStep }) => {
           {propertyImages.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-2">
               {propertyImages.map((src, idx) => (
-                <div key={idx} className="relative h-20 w-20 overflow-hidden rounded-md">
+                <div key={idx} className="relative h-20 w-20 overflow-hidden rounded-lg">
                   <Image src={src} alt="" layout="fill" objectFit="cover" />
                   <button
                     type="button"
@@ -134,23 +135,56 @@ const PhotosAndDetails = ({ setCurrentStep }) => {
           )}
         </div>
 
-        {/* Floor plan checkbox */}
-        <div className="flex items-center lg:col-span-12">
-          <label className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              checked={hasFloorPlan}
-              onChange={e => setHasFloorPlan(e.target.checked)}
-              className="h-5 w-5 text-blue-600"
-            />
-            <span className="text-base font-medium">I have a floor plan?</span>
-          </label>
+        {/*radio buttons */}
+        <div className="flex items-center gap-6 lg:col-span-12">
+          <div className="flex items-center">
+            <label className="flex items-center space-x-2">
+              <input
+                type="radio"
+                value="radio1"
+                checked={radioInput === 'radio1'}
+                onChange={e => {
+                  setInputRadio(e.target.value);
+                }}
+                name="radio"
+              />
+              <span className="text-base font-medium">Land Title Deed</span>
+            </label>
+          </div>
+          <div className="flex items-center">
+            <label className="flex items-center space-x-2">
+              <input
+                type="radio"
+                value="radio2"
+                checked={radioInput === 'radio2'}
+                onChange={e => {
+                  setInputRadio(e.target.value);
+                }}
+                name="radio"
+              />
+              <span className="text-base font-medium">Purchase Contract</span>
+            </label>
+          </div>
+          <div className="flex items-center">
+            <label className="flex items-center space-x-2">
+              <input
+                type="radio"
+                value="radio3"
+                checked={radioInput === 'radio3'}
+                onChange={e => {
+                  setInputRadio(e.target.value);
+                }}
+                name="radio"
+              />
+              <span className="text-base font-medium">Utility bill or receipt (water/electricity)</span>
+            </label>
+          </div>
         </div>
 
-        {/* Floor Plan Uploader */}
-        {hasFloorPlan && (
+        {/*radio buttons uploader*/}
+        {radioInput !== '' && (
           <div className="lg:col-span-12">
-            <label className="text-base font-medium">Floor Plan Images</label>
+            <label className="text-base font-semibold">{`${radioInput === 'radio1' ? `Land Title Deed` : `${radioInput === 'radio2' ? `Purchase Contract` : `${radioInput === 'radio3' ? `Utility bill or receipt (water/electricity)` : ``}`}`}`}</label>
             <div
               className="mt-2 flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-4 hover:border-blue-500"
               onDragOver={e => e.preventDefault()}
@@ -172,7 +206,65 @@ const PhotosAndDetails = ({ setCurrentStep }) => {
             {floorImages.length > 0 && (
               <div className="mt-3 flex flex-wrap gap-2">
                 {floorImages.map((src, idx) => (
-                  <div key={idx} className="relative h-20 w-20 overflow-hidden rounded-md">
+                  <div key={idx} className="relative h-20 w-20 overflow-hidden rounded-lg">
+                    <Image src={src} alt="" layout="fill" objectFit="cover" />
+                    <button
+                      type="button"
+                      onClick={() => removeFloor(idx)}
+                      className="absolute top-1 right-1 rounded-full bg-white p-1"
+                    >
+                      <AiOutlineClose size={12} />
+                    </button>
+                  </div>
+                ))}
+                {/* Carousel */}
+                <div className="mt-4 w-full">
+                  <ImageCarousel images={floorImages} />
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Floor plan checkbox */}
+        <div className="flex items-center lg:col-span-12">
+          <label className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              checked={hasFloorPlan}
+              onChange={e => setHasFloorPlan(e.target.checked)}
+              className="h-5 w-5 text-blue-600"
+            />
+            <span className="text-base font-medium">I have a floor plan?</span>
+          </label>
+        </div>
+
+        {/* Floor Plan Uploader */}
+        {hasFloorPlan && (
+          <div className="lg:col-span-12">
+            <label className="text-base font-semibold">Floor Plan Images</label>
+            <div
+              className="mt-2 flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-4 hover:border-blue-500"
+              onDragOver={e => e.preventDefault()}
+              onDrop={onFloorDrop}
+              onClick={onFloorClick}
+            >
+              <AiOutlineCloudUpload className="text-primary h-10 w-10" />
+              <p className="mt-2 text-xs text-[#0245a5]">Click or drag to upload</p>
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                className="hidden"
+                ref={floorInputRef}
+                onChange={onFloorFiles}
+              />
+            </div>
+
+            {floorImages.length > 0 && (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {floorImages.map((src, idx) => (
+                  <div key={idx} className="relative h-20 w-20 overflow-hidden rounded-lg">
                     <Image src={src} alt="" layout="fill" objectFit="cover" />
                     <button
                       type="button"

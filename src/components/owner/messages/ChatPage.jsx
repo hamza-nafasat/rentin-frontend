@@ -175,7 +175,7 @@ export default function ChatPage() {
       <div className="flex h-full flex-col gap-4 sm:flex-row md:gap-6">
         {/* Sidebar */}
         <Card
-          className={`w-full overflow-y-hidden rounded-lg py-0 shadow-none sm:block sm:w-1/3 ${isSidebarVisible ? 'block' : 'hidden'}`}
+          className={`shadow-card w-full overflow-y-hidden rounded-lg py-0 sm:block sm:w-1/3 ${isSidebarVisible ? 'block' : 'hidden'}`}
         >
           <div className="p-4">
             <div className="flex items-center justify-between">
@@ -261,12 +261,7 @@ export default function ChatPage() {
         <Card className="flex flex-1 flex-col rounded-lg py-0 shadow-none">
           {/* Chat Header */}
           <CardHeader className="flex flex-row items-center space-x-4 border-b p-4">
-            <Button
-              size="icon"
-              variant="ghost"
-              className="sm:hidden"
-              onClick={() => setIsSidebarVisible(true)}
-            >
+            <Button size="icon" variant="ghost" className="sm:hidden" onClick={() => setIsSidebarVisible(true)}>
               <ChevronLeft />
             </Button>
             <Avatar>
@@ -292,9 +287,7 @@ export default function ChatPage() {
                 conversations[selectedUser.name]?.map((message, index) => (
                   <div key={index}>
                     {/* Message container */}
-                    <div
-                      className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                    >
+                    <div className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                       <div
                         className={`max-w-[70%] rounded-lg px-4 py-2 text-sm ${message.role === 'user' ? 'bg-primary text-white' : 'text-textColor bg-[#F4F4F5]'}`}
                       >
@@ -355,6 +348,7 @@ export default function ChatPage() {
                 onChange={handleFileUpload}
               />
               <Input
+                shadow
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 placeholder="Type your message..."
@@ -386,7 +380,7 @@ export default function ChatPage() {
                     />
                     <button
                       onClick={() => setAttachedFile(null)}
-                      className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-white text-red-600 shadow-md"
+                      className="shadow-card absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-white text-red-600"
                       title="Remove image"
                     >
                       <IoClose className="h-4 w-4" />
@@ -396,10 +390,7 @@ export default function ChatPage() {
                   <div className="flex items-center gap-2">
                     <UploadCloud className="text-textColor h-6 w-6" />
                     <span className="text-sm">{attachedFile.name}</span>
-                    <button
-                      onClick={() => setAttachedFile(null)}
-                      className="ml-2 text-xs text-red-600"
-                    >
+                    <button onClick={() => setAttachedFile(null)} className="ml-2 text-xs text-red-600">
                       Remove
                     </button>
                   </div>

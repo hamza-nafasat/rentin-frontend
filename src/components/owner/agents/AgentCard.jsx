@@ -22,16 +22,16 @@ const AgentCard = ({ data, role }) => {
     }
   };
   return (
-    <div className="relative h-full min-h-[255px] w-full min-w-[270px] rounded-md">
+    <div className="shadow-card relative h-full min-h-[255px] w-full min-w-[270px] rounded-lg">
       <Image
         src={data?.image}
         width={270}
         height={225}
-        className="absolute inset-0 h-full w-full rounded-md object-cover"
+        className="absolute inset-0 h-full w-full rounded-lg object-cover"
         alt="property image"
       />
-      <div className="absolute inset-0 h-full w-full rounded-md bg-black/20"></div>
-      <div className="absolute top-0 left-0 m-2 flex items-center justify-between gap-1 rounded-md bg-white px-2 py-1 text-[10px] font-semibold text-[#3582E7]">
+      <div className="absolute inset-0 h-full w-full rounded-lg bg-black/20"></div>
+      <div className="absolute top-0 left-0 m-2 flex items-center justify-between gap-1 rounded-lg bg-white px-2 py-1 text-[10px] font-semibold text-[#3582E7]">
         <div>
           <TbStarFilled className="text-md text-[#FAD400]" />
         </div>
@@ -42,7 +42,7 @@ const AgentCard = ({ data, role }) => {
       <div className="absolute top-2 right-2 cursor-pointer">
         <Chat className="text-xl text-white" />
       </div>
-      <div className="absolute bottom-3 left-3 w-[calc(100%-24px)] rounded-md bg-white p-3">
+      <div className="absolute bottom-3 left-3 w-[calc(100%-24px)] rounded-lg bg-white p-3">
         <div className="flex items-end justify-between gap-2">
           <div>
             <h6 className="text-xs font-bold text-[#FDAC3B]">{data?.speciality}</h6>

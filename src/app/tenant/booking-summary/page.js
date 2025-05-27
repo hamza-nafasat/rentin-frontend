@@ -3,7 +3,7 @@ import React from 'react';
 
 function BookingSummary() {
   return (
-    <div className="grid w-full grid-cols-1 rounded-md bg-white shadow-md">
+    <div className="shadow-card grid w-full grid-cols-1 rounded-lg bg-white">
       <TenantBookingSummary />
     </div>
   );

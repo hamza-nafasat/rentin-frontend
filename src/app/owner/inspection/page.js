@@ -86,7 +86,7 @@ function Inspection() {
     <div>
       <InspectionHeader />
       <section
-        className="mt-4 w-full rounded-lg bg-white p-4"
+        className="shadow-card mt-4 w-full rounded-lg bg-white p-4"
         style={{ boxShadow: '0px 2px 12px 0px #3582E71A' }}
       >
         <InspectionCardHeader />

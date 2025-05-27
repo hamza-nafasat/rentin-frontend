@@ -11,10 +11,7 @@ const ShowMap = dynamic(() => import('@/components/shared/ShowMap'), {
 const MyProperties = () => {
   const [tabView, setTabView] = useState('Grid View');
   return (
-    <section
-      className="mt-4 rounded-lg bg-white p-4"
-      style={{ boxShadow: '0px 2px 12px 0px #3582E71A' }}
-    >
+    <section className="mt-4 rounded-lg bg-white p-4" style={{ boxShadow: '0px 2px 12px 0px #3582E71A' }}>
       <MyPropertiesHeader tabView={tabView} setTabView={setTabView} />
       <div className="mt-5">
         {tabView === 'Grid View' ? (

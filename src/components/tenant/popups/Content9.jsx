@@ -25,18 +25,18 @@ function Content9() {
         <form action="">
           <div className="mt-3 flex flex-wrap justify-between">
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'Full name'} placeholder={'Jamie Fox'} />
+              <Input shadow type={'text'} label={'Full name'} placeholder={'Jamie Fox'} />
             </div>
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'Price'} placeholder={'12$'} />
+              <Input shadow type={'text'} label={'Price'} placeholder={'12$'} />
             </div>
           </div>
           <div className="mt-3 flex flex-wrap justify-between">
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'date'} value="2025-05-05" label={'Date'} />
+              <Input shadow type={'date'} value="2025-05-05" label={'Date'} />
             </div>
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'Paid'} />
+              <Input shadow type={'text'} label={'Paid'} />
             </div>
           </div>
         </form>

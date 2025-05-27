@@ -23,18 +23,12 @@ const PropertyDetails = () => {
 
   return (
     <div className="py-4">
-      <div className="item-center flex w-[140px] flex-col justify-center space-x-2 rounded-md bg-white p-1 lg:h-10 lg:w-[276px] lg:flex-row">
+      <div className="item-center flex w-[140px] flex-col justify-center space-x-2 rounded-lg bg-white p-1 lg:h-10 lg:w-[276px] lg:flex-row">
         <section className="flex flex-col md:gap-1 lg:flex-row">
-          <button
-            className={buttonStyle('Basic Details')}
-            onClick={() => setActiveTab('Basic Details')}
-          >
+          <button className={buttonStyle('Basic Details')} onClick={() => setActiveTab('Basic Details')}>
             Basic Details
           </button>
-          <button
-            className={buttonStyle('Linked Buildings')}
-            onClick={() => setActiveTab('Linked Buildings')}
-          >
+          <button className={buttonStyle('Linked Buildings')} onClick={() => setActiveTab('Linked Buildings')}>
             Owner Details
           </button>
         </section>

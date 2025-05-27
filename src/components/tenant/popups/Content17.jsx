@@ -26,18 +26,18 @@ function Content17() {
         <form action="">
           <div className="mt-4 flex flex-wrap justify-between">
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'Full name'} placeholder={'Jamie Fox'} />
+              <Input shadow type={'text'} label={'Full name'} placeholder={'Jamie Fox'} />
             </div>
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'Inspection Amount'} placeholder={'$400'} />
+              <Input shadow type={'text'} label={'Inspection Amount'} placeholder={'$400'} />
             </div>
           </div>
           <div className="mt-3 flex flex-wrap justify-between">
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'date'} value={'2025-05-05'} label={'Date Range'} />
+              <Input shadow type={'date'} value={'2025-05-05'} label={'Date Range'} />
             </div>
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'time'} label={'Time Range'} value={'14:30'} />
+              <Input shadow type={'time'} label={'Time Range'} value={'14:30'} />
             </div>
           </div>
         </form>

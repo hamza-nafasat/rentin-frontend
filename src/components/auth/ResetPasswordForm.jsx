@@ -37,6 +37,7 @@ const ResetPasswordForm = () => {
       <div className="mt-5 grid grid-cols-1 gap-4 lg:mt-7 lg:grid-cols-12">
         <div className="relative lg:col-span-12">
           <Input
+            shadow
             label="Password"
             name="password"
             type={showPassword ? 'text' : 'password'}
@@ -63,6 +64,7 @@ const ResetPasswordForm = () => {
         </div>
         <div className="relative lg:col-span-12">
           <Input
+            shadow
             label="Confirm New Password"
             name="confirmPassword"
             type={showConfirmPassword ? 'text' : 'password'}

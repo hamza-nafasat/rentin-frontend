@@ -50,7 +50,7 @@ function PropertyOwnerDetails() {
               <div className="flex flex-col gap-2">
                 <div className="flex flex-col">
                   <div className="mt-3 flex flex-col items-center justify-between sm:flex-row">
-                    <button className="bg-primary rounded-md px-[8px] py-[6px] text-white">
+                    <button className="bg-primary rounded-lg px-[8px] py-[6px] text-white">
                       <div className="flex items-end gap-2">
                         <p>Property Owner</p>
                       </div>
@@ -80,7 +80,7 @@ function PropertyOwnerDetails() {
         </div>
       </div>
       <div className="mt-3.5 grid grid-cols-12 gap-4">
-        <div className="col-span-12 rounded-md border bg-white px-5 py-2.5 shadow-xl md:col-span-8">
+        <div className="shadow-card col-span-12 rounded-lg border bg-white px-5 py-2.5 md:col-span-8">
           <div className="flex w-full flex-col justify-center">
             <div>
               <p className="text-lg font-semibold">Rental Agreement Details</p>
@@ -93,23 +93,23 @@ function PropertyOwnerDetails() {
             />
           </div>
         </div>
-        <div className="col-span-12 rounded-md border bg-white shadow-xl md:col-span-4">
+        <div className="shadow-card col-span-12 rounded-lg border bg-white md:col-span-4">
           <RentOverview title={'Income OverView'} data={agentIncomeOverview} totalTitle={'Total Income'} />
         </div>
       </div>
       <div className="mt-3.5 grid grid-cols-12 gap-4">
-        <div className="col-span-12 rounded-md border bg-white px-5 py-2.5 shadow-xl md:col-span-6">
+        <div className="shadow-card col-span-12 rounded-lg border bg-white px-5 py-2.5 md:col-span-6">
           <InfoSection title="Payment History & Dues" columns={2} data={paymentHistory} />
         </div>
-        <div className="col-span-12 rounded-md border bg-white px-5 py-2.5 shadow-xl md:col-span-6">
+        <div className="shadow-card col-span-12 rounded-lg border bg-white px-5 py-2.5 md:col-span-6">
           <InfoSection title="Lease & Contract Overview" columns={2} data={paymentHistory} />
         </div>
       </div>
       <div className="mt-3.5 grid grid-cols-12 gap-4">
-        <div className="col-span-12 rounded-md border bg-white shadow-xl md:col-span-7">
+        <div className="shadow-card col-span-12 rounded-lg border bg-white md:col-span-7">
           <PropertyOwnerPaymentDetails />
         </div>
-        <div className="col-span-12 rounded-md border bg-white shadow-xl md:col-span-5">
+        <div className="shadow-card col-span-12 rounded-lg border bg-white md:col-span-5">
           <PropertyOwnerTransactionHistory />
         </div>
       </div>

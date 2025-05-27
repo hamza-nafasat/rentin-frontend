@@ -67,7 +67,7 @@ const TransactionHistory = () => {
   const innerLabelY = center - innerLabelRadius * Math.sin(innerRad);
 
   return (
-    <div className="flex h-[337px] flex-col rounded-lg bg-white px-5 py-4 shadow-lg">
+    <div className="flex h-[337px] flex-col rounded-lg bg-white px-5 py-4">
       {/* Chart Title */}
       <div className="flex flex-col">
         <h1 className="mb-2 text-sm font-semibold">Transaction History</h1>
@@ -97,10 +97,7 @@ const TransactionHistory = () => {
                 dataKey="value"
               >
                 {collectedData.map((entry, index) => (
-                  <Cell
-                    key={`collected-cell-${index}`}
-                    fill={outerColors[index % outerColors.length]}
-                  />
+                  <Cell key={`collected-cell-${index}`} fill={outerColors[index % outerColors.length]} />
                 ))}
               </Pie>
               {/* Inner Donut (Withdraw) */}
@@ -115,10 +112,7 @@ const TransactionHistory = () => {
                 dataKey="value"
               >
                 {pendingData.map((entry, index) => (
-                  <Cell
-                    key={`pending-cell-${index}`}
-                    fill={innerColors[index % innerColors.length]}
-                  />
+                  <Cell key={`pending-cell-${index}`} fill={innerColors[index % innerColors.length]} />
                 ))}
               </Pie>
             </PieChart>
@@ -157,10 +151,7 @@ const TransactionHistory = () => {
       <div className="mt-4 grid w-full grid-cols-2 gap-4">
         {/* Earned */}
         <div className="flex items-center justify-center space-x-2">
-          <span
-            className="inline-block h-3 w-3 rounded-full"
-            style={{ backgroundColor: outerColors[0] }}
-          />
+          <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: outerColors[0] }} />
           <div>
             <span className="block text-xs font-semibold">Earned</span>
             <span className="block text-xs">{collectedRent}</span>
@@ -168,10 +159,7 @@ const TransactionHistory = () => {
         </div>
         {/* Withdraw */}
         <div className="flex items-center justify-center space-x-2">
-          <span
-            className="inline-block h-3 w-3 rounded-full"
-            style={{ backgroundColor: innerColors[0] }}
-          />
+          <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: innerColors[0] }} />
           <div>
             <span className="block text-xs font-semibold">Withdraw</span>
             <span className="block text-xs">{pendingRent}</span>

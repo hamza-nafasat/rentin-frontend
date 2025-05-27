@@ -11,9 +11,7 @@ function Content3() {
     <div className="flex w-[500px] flex-col">
       <PropertyImage />
       <div className="mt-3">
-        <h1 className="text-[17px] font-semibold text-[#32343C] sm:text-[20px]">
-          How would you like to pay?
-        </h1>
+        <h1 className="text-[17px] font-semibold text-[#32343C] sm:text-[20px]">How would you like to pay?</h1>
         <div className="mb-3 flex flex-wrap items-center gap-4">
           <Checkbox />
         </div>
@@ -26,14 +24,14 @@ function Content3() {
       </div>
       <div>
         <form action="">
-          <Input type={'text'} label={'Cardholder’s Name*'} placeholder="Michal jhon" />
-          <Input type={'number'} label={'Card Number*'} />
+          <Input shadow type={'text'} label={'Cardholder’s Name*'} placeholder="Michal jhon" />
+          <Input shadow type={'number'} label={'Card Number*'} />
           <div className="mt-3 flex flex-wrap justify-between">
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'date'} label={'Expiry Date*'} value={'2025-05-05'} />
+              <Input shadow type={'date'} label={'Expiry Date*'} value={'2025-05-05'} />
             </div>
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'CVC*'} />
+              <Input shadow type={'text'} label={'CVC*'} />
             </div>
           </div>
           <div className="relative mt-3 flex items-center gap-2">
@@ -45,13 +43,10 @@ function Content3() {
               />
               <label
                 htmlFor="switch-component"
-                className="absolute top-0 left-0 h-5 w-5 cursor-pointer rounded-full border border-slate-300 bg-white shadow-sm transition-transform duration-300 peer-checked:translate-x-6 peer-checked:border-slate-800"
+                className="shadow-card absolute top-0 left-0 h-5 w-5 cursor-pointer rounded-full border border-slate-300 bg-white transition-transform duration-300 peer-checked:translate-x-6 peer-checked:border-slate-800"
               ></label>
             </div>
-            <label
-              htmlFor="switch-component"
-              className="flex w-full text-[13px] text-[#32343CB2] sm:text-[16px]"
-            >
+            <label htmlFor="switch-component" className="flex w-full text-[13px] text-[#32343CB2] sm:text-[16px]">
               Save Card for future purchase
             </label>
           </div>

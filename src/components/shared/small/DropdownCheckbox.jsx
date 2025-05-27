@@ -93,10 +93,7 @@ const DropdownCheckbox = memo(
     return (
       <div className={`relative ${width || 'w-full'}`} ref={dropdownRef}>
         {label && (
-          <label
-            htmlFor={idRef.current}
-            className="mb-1 block text-sm font-medium text-[#666666] lg:text-base"
-          >
+          <label htmlFor={idRef.current} className="mb-1 block text-sm font-medium text-[#666666] lg:text-base">
             {label}
           </label>
         )}
@@ -116,12 +113,10 @@ const DropdownCheckbox = memo(
         </button>
 
         {isOpen && !readOnly && (
-          <ul className="absolute z-10 mt-1 max-h-[200px] w-full overflow-y-auto rounded-md bg-[#f7f7f7] shadow-md">
+          <ul className="shadow-card absolute z-10 mt-1 max-h-[200px] w-full overflow-y-auto rounded-lg bg-[#f7f7f7]">
             {/* Dropdown header inside list */}
             {label && (
-              <li className="border-b border-[#d3d3d3] px-4 py-2 text-sm font-medium text-[#666666]">
-                {label}
-              </li>
+              <li className="border-b border-[#d3d3d3] px-4 py-2 text-sm font-medium text-[#666666]">{label}</li>
             )}
             {options.map(option => {
               const labelText = option.label ?? option.option;

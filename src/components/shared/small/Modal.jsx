@@ -8,7 +8,7 @@ const Modal = ({ title, onClose, children, width, headingIcon }) => {
       onClick={onClose}
     >
       <div
-        className={`custom-scroll h-fit max-h-full overflow-y-auto rounded-[12px] bg-white p-4 shadow-lg md:p-6 ${
+        className={`custom-scroll shadow-card h-fit max-h-full overflow-y-auto rounded-[12px] bg-white p-4 md:p-6 ${
           width ? width : 'w-[300px] md:w-[400px] lg:w-[700px] xl:w-[900px]'
         }`}
         onClick={e => e.stopPropagation()}

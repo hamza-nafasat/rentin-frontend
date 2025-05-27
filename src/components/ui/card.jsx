@@ -6,10 +6,7 @@ function Card({ className, ...props }) {
   return (
     <div
       data-slot="card"
-      className={cn(
-        'bg-card text-card-foreground flex h-full flex-col gap-6 rounded-lg border py-6 shadow-sm',
-        className
-      )}
+      className={cn('bg-card text-card-foreground flex h-full flex-col gap-6 rounded-lg border py-6', className)}
       {...props}
     />
   );
@@ -29,23 +26,11 @@ function CardHeader({ className, ...props }) {
 }
 
 function CardTitle({ className, ...props }) {
-  return (
-    <div
-      data-slot="card-title"
-      className={cn('leading-none font-semibold', className)}
-      {...props}
-    />
-  );
+  return <div data-slot="card-title" className={cn('leading-none font-semibold', className)} {...props} />;
 }
 
 function CardDescription({ className, ...props }) {
-  return (
-    <div
-      data-slot="card-description"
-      className={cn('text-muted-foreground text-sm', className)}
-      {...props}
-    />
-  );
+  return <div data-slot="card-description" className={cn('text-muted-foreground text-sm', className)} {...props} />;
 }
 
 function CardAction({ className, ...props }) {
@@ -64,11 +49,7 @@ function CardContent({ className, ...props }) {
 
 function CardFooter({ className, ...props }) {
   return (
-    <div
-      data-slot="card-footer"
-      className={cn('flex items-center px-6 [.border-t]:pt-6', className)}
-      {...props}
-    />
+    <div data-slot="card-footer" className={cn('flex items-center px-6 [.border-t]:pt-6', className)} {...props} />
   );
 }
 

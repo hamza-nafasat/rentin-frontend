@@ -4,7 +4,7 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 const PropertyCard = ({ title, value, data }) => (
-  <div className="rounded-md border bg-white px-6 py-3.5 shadow-md">
+  <div className="shadow-card rounded-lg border bg-white px-6 py-3.5">
     <p className="text-base font-medium">{title}</p>
     <div className="flex items-center justify-between">
       <div className="text-5xl font-medium">{value}</div>
@@ -71,7 +71,7 @@ const PropertiesRented = ({ data, title }) => {
         }))}
       />
 
-      <div className="w-full overflow-auto rounded-md border bg-white px-6 py-3.5 shadow-md">
+      <div className="shadow-card w-full overflow-auto rounded-lg border bg-white px-6 py-3.5">
         <p className="text-sm text-[#76808D]">Overview</p>
         <div className="mt-3.5 flex justify-between gap-4">
           {data.map((status, index) => (

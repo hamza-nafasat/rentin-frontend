@@ -13,7 +13,7 @@ function LinkedOwnerCard({ data }) {
     router.push(`/agent/linked-owners/owner-profile/${id}`);
   };
   return (
-    <div className="relative h-full min-h-[283px] w-full rounded-md border bg-white p-2">
+    <div className="shadow-card relative h-full min-h-[283px] w-full rounded-lg border bg-white p-2">
       <div className="relative h-[93px] overflow-visible">
         <Image
           src={data.inspectionImage}
@@ -28,7 +28,7 @@ function LinkedOwnerCard({ data }) {
             width={75}
             height={75}
             alt="Profile Image"
-            className="h-[75px] w-[75px] rounded-full border-4 border-white shadow-md"
+            className="shadow-card h-[75px] w-[75px] rounded-full border-4 border-white"
           />
         </div>
       </div>
@@ -54,12 +54,7 @@ function LinkedOwnerCard({ data }) {
         <div className="flex gap-2">
           {[...Array(3)].map((_, index) => (
             <div key={index} className="relative h-11 w-20">
-              <Image
-                src={data.inspectionImage}
-                alt="Property Background"
-                fill
-                className="rounded-lg object-contain"
-              />
+              <Image src={data.inspectionImage} alt="Property Background" fill className="rounded-lg object-contain" />
             </div>
           ))}
         </div>

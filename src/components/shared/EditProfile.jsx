@@ -10,9 +10,9 @@ function EditProfile() {
     <div>
       <form action="">
         <div className="grid grid-cols-1 items-center gap-5 sm:grid-cols-2">
-          <Input type={'text'} label={'First Name'} placeholder={'Your First Name'} />
-          <Input type={'text'} label={'Last Name'} placeholder={'Your Last Name'} />
-          <Input type={'email'} label={'Email'} placeholder={'Your Email'} />
+          <Input shadow type={'text'} label={'First Name'} placeholder={'Your First Name'} />
+          <Input shadow type={'text'} label={'Last Name'} placeholder={'Your Last Name'} />
+          <Input shadow type={'email'} label={'Email'} placeholder={'Your Email'} />
           <div className="flex flex-col gap-2">
             <label className="text-sm text-[#666666] lg:text-base" htmlFor="">
               Phone
@@ -30,8 +30,8 @@ function EditProfile() {
               }}
             />
           </div>
-          <Input type={'text'} label={'ID Number'} placeholder={'Your ID Number'} />
-          <Input type={'text'} label={'Address'} placeholder={'Your Address'} />
+          <Input shadow type={'text'} label={'ID Number'} placeholder={'Your ID Number'} />
+          <Input shadow type={'text'} label={'Address'} placeholder={'Your Address'} />
         </div>
         <div className="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>

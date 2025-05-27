@@ -95,17 +95,17 @@ const BasicInfo = memo(({ setCurrentStep }) => {
       <h4 className="text-textColor text-center text-base font-medium md:text-lg">Basic Information</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-6">
-          <Input label="First Name" shadow />
+          <Input shadow label="First Name" />
         </div>
         <div className="lg:col-span-6">
-          <Input label="Last Name" shadow />
+          <Input shadow label="Last Name" />
         </div>
         <div className="lg:col-span-6">
           <div className="grid grid-cols-12 gap-2">
             {!codeSent ? (
               <>
                 <div className="col-span-9">
-                  <Input label="Email Address" shadow />
+                  <Input shadow label="Email Address" />
                 </div>
                 <div className="col-span-3 flex items-end">
                   <Button text={'send Code'} onClick={handleSendCode} />
@@ -114,7 +114,7 @@ const BasicInfo = memo(({ setCurrentStep }) => {
             ) : (
               <>
                 <div className="col-span-9">
-                  <Input label="OTP" shadow />
+                  <Input shadow label="OTP" />
                 </div>
                 <div className="col-span-3 flex items-end">
                   <Button text={'verify'} onClick={handleVerifyCode} />
@@ -124,7 +124,7 @@ const BasicInfo = memo(({ setCurrentStep }) => {
           </div>
         </div>
         <div className="lg:col-span-6">
-          <Input label="Phone Number" shadow />
+          <Input shadow label="Phone Number" />
         </div>
 
         <div className="lg:col-span-6">

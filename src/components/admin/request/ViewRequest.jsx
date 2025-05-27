@@ -40,13 +40,13 @@ function ViewRequest({ selectedRow }) {
           <Button
             width={'94px'}
             height={'32px'}
-            cn={'!rounded-md !text-sm !font-semibold !bg-[#E35454] px-[20px] py-[8px] '}
+            cn={'!rounded-lg !text-sm !font-semibold !bg-[#E35454] px-[20px] py-[8px] '}
             text={'Reject'}
           />
           <Button
             width={'94px'}
             height={'32px'}
-            cn={'!rounded-md !text-sm !font-semibold px-[20px] py-[8px]'}
+            cn={'!rounded-lg !text-sm !font-semibold px-[20px] py-[8px]'}
             text={'Approve'}
           />
         </div>

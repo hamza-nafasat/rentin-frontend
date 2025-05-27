@@ -78,6 +78,7 @@ const BasicInfo = memo(({ data, index, updateField, setCurrentStep }) => {
         </div>
         <div className="lg:col-span-6">
           <Input
+            shadow
             label="Project Name"
             value={data.projectName}
             onChange={e => updateField(index, 'projectName', e.target.value)}
@@ -86,6 +87,7 @@ const BasicInfo = memo(({ data, index, updateField, setCurrentStep }) => {
         </div>
         <div className="lg:col-span-6">
           <Input
+            shadow
             label="Street Address (Optional)"
             name="streetAddress"
             value={streetAddress}
@@ -94,6 +96,7 @@ const BasicInfo = memo(({ data, index, updateField, setCurrentStep }) => {
         </div>
         <div className="lg:col-span-6">
           <Input
+            shadow
             label="Road"
             value={data.projectName}
             onChange={e => updateField(index, 'projectName', e.target.value)}
@@ -118,6 +121,7 @@ const BasicInfo = memo(({ data, index, updateField, setCurrentStep }) => {
         </div>
         <div className="lg:col-span-6">
           <Input
+            shadow
             label="State/Province"
             value={data.projectName}
             onChange={e => updateField(index, 'projectName', e.target.value)}
@@ -126,6 +130,7 @@ const BasicInfo = memo(({ data, index, updateField, setCurrentStep }) => {
         </div>
         <div className="lg:col-span-6">
           <Input
+            shadow
             label="Country"
             value={data.projectName}
             onChange={e => updateField(index, 'projectName', e.target.value)}
@@ -134,6 +139,7 @@ const BasicInfo = memo(({ data, index, updateField, setCurrentStep }) => {
         </div>
         <div className="lg:col-span-6">
           <Input
+            shadow
             label="Zip Code"
             value={data.projectName}
             onChange={e => updateField(index, 'projectName', e.target.value)}
@@ -149,7 +155,7 @@ const BasicInfo = memo(({ data, index, updateField, setCurrentStep }) => {
           />
         </div>
         <div className="flex overflow-auto lg:col-span-12">
-          <div className="mx-auto rounded-2xl border bg-white px-5 shadow-md">
+          <div className="shadow-card mx-auto rounded-2xl border bg-white px-5">
             <ShowBuildingHours />
           </div>
         </div>

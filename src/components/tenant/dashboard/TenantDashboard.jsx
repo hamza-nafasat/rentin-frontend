@@ -1,11 +1,6 @@
 'use client';
 import CustomLineChart from '@/components/shared/charts/CustomLineChart';
-import {
-  activitiesData,
-  dummyPropertyStatuses,
-  earningsData,
-  tenantRentOverview,
-} from '@/data/data';
+import { activitiesData, dummyPropertyStatuses, earningsData, tenantRentOverview } from '@/data/data';
 import { useEffect, useState } from 'react';
 import PropertiesRented from './PropertiesRented';
 import RecentActivities from './RecentActivities';
@@ -34,7 +29,7 @@ function TenantDashboard() {
           <div className="col-span-12 lg:col-span-5">
             <PropertiesRented data={dummyPropertyStatuses} title={'Total Properties Rented'} />
           </div>
-          <div className="col-span-12 w-full rounded-md bg-white shadow-md lg:col-span-3">
+          <div className="shadow-card col-span-12 w-full rounded-lg bg-white lg:col-span-3">
             <RentOverview
               title={'Rent OverView'}
               data={tenantRentOverview}
@@ -42,23 +37,19 @@ function TenantDashboard() {
               isLoading={isLoading}
             />
           </div>
-          <div className="col-span-12 w-full rounded-md bg-white shadow-md lg:col-span-4">
+          <div className="shadow-card col-span-12 w-full rounded-lg bg-white lg:col-span-4">
             <RecentActivities cn={'h-[200px]'} data={activitiesData} />
           </div>
         </div>
         <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-12 w-full rounded-md bg-white shadow-md lg:col-span-5">
+          <div className="shadow-card col-span-12 w-full rounded-lg bg-white lg:col-span-5">
             <RecentChat />
           </div>
-          <div className="col-span-12 w-full rounded-md bg-white shadow-md lg:col-span-7">
-            <CustomLineChart
-              title={'Compilation Rate'}
-              earningsData={earningsData}
-              isLoading={isLoading}
-            />
+          <div className="shadow-card col-span-12 w-full rounded-lg bg-white lg:col-span-7">
+            <CustomLineChart title={'Compilation Rate'} earningsData={earningsData} isLoading={isLoading} />
           </div>
         </div>
-        <div className="grid w-full grid-cols-1 rounded-md bg-white shadow-md">
+        <div className="shadow-card grid w-full grid-cols-1 rounded-lg bg-white">
           <TenantTransactionHistory />
         </div>
       </div>

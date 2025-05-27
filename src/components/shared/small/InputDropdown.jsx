@@ -95,9 +95,7 @@ const InputDropdown = ({
               type="button"
               aria-expanded={isOpen}
               aria-label={`Dropdown for ${label || 'options'}`}
-              className={`${
-                shadow ? 'shadow-input' : ''
-              } ${readOnly ? 'cursor-not-allowed' : 'border-[#E0E0E9]'} ${
+              className={`${shadow ? 'shadow-input' : ''} ${readOnly ? 'cursor-not-allowed' : 'border-[#E0E0E9]'} ${
                 mainClassName ? mainClassName : ''
               } flex h-[54px] w-full items-center justify-between gap-2 px-2 text-sm text-[#666666] lg:text-base`}
               onClick={() => !readOnly && setIsOpen(!isOpen)}
@@ -112,10 +110,10 @@ const InputDropdown = ({
               </div>
             </button>
             {isOpen && !readOnly && (
-              <ul className="absolute z-10 mt-1 w-full cursor-pointer rounded-md bg-[#f7f7f7] shadow-md">
+              <ul className="shadow-card absolute z-10 mt-1 w-full cursor-pointer rounded-lg bg-[#f7f7f7]">
                 {options.map(option => (
                   <li
-                    className={`rounded-md border-b border-[#d3d3d3] px-4 py-4 text-sm hover:bg-[hsl(208,100%,95%)] ${
+                    className={`rounded-lg border-b border-[#d3d3d3] px-4 py-4 text-sm hover:bg-[hsl(208,100%,95%)] ${
                       selected?.value === option.value ? 'bg-[hsl(208,100%,95%)]' : ''
                     }`}
                     key={option.value}

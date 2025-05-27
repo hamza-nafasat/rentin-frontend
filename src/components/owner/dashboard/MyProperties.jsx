@@ -6,7 +6,7 @@ import { propertiesData } from '@/data/data';
 
 const MyProperties = () => {
   return (
-    <div className="scroll-0 h-[710px] overflow-y-scroll rounded-lg border bg-white p-4 shadow-sm lg:p-5 xl:h-full 2xl:h-[730px]">
+    <div className="scroll-0 shadow-card h-[710px] overflow-y-scroll rounded-lg border bg-white p-4 lg:p-5 xl:h-full 2xl:h-[730px]">
       <div className="flex items-center justify-between">
         <div className="text-textColor flex items-center gap-[10px] text-sm font-semibold">
           <Image src="/images/dashboard/rental.png" width={32} height={32} alt="icon" />

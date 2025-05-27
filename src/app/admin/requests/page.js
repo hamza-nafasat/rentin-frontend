@@ -25,24 +25,15 @@ function AdminRequests() {
 
   return (
     <div className="py-4">
-      <div className="item-center flex w-[140px] flex-col justify-center space-x-2 rounded-md bg-white p-1 lg:h-10 lg:w-[413px] lg:flex-row">
+      <div className="item-center flex w-[140px] flex-col justify-center space-x-2 rounded-lg bg-white p-1 lg:h-10 lg:w-[413px] lg:flex-row">
         <section className="flex flex-col md:gap-1 lg:flex-row">
-          <button
-            className={buttonStyle('Agent Requests')}
-            onClick={() => setActiveTab('Agent Requests')}
-          >
+          <button className={buttonStyle('Agent Requests')} onClick={() => setActiveTab('Agent Requests')}>
             Agent Requests
           </button>
-          <button
-            className={buttonStyle('Tenant Requests')}
-            onClick={() => setActiveTab('Tenant Requests')}
-          >
+          <button className={buttonStyle('Tenant Requests')} onClick={() => setActiveTab('Tenant Requests')}>
             Tenant Requests
           </button>
-          <button
-            className={buttonStyle('Owner Requests')}
-            onClick={() => setActiveTab('Owner Requests')}
-          >
+          <button className={buttonStyle('Owner Requests')} onClick={() => setActiveTab('Owner Requests')}>
             Owner Requests
           </button>
         </section>

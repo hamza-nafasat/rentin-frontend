@@ -40,7 +40,7 @@ const Header = () => {
   return (
     <div>
       <div className="flex items-center justify-between p-4 py-4 xl:hidden">
-        <div className="bg-primary cursor-pointer rounded-md p-2" onClick={mobileNavHandler}>
+        <div className="bg-primary cursor-pointer rounded-lg p-2" onClick={mobileNavHandler}>
           <RxHamburgerMenu color="#fff" fontSize={20} />
         </div>
         <div>
@@ -74,9 +74,7 @@ const Header = () => {
       </div>
       <header className="flex h-[74px] items-center justify-between gap-4 rounded-lg bg-white p-4">
         <div>
-          <h2 className="text-text-textColor text-xl font-semibold capitalize lg:text-[22px]">
-            Owner
-          </h2>
+          <h2 className="text-text-textColor text-xl font-semibold capitalize lg:text-[22px]">Owner</h2>
           <p className="text-xs text-[#969696]">{date}</p>
         </div>
         <div className="flex items-center gap-[14px]">
@@ -141,7 +139,7 @@ const LanguageSwitch = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute top-10 left-0 w-[120px] rounded-md bg-white shadow-lg">
+        <div className="shadow-card absolute top-10 left-0 w-[120px] rounded-lg bg-white">
           <button
             className="w-full cursor-pointer px-4 py-2 text-left hover:bg-gray-100"
             onClick={() => {

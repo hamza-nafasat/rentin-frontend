@@ -13,7 +13,7 @@ const NewAgentCard = ({ data }) => {
   const { inspectionImage, userImage, name, address, role, service, price, id } = data;
 
   return (
-    <div className="relative h-full min-h-[283px] w-full rounded-md border bg-white p-2">
+    <div className="relative h-full min-h-[283px] w-full rounded-lg border bg-white p-2">
       <div className="relative h-[93px] overflow-visible">
         <Image
           src={inspectionImage}
@@ -28,7 +28,7 @@ const NewAgentCard = ({ data }) => {
             width={75}
             height={75}
             alt="Profile Image"
-            className="h-[75px] w-[75px] rounded-full border-4 border-white shadow-md"
+            className="shadow-card h-[75px] w-[75px] rounded-full border-4 border-white"
           />
         </div>
       </div>

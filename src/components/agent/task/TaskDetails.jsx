@@ -3,23 +3,14 @@ import { Done, Progress, Todo } from '@/assets/icon';
 import CustomLineChart from '@/components/shared/charts/CustomLineChart';
 import PropertiesRented from '@/components/tenant/dashboard/PropertiesRented';
 import RecentActivities from '@/components/tenant/dashboard/RecentActivities';
-import {
-  activitiesData,
-  DoneTasks,
-  earningsData,
-  InProgressTasks,
-  taskStatuses,
-  ToDoTasks,
-} from '@/data/data';
+import { activitiesData, DoneTasks, earningsData, InProgressTasks, taskStatuses, ToDoTasks } from '@/data/data';
 import { useEffect, useState, useMemo } from 'react';
 import AgentTaskHeader from './AgentTaskHeader';
 import CalendarComponent from './Calender';
 import TaskCard from './TaskCard';
 
 const TaskColumn = ({ icon: Icon, title, tasks, borderColor, bgColor, textColor }) => (
-  <div
-    className={`rounded-lg border-[0.6px] ${borderColor} ${bgColor} h-auto px-[18px] py-[21px] shadow-lg`}
-  >
+  <div className={`rounded-lg border-[0.6px] ${borderColor} ${bgColor} shadow-card h-auto px-[18px] py-[21px]`}>
     <div className="mb-7 flex items-center gap-2">
       <Icon />
       <p className={`text-base font-semibold ${textColor}`}>{title}</p>
@@ -83,16 +74,16 @@ function TaskDetails() {
             <div>
               <PropertiesRented data={taskStatuses} title={'Total Task'} />
             </div>
-            <div className="mt-4 rounded-lg border bg-white p-4 shadow-sm lg:p-5">
+            <div className="shadow-card mt-4 rounded-lg border bg-white p-4 lg:p-5">
               <CustomLineChart earningsData={earningsData} isLoading={isLoading} />
             </div>
           </div>
           <div className="col-span-12 md:col-span-5 lg:col-span-4">
             <div className="flex flex-col gap-4">
-              <div className="rounded-lg border bg-white p-4 shadow-sm lg:p-5">
+              <div className="shadow-card rounded-lg border bg-white p-4 lg:p-5">
                 <CalendarComponent />
               </div>
-              <div className="rounded-lg border bg-white p-4 shadow-sm lg:p-5">
+              <div className="shadow-card rounded-lg border bg-white p-4 lg:p-5">
                 <RecentActivities cn={'h-[200px]'} data={activitiesData} />
               </div>
             </div>

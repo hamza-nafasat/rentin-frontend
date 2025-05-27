@@ -12,29 +12,29 @@ function AdminPayment() {
     <div className="flex flex-col gap-4">
       <h3 className="text-textColor text-lg font-semibold md:text-[22px]">Transactions Details</h3>
       <div className="grid w-full grid-cols-12 gap-4">
-        <div className="col-span-12 rounded-md bg-white lg:col-span-7">
+        <div className="shadow-card col-span-12 rounded-lg bg-white lg:col-span-7">
           <EarningsChart />
         </div>
-        <div className="col-span-12 rounded-md bg-white lg:col-span-5">
+        <div className="shadow-card col-span-12 rounded-lg bg-white lg:col-span-5">
           <Stripe />
         </div>
       </div>
       <div className="grid w-full grid-cols-12 gap-4">
-        <div className="col-span-12 rounded-md bg-white md:col-span-6 lg:col-span-3">
+        <div className="shadow-card col-span-12 rounded-lg bg-white md:col-span-6 lg:col-span-3">
           <PaymentOverview />
         </div>
-        <div className="col-span-12 rounded-md bg-white md:col-span-6 lg:col-span-3">
+        <div className="shadow-card col-span-12 rounded-lg bg-white md:col-span-6 lg:col-span-3">
           <TransactionHistory />
         </div>
-        <div className="col-span-12 rounded-md bg-white md:col-span-6 lg:col-span-3">
+        <div className="shadow-card col-span-12 rounded-lg bg-white md:col-span-6 lg:col-span-3">
           <Sales />
         </div>
-        <div className="col-span-12 rounded-md bg-white md:col-span-6 lg:col-span-3">
+        <div className="shadow-card col-span-12 rounded-lg bg-white md:col-span-6 lg:col-span-3">
           <TenantPayment />
         </div>
       </div>
       <div className="grid w-full grid-cols-1">
-        <div className="rounded-md bg-white">
+        <div className="shadow-card rounded-lg bg-white">
           <PaymentTransactionHistory />
         </div>
       </div>

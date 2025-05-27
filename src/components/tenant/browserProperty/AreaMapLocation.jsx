@@ -11,9 +11,7 @@ import Image from 'next/image';
 // import { houses } from '@/data/houses'; // adjust the path as needed
 
 // Create a custom icon using react-icons.
-const iconMarkup = renderToStaticMarkup(
-  <FaMapMarkerAlt style={{ color: 'red', fontSize: '2rem' }} />
-);
+const iconMarkup = renderToStaticMarkup(<FaMapMarkerAlt style={{ color: 'red', fontSize: '2rem' }} />);
 const customDivIcon = L.divIcon({
   html: iconMarkup,
   className: '',
@@ -33,9 +31,7 @@ const RecenterAutomatically = ({ latlng }) => {
 
 // A helper function that uses OpenStreetMap Nominatim to fetch coordinates.
 const getCoordinates = async locationName => {
-  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-    locationName
-  )}&limit=1`;
+  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationName)}&limit=1`;
   try {
     const response = await fetch(url);
     const data = await response.json();
@@ -154,18 +150,15 @@ const AreaMapLocation = ({ location, image, name, areaName, houses }) => {
                 }}
               >
                 <Tooltip direction="top" offset={[0, -30]} opacity={1} className="custom-tooltip">
-                  <div
-                    className="flex items-center justify-between gap-1 p-2.5"
-                    style={{ width: '240px' }}
-                  >
-                    <div className="relative h-[50px] w-[50px] overflow-hidden rounded-md bg-gray-200">
+                  <div className="flex items-center justify-between gap-1 p-2.5" style={{ width: '240px' }}>
+                    <div className="relative h-[50px] w-[50px] overflow-hidden rounded-lg bg-gray-200">
                       <Image
                         src={house.images[0]}
                         alt={house.address}
                         layout="fill"
                         objectFit="cover"
                         unoptimized={true}
-                        className="rounded-md"
+                        className="rounded-lg"
                       />
                     </div>
                     <div className="w-[160px]">
@@ -195,18 +188,15 @@ const AreaMapLocation = ({ location, image, name, areaName, houses }) => {
                 }}
               >
                 <Tooltip direction="top" offset={[0, -30]} opacity={1} className="custom-tooltip">
-                  <div
-                    className="flex items-center justify-between gap-1 p-2.5"
-                    style={{ width: '240px' }}
-                  >
-                    <div className="relative h-[50px] w-[50px] overflow-hidden rounded-md bg-blue-200">
+                  <div className="flex items-center justify-between gap-1 p-2.5" style={{ width: '240px' }}>
+                    <div className="relative h-[50px] w-[50px] overflow-hidden rounded-lg bg-blue-200">
                       <Image
                         src={image}
                         alt={name}
                         layout="fill"
                         objectFit="cover"
                         unoptimized={true}
-                        className="rounded-md"
+                        className="rounded-lg"
                       />
                     </div>
                     <div className="w-[100px] bg-red-600">

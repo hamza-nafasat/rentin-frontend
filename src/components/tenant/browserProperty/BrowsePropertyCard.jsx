@@ -5,7 +5,7 @@ import { FaBookmark } from 'react-icons/fa';
 
 function BrowsePropertyCard({ data }) {
   return (
-    <div className="h-full w-full cursor-pointer rounded-md border bg-white shadow-lg lg:h-[440px]">
+    <div className="shadow-card h-full w-full cursor-pointer rounded-lg border bg-white lg:h-[440px]">
       <div className="relative h-[239px] w-full">
         <Image
           src={data?.images[0]}
@@ -21,7 +21,7 @@ function BrowsePropertyCard({ data }) {
         </div>
 
         <div className="absolute top-2 left-2">
-          <div className="text-primary rounded-md border bg-white px-1 py-[2px] text-sm shadow">
+          <div className="text-primary rounded-lg border bg-white px-1 py-[2px] text-sm shadow">
             <p className="text-xs font-bold">{data?.type}</p>
           </div>
         </div>

@@ -25,7 +25,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 const TenantPayment = () => {
   return (
-    <div className="flex h-[337px] flex-col rounded-lg bg-white px-5 py-4 shadow-lg">
+    <div className="flex h-[337px] flex-col rounded-lg bg-white px-5 py-4">
       <div className="flex flex-col">
         <h1 className="mb-2 text-sm font-semibold">Tenant Payment Timeliness</h1>
         <h1 className="mb-2 text-sm text-[#717579]">Tenant Payment Timeliness</h1>
@@ -55,10 +55,7 @@ const TenantPayment = () => {
         {data.map((entry, index) => (
           <div key={index} className="flex items-center justify-center gap-2 text-sm">
             {/* Colored circle for each slice */}
-            <span
-              className="inline-block h-3 w-3 rounded-full"
-              style={{ backgroundColor: COLORS[index] }}
-            />
+            <span className="inline-block h-3 w-3 rounded-full" style={{ backgroundColor: COLORS[index] }} />
             <span className="text-xs">
               {entry.name}: {entry.value}
             </span>

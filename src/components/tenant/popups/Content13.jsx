@@ -16,26 +16,26 @@ function Content13() {
         <form action="">
           <div className="mt-3 flex flex-wrap justify-between">
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'Full name'} placeholder={'John Doe'} />
+              <Input shadow type={'text'} label={'Full name'} placeholder={'John Doe'} />
             </div>
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'Current City'} placeholder={'xyz country'} />
-            </div>
-          </div>
-          <div className="mt-3 flex flex-wrap justify-between">
-            <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'Nationality'} placeholder={'xyz nationality'} />
-            </div>
-            <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'People Staying'} placeholder={'4'} />
+              <Input shadow type={'text'} label={'Current City'} placeholder={'xyz country'} />
             </div>
           </div>
           <div className="mt-3 flex flex-wrap justify-between">
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'Visa Type'} placeholder={'xyz nationality'} />
+              <Input shadow type={'text'} label={'Nationality'} placeholder={'xyz nationality'} />
             </div>
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'Purpose of Rental'} placeholder={'Study'} />
+              <Input shadow type={'text'} label={'People Staying'} placeholder={'4'} />
+            </div>
+          </div>
+          <div className="mt-3 flex flex-wrap justify-between">
+            <div className="basis-[100%] sm:basis-[49%]">
+              <Input shadow type={'text'} label={'Visa Type'} placeholder={'xyz nationality'} />
+            </div>
+            <div className="basis-[100%] sm:basis-[49%]">
+              <Input shadow type={'text'} label={'Purpose of Rental'} placeholder={'Study'} />
             </div>
           </div>
           <div className="mt-3 flex flex-wrap justify-between">
@@ -43,23 +43,21 @@ function Content13() {
               <Move />
             </div>
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'time'} label={'Your arrival time'} value={'14:30'} />
+              <Input shadow type={'time'} label={'Your arrival time'} value={'14:30'} />
             </div>
           </div>
           <div className="mt-3 flex flex-wrap justify-between">
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'Rent Amount'} value={'800'} />
+              <Input shadow type={'text'} label={'Rent Amount'} value={'800'} />
             </div>
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'Security Amount'} value={'400'} />
+              <Input shadow type={'text'} label={'Security Amount'} value={'400'} />
             </div>
           </div>
         </form>
       </div>
       <div className="mt-3">
-        <p className="text-[16px] font-semibold text-[#32343C]">
-          Click to view and Accepted To Complete a Booking
-        </p>
+        <p className="text-[16px] font-semibold text-[#32343C]">Click to view and Accepted To Complete a Booking</p>
         <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
           <div className="basis-[100%] bg-[#ECECECB2] sm:basis-[59%]">
             <a
@@ -74,9 +72,7 @@ function Content13() {
           <div>
             <button className="flex cursor-pointer items-center gap-3">
               <a href="#" className="flex gap-2" download={'/pdf/Contract File.pdf'}>
-                <p className="rounded-[2px] bg-[#0245A5] px-4 py-3.5 text-[14px] text-white">
-                  Acknowledge Contract
-                </p>
+                <p className="rounded-[2px] bg-[#0245A5] px-4 py-3.5 text-[14px] text-white">Acknowledge Contract</p>
                 <span>
                   <Image src="/images/default/download.png" width={'49'} height={'49'} alt="icon" />
                 </span>

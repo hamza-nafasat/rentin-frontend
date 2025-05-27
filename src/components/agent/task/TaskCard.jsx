@@ -13,7 +13,7 @@ function TaskCard({ data }) {
         layout="responsive"
         width={1190}
         height={86}
-        className="rounded-md object-cover"
+        className="rounded-lg object-cover"
       />
       <div className="mt-3 flex flex-col">
         <p className="text-base font-semibold">{data.house}</p>
@@ -37,7 +37,7 @@ function TaskCard({ data }) {
             text={'View Details'}
             height={'22px'}
             width={'85px'}
-            cn={'!text-xs font-medium !rounded-md !px-2 !py-[4px]'}
+            cn={'!text-xs font-medium !rounded-lg !px-2 !py-[4px]'}
           />
         </div>
       </div>

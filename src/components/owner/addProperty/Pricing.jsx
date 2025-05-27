@@ -53,7 +53,8 @@ const Pricing = ({ setCurrentStep }) => {
         <div className="lg:col-span-12">
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-6">
-              <InputWithRightContent
+              <Input
+                shadowWithRightContent
                 label="1 Month Contract"
                 // value={searchValue}
                 // onChange={e => setSearchValue(e.target.value)}
@@ -61,7 +62,7 @@ const Pricing = ({ setCurrentStep }) => {
               />
             </div>
             <div className="col-span-6">
-              <Input label={'Security Deposit of Contract'} />
+              <Input shadow label={'Security Deposit of Contract'} />
             </div>
           </div>
         </div>
@@ -73,10 +74,10 @@ const Pricing = ({ setCurrentStep }) => {
         <div className="col-span-2">
           <div className="flex h-full">
             <IconButton
-              text="contract duration"
-              leftIcon={<BsPlus />}
+              text="Add duration"
+              leftIcon={<BsPlus fill="#ffffff" />}
               // rightIcon={<FaArrowRight />}
-              cn="!px-2"
+              cn={'!px-3 !py-1.5 !w-fit !h-fit !text-base !font-medium'}
               width="w-full"
               // height="h-12"
               // onClick={}
@@ -96,17 +97,17 @@ const Pricing = ({ setCurrentStep }) => {
                   />
                 </div>
                 <div>
-                  <Input label={'Price'} />
+                  <Input shadow label={'Price'} />
                 </div>
                 <div>
-                  <Input label={'Security Deposit of Contract'} />
+                  <Input shadow label={'Security Deposit of Contract'} />
                 </div>
               </div>
               <div className="col-span-2">
                 <div className="flex h-full items-end justify-end">
                   <IconButton
                     leftIcon={<IoClose className="text-3xl text-[#41414199]" />}
-                    cn="!px-2 bg-white shadow-lg"
+                    cn="!px-2 bg-white shadow-card"
                     width="w-full"
                     onClick={() => handleRemoveCustomField(field.id)} // Remove specific custom field
                   />

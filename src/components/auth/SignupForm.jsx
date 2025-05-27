@@ -60,13 +60,20 @@ const SignupForm = () => {
       <h6 className="text-text-textColor text-center text-xl font-semibold md:text-left lg:text-2xl">Sign up now</h6>
       <div className="mt-5 grid grid-cols-1 gap-4 lg:mt-7 lg:grid-cols-12">
         <div className="lg:col-span-6">
-          <Input label="First name" name="firstName" value={formData.firstName} onChange={handleInputChange} />
+          <Input shadow label="First name" name="firstName" value={formData.firstName} onChange={handleInputChange} />
         </div>
         <div className="lg:col-span-6">
-          <Input label="Last name" name="lastName" value={formData.lastName} onChange={handleInputChange} />
+          <Input shadow label="Last name" name="lastName" value={formData.lastName} onChange={handleInputChange} />
         </div>
         <div className="lg:col-span-9">
-          <Input label="Email address" name="email" type="email" value={formData.email} onChange={handleInputChange} />
+          <Input
+            shadow
+            label="Email address"
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleInputChange}
+          />
         </div>
         <div className="flex items-end lg:col-span-3">
           <button
@@ -79,7 +86,7 @@ const SignupForm = () => {
         </div>
         {showOtp && (
           <div className="lg:col-span-12">
-            <Input label="Enter OTP" name="otp" type="text" value={formData.otp} onChange={handleInputChange} />
+            <Input shadow label="Enter OTP" name="otp" type="text" value={formData.otp} onChange={handleInputChange} />
           </div>
         )}
         <div className="lg:col-span-12">
@@ -95,6 +102,7 @@ const SignupForm = () => {
         </div>
         <div className="relative lg:col-span-12">
           <Input
+            shadow
             label="Password"
             name="password"
             type={showPassword ? 'text' : 'password'}

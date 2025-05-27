@@ -48,7 +48,7 @@ function PropertyDetailsSlider({ data, onClose }) {
             width={310}
             height={216}
             alt="icon"
-            className="h-full w-full rounded-md object-cover"
+            className="h-full w-full rounded-lg object-cover"
           />
         </div>
 
@@ -61,7 +61,7 @@ function PropertyDetailsSlider({ data, onClose }) {
                 width={101}
                 height={101}
                 alt="icon"
-                className="h-full w-full rounded-md object-cover"
+                className="h-full w-full rounded-lg object-cover"
               />
             </div>
             <div className="relative flex flex-col gap-2">
@@ -70,7 +70,7 @@ function PropertyDetailsSlider({ data, onClose }) {
                 width={101}
                 height={101}
                 alt="icon"
-                className="h-full w-full rounded-md object-cover"
+                className="h-full w-full rounded-lg object-cover"
               />
 
               {data?.images.length > 3 && (
@@ -140,9 +140,9 @@ function PropertyDetailsSlider({ data, onClose }) {
                   <FeatureItem icon={Garage} value={data?.garages} label="Garage" />
                 </div>
               </div>
-              <div className="flex flex-col gap-4 md:flex-row">
-                <Button text="Visit Now" />
-                <Button text="Book Now" />
+              <div className="flex flex-col justify-center gap-4 md:flex-row">
+                <Button cn={'!w-fit !rounded-[6px]  !py-1.5 !px-4 !h-fit !text-base'} text="Visit Now" />
+                <Button cn={'!w-fit !rounded-[6px]  !py-1.5 !px-4 !h-fit !text-base'} text="Book Now" />
               </div>
               <div className="mt-5">
                 <HouseMap location={data?.address} image={data?.images[0]} name={'Dream house'} status={data?.type} />
@@ -164,7 +164,7 @@ function PropertyDetailsSlider({ data, onClose }) {
 export default PropertyDetailsSlider;
 
 const FeatureItem = ({ icon: Icon, value, label }) => (
-  <div className="flex items-center justify-between gap-2 rounded-md border px-2 py-1.5 text-[14px]">
+  <div className="flex items-center justify-between gap-2 rounded-lg border px-2 py-1.5 text-[14px]">
     <Icon />
     {value} {label}
   </div>

@@ -6,7 +6,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 
 const Welcome = () => {
   return (
-    <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+    <div className="flex flex-col items-center justify-between gap-4 px-1 md:flex-row">
       <h3 className="text-textColor text-lg font-semibold md:text-[22px]">
         Welcome! <span className="font-normal">Alexander</span>
       </h3>
@@ -53,7 +53,7 @@ const CustomDropDown = ({ lists }) => {
         </div>
       </div>
       {isOptionOpen && (
-        <ul className="absolute top-[40px] left-0 flex w-full flex-col rounded-lg bg-white shadow-md">
+        <ul className="shadow-card absolute top-[40px] left-0 flex w-full flex-col rounded-lg bg-white">
           {lists.map((list, i) => (
             <li
               key={i}

@@ -14,7 +14,7 @@ export default TopCards;
 
 const Card = ({ card }) => {
   return (
-    <div className="rounded-lg bg-white p-4" style={{ boxShadow: '0px 2px 12px 0px #3582E71A' }}>
+    <div className="shadow-card rounded-lg bg-white p-4">
       <div className="flex items-center gap-3">
         <Image src={card.img} width={30} height={30} alt="image" />
         <h6 className="text-textColor text-sm font-medium">{card.title}</h6>
@@ -28,10 +28,7 @@ const Card = ({ card }) => {
             </div>
           </div>
         </div>
-        <p
-          className="mt-2 text-xs text-[#969696]"
-          dangerouslySetInnerHTML={{ __html: card.para }}
-        ></p>
+        <p className="mt-2 text-xs text-[#969696]" dangerouslySetInnerHTML={{ __html: card.para }}></p>
       </div>
     </div>
   );

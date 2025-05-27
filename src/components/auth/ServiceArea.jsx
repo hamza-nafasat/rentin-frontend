@@ -5,10 +5,7 @@ import Input from '../shared/small/Input';
 function ServiceArea({ setCurrentStep }) {
   // Memoize handlers to prevent unnecessary re-renders
   const handleNext = useCallback(() => setCurrentStep(prevStep => prevStep + 1), [setCurrentStep]);
-  const handlePrevious = useCallback(
-    () => setCurrentStep(prevStep => prevStep - 1),
-    [setCurrentStep]
-  );
+  const handlePrevious = useCallback(() => setCurrentStep(prevStep => prevStep - 1), [setCurrentStep]);
   const BEDROOM_OPTIONS = [
     { option: '1 Bedroom', value: '1' },
     { option: '2 Bedrooms', value: '2' },
@@ -24,9 +21,7 @@ function ServiceArea({ setCurrentStep }) {
 
   return (
     <div>
-      <h4 className="text-textColor text-center text-base font-medium md:text-lg">
-        Service Area Selection
-      </h4>
+      <h4 className="text-textColor text-center text-base font-medium md:text-lg">Service Area Selection</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <Dropdown placeholder="select" label="Country" options={BEDROOM_OPTIONS} shadow />
@@ -38,7 +33,7 @@ function ServiceArea({ setCurrentStep }) {
           <Dropdown placeholder="select" label="City" options={BATHROOM_OPTIONS} shadow />
         </div>
         <div className="lg:col-span-6">
-          <Input label={'Area'} placeholder="Search Area" />
+          <Input shadow label={'Area'} placeholder="Search Area" />
         </div>
         <div className="lg:col-span-6">
           <Dropdown placeholder="select" label="Available Days" options={BATHROOM_OPTIONS} shadow />

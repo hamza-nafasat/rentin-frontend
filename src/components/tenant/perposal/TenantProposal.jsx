@@ -94,7 +94,7 @@ const TenantProposal = () => {
 
   if (isLoading) {
     return (
-      <div className="rounded-lg border bg-white p-4 shadow-sm lg:p-5">
+      <div className="shadow-card rounded-lg border bg-white p-4 lg:p-5">
         <div className="text-textColor text-sm font-semibold">Proposal Summary</div>
         <div className="flex h-64 items-center justify-center">
           <div className="border-primary h-8 w-8 animate-spin rounded-full border-b-2"></div>
@@ -104,7 +104,7 @@ const TenantProposal = () => {
   }
 
   return (
-    <section className="rounded-lg border bg-white p-4 shadow-sm lg:p-5">
+    <section className="shadow-card rounded-lg border bg-white p-4 lg:p-5">
       <div className="text-textColor text-sm font-semibold">Proposal Summary</div>
       <DataTable
         data={proposalSummaryData}

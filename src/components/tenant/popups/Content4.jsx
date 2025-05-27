@@ -12,23 +12,23 @@ function Content4() {
         <form action="">
           <div className="mt-3 flex flex-wrap justify-between">
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'Name'} placeholder={'John Doe'} />
+              <Input shadow type={'text'} label={'Name'} placeholder={'John Doe'} />
             </div>
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'Nationality'} placeholder={'NYC'} />
-            </div>
-          </div>
-          <div className="mt-3 flex flex-wrap justify-between">
-            <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'date'} label={'Date'} value={'2025-05-05'} />
-            </div>
-            <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'time'} label={'Time'} value={'14:30'} />
+              <Input shadow type={'text'} label={'Nationality'} placeholder={'NYC'} />
             </div>
           </div>
           <div className="mt-3 flex flex-wrap justify-between">
             <div className="basis-[100%] sm:basis-[49%]">
-              <Input type={'text'} label={'Number of Occupants'} placeholder={'5'} />
+              <Input shadow type={'date'} label={'Date'} value={'2025-05-05'} />
+            </div>
+            <div className="basis-[100%] sm:basis-[49%]">
+              <Input shadow type={'time'} label={'Time'} value={'14:30'} />
+            </div>
+          </div>
+          <div className="mt-3 flex flex-wrap justify-between">
+            <div className="basis-[100%] sm:basis-[49%]">
+              <Input shadow type={'text'} label={'Number of Occupants'} placeholder={'5'} />
             </div>
             <div className="basis-[100%] sm:basis-[49%]">
               <Move />
