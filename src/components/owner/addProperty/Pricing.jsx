@@ -55,7 +55,7 @@ const Pricing = ({ setCurrentStep }) => {
             <div className="col-span-6">
               <Input
                 shadowWithRightContent
-                label="1 Month Price"
+                label="1 Month Contract"
                 // value={searchValue}
                 // onChange={e => setSearchValue(e.target.value)}
                 rightContent={'THB/Per month'}
