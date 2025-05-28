@@ -35,8 +35,8 @@ function EditProfile() {
           <Input shadow type={'text'} label={'Address'} placeholder={'Your Address'} />
         </div>
         <div className="mt-4 flex w-full items-center justify-end gap-4">
-          <Button cn={' !py-2 !h-10 !bg-[#A7A7A7]'} width={'150px'} text={'Edit'} />
-          <Button cn={' !py-2 !h-10 '} width={'150px'} text={'Save'} />
+          <Button cn={' !py-1.5 !rounded-lg !h-11 !bg-[#A7A7A7]'} width={'150px'} text={'Edit'} />
+          <Button cn={' !py-1.5 !rounded-lg !h-11 '} width={'150px'} text={'Save'} />
         </div>
       </form>
     </div>

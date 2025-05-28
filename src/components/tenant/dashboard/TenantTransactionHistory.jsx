@@ -89,7 +89,7 @@ function TenantTransactionHistory() {
   );
 
   return (
-    <div className="h-[299px] px-5 py-4">
+    <div className="px-5 py-4">
       <div className="mb-4 flex flex-col items-center justify-center space-y-2 md:flex-row md:justify-between md:space-y-0">
         <h1 className="text-lg font-semibold">Transaction History</h1>
         <div className="flex gap-4">

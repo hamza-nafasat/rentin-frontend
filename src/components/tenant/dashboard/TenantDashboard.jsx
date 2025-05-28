@@ -49,7 +49,7 @@ function TenantDashboard() {
             <CustomLineChart title={'Compilation Rate'} earningsData={earningsData} isLoading={isLoading} />
           </div>
         </div>
-        <div className="shadow-card grid w-full grid-cols-1 rounded-lg bg-white">
+        <div className="shadow-card grid h-fit w-full grid-cols-1 rounded-lg bg-white">
           <TenantTransactionHistory />
         </div>
       </div>

@@ -9,6 +9,7 @@ import { FaUser } from 'react-icons/fa'; // Example icon from react-icons
 import ValueAdjuster from '@/components/shared/small/ValueAdjuster';
 import Textarea from '@/components/shared/small/Textarea';
 import RadioButton from '@/components/shared/small/RadioButton';
+import InputWithRightContent from '@/components/shared/small/InputWithRightContent';
 
 // Static data moved outside component to prevent recreation on each render
 const BEDROOM_OPTIONS = [
@@ -88,7 +89,7 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
     { label: 'Building B', id: 'building-b' },
     { label: 'Building C', id: 'building-c' },
     { label: 'Building D', id: 'building-d' },
-    { label: 'Building D', id: 'building-d' },
+    { label: 'Building E', id: 'building-e' },
     { label: 'Custom', id: 'Custom' },
   ];
   console.log('formData', formData[0].propertyType);
@@ -174,7 +175,7 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
       <h4 className="text-textColor text-center text-base font-medium md:text-lg">Property Information</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-12">
-          <Input shadow label="Property Title" shadow />
+          <Input shadow label="Property Title" />
         </div>
         <div className="lg:col-span-12">
           <Textarea label="Description" placeholder="Enter a description for the image..." shadow={true} />
@@ -190,8 +191,7 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
           )} */}
         </div>
         <div className="lg:col-span-6">
-          <Input
-            shadowDropdown
+          <InputDropdown
             placeholder="0"
             label="Unit Area"
             options={FREQUENCY_OPTIONS}
@@ -205,7 +205,7 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
           />
         </div>
         <div className="lg:col-span-6">
-          <Input shadow placeholder="i. e A302" label="Unit Number (optional)" shadow />
+          <Input shadow placeholder="i. e A302" label="Unit Number (optional)" />
         </div>
         {/* <div className="lg:col-span-6">
           <Dropdown placeholder="select" label="Floor" options={FLOOR_OPTIONS} shadow />
@@ -227,7 +227,7 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
               {options.map(({ id, label }) => (
                 <div key={id} className="flex items-center gap-2">
                   <input id={id} type="radio" name="rentReason1" onChange={handleRentReasonChange1} />
-                  <label className="text-[13px]" htmlFor={id}>
+                  <label className="text-[10px]" htmlFor={id}>
                     {label}
                   </label>
                 </div>
