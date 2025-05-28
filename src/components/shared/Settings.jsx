@@ -5,7 +5,7 @@ import EditProfile from './EditProfile';
 import Image from 'next/image';
 
 function Settings() {
-  const [tab, setTab] = useState('Edit');
+  const [tab, setTab] = useState('Profile');
   return (
     <div className="rounded-lg bg-white p-4">
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center sm:gap-0">
@@ -19,11 +19,11 @@ function Settings() {
           </div>
         </div>
         <div className="flex items-center justify-end gap-4">
-          {['Change Password', 'Edit'].map((item, i) => (
+          {['Change Password', 'Profile'].map((item, i) => (
             <div key={i}>
               <button
-                className={`cursor-pointer rounded-lg px-4 py-2 text-[16px] text-white ${
-                  tab === item ? 'bg-[#112C33] font-semibold' : 'bg-[#A7A7A7] font-medium text-[#474950]'
+                className={`cursor-pointer rounded-md px-4 py-2 text-[16px] text-white ${
+                  tab === item ? 'bg-primary font-medium' : 'bg-[#A7A7A7] font-medium text-white'
                 }`}
                 onClick={() => setTab(item)}
               >
@@ -35,7 +35,7 @@ function Settings() {
       </div>
       <div className="mt-5">
         {tab === 'Change Password' && <ChangePassword />}
-        {tab === 'Edit' && <EditProfile />}
+        {tab === 'Profile' && <EditProfile />}
       </div>
     </div>
   );

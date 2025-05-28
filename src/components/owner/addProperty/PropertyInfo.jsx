@@ -29,8 +29,8 @@ const BATHROOM_OPTIONS = [
 ];
 
 const FREQUENCY_OPTIONS = [
-  { value: 'SqM', label: 'SqM' },
-  { value: 'SqW', label: 'SqW' },
+  { value: 'SqM', label: 'Sqm' },
+  { value: 'SqW', label: 'Sqw' },
   { value: 'Sqft', label: 'Sqft' },
 ];
 const CommonAreaMaintenanceFee = [
@@ -53,9 +53,9 @@ const FLOOR_OPTIONS = [
 ];
 
 const CONDITION_OPTIONS = [
-  { option: 'Unfurnished', value: 'unfurnished' },
   { option: 'Fully Furnished', value: 'fully_furnished' },
   { option: 'Partly Furnished', value: 'partly_furnished' },
+  { option: 'Unfurnished', value: 'unfurnished' },
 ];
 
 const BUILDING_OPTIONS = [
@@ -79,11 +79,17 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
   const [selectedOption, setSelectedOption] = useState(null);
   const [inputValue, setInputValue] = useState('');
   const [selected, setSelected] = useState('option1');
+  const [showInput1, setShowInput1] = useState(false);
+  const handleRentReasonChange1 = e => {
+    setShowInput1(e.target.id === 'Custom');
+  };
   const options = [
-    { label: 'Building A', value: 'building-a' },
-    { label: 'Building B', value: 'building-b' },
-    { label: 'Building C', value: 'building-c' },
-    { label: 'Building D', value: 'building-d' },
+    { label: 'Building A', id: 'building-a' },
+    { label: 'Building B', id: 'building-b' },
+    { label: 'Building C', id: 'building-c' },
+    { label: 'Building D', id: 'building-d' },
+    { label: 'Building D', id: 'building-d' },
+    { label: 'Custom', id: 'Custom' },
   ];
   console.log('formData', formData[0].propertyType);
 
@@ -178,7 +184,7 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
         </div>
         <div className="lg:col-span-6">
           {/* {formData[0].propertyType === 'condo' ? ( */}
-          <ValueAdjuster label="BathRooms" value={count} onChange={setCount} />
+          <ValueAdjuster label="Bathrooms" value={count} onChange={setCount} />
           {/* ) : (
             <Dropdown placeholder="select" label="BathRooms" options={BATHROOM_OPTIONS} shadow />
           )} */}
@@ -207,35 +213,38 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
         <div className="lg:col-span-6">
           <Dropdown placeholder="Unfurnished" label="Property Condition" options={CONDITION_OPTIONS} shadow />
         </div>
+
         <div className="lg:col-span-6">
-          {/* <h1>Select Building</h1> */}
-          {/* <Dropdown
-            placeholder="Only 1 Bldg"
-            label="Building Your Property Located"
-            options={BUILDING_OPTIONS}
-            shadow
-          /> */}
+          <Dropdown placeholder="Building " label="Building Height" options={Building} shadow />
+        </div>
+        <div className="flex items-end lg:col-span-6">
+          <ValueAdjuster label="Floor" value={count} onChange={setCount} />
+        </div>
+        <div className="lg:col-span-6">
           <div className="h-full space-y-3">
             <label className="text-sm font-medium text-[#666666] lg:text-base">Select Building</label>
             <div className="flex h-full items-center gap-4">
-              {options.map(option => (
-                <RadioButton
-                  key={option.value}
-                  label={option.label}
-                  value={option.value}
-                  checked={selected === option.value}
-                  onChange={setSelected}
-                />
+              {options.map(({ id, label }) => (
+                <div key={id} className="flex items-center gap-2">
+                  <input id={id} type="radio" name="rentReason1" onChange={handleRentReasonChange1} />
+                  <label className="text-[13px]" htmlFor={id}>
+                    {label}
+                  </label>
+                </div>
               ))}
             </div>
             {/* <p className="mt-2 text-sm text-gray-600">Selected: {selected}</p> */}
           </div>
         </div>
         <div className="lg:col-span-6">
-          <Dropdown placeholder="Building " label="Building Height" options={Building} shadow />
-        </div>
-        <div className="flex items-end lg:col-span-6">
-          <ValueAdjuster label="Floor" value={count} onChange={setCount} />
+          {showInput1 && (
+            <div>
+              <label className="text-sm font-medium text-[#666666] lg:text-base">Select Building</label>
+              <div className="mt-1">
+                <Input type="text" placeholder="Enter" />
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="flex justify-end gap-[14px] lg:col-span-12">

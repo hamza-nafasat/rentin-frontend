@@ -58,7 +58,7 @@ const Pricing = ({ setCurrentStep }) => {
                 label="1 Month Contract"
                 // value={searchValue}
                 // onChange={e => setSearchValue(e.target.value)}
-                rightContent={'Per month'}
+                rightContent={'THB/Per month'}
               />
             </div>
             <div className="col-span-6">
@@ -67,18 +67,18 @@ const Pricing = ({ setCurrentStep }) => {
           </div>
         </div>
 
-        <div className="lg:col-span-12">
+        {/* <div className="lg:col-span-12">
           <Dropdown label="Security Deposit per Contract" options={[{ option: 'Condo', value: 'condo' }]} shadow />
-        </div>
+        </div> */}
         {/* <div> */}
         <div className="col-span-2">
           <div className="flex h-full">
             <IconButton
-              text="Add duration"
-              leftIcon={<BsPlus fill="#ffffff" />}
+              text="Add contract"
+              leftIcon={<BsPlus />}
               // rightIcon={<FaArrowRight />}
-              cn={'!px-3 !py-1.5 !w-fit !h-fit !text-base !font-medium'}
-              width="w-full"
+              cn="!px-2 !text-base !font-medium"
+              width="w-[145px]"
               // height="h-12"
               // onClick={}
               onClick={handleAddCustomField} // Add new custom field
@@ -91,13 +91,18 @@ const Pricing = ({ setCurrentStep }) => {
               <div className="col-span-10 grid grid-cols-3 gap-4">
                 <div className="mt-6">
                   <ValueAdjuster
-                    label="Months?"
+                    label="Months"
                     value={count}
                     onChange={value => setCount(Math.max(2, Math.min(24, value)))}
                   />
                 </div>
                 <div>
-                  <Input shadow label={'Price'} />
+                  <InputWithRightContent
+                    label="Rent Price"
+                    // value={searchValue}
+                    // onChange={e => setSearchValue(e.target.value)}
+                    rightContent={'THB/Per month'}
+                  />
                 </div>
                 <div>
                   <Input shadow label={'Security Deposit of Contract'} />

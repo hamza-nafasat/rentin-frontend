@@ -33,11 +33,7 @@ const SubscriptionPlan = () => {
               {plan.price === 'no-pricing' ? (
                 <span></span>
               ) : (
-                <p
-                  className={`text-lg font-semibold ${
-                    plan.buttonType === 'primary' ? 'text-[#E35454]' : 'text-[#474445]'
-                  }`}
-                >
+                <p className={`text-lg font-bold ${plan.buttonType === 'primary' ? 'text-primary' : 'text-[#474445]'}`}>
                   <span className="text-xs">THB </span>
                   {plan.price} <span className="text-xs font-normal">/month</span>
                 </p>

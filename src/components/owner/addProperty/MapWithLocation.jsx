@@ -4,9 +4,7 @@ import L from 'leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
-const iconMarkup = renderToStaticMarkup(
-  <FaMapMarkerAlt style={{ color: 'red', fontSize: '2rem' }} />
-);
+const iconMarkup = renderToStaticMarkup(<FaMapMarkerAlt style={{ color: 'red', fontSize: '2rem' }} />);
 const customDivIcon = L.divIcon({
   html: iconMarkup,
   className: '',
@@ -25,9 +23,7 @@ const RecenterAutomatically = ({ latlng }) => {
 };
 
 const getCoordinates = async locationName => {
-  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-    locationName
-  )}&limit=1`;
+  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationName)}&limit=1`;
   const response = await fetch(url);
   const data = await response.json();
   if (data.length > 0) {
@@ -67,7 +63,7 @@ const MapWithLocation = ({ location }) => {
         center={position || defaultCenter}
         zoom={13}
         scrollWheelZoom={false}
-        style={{ height: '100%', width: '100%' }}
+        style={{ height: '100%', width: '100%', zIndex: 1 }}
         attributionControl={false}
       >
         <TileLayer

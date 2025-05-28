@@ -51,18 +51,18 @@ function BrowsePropertyCard({ data }) {
         <div className="flex items-center justify-between">
           <div className="flex flex-col items-center justify-center gap-2 lg:flex-row">
             <BedIcons />
-            <p className="text-sm font-semibold text-[#0245a5CC]/50">{data?.beds}</p>
-            <p className="text-sm font-semibold text-[#0245a5CC]/50"> Beds</p>
+            <p className="text-primary text-sm font-semibold">{data?.beds}</p>
+            <p className="text-primary text-sm font-semibold"> Beds</p>
           </div>
           <div className="flex flex-col items-center justify-center gap-2 lg:flex-row">
             <Bath />
-            <p className="text-sm font-semibold text-[#0245a5CC]/50">{data?.baths} </p>
-            <p className="text-sm font-semibold text-[#0245a5CC]/50"> Bath</p>
+            <p className="text-primary text-sm font-semibold">{data?.baths} </p>
+            <p className="text-primary text-sm font-semibold"> Bath</p>
           </div>
           <div className="flex flex-col items-center justify-center gap-2 lg:flex-row">
             <SqftIcon />
-            <p className="text-sm font-semibold text-[#0245a5CC]/50">{data?.area} </p>
-            <p className="text-sm font-semibold text-[#0245a5CC]/50"> Sqft</p>
+            <p className="text-primary text-sm font-semibold">{data?.area} </p>
+            <p className="text-primary text-sm font-semibold"> Sqft</p>
           </div>
         </div>
       </div>

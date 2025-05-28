@@ -15,13 +15,17 @@ const AddProperty = () => {
     {
       propertyType: '',
       projectName: '',
-      region: '',
-      day: [],
+      address: '',
+      road: '',
+      province: '',
+      subDistrict: '',
+      postalCode: '',
       startTime: '',
       endTime: '',
       location: '',
       district: '',
       street: '',
+      propertyStatus: '',
     }, // for Component 1
     { input1: '', input2: '', dropdown1: '', dropdown2: '' }, // for Component 2
     { input1: '', input2: '', dropdown1: '', dropdown2: '' }, // ...

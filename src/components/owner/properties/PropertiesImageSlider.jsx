@@ -9,6 +9,7 @@ import BathIcon from '../../../assets/propertyDetails/BathIcon';
 import BedIcon from '../../../assets/propertyDetails/BedIcon';
 import FloorsIcon from '../../../assets/propertyDetails/FloorsIcon';
 import SqmIcon from '../../../assets/propertyDetails/SqmIcon';
+import { BsFullscreen } from 'react-icons/bs';
 
 const Modal = ({ onClose, children, width }) => {
   return (
@@ -112,9 +113,9 @@ const PropertiesImageSlider = ({
             </div>
             <button
               onClick={() => openModal(currentIndex)}
-              className="bg-primary absolute top-[90%] left-[88%] z-50 cursor-pointer rounded-lg px-4 py-1.5 text-[12px] text-white"
+              className="bg-primary absolute top-[90%] left-[96%] z-50 cursor-pointer rounded-lg p-2 py-1.5 text-[12px] text-white"
             >
-              Expand
+              <BsFullscreen />
             </button>
           </div>
         </div>

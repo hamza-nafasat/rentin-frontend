@@ -18,7 +18,7 @@ const OnDemandService = () => {
       <div className="mt-4 grid grid-cols-1 gap-6 px-14 lg:grid-cols-2">
         <div
           onClick={navigateToInspection}
-          className="shadow-card flex h-[290px] w-full cursor-pointer flex-col items-center justify-center rounded-lg bg-white hover:bg-blue-200"
+          className="shadow-card flex h-[290px] w-[90%] cursor-pointer flex-col items-center justify-center rounded-md bg-white hover:bg-blue-200"
         >
           <div>
             <PropertyInspection />
@@ -34,7 +34,7 @@ const OnDemandService = () => {
         </div>
         <div
           onClick={navigateToAgent}
-          className="shadow-card flex h-[290px] w-full cursor-pointer flex-col items-center justify-center rounded-lg bg-white hover:bg-blue-200"
+          className="shadow-card flex h-[290px] w-[90%] cursor-pointer flex-col items-center justify-center rounded-md bg-white hover:bg-blue-200"
         >
           <div>
             <ShowAgent />

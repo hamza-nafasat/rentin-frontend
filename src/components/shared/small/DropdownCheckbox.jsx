@@ -28,13 +28,33 @@ const DropdownCheckbox = memo(
   }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValues, setSelectedValues] = useState([]);
+    const [customValue, setCustomValue] = useState('');
+    const [showCustomInput, setShowCustomInput] = useState(false);
     const dropdownRef = useRef(null);
     const idRef = useRef(`dropdown-${Math.random().toString(36).slice(2, 9)}`);
+    const customInputRef = useRef(null);
 
     // Toggle an option's selection
     const toggleValue = useCallback(
       option => {
         if (readOnly) return;
+
+        if (option.value === 'others') {
+          setShowCustomInput(prev => !prev);
+          if (!showCustomInput) {
+            // If opening custom input, focus it
+            setTimeout(() => customInputRef.current?.focus(), 0);
+          } else if (customValue.trim()) {
+            // If closing and has value, add it to selections
+            setSelectedValues(prev => {
+              const updated = [...prev, customValue];
+              onSelect?.(updated);
+              return updated;
+            });
+          }
+          return;
+        }
+
         setSelectedValues(prev => {
           const exists = prev.includes(option.value);
           const updated = exists ? prev.filter(v => v !== option.value) : [...prev, option.value];
@@ -42,8 +62,32 @@ const DropdownCheckbox = memo(
           return updated;
         });
       },
-      [readOnly, onSelect]
+      [readOnly, onSelect, showCustomInput, customValue]
     );
+
+    // Handle custom input change
+    const handleCustomInputChange = useCallback(
+      e => {
+        const value = e.target.value;
+        setCustomValue(value);
+
+        // Update selected values with custom input
+        setSelectedValues(prev => {
+          const withoutCustom = prev.filter(v => v !== customValue);
+          const updated = value.trim() ? [...withoutCustom, value] : withoutCustom;
+          onSelect?.(updated);
+          return updated;
+        });
+      },
+      [customValue, onSelect]
+    );
+
+    // Handle custom input blur
+    const handleCustomInputBlur = useCallback(() => {
+      if (!customValue.trim()) {
+        setShowCustomInput(false);
+      }
+    }, [customValue]);
 
     // Toggle dropdown open/close
     const toggleDropdown = useCallback(() => {
@@ -76,6 +120,7 @@ const DropdownCheckbox = memo(
       ? options
           .filter(opt => selectedValues.includes(opt.value))
           .map(opt => opt.label ?? opt.option)
+          .concat(selectedValues.filter(v => !options.some(opt => opt.value === v)))
           .join(', ')
       : defaultText;
 
@@ -139,6 +184,18 @@ const DropdownCheckbox = memo(
                   >
                     {labelText}
                   </label>
+                  {option.value === 'others' && showCustomInput && (
+                    <input
+                      ref={customInputRef}
+                      type="text"
+                      value={customValue}
+                      onChange={handleCustomInputChange}
+                      onBlur={handleCustomInputBlur}
+                      placeholder="Enter custom value"
+                      className="focus:border-primary ml-2 flex-1 rounded border border-gray-300 px-2 py-1 text-sm focus:outline-none"
+                      onClick={e => e.stopPropagation()}
+                    />
+                  )}
                 </li>
               );
             })}

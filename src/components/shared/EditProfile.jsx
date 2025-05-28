@@ -4,14 +4,15 @@ import Input from './small/Input';
 import Image from 'next/image';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import Button from './small/Button';
 
 function EditProfile() {
   return (
     <div>
       <form action="">
         <div className="grid grid-cols-1 items-center gap-5 sm:grid-cols-2">
-          <Input shadow type={'text'} label={'First Name'} placeholder={'Your First Name'} />
-          <Input shadow type={'text'} label={'Last Name'} placeholder={'Your Last Name'} />
+          <Input shadow type={'text'} label={'Legal Name'} placeholder={'Your First Name'} />
+          <Input shadow type={'text'} label={'User Name'} placeholder={'Your Last Name'} />
           <Input shadow type={'email'} label={'Email'} placeholder={'Your Email'} />
           <div className="flex flex-col gap-2">
             <label className="text-sm text-[#666666] lg:text-base" htmlFor="">
@@ -30,38 +31,12 @@ function EditProfile() {
               }}
             />
           </div>
-          <Input shadow type={'text'} label={'ID Number'} placeholder={'Your ID Number'} />
+          {/* <Input shadow type={'text'} label={'ID Number'} placeholder={'Your ID Number'} /> */}
           <Input shadow type={'text'} label={'Address'} placeholder={'Your Address'} />
         </div>
-        <div className="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <div>
-            <h1 className="mb-2 text-[16px] font-semibold">Front CNIC</h1>
-            <div className="flex flex-col items-center justify-evenly border border-dashed py-[20px]">
-              <Image className="mb-3" src="/images/default/cnic.svg" width={46} height={30} alt="cnic" />
-              <p className="mb-3 text-[12px] text-[#1A1A1A]">CNIC</p>
-              <label
-                className="bg-primary rounded-[6px] border px-4 py-1.5 text-[12px] text-white"
-                htmlFor="fileUpload"
-              >
-                Browse
-              </label>
-              <input className="hidden" type="file" id="fileUpload" accept=".jpg,.jpeg,.png" />
-            </div>
-          </div>
-          <div>
-            <h1 className="mb-2 text-[16px] font-semibold">Back CNIC</h1>
-            <div className="flex flex-col items-center justify-evenly border border-dashed py-[20px]">
-              <Image className="mb-3" src="/images/default/cnic.svg" width={46} height={30} alt="cnic" />
-              <p className="mb-3 text-[12px] text-[#1A1A1A]">CNIC</p>
-              <label
-                className="bg-primary rounded-[6px] border px-4 py-1.5 text-[12px] text-white"
-                htmlFor="fileUpload"
-              >
-                Browse
-              </label>
-              <input className="hidden" type="file" id="fileUpload" accept=".jpg,.jpeg,.png" />
-            </div>
-          </div>
+        <div className="mt-4 flex w-full items-center justify-end gap-4">
+          <Button cn={' !py-2 !h-10 !bg-[#A7A7A7]'} width={'150px'} text={'Edit'} />
+          <Button cn={' !py-2 !h-10 '} width={'150px'} text={'Save'} />
         </div>
       </form>
     </div>

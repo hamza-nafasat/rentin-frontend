@@ -61,7 +61,7 @@ function BrowserHeader() {
               lists={['Today', 'Week', 'Month']}
               icon={<LuArrowUpDown className="text-white" />}
               containerClass="w-[90px]" // container width
-              buttonClass="bg-primary w-[90px] text-white" // button style
+              buttonClass="bg-primary w-[110px] text-white" // button style
               optionClass="bg-white text-black" // option list style
               selectedOption={selectedOption}
               setSelectedOption={setSelectedOption}
