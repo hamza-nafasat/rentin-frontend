@@ -1,7 +1,7 @@
-import React from 'react';
+'use client';
+import CardDetails from '@/components/shared/CardDetails';
 import Settings from '@/components/shared/Settings';
 import { useState } from 'react';
-import CardDetails from '@/components/shared/CardDetails';
 
 function Setting() {
   const [tab, setTab] = useState('Basic Details');
