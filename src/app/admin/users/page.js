@@ -7,7 +7,7 @@ import React from 'react';
 function AdminUsers() {
   return (
     <div>
-      <h3 className="text-textColor text-lg font-semibold md:text-[22px]">Tenants Details</h3>
+      <h3 className="text-textPrimary text-lg font-semibold md:text-[22px]">Tenants Details</h3>
       <TopCards data={adminCardsData} />
       <AdminTenants />
     </div>

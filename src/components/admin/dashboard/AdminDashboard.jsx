@@ -34,7 +34,7 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <h3 className="text-textColor text-lg font-semibold md:text-[22px]">
+      <h3 className="text-textPrimary text-lg font-semibold md:text-[22px]">
         Welcome! <span className="font-normal">Alexander</span>
       </h3>
       <HomeCards data={adminHomeCardsData} />

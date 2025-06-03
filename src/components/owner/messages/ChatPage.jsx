@@ -171,7 +171,7 @@ export default function ChatPage() {
 
   return (
     <>
-      <h3 className="text-textColor mb-4 text-lg font-semibold md:text-[22px]">Chat</h3>
+      <h3 className="text-textPrimary mb-4 text-lg font-semibold md:text-[22px]">Chat</h3>
       <div className="flex h-full flex-col gap-4 sm:flex-row md:gap-6">
         {/* Sidebar */}
         <Card
@@ -184,7 +184,7 @@ export default function ChatPage() {
                 {['Tenants', 'Agents'].map((item, i) => (
                   <button
                     key={i}
-                    className={`bg-primary cursor-pointer rounded-sm px-[5px] py-2 text-[10px] font-semibold text-white ${tab === item ? 'opacity-100' : 'opacity-50'}`}
+                    className={`bg-primary cursor-pointer place-items-center rounded-lg px-4 py-2 text-sm font-medium text-white hover:bg-[#01367f] ${tab === item ? 'opacity-100' : 'opacity-20'}`}
                     onClick={() => setTab(item)}
                   >
                     {item}
@@ -214,10 +214,10 @@ export default function ChatPage() {
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
                         <p className="text-sm font-semibold text-[#1F242F]">{agent.name}</p>
-                        <span className="text-textColor text-xs">{agent.time}</span>
+                        <span className="text-textPrimary text-xs">{agent.time}</span>
                       </div>
-                      <p className="text-textColor flex items-center gap-1 truncate text-sm font-medium">
-                        <LiaHomeSolid className="text-textColor" />
+                      <p className="text-textPrimary flex items-center gap-1 truncate text-sm font-medium">
+                        <LiaHomeSolid className="text-textPrimary" />
                         {agent.location}
                       </p>
                     </div>
@@ -244,10 +244,10 @@ export default function ChatPage() {
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
                         <p className="text-sm font-semibold text-[#1F242F]">{tenant.name}</p>
-                        <span className="text-textColor text-xs">{tenant.time}</span>
+                        <span className="text-textPrimary text-xs">{tenant.time}</span>
                       </div>
-                      <p className="text-textColor flex items-center gap-1 truncate text-sm font-medium">
-                        <LiaHomeSolid className="text-textColor" />
+                      <p className="text-textPrimary flex items-center gap-1 truncate text-sm font-medium">
+                        <LiaHomeSolid className="text-textPrimary" />
                         {tenant.location}
                       </p>
                     </div>
@@ -289,7 +289,7 @@ export default function ChatPage() {
                     {/* Message container */}
                     <div className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                       <div
-                        className={`max-w-[70%] rounded-lg px-4 py-2 text-sm ${message.role === 'user' ? 'bg-primary text-white' : 'text-textColor bg-[#F4F4F5]'}`}
+                        className={`max-w-[70%] rounded-lg px-4 py-2 text-sm ${message.role === 'user' ? 'bg-primary text-white' : 'text-textPrimary bg-[#F4F4F5]'}`}
                       >
                         {/* Render different content based on message type */}
                         {message.type === 'text' && (
@@ -318,7 +318,7 @@ export default function ChatPage() {
                               />
                             ) : (
                               <div className="flex items-center gap-2">
-                                <UploadCloud className="text-textColor h-5 w-5" />
+                                <UploadCloud className="text-textPrimary h-5 w-5" />
                                 <span className="text-xs">{message.fileName}</span>
                               </div>
                             )}
@@ -355,7 +355,7 @@ export default function ChatPage() {
                 className="flex-1"
               />
               <label htmlFor="file-upload" className="cursor-pointer">
-                <PiLinkSimpleBold className="text-textColor h-6 w-6" />
+                <PiLinkSimpleBold className="text-textPrimary h-6 w-6" />
               </label>
               <Button
                 size="icon"
@@ -388,7 +388,7 @@ export default function ChatPage() {
                   </div>
                 ) : (
                   <div className="flex items-center gap-2">
-                    <UploadCloud className="text-textColor h-6 w-6" />
+                    <UploadCloud className="text-textPrimary h-6 w-6" />
                     <span className="text-sm">{attachedFile.name}</span>
                     <button onClick={() => setAttachedFile(null)} className="ml-2 text-xs text-red-600">
                       Remove

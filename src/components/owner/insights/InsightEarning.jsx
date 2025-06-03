@@ -42,7 +42,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 export default function InsightEarning({ data, width = '100%', height = 320 }) {
   return (
     <div style={{ width, height }} className="rounded-lg">
-      <h6 className="text-textColor text-sm font-semibold md:text-base">Earnings</h6>
+      <h6 className="text-textPrimary text-sm font-semibold md:text-base">Earnings</h6>
       <ResponsiveContainer>
         <AreaChart data={data} margin={{ top: 15, right: 15, left: -15, bottom: 20 }}>
           {/* Gradients for the filled areas under each line */}

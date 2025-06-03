@@ -220,7 +220,7 @@ const BasicInfo = memo(({ data, index, updateField, setCurrentStep }) => {
 
   return (
     <div>
-      <h4 className="text-textColor text-center text-base font-medium md:text-lg">Property Information</h4>
+      <h4 className="text-textPrimary text-center text-base font-medium md:text-lg">Property Information</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <Dropdown
@@ -325,7 +325,7 @@ const BasicInfo = memo(({ data, index, updateField, setCurrentStep }) => {
         </div>
         {data.propertyStatus === 'available' && (
           <div className="flex justify-start lg:col-span-12">
-            <div className="shadow-card rounded-lg border bg-white px-5">
+            <div className="shadow-card rounded-lg border bg-white p-3">
               <ShowBuildingHours />
             </div>
           </div>

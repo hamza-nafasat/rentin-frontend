@@ -5,7 +5,7 @@ import PropertyDetailsSlider from './PropertyDetailsSlider';
 
 function ListView({ handleCloseSlider, handleCardClick, selectedProperty, houses }) {
   return (
-    <div className="grid max-h-[800px] grid-cols-1 gap-6 overflow-y-scroll pt-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
+    <div className="grid h-[calc(100vh-375px)] grid-cols-1 gap-6 overflow-y-scroll pt-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
       {houses?.map(property => (
         <div key={property.id} onClick={() => handleCardClick(property)}>
           <BrowsePropertyCard data={property} />

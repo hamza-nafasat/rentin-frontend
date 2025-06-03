@@ -3,8 +3,8 @@ const tableStyles = {
     style: {
       fontSize: '14px',
       fontWeight: 500,
-      color: '#7E7E7E',
-      borderBottom: '1px solid #0245a5B2 !important',
+      color: '#6f6f6f',
+      // borderBottom: '1px solid #0245a5B2 !important',
     },
   },
   rows: {
@@ -17,7 +17,7 @@ const tableStyles = {
   },
   cells: {
     style: {
-      color: '#0245a5',
+      color: '#32343c',
       fontSize: '14px',
     },
   },
@@ -27,8 +27,8 @@ const transactionTableStyles = {
     style: {
       fontSize: '14px',
       fontWeight: 600,
-      color: '#0245a5',
-      borderBottom: '1px solid #0245a5B2 !important',
+      color: '#6f6f6f',
+      // borderBottom: '1px solid #0245a5B2 !important',
       // justifyContent: 'center', // center header content
       // textAlign: 'center',
     },
@@ -43,9 +43,9 @@ const transactionTableStyles = {
   },
   cells: {
     style: {
-      color: '#0245a5',
+      color: '#32343c',
       fontSize: '14px',
-      fontWeight: 600,
+      // fontWeight: 600,
       // justifyContent: 'center', // center cell content
       // textAlign: 'center',
     },
@@ -57,8 +57,8 @@ export const requestTableStyles = {
     style: {
       fontSize: '14px',
       fontWeight: 600,
-      color: '#0245a5',
-      borderBottom: '1px solid #0245a5B2 !important',
+      color: '#6f6f6f',
+      // borderBottom: '1px solid #0245a5B2 !important',
       justifyContent: 'center', // center header content
       textAlign: 'center',
     },
@@ -73,9 +73,9 @@ export const requestTableStyles = {
   },
   cells: {
     style: {
-      color: '#0245a5',
+      color: '#32343c',
       fontSize: '14px',
-      fontWeight: 600,
+      // fontWeight: 600,
       justifyContent: 'center', // center cell content
       textAlign: 'center',
     },
@@ -86,8 +86,8 @@ export const agentTransactionTableStyles = {
     style: {
       fontSize: '14px',
       fontWeight: 600,
-      color: '#0245a5',
-      borderBottom: '1px solid #0245a5B2 !important',
+      color: '#6f6f6f',
+      // borderBottom: '1px solid #0245a5B2 !important',
       justifyContent: 'center', // center header content
       textAlign: 'center',
     },
@@ -102,9 +102,9 @@ export const agentTransactionTableStyles = {
   },
   cells: {
     style: {
-      color: '#0245a5',
+      color: '#32343c',
       fontSize: '14px',
-      fontWeight: 600,
+      // fontWeight: 600,
       justifyContent: 'center', // center cell content
       textAlign: 'center',
     },
@@ -1178,34 +1178,34 @@ const agentCardsData = [
 export const dummyPropertyStatuses = [
   {
     count: '02',
-    color: '#0245A5',
+    color: '#0245a5',
     label: 'Paid Properties',
   },
   {
     count: '03',
-    color: '#A7CBFF',
+    color: '#5390e0',
     label: 'Unpaid Properties',
   },
 ];
 export const taskStatuses = [
   {
     count: '02',
-    color: '#0245A5',
+    color: '#0245a5',
     label: 'Paid Properties',
   },
   {
     count: '03',
-    color: '#A7CBFF',
+    color: '#5390e0',
     label: 'Unpaid Properties',
   },
   {
     count: '01',
-    color: '#0245A5',
+    color: '#0245a5',
     label: 'Unpaid Properties',
   },
   {
     count: '02',
-    color: '#A7CBFF',
+    color: '#5390e0',
     label: 'Unpaid Properties',
   },
 ];
@@ -1672,7 +1672,7 @@ export const PropertyPerformanceTableStyles = {
   },
   cells: {
     style: {
-      color: '#0245a5',
+      color: '#32343c',
       fontSize: '14px',
     },
   },

@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import Settings from '@/components/shared/Settings';
 import { useState } from 'react';
@@ -8,19 +7,17 @@ function Setting() {
   const [tab, setTab] = useState('Basic Details');
   return (
     <div>
-      <div className="flex w-[100%] items-center justify-between bg-[#F4F4F5] sm:w-[458px]">
+      <div className="shadow-custom mb-[18px] inline-flex items-center rounded-[8px] bg-white p-[6px]">
         {['Basic Details', 'Card Details'].map((item, i) => (
-          <div key={i} className="w-[50%]">
-            <button
-              key={i}
-              className={`w-[100%] cursor-pointer rounded-lg px-4 py-2 text-[16px] text-[#71717A] ${
-                tab === item ? 'bg-white font-semibold text-black' : ''
-              }`}
-              onClick={() => setTab(item)}
-            >
-              {item}
-            </button>
-          </div>
+          <button
+            key={i}
+            className={`cursor-pointer rounded-lg px-4 py-2 text-sm ${
+              tab === item ? 'bg-primary font-semibold text-white' : 'bg-transparent font-medium text-[#474950]'
+            }`}
+            onClick={() => setTab(item)}
+          >
+            {item}
+          </button>
         ))}
       </div>
       <div className="mt-5">

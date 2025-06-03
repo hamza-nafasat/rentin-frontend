@@ -88,7 +88,7 @@ const AddProperty = () => {
 
   return (
     <div className="shadow-custom rounded-[10px] bg-white px-5 py-[30px] md:px-10">
-      <h2 className="text-textColor text-center text-xl font-semibold md:text-[22px]">Add Property</h2>
+      <h2 className="text-textPrimary text-center text-xl font-semibold md:text-[22px]">Add Property</h2>
       <div className="mx-auto mt-4 flex max-w-[900px] flex-wrap items-center justify-between gap-4 md:mt-5 md:gap-8">
         {steps.map((step, index) => (
           <Step

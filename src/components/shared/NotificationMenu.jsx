@@ -10,9 +10,9 @@ const NotificationMenu = ({ isNotificationOpen }) => {
       }`}
       style={{ boxShadow: '0px 2px 12px 0px #3582E71A' }}
     >
-      <h6 className="text-text-textColor text-base font-semibold md:text-xl">Notifications</h6>
+      <h6 className="text-text-textPrimary text-base font-semibold md:text-xl">Notifications</h6>
       <div className="mt-4">
-        <h6 className="text-text-textColor text-sm font-medium md:text-base">Today</h6>
+        <h6 className="text-text-textPrimary text-sm font-medium md:text-base">Today</h6>
         <div className="mt-4 flex flex-col gap-4">
           {notificationsData.slice(0, 3).map((list, i) => (
             <List list={list} key={i} />
@@ -20,7 +20,7 @@ const NotificationMenu = ({ isNotificationOpen }) => {
         </div>
       </div>
       <div className="mt-4">
-        <h6 className="text-text-textColor text-sm font-medium md:text-base">Yesterday</h6>
+        <h6 className="text-text-textPrimary text-sm font-medium md:text-base">Yesterday</h6>
         <div className="mt-4 flex flex-col gap-4">
           {notificationsData.slice(0, 2).map((list, i) => (
             <List list={list} key={i} />

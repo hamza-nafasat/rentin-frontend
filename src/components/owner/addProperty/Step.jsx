@@ -64,7 +64,7 @@ const Step = ({ step, index, currentStep, setCurrentStep, stepsLength }) => {
         {/* Label */}
         <span
           className={`xs:mt-1.5 xs:text-[11px] xs:max-w-[85px] mt-1 w-full max-w-[70px] truncate text-center text-[10px] transition-colors duration-300 sm:mt-2 sm:max-w-[110px] sm:text-xs md:max-w-[140px] md:text-sm lg:max-w-none ${
-            isCompleted ? 'text-primary font-medium' : isActive ? 'text-textColor font-medium' : 'text-gray-400'
+            isCompleted ? 'text-primary font-medium' : isActive ? 'text-textPrimary font-medium' : 'text-gray-400'
           }`}
         >
           {step}

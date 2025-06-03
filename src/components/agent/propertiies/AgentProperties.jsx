@@ -15,7 +15,7 @@ const AgentProperties = () => {
       <AgentPropertiesHeader tabView={tabView} setTabView={setTabView} />
       <div className="mt-5">
         {tabView === 'Grid View' ? (
-          <div className="scroll-0 grid max-h-[800px] grid-cols-1 gap-6 overflow-y-scroll md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
+          <div className="scroll-0 grid h-[calc(100vh-375px)] grid-cols-1 gap-6 overflow-y-scroll md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
             {myPropertiesData.map((card, i) => (
               <AgentPropertyCard data={card} key={i} />
             ))}

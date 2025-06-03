@@ -87,7 +87,7 @@ function PropertyDetailsSlider({ data, onClose }) {
           <p className="text-[22px] font-semibold">Dream House</p>
           <p className="text-[22px] font-semibold">
             {data?.rentPrice}
-            <span className="text-sm font-semibold text-[#C2C2C2]">/month</span>
+            <span className="text-textSecondary text-sm font-semibold">/month</span>
           </p>
         </div>
         <div className="flex items-center">
@@ -141,8 +141,8 @@ function PropertyDetailsSlider({ data, onClose }) {
                 </div>
               </div>
               <div className="flex flex-col justify-center gap-4 md:flex-row">
-                <Button cn={'!w-fit !rounded-[6px]  !py-1.5 !px-4 !h-fit !text-base'} text="Visit Now" />
-                <Button cn={'!w-fit !rounded-[6px]  !py-1.5 !px-4 !h-fit !text-base'} text="Book Now" />
+                <Button cn={''} text="Visit Now" />
+                <Button cn={''} text="Book Now" />
               </div>
               <div className="mt-5">
                 <HouseMap location={data?.address} image={data?.images[0]} name={'Dream house'} status={data?.type} />

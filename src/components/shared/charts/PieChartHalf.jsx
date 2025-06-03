@@ -10,7 +10,7 @@ export function PieChartHalf({ title, data, config, totalLabel }) {
   return (
     <Card className="shadow-card !p-4 lg:!p-5">
       <CardHeader className="items-center pb-0">
-        <CardTitle className="text-textColor text-center text-base font-semibold">{title}</CardTitle>
+        <CardTitle className="text-textPrimary text-center text-base font-semibold">{title}</CardTitle>
       </CardHeader>
 
       {/* Dynamic Labels (Earned & Withdrawn Amounts) */}
@@ -21,7 +21,7 @@ export function PieChartHalf({ title, data, config, totalLabel }) {
               <div className="size-[10px] rounded-full" style={{ backgroundColor: config[key].color }}></div>
               <h6 className="text-sm text-[#76808D]">{config[key].label}</h6>
             </div>
-            <p className="text-textColor mt-2 text-base font-medium md:text-lg">${data[0][key].toLocaleString()}</p>
+            <p className="text-textPrimary mt-2 text-base font-medium md:text-lg">${data[0][key].toLocaleString()}</p>
           </div>
         ))}
       </div>
@@ -38,7 +38,7 @@ export function PieChartHalf({ title, data, config, totalLabel }) {
                       <tspan
                         x={viewBox.cx}
                         y={(viewBox.cy || 0) - 16}
-                        className="fill-foreground text-textColor text-2xl font-bold"
+                        className="fill-foreground text-textPrimary text-2xl font-bold"
                       >
                         ${totalValue.toLocaleString()}
                       </tspan>

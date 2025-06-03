@@ -75,11 +75,11 @@ function AgentTransactionHistory() {
               </div>
               <div className="flex flex-col justify-between p-1">
                 <h1 className="text-base font-semibold text-[#0245a5]">{row.title}</h1>
-                <h6 className="text-xs font-normal text-[#969696]">{row.address}</h6>
+                <h6 className="text-textSecondary text-xs font-normal">{row.address}</h6>
                 <div>
                   <span className="text-base font-semibold">
                     {row.price}
-                    <span className="text-[8px] font-semibold text-[#969696]">{row.period}</span>
+                    <span className="text-textSecondary text-[8px] font-semibold">{row.period}</span>
                   </span>
                 </div>
               </div>

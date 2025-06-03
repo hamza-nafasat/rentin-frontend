@@ -9,7 +9,7 @@ import TenantsProfileDetails from '@/components/owner/tenantsProfile/TenantsProf
 const UserTenantProfile = () => {
   return (
     <div className="flex flex-col gap-4">
-      <h6 className="text-textColor mb-[18px] text-lg font-semibold md:text-[22px]">Tenant Profile</h6>
+      <h6 className="text-textPrimary mb-[18px] text-lg font-semibold md:text-[22px]">Tenant Profile</h6>
       <div className="shadow-card rounded-lg bg-white px-5">
         <div className="h-full w-full rounded-lg px-2 py-8">
           <TenantsProfileHeader />

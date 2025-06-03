@@ -22,7 +22,7 @@ function MapHover({ image, name, status, location }) {
           </div>
         </div>
         <div>
-          <p className="flex items-center gap-1 text-[10px] text-[#969696]">
+          <p className="text-textSecondary flex items-center gap-1 text-[10px]">
             <PiMapPinFill className="text-[#0345A5]" />
             {location || 'Evergreen 15 Jakarta, Thailand'}
           </p>
@@ -40,7 +40,7 @@ function MapHover({ image, name, status, location }) {
               <FaStar />
             </div>
             <div>
-              <p className="text-[9px] text-[#969696]">4.9/5</p>
+              <p className="text-textSecondary text-[9px]">4.9/5</p>
             </div>
           </div>
         </div>

@@ -14,7 +14,7 @@ const OnDemandService = () => {
 
   return (
     <div>
-      <h3 className="text-textColor text-lg font-semibold md:text-[22px]">Choose Assistance</h3>
+      <h3 className="text-textPrimary text-lg font-semibold md:text-[22px]">Choose Assistance</h3>
       <div className="mt-4 grid grid-cols-1 gap-6 px-14 lg:grid-cols-2">
         <div
           onClick={navigateToInspection}

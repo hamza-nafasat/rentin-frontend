@@ -89,7 +89,7 @@ const ProposalSummary = () => {
   if (isLoading) {
     return (
       <div className="shadow-card rounded-lg border bg-white p-4 lg:p-5">
-        <div className="text-textColor text-sm font-semibold">Proposal Summary</div>
+        <div className="text-textPrimary text-sm font-semibold">Proposal Summary</div>
         <div className="flex h-64 items-center justify-center">
           <div className="border-primary h-8 w-8 animate-spin rounded-full border-b-2"></div>
         </div>
@@ -99,7 +99,7 @@ const ProposalSummary = () => {
 
   return (
     <section className="shadow-card rounded-lg border bg-white p-4 lg:p-5">
-      <div className="text-textColor text-sm font-semibold">Proposal Summary</div>
+      <div className="text-textPrimary text-sm font-semibold">Proposal Summary</div>
       <DataTable
         data={proposalSummaryData}
         columns={columns}
@@ -109,7 +109,7 @@ const ProposalSummary = () => {
         fixedHeaderScrollHeight="70vh"
       />
       <div className="mt-4 flex justify-center">
-        <button className="bg-primary found-medium flex cursor-pointer items-center gap-1 rounded-sm px-2 py-[6px] text-sm text-white">
+        <button className="bg-primary flex cursor-pointer place-items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white hover:bg-[#01367f]">
           View more
           <GoArrowUpRight className="text-base text-white" />
         </button>
@@ -117,11 +117,11 @@ const ProposalSummary = () => {
       {modal && selectedRow && (
         <ProposalModal onClose={modalCloseHandler} title="Proposal Overview" width="w-[300px] md:w-[500px]">
           <div>
-            <p className="text-textColor text-center text-base md:text-2xl">
+            <p className="text-textPrimary text-center text-base md:text-2xl">
               <strong className="text-2xl font-semibold">Proposal Overview</strong>
             </p>
-            <p className="text-textColor text-center text-base md:text-2xl">Proposal ID: {selectedRow.proposalId}</p>
-            <p className="text-textColor text-center text-sm md:text-base">{selectedRow.dateSent} 10:54 PM</p>
+            <p className="text-textPrimary text-center text-base md:text-2xl">Proposal ID: {selectedRow.proposalId}</p>
+            <p className="text-textPrimary text-center text-sm md:text-base">{selectedRow.dateSent} 10:54 PM</p>
             <hr className="border-textColor my-2 border-dashed" />
             <div className="space-y-2">
               <div className="border-b border-[#0245a5] px-8 py-6">

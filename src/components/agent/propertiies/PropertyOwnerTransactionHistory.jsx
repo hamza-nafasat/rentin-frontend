@@ -92,7 +92,7 @@ function PropertyOwnerTransactionHistory() {
         cell: row => (
           <button
             onClick={() => handleViewClick(row)}
-            className="text-primary hover:text-primary-dark cursor-pointer text-[13px] font-medium underline transition-colors"
+            className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
             aria-label={`View transaction slip for invoice ${row.invoiceID}`}
           >
             View

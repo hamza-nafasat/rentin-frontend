@@ -36,7 +36,7 @@ const AgentCard = ({ data, role }) => {
           <TbStarFilled className="text-md text-[#FAD400]" />
         </div>
         <div>
-          <span className="text-xs text-[#969696]">{data?.ratings}/5</span>
+          <span className="text-textSecondary text-xs">{data?.ratings}/5</span>
         </div>
       </div>
       <div className="absolute top-2 right-2 cursor-pointer">
@@ -46,7 +46,7 @@ const AgentCard = ({ data, role }) => {
         <div className="flex items-end justify-between gap-2">
           <div>
             <h6 className="text-xs font-bold text-[#FDAC3B]">{data?.speciality}</h6>
-            <h4 className="text-textColor text-sm leading-none font-semibold md:text-base">{data?.name}</h4>
+            <h4 className="text-textPrimary text-sm leading-none font-semibold md:text-base">{data?.name}</h4>
           </div>
           <span
             className={`flex size-[18px] items-center justify-center rounded-xs bg-[#1D7FFF1A] text-xs font-semibold text-[#0245A5]`}
@@ -71,7 +71,7 @@ const AgentCard = ({ data, role }) => {
           <button
             onClick={handleViewDetails}
             // onClick={() => router.push(`/owner/agent/agent-profile/${data?._id}`)}
-            className="bg-primary cursor-pointer rounded-sm px-[4px] py-[3px]"
+            className="bg-primary cursor-pointer rounded-lg px-4 py-2"
           >
             <div className="flex items-center gap-1">
               <p className="text-xs text-white">View Details</p>

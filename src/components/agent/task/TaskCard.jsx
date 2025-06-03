@@ -6,7 +6,7 @@ import { SlCalender } from 'react-icons/sl';
 
 function TaskCard({ data }) {
   return (
-    <div className="h-[255px] rounded-lg bg-white px-3 py-2">
+    <div className="rounded-lg bg-white px-3 py-2">
       <Image
         src={data.image}
         alt="Frame image"
@@ -17,7 +17,7 @@ function TaskCard({ data }) {
       />
       <div className="mt-3 flex flex-col">
         <p className="text-base font-semibold">{data.house}</p>
-        <p className="text-sm font-normal text-[#969696]">{data.address}</p>
+        <p className="text-textSecondary text-sm font-normal">{data.address}</p>
         <div className="my-2 flex gap-2">
           <div className="flex space-x-1.5">
             <LuClock4 />
@@ -33,12 +33,7 @@ function TaskCard({ data }) {
           <p className="text-base font-semibold">{data.price}</p>
         </div>
         <div className="mt-2 flex items-center justify-center">
-          <Button
-            text={'View Details'}
-            height={'22px'}
-            width={'85px'}
-            cn={'!text-xs font-medium !rounded-lg !px-2 !py-[4px]'}
-          />
+          <Button text={'View Details'} cn={' '} />
         </div>
       </div>
     </div>

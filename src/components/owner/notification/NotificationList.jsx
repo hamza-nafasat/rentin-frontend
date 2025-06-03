@@ -73,7 +73,7 @@ const NotificationList = ({ alerts }) => {
     <div>
       {sortedGroups.map(group => (
         <div key={group.label}>
-          <h3 className="text-textColor mb-2 text-lg font-bold">{group.label}</h3>
+          <h3 className="text-textPrimary mb-2 text-lg font-bold">{group.label}</h3>
           {group.alerts.map((alert, index) => (
             <NotificationItem
               key={index}

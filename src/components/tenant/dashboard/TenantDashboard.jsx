@@ -21,7 +21,7 @@ function TenantDashboard() {
   }, []);
   return (
     <div className="flex h-full flex-col gap-4">
-      <h3 className="text-textColor text-lg font-semibold md:text-[22px]">
+      <h3 className="text-textPrimary text-lg font-semibold md:text-[22px]">
         Welcome! <span className="text-xl font-normal">Mikal</span>
       </h3>
       <div className="grid w-full grid-cols-1 gap-4">

@@ -21,7 +21,7 @@ function BrowsePropertyCard({ data }) {
         </div>
 
         <div className="absolute top-2 left-2">
-          <div className="text-primary rounded-lg border bg-white px-1 py-[2px] text-sm shadow">
+          <div className="text-secondaryy rounded-lg border bg-white px-1 py-[2px] text-sm shadow">
             <p className="text-xs font-bold">{data?.type}</p>
           </div>
         </div>
@@ -33,14 +33,14 @@ function BrowsePropertyCard({ data }) {
       </div>
       <div className="p-5">
         <div>
-          <p className="text-sm text-[#969696]">{data?.address}</p>
+          <p className="text-textSecondary text-sm">{data?.address}</p>
         </div>
         <div className="mt-4 flex flex-col">
           <div className="flex flex-col items-center justify-between lg:flex-row">
             <p className="text-[22px] font-semibold">{data?.price}</p>
             <p className="text-[22px] font-semibold">
               {data?.rentPrice}
-              <span className="text-sm font-semibold text-[#C2C2C2]">/month</span>
+              <span className="text-textSecondary text-sm font-semibold">/month</span>
             </p>
           </div>
           <div>

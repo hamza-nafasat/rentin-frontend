@@ -6,7 +6,7 @@ import React from 'react';
 function Agent() {
   return (
     <div>
-      <h3 className="text-textColor text-lg font-semibold md:text-[22px]">Agents</h3>
+      <h3 className="text-textPrimary text-lg font-semibold md:text-[22px]">Agents</h3>
       <TopCards data={adminCardsData} />
       <MyAgents role={'admin'} />
     </div>

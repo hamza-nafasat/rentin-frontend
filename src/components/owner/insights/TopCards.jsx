@@ -17,18 +17,18 @@ const Card = ({ card }) => {
     <div className="shadow-card rounded-lg bg-white p-4">
       <div className="flex items-center gap-3">
         <Image src={card.img} width={30} height={30} alt="image" />
-        <h6 className="text-textColor text-sm font-medium">{card.title}</h6>
+        <h6 className="text-textPrimary text-sm font-medium">{card.title}</h6>
       </div>
       <div className="mt-6">
         <div className="flex items-end gap-2">
           <div className="flex items-center gap-2">
-            <h4 className="text-textColor text-lg font-medium md:text-2xl">{card.value}</h4>
+            <h4 className="text-textPrimary text-lg font-medium md:text-2xl">{card.value}</h4>
             <div className="flex h-4 w-8 items-center justify-center bg-[#EEFFF2]">
               <span className="text-[10px] font-bold text-[#39DA4C]">{card.percentage}</span>
             </div>
           </div>
         </div>
-        <p className="mt-2 text-xs text-[#969696]" dangerouslySetInnerHTML={{ __html: card.para }}></p>
+        <p className="text-textSecondary mt-2 text-xs" dangerouslySetInnerHTML={{ __html: card.para }}></p>
       </div>
     </div>
   );

@@ -93,12 +93,12 @@ function PropertiesView() {
                       <h1 className="text-base font-semibold text-[#0245a5]">{property.title}</h1>
                     </div>
                     <div>
-                      <h6 className="text-xs font-normal text-[#969696]">{property.address}</h6>
+                      <h6 className="text-textSecondary text-xs font-normal">{property.address}</h6>
                     </div>
                     <div>
                       <span className="text-base font-semibold">
                         {property.price}
-                        <span className="text-[8px] font-semibold text-[#969696]">{property.period}</span>
+                        <span className="text-textSecondary text-[8px] font-semibold">{property.period}</span>
                       </span>
                     </div>
                   </div>

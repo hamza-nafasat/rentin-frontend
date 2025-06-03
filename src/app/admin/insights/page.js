@@ -12,7 +12,7 @@ import React from 'react';
 function AdminInsights() {
   return (
     <div className="flex h-full flex-col gap-4">
-      <h3 className="text-textColor text-lg font-semibold md:text-[22px]">Insight Details</h3>
+      <h3 className="text-textPrimary text-lg font-semibold md:text-[22px]">Insight Details</h3>
       <TopCards data={insightCardsData} />
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
         <div className="shadow-card flex h-[247px] grid-cols-12 rounded-lg bg-white lg:col-span-4">

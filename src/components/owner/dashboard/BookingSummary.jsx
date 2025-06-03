@@ -1,6 +1,7 @@
 'use client';
 import CustomLoading from '@/components/shared/small/CustomLoading';
 import { bookingSummaryData, tableStyles } from '@/data/data';
+import { PlaneIcon } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -14,7 +15,7 @@ const BookingSummary = ({ title }) => {
 
   return (
     <section className="shadow-card rounded-lg border bg-white p-4 lg:p-5">
-      <div className="text-textColor text-sm font-semibold">{title}</div>
+      <div className="text-textPrimary text-sm font-semibold">{title}</div>
       {isLoading ? (
         <CustomLoading />
       ) : bookingSummaryData.length === 0 ? (
@@ -66,9 +67,9 @@ const columns = [
   {
     name: 'Actions',
     selector: () => (
-      <Link href="" className="text-primary text-[13px] font-medium underline">
+      <button className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white">
         View contract
-      </Link>
+      </button>
     ),
   },
 ];

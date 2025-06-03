@@ -100,7 +100,7 @@ const FeatureAndAmenities = ({ setCurrentStep }) => {
   };
   return (
     <div>
-      <h4 className="text-textColor text-center text-base font-medium md:text-lg">Features & Amenities</h4>
+      <h4 className="text-textPrimary text-center text-base font-medium md:text-lg">Features & Amenities</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <DropdownCheckbox label="Property Feature" options={propertyFeatures} shadow />

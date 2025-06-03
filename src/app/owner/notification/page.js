@@ -6,7 +6,7 @@ import { notificationData } from '@/data/data';
 const Notification = () => {
   return (
     <div className="shadow-card rounded-lg bg-white px-3.5 py-5">
-      <h3 className="text-textColor mb-3.5 text-lg font-semibold md:text-[22px]">Notification</h3>
+      <h3 className="text-textPrimary mb-3.5 text-lg font-semibold md:text-[22px]">Notification</h3>
       <div>
         <NotificationList alerts={notificationData} />
       </div>

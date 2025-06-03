@@ -29,13 +29,13 @@ const PropertyCard = ({ title, value, data }) => (
 const PropertyStatus = ({ count, color, label }) => {
   // Map color codes to Tailwind classes
   const colorClasses = {
-    '#0245A5': 'bg-[#0245A5] text-[#0245A5]',
-    '#A7CBFF': 'bg-[#A7CBFF] text-[#A7CBFF]',
-    '#FF0000': 'bg-[#FF0000] text-[#FF0000]',
-    '#0000FF': 'bg-[#0000FF] text-[#0000FF]',
+    '#0245a5': 'bg-[#0245a5] text-[#0245a5]',
+    '#5390e0': 'bg-[#5390e0] text-[#5390e0]',
+    // '#FF0000': 'bg-[#FF0000] text-[#FF0000]',
+    // '#0000FF': 'bg-[#0000FF] text-[#0000FF]',
   };
 
-  const colorClass = colorClasses[color] || 'bg-[#8884d8] text-[#8884d8]';
+  const colorClass = colorClasses[color] || 'bg-red-400 text-red-400';
 
   return (
     <div className="flex">

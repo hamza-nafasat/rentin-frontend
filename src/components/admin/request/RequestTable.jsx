@@ -72,7 +72,7 @@ function RequestTable({ title, data }) {
                   : '';
           return (
             <div className="flex items-center gap-2">
-              <span className={`${bgClass} w-[85px] rounded-sm px-[10px] py-[3px] text-center capitalize`}>
+              <span className={`${bgClass} w-[85px] rounded-sm px-[10px] py-[3px] text-center font-bold capitalize`}>
                 {row.agentStatus}
               </span>
             </div>
@@ -84,7 +84,7 @@ function RequestTable({ title, data }) {
         cell: row => (
           <span
             onClick={() => openModal(row)}
-            className="bg-primary flex h-[23px] w-[60px] cursor-pointer items-center justify-center rounded-lg text-[13px] font-medium text-white"
+            className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
           >
             View
           </span>

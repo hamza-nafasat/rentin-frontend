@@ -75,8 +75,8 @@ const AdminHeader = () => {
       </div>
       <header className="flex h-[74px] items-center justify-between gap-4 rounded-lg bg-white p-4">
         <div>
-          <h2 className="text-text-textColor text-xl font-semibold capitalize lg:text-[22px]">Admin</h2>
-          <p className="text-xs text-[#969696]">{date}</p>
+          <h2 className="text-text-textPrimary text-xl font-semibold capitalize lg:text-[22px]">Admin</h2>
+          <p className="text-textSecondary text-xs">{date}</p>
         </div>
         <div className="flex items-center gap-[14px]">
           <SwitchButton />
@@ -102,7 +102,7 @@ export default AdminHeader;
 
 const SwitchButton = () => (
   <button
-    className="text-text-textColor hidden cursor-pointer items-center gap-3 rounded-[5px] px-5 py-2 text-sm font-medium md:flex md:text-base"
+    className="text-text-textPrimary hidden cursor-pointer items-center gap-3 rounded-[5px] px-5 py-2 text-sm font-medium md:flex md:text-base"
     style={{ boxShadow: '0px 1px 6px 0px #00000014' }}
   >
     <ReloadIcon />
@@ -124,7 +124,7 @@ const LanguageSwitch = () => {
   return (
     <div className="relative">
       <button
-        className="hidden cursor-pointer items-center gap-1 rounded-[5px] px-5 py-2 text-xs text-[#969696] md:flex"
+        className="text-textSecondary hidden cursor-pointer items-center gap-1 rounded-[5px] px-5 py-2 text-xs md:flex"
         onClick={() => setIsOpen(!isOpen)}
         style={{ boxShadow: '0px 1px 6px 0px #00000014' }}
       >
@@ -136,7 +136,7 @@ const LanguageSwitch = () => {
           className="rounded-[] w-[20px] object-cover"
         />
         {locale === 'en' ? 'English' : 'ไทย'}
-        <IoIosArrowDown className="text-base text-[#969696]" />
+        <IoIosArrowDown className="text-textSecondary text-base" />
       </button>
 
       {isOpen && (

@@ -24,7 +24,7 @@ function PaymentDetails() {
 
   return (
     <div className="flex flex-col space-y-4">
-      <h3 className="text-textColor text-lg font-semibold md:text-[22px]">Transaction Details</h3>
+      <h3 className="text-textPrimary text-lg font-semibold md:text-[22px]">Transaction Details</h3>
       <div className="grid grid-cols-12 gap-4">
         <div className="shadow-card col-span-7 rounded-lg border bg-white p-4 lg:p-2">
           <CustomLineChart earningsData={earningsData} isLoading={isLoading} />

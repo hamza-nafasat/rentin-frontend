@@ -43,7 +43,7 @@ const SubscriptionPlan = () => {
 
             {/* Action Button */}
             <button
-              className={`mt-6 w-full cursor-pointer rounded-lg py-2 text-lg font-medium text-white ${plan.buttonType === 'disabled' ? 'bg-[#969696]' : 'bg-primary'} `}
+              className={`mt-6 w-full cursor-pointer rounded-lg py-2 text-lg font-medium text-white ${plan.buttonType === 'disabled' ? 'bg-textSecondary' : 'bg-primary'} `}
             >
               {plan.buttonText}
             </button>

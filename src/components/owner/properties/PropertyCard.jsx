@@ -32,24 +32,24 @@ const PropertyCard = ({ data }) => {
         <div className="flex items-end justify-between gap-2">
           <div>
             <h6 className="text-xs font-bold text-[#FDAC3B]">{data?.speciality}</h6>
-            <h4 className="text-textColor text-sm leading-none font-semibold md:text-base">{data?.name}</h4>
+            <h4 className="text-textPrimary text-sm leading-none font-semibold md:text-base">{data?.name}</h4>
           </div>
           <span className={`rounded-xs bg-[#1D7FFF1A] px-[6px] py-[3px] text-xs font-semibold text-[#0245A5]`}>
             Rent
           </span>
         </div>
-        <p className="my-1 flex items-center gap-1 text-[10px] text-[#969696]">
+        <p className="text-textSecondary my-1 flex items-center gap-1 text-[10px]">
           <PiMapPinFill className="text-[#0345A5]" />
           {data?.address}
         </p>
         <div className="flex items-center justify-between border-t border-[#d8d8d8dc] pt-1">
-          <p className="text-textColor text-sm font-semibold md:text-base">
+          <p className="text-textPrimary text-sm font-semibold md:text-base">
             ${data?.price}.00
-            <span className="text-[10px] text-[#C2C2C2]">/month</span>
+            <span className="text-textSecondary text-[10px]">/month</span>
           </p>
           <div className="flex items-center gap-1">
             <TbStarFilled className="text-sm text-[#FAD400]" />
-            <p className="text-[10px] text-[#969696]">{data?.ratings}</p>
+            <p className="text-textSecondary text-[10px]">{data?.ratings}</p>
           </div>
         </div>
       </div>

@@ -137,13 +137,8 @@ function PaymentDetails() {
 
           <div className="flex w-full items-center justify-end">
             <div className="flex w-[330px] gap-4">
-              <Button
-                cn={'!text-base !font-medium !py-2 !px-4 !rounded-lg !bg-[#E35454]'}
-                text={'Cancel Request'}
-                // width={'115px'}
-                height={'40px'}
-              />
-              <Button cn={'!text-base !font-medium !py-2 !px-4 !rounded-lg'} text={'Confirm Booking'} height={'40px'} />
+              <Button cn={'!bg-buttonSecondary hover:!bg-gray-500'} text={'Cancel Request'} />
+              <Button text={'Confirm Booking'} />
             </div>
           </div>
         </div>

@@ -9,7 +9,7 @@ const ViewSwitcher = ({ tabView, setTabView }) => {
       {views.map((view, i) => (
         <button
           key={i}
-          className={`flex h-[32px] cursor-pointer items-center gap-[6px] rounded-sm px-2 text-sm font-medium text-white transition-all duration-200 ${view === tabView ? 'bg-primary' : 'bg-[#7C848DB2]'}`}
+          className={`flex h-[32px] cursor-pointer items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-[#01367f] ${view === tabView ? 'bg-primary' : 'bg-[#7C848DB2]'}`}
           onClick={() => setTabView(view)}
         >
           {view === 'Map' ? (

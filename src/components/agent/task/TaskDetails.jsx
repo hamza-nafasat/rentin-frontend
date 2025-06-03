@@ -67,7 +67,7 @@ function TaskDetails() {
 
   return (
     <div>
-      <h3 className="text-textColor text-lg font-semibold md:text-[22px]">Task Details</h3>
+      <h3 className="text-textPrimary text-lg font-semibold md:text-[22px]">Task Details</h3>
       <div className="grid grid-cols-1 gap-4">
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-12 md:col-span-7 lg:col-span-8">
@@ -84,7 +84,7 @@ function TaskDetails() {
                 <CalendarComponent />
               </div>
               <div className="shadow-card rounded-lg border bg-white p-4 lg:p-5">
-                <RecentActivities cn={'h-[200px]'} data={activitiesData} />
+                <RecentActivities cn={'h-[162px]'} data={activitiesData} />
               </div>
             </div>
           </div>

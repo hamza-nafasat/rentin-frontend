@@ -26,7 +26,7 @@ const Selector = ({ lists, selectedOption, setSelectedOption, cn }) => {
   return (
     <div className={`${cn} relative z-10 w-[110px]`} ref={selectorRef}>
       <div
-        className="flex h-[40px] cursor-pointer items-center justify-between gap-2 rounded-sm border border-[#DCDCDC4D] bg-white p-2 text-sm text-nowrap text-[#969696]"
+        className="text-textSecondary flex h-[40px] cursor-pointer items-center justify-between gap-2 rounded-sm border border-[#DCDCDC4D] bg-white p-2 text-sm text-nowrap"
         style={{ boxShadow: '0px 2px 12px 0px #3582E70F' }}
         onClick={() => optionsHandler()}
       >

@@ -7,7 +7,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 const Welcome = () => {
   return (
     <div className="flex flex-col items-center justify-between gap-4 px-1 md:flex-row">
-      <h3 className="text-textColor text-lg font-semibold md:text-[22px]">
+      <h3 className="text-textPrimary text-lg font-semibold md:text-[22px]">
         Welcome! <span className="font-normal">Alexander</span>
       </h3>
       <div className="flex flex-wrap items-center gap-4 md:gap-5">
@@ -25,7 +25,7 @@ export default Welcome;
 
 const Button = ({ text, icon }) => {
   return (
-    <button className="bg-primary flex cursor-pointer items-center gap-2 rounded-[4px] p-2 text-sm font-medium text-white">
+    <button className="bg-primary flex cursor-pointer place-items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white hover:bg-[#01367f]">
       {icon}
       {text}
     </button>
@@ -41,9 +41,9 @@ const CustomDropDown = ({ lists }) => {
   };
   const optionsHandler = () => setIsOptionOpen(!isOptionOpen);
   return (
-    <div className="relative z-10 w-[110px]">
+    <div className="relative z-10">
       <div
-        className="flex cursor-pointer items-center justify-between gap-2 rounded-[4px] bg-[#7C848D] p-2 text-sm text-nowrap text-white"
+        className="bg-buttonSecondary flex cursor-pointer items-center justify-between gap-2 rounded-lg px-4 py-2 text-sm text-nowrap text-white"
         onClick={() => optionsHandler()}
       >
         <ListIcon />

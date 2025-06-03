@@ -14,7 +14,7 @@ const AgentTaskHeader = ({ tabView, setTabView }) => {
 
   return (
     <section className="flex flex-col items-center justify-between gap-5 border-b border-[#395d8c4d] pb-4 md:flex-row">
-      <div className="text-textColor flex items-center gap-[10px] text-sm font-semibold">
+      <div className="text-textPrimary flex items-center gap-[10px] text-sm font-semibold">
         <Image src="/images/dashboard/rental.png" width={32} height={32} alt="icon" />
         <p>My Tasks</p>
       </div>
@@ -24,18 +24,8 @@ const AgentTaskHeader = ({ tabView, setTabView }) => {
         </div>
       </div>
       <div className="flex items-center gap-6">
-        <Button
-          text={'Inspection'}
-          height={'30px'}
-          width={'74px'}
-          cn={'!rounded-lg !bg-[#7C848DB2]/70 p-3 !text-sm !font-medium  '}
-        />
-        <Button
-          text={'Property Showing'}
-          height={'30px'}
-          width={'115px'}
-          cn={'!rounded-lg p-3 !text-sm !font-medium  '}
-        />
+        <Button text={'Inspection'} cn={'!bg-buttonSecondary hover:!bg-gray-500'} />
+        <Button text={'Property Showing'} />
       </div>
     </section>
   );

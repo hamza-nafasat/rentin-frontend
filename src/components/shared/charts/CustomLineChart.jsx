@@ -62,7 +62,7 @@ const CustomLineChart = ({ title, earningsData, width = '100%', height = 350, is
       <div style={{ width, height }} className="p-4 lg:p-5">
         <div className="flex items-center justify-between">
           <div>
-            <h6 className="text-textColor text-sm font-semibold md:text-base">{title || 'Earnings'}</h6>
+            <h6 className="text-textPrimary text-sm font-semibold md:text-base">{title || 'Earnings'}</h6>
           </div>
           <div className="">
             <CustomDropDown lists={['Week', 'Month', 'Year']} />
@@ -77,7 +77,7 @@ const CustomLineChart = ({ title, earningsData, width = '100%', height = 350, is
     <div style={{ width, height }} className="p-4 lg:p-5">
       <div className="flex items-center justify-between">
         <div>
-          <h6 className="text-textColor text-sm font-semibold md:text-base">{title || 'Earnings'}</h6>
+          <h6 className="text-textPrimary text-sm font-semibold md:text-base">{title || 'Earnings'}</h6>
         </div>
         <div className="">
           <CustomDropDown lists={['Week', 'Month', 'Year']} />
@@ -140,9 +140,9 @@ const CustomDropDown = ({ lists }) => {
   };
   const optionsHandler = () => setIsOptionOpen(!isOptionOpen);
   return (
-    <div className="relative z-50 w-[110px]">
+    <div className="relative z-50">
       <div
-        className="flex cursor-pointer items-center justify-between gap-2 rounded-[4px] bg-[#7C848D] p-2 text-sm text-nowrap text-white"
+        className="bg-buttonSecondary flex cursor-pointer items-center justify-between gap-2 rounded-lg px-4 py-2 text-sm text-nowrap text-white"
         onClick={() => optionsHandler()}
       >
         <ListIcon />

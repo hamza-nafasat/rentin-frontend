@@ -8,7 +8,7 @@ const MembershipDetails = () => {
   const [tab, setTab] = useState('Subcription Plans');
   return (
     <div>
-      <h3 className="text-textColor mb-4 text-lg font-semibold md:text-[22px]">Membership Details</h3>
+      <h3 className="text-textPrimary mb-4 text-lg font-semibold md:text-[22px]">Membership Details</h3>
       <div className="shadow-custom mb-[18px] inline-flex items-center rounded-[8px] bg-white p-[6px]">
         {['Subcription Plans', 'Already Subscribed'].map((item, i) => (
           <button

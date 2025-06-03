@@ -10,7 +10,7 @@ import React from 'react';
 function AdminPayment() {
   return (
     <div className="flex flex-col gap-4">
-      <h3 className="text-textColor text-lg font-semibold md:text-[22px]">Transactions Details</h3>
+      <h3 className="text-textPrimary text-lg font-semibold md:text-[22px]">Transactions Details</h3>
       <div className="grid w-full grid-cols-12 gap-4">
         <div className="shadow-card col-span-12 rounded-lg bg-white lg:col-span-7">
           <EarningsChart />

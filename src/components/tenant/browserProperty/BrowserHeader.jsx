@@ -48,20 +48,20 @@ function BrowserHeader() {
         />
       </div>
       <div className="shadow-card rounded-lg bg-white px-6 py-4">
-        <section className="flex flex-col items-center justify-between gap-5 border-b border-[#395d8c4d] pb-4 md:flex-row">
-          <div className="text-textColor flex items-center gap-[10px] text-sm font-semibold">
+        <section className="flex flex-col items-center justify-between border-b border-[#395d8c4d] pb-4 md:flex-row">
+          <div className="text-textPrimary flex items-center gap-[10px] text-sm font-semibold">
             <Image src="/images/dashboard/rental.png" width={40} height={40} alt="icon" />
             <div className="flex flex-col">
               <p className="text-[22px] font-semibold">Properties</p>
               <p className="text-sm font-medium text-[#666666]">Showing 1-20 of 350 properties</p>
             </div>
           </div>
-          <div className="flex items-end justify-end bg-red-200">
+          <div className="flex w-full items-end justify-end">
             <IconDropdown
               lists={['Today', 'Week', 'Month']}
               icon={<LuArrowUpDown className="text-white" />}
-              containerClass="w-[90px]" // container width
-              buttonClass="bg-primary w-[110px] text-white" // button style
+              containerClass="w-[125px]" // container width
+              buttonClass="bg-primary text-white" // button style
               optionClass="bg-white text-black" // option list style
               selectedOption={selectedOption}
               setSelectedOption={setSelectedOption}

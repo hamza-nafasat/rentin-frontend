@@ -13,7 +13,7 @@ const AgentCardHeader = ({ tabView, setTabView }) => {
 
   return (
     <section className="flex flex-col items-center justify-between gap-5 border-b border-[#395d8c4d] pb-4 md:flex-row">
-      <div className="text-textColor flex items-center gap-[10px] text-sm font-semibold">
+      <div className="text-textPrimary flex items-center gap-[10px] text-sm font-semibold">
         <Image src="/images/dashboard/rental.png" width={32} height={32} alt="icon" />
         My On Demand Agents
       </div>
@@ -26,11 +26,7 @@ const AgentCardHeader = ({ tabView, setTabView }) => {
           selectedOption={selectedStatus}
           setSelectedOption={setSelectedStatus}
         />
-        <Selector
-          lists={['Rented', 'Free']}
-          selectedOption={selectedType}
-          setSelectedOption={setSelectedType}
-        />
+        <Selector lists={['Rented', 'Free']} selectedOption={selectedType} setSelectedOption={setSelectedType} />
       </div>
     </section>
   );

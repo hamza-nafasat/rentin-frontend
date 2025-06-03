@@ -91,7 +91,7 @@ const Button = ({ className, text, icon, ...rest }) => {
   return (
     <button
       {...rest}
-      className={`${className} flex cursor-pointer items-center gap-2 rounded-[4px] bg-[#0571ED] p-2 text-sm font-medium text-white`}
+      className={`${className} bg-primary flex cursor-pointer items-center gap-2 rounded-lg p-2 text-sm font-medium text-white hover:bg-[#01367f]`}
     >
       {text}
       {icon}

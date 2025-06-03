@@ -53,7 +53,7 @@ function FavoriteHeader() {
       </div>
       <div className="shadow-card rounded-lg bg-white px-6 py-4">
         <section className="flex flex-col items-center justify-between gap-5 border-b border-[#395d8c4d] pb-4 md:flex-row">
-          <div className="text-textColor flex items-center gap-[10px] text-sm font-semibold">
+          <div className="text-textPrimary flex items-center gap-[10px] text-sm font-semibold">
             <Image src="/images/dashboard/rental.png" width={40} height={40} alt="icon" />
             <div className="flex flex-col">
               <p className="text-[22px] font-semibold">Properties</p>

@@ -248,13 +248,8 @@ function BookingDetails() {
       {/* Footer Buttons */}
       <div className="mt-6 flex items-center justify-end">
         <div className="flex gap-4">
-          <Button
-            cn="!text-base !font-semibold !py-2 !px-4 !rounded-lg !bg-[#E35454]"
-            text="Cancel"
-            width="90px"
-            height="40px"
-          />
-          <Button cn="!text-base !font-semibold !py-2 !px-4 !rounded-lg" text="Send Rent Request" height="40px" />
+          <Button cn="!bg-buttonSecondary hover:!bg-gray-500" text="Cancel" />
+          <Button text="Send Rent Request" />
         </div>
       </div>
     </div>

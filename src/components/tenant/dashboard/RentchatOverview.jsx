@@ -10,9 +10,7 @@ export function RentchatOverview({ title, data, config, totalLabel }) {
   return (
     <Card className="!p-4 lg:!p-5">
       <CardHeader className="items-center pb-0">
-        <CardTitle className="text-textColor text-center text-base font-semibold">
-          {title}
-        </CardTitle>
+        <CardTitle className="text-textPrimary text-center text-base font-semibold">{title}</CardTitle>
       </CardHeader>
 
       {/* Dynamic Labels (Earned & Withdrawn Amounts) */}
@@ -20,32 +18,17 @@ export function RentchatOverview({ title, data, config, totalLabel }) {
         {Object.keys(config).map((key, index) => (
           <div key={index}>
             <div className="flex items-center gap-1">
-              <div
-                className="size-[10px] rounded-full"
-                style={{ backgroundColor: config[key].color }}
-              ></div>
+              <div className="size-[10px] rounded-full" style={{ backgroundColor: config[key].color }}></div>
               <h6 className="text-sm text-[#76808D]">{config[key].label}</h6>
             </div>
-            <p className="text-textColor mt-2 text-base font-medium md:text-lg">
-              ${data[0][key].toLocaleString()}
-            </p>
+            <p className="text-textPrimary mt-2 text-base font-medium md:text-lg">${data[0][key].toLocaleString()}</p>
           </div>
         ))}
       </div>
 
       <CardContent className="flex flex-1 items-center pb-0">
-        <ChartContainer
-          config={config}
-          className="mx-auto -mb-[7rem] aspect-square w-full max-w-[250px]"
-        >
-          <RadialBarChart
-            data={data}
-            endAngle={180}
-            innerRadius={80}
-            outerRadius={130}
-            paddingAngle={5}
-            barGap={10}
-          >
+        <ChartContainer config={config} className="mx-auto -mb-[7rem] aspect-square w-full max-w-[250px]">
+          <RadialBarChart data={data} endAngle={180} innerRadius={80} outerRadius={130} paddingAngle={5} barGap={10}>
             <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
             <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
               <Label
@@ -55,7 +38,7 @@ export function RentchatOverview({ title, data, config, totalLabel }) {
                       <tspan
                         x={viewBox.cx}
                         y={(viewBox.cy || 0) - 16}
-                        className="fill-foreground text-textColor text-2xl font-bold"
+                        className="fill-foreground text-textPrimary text-2xl font-bold"
                       >
                         ${totalValue.toLocaleString()}
                       </tspan>

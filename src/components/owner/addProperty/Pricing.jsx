@@ -1,4 +1,3 @@
-'use client';
 import Dropdown from '@/components/shared/small/Dropdown';
 import IconButton from '@/components/shared/small/IconButton';
 import Input from '@/components/shared/small/Input';
@@ -50,10 +49,10 @@ const Pricing = ({ setCurrentStep }) => {
     <div>
       <h4 className="text-textColor text-center text-lg font-medium md:text-lg">Pricing</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
-        <div className="lg:col-span-12">
+        <div className="col-span-12">
           <div className="grid grid-cols-12 gap-4">
-            <div className="col-span-6">
-              <Input
+            <div className="col-span-12 sm:col-span-6">
+              <InputWithRightContent
                 shadowWithRightContent
                 label="1 Month Contract"
                 // value={searchValue}
@@ -61,42 +60,34 @@ const Pricing = ({ setCurrentStep }) => {
                 rightContent={'THB/Per month'}
               />
             </div>
-            <div className="col-span-6">
+            <div className="col-span-12 sm:col-span-6">
               <Input shadow label={'Security Deposit of Contract'} />
             </div>
           </div>
         </div>
-
-        {/* <div className="lg:col-span-12">
-          <Dropdown label="Security Deposit per Contract" options={[{ option: 'Condo', value: 'condo' }]} shadow />
-        </div> */}
-        {/* <div> */}
-        <div className="col-span-2">
+        <div className="col-span-12">
           <div className="flex h-full">
             <IconButton
               text="Add contract"
               leftIcon={<BsPlus />}
               // rightIcon={<FaArrowRight />}
-              cn="!px-2 !text-base !font-medium"
-              width="w-[145px]"
-              // height="h-12"
-              // onClick={}
+              cn="!text-base"
               onClick={handleAddCustomField} // Add new custom field
             />
           </div>
         </div>
         {customFields.map(field => (
-          <div key={field.id} className="lg:col-span-12">
-            <div className="grid grid-cols-12 gap-4">
-              <div className="col-span-10 grid grid-cols-3 gap-4">
-                <div className="mt-6">
+          <div key={field.id} className="col-span-12">
+            <div className="flex flex-col gap-4">
+              <div className="grid grid-cols-12 gap-4">
+                <div className="col-span-12 mt-6 sm:col-span-6 md:col-span-4">
                   <ValueAdjuster
                     label="Months"
                     value={count}
                     onChange={value => setCount(Math.max(2, Math.min(24, value)))}
                   />
                 </div>
-                <div>
+                <div className="col-span-12 sm:col-span-6 md:col-span-4">
                   <InputWithRightContent
                     label="Rent Price"
                     // value={searchValue}
@@ -104,25 +95,25 @@ const Pricing = ({ setCurrentStep }) => {
                     rightContent={'THB/Per month'}
                   />
                 </div>
-                <div>
-                  <Input shadow label={'Security Deposit of Contract'} />
-                </div>
-              </div>
-              <div className="col-span-2">
-                <div className="flex h-full items-end justify-end">
-                  <IconButton
-                    leftIcon={<IoClose className="text-3xl text-[#41414199]" />}
-                    cn="!px-2 bg-white shadow-card"
-                    width="w-full"
-                    onClick={() => handleRemoveCustomField(field.id)} // Remove specific custom field
-                  />
+                <div className="col-span-12 flex items-center justify-between gap-3 md:col-span-4">
+                  <div className="w-[100%]">
+                    <Input shadow label={'Security Deposit of Contract'} />
+                  </div>
+                  <div className="relative top-3.5">
+                    <IconButton
+                      leftIcon={<IoClose className="text-3xl text-white" />}
+                      cn="!px-2 bg-primary !rounded-full !size-[60px] !text-white shadow-card"
+                      width="w-full"
+                      onClick={() => handleRemoveCustomField(field.id)} // Remove specific custom field
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         ))}
-        {/* </div> */}
-        <div className="flex justify-end gap-[14px] lg:col-span-12">
+
+        <div className="col-span-12 flex justify-end gap-[14px]">
           <button
             className="cursor-pointer rounded-sm bg-[#7C848DB2] px-5 py-[10px] text-sm font-medium text-white md:text-base"
             onClick={handlePrevious}

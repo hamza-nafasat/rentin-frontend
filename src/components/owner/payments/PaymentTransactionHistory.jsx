@@ -77,7 +77,7 @@ function PaymentTransactionHistory() {
         cell: row => (
           <span
             onClick={() => openModal(row)}
-            className="bg-primary flex h-[23px] w-[60px] cursor-pointer items-center justify-center text-[13px] font-medium text-white"
+            className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
           >
             Slip
           </span>
@@ -91,7 +91,7 @@ function PaymentTransactionHistory() {
     <div className="shadow-card rounded-lg px-5 py-4">
       <div className="mb-4 flex flex-col items-center justify-between md:flex-row">
         <h1 className="text-lg font-semibold">Transaction History</h1>
-        <div className="flex gap-4">
+        {/* <div className="flex gap-4">
           <button className="bg-primary flex items-center gap-1 rounded-lg p-2 text-white">
             <CiFilter />
             <span>Filter</span>
@@ -108,7 +108,7 @@ function PaymentTransactionHistory() {
               <option value="yearly">Yearly</option>
             </select>
           </div>
-        </div>
+        </div> */}
       </div>
       <DataTable
         data={filteredData}

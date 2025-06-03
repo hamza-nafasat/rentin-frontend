@@ -99,7 +99,7 @@ function LinkedOwnerTransaction() {
                   : '';
           return (
             <div className="flex items-center gap-2">
-              <span className={`${bgClass} w-[85px] rounded-sm px-[10px] py-[3px] text-center capitalize`}>
+              <span className={`${bgClass} w-[85px] rounded-sm px-[10px] py-[3px] text-center font-bold capitalize`}>
                 {row.paymentStatus}
               </span>
             </div>
@@ -112,7 +112,7 @@ function LinkedOwnerTransaction() {
         cell: row => (
           <button
             onClick={() => handleViewClick(row)}
-            className="text-primary hover:text-primary-dark cursor-pointer text-[13px] font-medium underline transition-colors"
+            className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
             aria-label={`View transaction slip for invoice ${row.invoiceID}`}
           >
             View

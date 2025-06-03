@@ -96,7 +96,7 @@ const PhotosAndDetails = ({ setCurrentStep }) => {
 
   return (
     <div>
-      <h4 className="text-textColor text-center text-base font-medium md:text-lg">Photos & Details</h4>
+      <h4 className="text-textPrimary text-center text-base font-medium md:text-lg">Photos & Details</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         {/* Property Images Uploader */}
         <div className="lg:col-span-12">
@@ -136,48 +136,52 @@ const PhotosAndDetails = ({ setCurrentStep }) => {
         </div>
 
         {/*radio buttons */}
-        <div className="flex items-center gap-6 lg:col-span-12">
-          <div className="flex items-center">
-            <label className="flex items-center space-x-2">
-              <input
-                type="radio"
-                value="radio1"
-                checked={radioInput === 'radio1'}
-                onChange={e => {
-                  setInputRadio(e.target.value);
-                }}
-                name="radio"
-              />
-              <span className="text-base font-medium">Land Title Deed</span>
-            </label>
-          </div>
-          <div className="flex items-center">
-            <label className="flex items-center space-x-2">
-              <input
-                type="radio"
-                value="radio2"
-                checked={radioInput === 'radio2'}
-                onChange={e => {
-                  setInputRadio(e.target.value);
-                }}
-                name="radio"
-              />
-              <span className="text-base font-medium">Purchase Contract</span>
-            </label>
-          </div>
-          <div className="flex items-center">
-            <label className="flex items-center space-x-2">
-              <input
-                type="radio"
-                value="radio3"
-                checked={radioInput === 'radio3'}
-                onChange={e => {
-                  setInputRadio(e.target.value);
-                }}
-                name="radio"
-              />
-              <span className="text-base font-medium">Utility bill or receipt (water/electricity)</span>
-            </label>
+
+        <div className="flex flex-col gap-3 lg:col-span-12">
+          <h2 className="text-base font-semibold">Verify property ownership / Property ownership verification</h2>
+          <div className="flex flex-col gap-6 sm:flex-row">
+            <div className="flex items-center">
+              <label className="flex items-center space-x-2">
+                <input
+                  type="radio"
+                  value="radio1"
+                  checked={radioInput === 'radio1'}
+                  onChange={e => {
+                    setInputRadio(e.target.value);
+                  }}
+                  name="radio"
+                />
+                <span className="text-base font-medium">Land Title Deed</span>
+              </label>
+            </div>
+            <div className="flex items-center">
+              <label className="flex items-center space-x-2">
+                <input
+                  type="radio"
+                  value="radio2"
+                  checked={radioInput === 'radio2'}
+                  onChange={e => {
+                    setInputRadio(e.target.value);
+                  }}
+                  name="radio"
+                />
+                <span className="text-base font-medium">Purchase Contract</span>
+              </label>
+            </div>
+            <div className="flex items-center">
+              <label className="flex items-center space-x-2">
+                <input
+                  type="radio"
+                  value="radio3"
+                  checked={radioInput === 'radio3'}
+                  onChange={e => {
+                    setInputRadio(e.target.value);
+                  }}
+                  name="radio"
+                />
+                <span className="text-base font-medium">Utility bill or receipt (water/electricity)</span>
+              </label>
+            </div>
           </div>
         </div>
 

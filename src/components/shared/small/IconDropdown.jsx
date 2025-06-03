@@ -24,7 +24,7 @@ const IconDropdown = ({
   return (
     <div className={`relative z-50 ${containerClass}`}>
       <div
-        className={`flex cursor-pointer items-center justify-between gap-2 rounded-[4px] p-2 text-sm text-nowrap transition-all duration-200 ${buttonClass}`}
+        className={`flex cursor-pointer items-center justify-between gap-2 rounded-lg px-4 py-2 text-sm text-nowrap transition-all duration-200 ${buttonClass}`}
         onClick={optionsHandler}
       >
         <div className="h-4 w-4 flex-shrink-0">{icon}</div>

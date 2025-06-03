@@ -45,7 +45,7 @@ function LeaseDuration({ startDate, endDate, spendDays }) {
       <div className="mx-9 my-2 flex items-center">
         <div className="h-[6px] w-[6px] rounded-full bg-blue-500"></div>
         <div className="relative h-[2px] flex-1 bg-gray-300">
-          <div style={{ width: `${progress}%` }} className="h-full bg-blue-500"></div>
+          <div style={{ width: `${progress}%` }} className="bg-secondaryy h-full"></div>
         </div>
         <div className="h-[6px] w-[6px] rounded-full bg-gray-600"></div>
       </div>

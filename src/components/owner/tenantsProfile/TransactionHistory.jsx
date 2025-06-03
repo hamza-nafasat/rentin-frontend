@@ -58,7 +58,7 @@ function TransactionHistory() {
         cell: row => (
           <span
             onClick={() => openModal(row)}
-            className="text-primary cursor-pointer text-[13px] font-medium underline"
+            className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
           >
             View
           </span>

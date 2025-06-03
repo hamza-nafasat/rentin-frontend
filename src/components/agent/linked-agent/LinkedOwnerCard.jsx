@@ -65,7 +65,7 @@ function LinkedOwnerCard({ data }) {
           </div>
           <div>
             <IconButton
-              cn="!text-[10px] font-medium  py-[3px] !bg-[#A4A9B0] !w-[110px] !h-[29px]"
+              cn="!text-sm !bg-[#A4A9B0] hover:!bg-gray-400 "
               text={'View Details'}
               rightIcon={<GoArrowUpRight />}
               onClick={() => ownerProfileHandle(data.id)}

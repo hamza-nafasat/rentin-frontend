@@ -60,7 +60,7 @@ const InspectionCard = ({ data }) => {
           <div className="flex h-6 items-center justify-end rounded-[2px]">
             <Button
               onClick={() => router.push(`/owner/agent/agent-profile/${id}`)}
-              className="!bg-[#A4A9B0]"
+              className="!bg-buttonSecondary hover:!bg-gray-900"
               text={'View Profile'}
               icon={<GoArrowUpRight />}
             />
@@ -84,7 +84,7 @@ const Button = ({ className, text, icon, ...rest }) => {
   return (
     <button
       {...rest}
-      className={`${className} bg-primary flex cursor-pointer items-center gap-2 rounded-[4px] p-2 text-sm font-medium text-white`}
+      className={`${className} bg-primary flex cursor-pointer items-center gap-2 space-x-4 rounded-lg px-4 py-2 text-sm font-medium text-white hover:bg-[#01367f]`}
     >
       {text}
       {icon}
