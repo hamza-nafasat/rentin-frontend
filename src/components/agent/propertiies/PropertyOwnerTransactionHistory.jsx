@@ -77,7 +77,7 @@ function PropertyOwnerTransactionHistory() {
           const status = row.paymentStatus.toLowerCase();
           return (
             <span
-              className={`w-[80px] rounded px-2 py-1 text-center text-white ${getStatusStyle(status)}`}
+              className={`w-[80px] rounded-sm px-2 py-1 text-center font-bold text-white ${getStatusStyle(status)}`}
               role="status"
               aria-label={`Payment status: ${row.paymentStatus}`}
             >
@@ -85,7 +85,7 @@ function PropertyOwnerTransactionHistory() {
             </span>
           );
         },
-        width: '20%',
+        width: '21%',
       },
       {
         name: 'Slip',

@@ -3,6 +3,7 @@ import Input from '@/components/shared/small/Input';
 import Image from 'next/image';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import Button from '@/components/shared/small/Button';
 
 function AgentEditProfile() {
   return (
@@ -55,6 +56,10 @@ function AgentEditProfile() {
           </div>
         </div>
       </form>
+      <div className="mt-4 flex w-full items-center justify-end gap-4">
+        <Button cn={' !bg-buttonSecondary hover:!bg-gray-500'} text={'Edit'} />
+        <Button text={'Save'} />
+      </div>
     </div>
   );
 }

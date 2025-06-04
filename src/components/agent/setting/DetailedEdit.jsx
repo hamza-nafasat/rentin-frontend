@@ -1,6 +1,7 @@
 import React from 'react';
 import Input from '@/components/shared/small/Input';
 import Image from 'next/image';
+import Button from '@/components/shared/small/Button';
 
 function DetailedEdit() {
   return (
@@ -19,6 +20,10 @@ function DetailedEdit() {
           <Input shadow type={'text'} label={'Property Inspection Base Price'} placeholder={'$1200.00'} />
         </div>
       </form>
+      <div className="mt-4 flex w-full items-center justify-end gap-4">
+        <Button cn={' !bg-buttonSecondary hover:!bg-gray-500'} text={'Edit'} />
+        <Button text={'Save'} />
+      </div>
     </div>
   );
 }

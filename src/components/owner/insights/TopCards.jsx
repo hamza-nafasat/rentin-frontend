@@ -24,7 +24,7 @@ const Card = ({ card }) => {
           <div className="flex items-center gap-2">
             <h4 className="text-textPrimary text-lg font-medium md:text-2xl">{card.value}</h4>
             <div className="flex h-4 w-8 items-center justify-center bg-[#EEFFF2]">
-              <span className="text-[10px] font-bold text-[#39DA4C]">{card.percentage}</span>
+              <span className="text-md bg-[#EEFFF2] font-bold text-[#39DA4C]">{card.percentage}</span>
             </div>
           </div>
         </div>

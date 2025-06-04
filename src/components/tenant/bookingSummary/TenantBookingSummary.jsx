@@ -120,7 +120,7 @@ function TenantBookingSummary() {
                 ? 'bg-[#FF3B301A] text-[#FF3B30]'
                 : 'text-gray-500';
           return (
-            <span className={`w-[65px] rounded px-2 py-1 text-center capitalize ${statusClass}`}>
+            <span className={`w-[65px] rounded px-2 py-1 text-center font-bold capitalize ${statusClass}`}>
               {row.paymentStatus}
             </span>
           );

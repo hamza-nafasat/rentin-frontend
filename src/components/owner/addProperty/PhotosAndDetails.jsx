@@ -3,6 +3,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import { useState, useRef } from 'react';
+import styles from './PropertyInfo.module.css';
 import Image from 'next/image';
 import Input from '@/components/shared/small/Input';
 import { Swiper, SwiperSlide } from 'swiper/react';

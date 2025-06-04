@@ -62,7 +62,9 @@ function PropertyOwnerPaymentDetails() {
                   ? '!bg-[#34C7591A] !text-[#34C759]'
                   : '';
           return (
-            <span className={`w-[80px] rounded px-2 py-1 text-center text-white ${bgClass}`}>{row.paymentStatus}</span>
+            <span className={`w-[80px] rounded-sm px-2 py-1 text-center font-bold text-white ${bgClass}`}>
+              {row.paymentStatus}
+            </span>
           );
         },
       },

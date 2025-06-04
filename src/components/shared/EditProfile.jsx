@@ -35,7 +35,7 @@ function EditProfile() {
           <Input shadow type={'text'} label={'Address'} placeholder={'Your Address'} />
         </div>
         <div className="mt-4 flex w-full items-center justify-end gap-4">
-          <Button cn={' !bg-buttonSecondary hover:!bg-gary-500'} text={'Edit'} />
+          <Button cn={' !bg-buttonSecondary hover:!bg-gray-500'} text={'Edit'} />
           <Button text={'Save'} />
         </div>
       </form>

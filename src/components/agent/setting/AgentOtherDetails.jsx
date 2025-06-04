@@ -4,9 +4,10 @@ import ChangePassword from '@/components/shared/ChangePassword';
 import Image from 'next/image';
 import { useState } from 'react';
 import DetailedEdit from './DetailedEdit';
+import Button from '@/components/shared/small/Button';
 
 function AgentOtherDetails() {
-  const [tab, setTab] = useState('Edit');
+  const [tab, setTab] = useState('Profile');
   return (
     <div className="rounded-lg bg-white p-4">
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center sm:gap-0">
@@ -26,23 +27,22 @@ function AgentOtherDetails() {
           </div>
         </div>
         <div className="flex items-center justify-end gap-4">
-          {['Change Password', 'Edit'].map((item, i) => (
+          {['Change Password', 'Profile'].map((item, i) => (
             <div key={i}>
-              <button
-                className={`cursor-pointer rounded-lg px-4 py-2 text-[16px] text-white ${
-                  tab === item ? 'bg-[#112C33] font-semibold' : 'bg-[#A7A7A7] font-medium text-[#474950]'
-                }`}
+              <Button
+                text={item}
+                cn={` text-[16px] ${tab === item ? '' : '!bg-buttonSecondary hover:!bg-gray-500'}`}
                 onClick={() => setTab(item)}
               >
                 {item}
-              </button>
+              </Button>
             </div>
           ))}
         </div>
       </div>
       <div className="mt-5">
         {tab === 'Change Password' && <ChangePassword />}
-        {tab === 'Edit' && <DetailedEdit />}
+        {tab === 'Profile' && <DetailedEdit />}
       </div>
     </div>
   );

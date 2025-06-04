@@ -2,6 +2,7 @@
 import { useCallback, useMemo, useRef, useState, useEffect } from 'react';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import Image from 'next/image';
+import styles from './PropertyInfo.module.css';
 import Dropdown from '@/components/shared/small/Dropdown';
 import Input from '@/components/shared/small/Input';
 import InputDropdown from '@/components/shared/small/InputDropdown';
@@ -220,17 +221,24 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
         <div className="flex items-end lg:col-span-6">
           <ValueAdjuster label="Floor" value={count} onChange={setCount} />
         </div>
-        <div className="lg:col-span-6">
-          <div className="h-full space-y-3">
+        <div className="lg:col-span-12">
+          <div className="flex h-full flex-col space-y-2">
             <label className="text-sm font-medium text-[#666666] lg:text-base">Select Building</label>
-            <div className="flex h-full items-center gap-4">
+            <div className="flex h-full flex-wrap gap-4">
               {options.map(({ id, label }) => (
-                <div key={id} className="flex items-center gap-2">
-                  <input id={id} type="radio" name="rentReason1" onChange={handleRentReasonChange1} />
-                  <label className="text-[10px]" htmlFor={id}>
-                    {label}
+                <div key={id} className="flex h-fit gap-2">
+                  <label className={styles.radioItem} htmlFor={id}>
+                    <input id={id} type="radio" onChange={handleRentReasonChange1} name="option" />
+                    <div className={styles.customRadio}></div>
+                    <span>{label}</span>
                   </label>
                 </div>
+                // <div key={id} className="flex items-center gap-2">
+                //   <input id={id} type="radio" name="rentReason1" onChange={handleRentReasonChange1} />
+                //   <label className="text-[10px]" htmlFor={id}>
+                //     {label}
+                //   </label>
+                // </div>
               ))}
             </div>
             {/* <p className="mt-2 text-sm text-gray-600">Selected: {selected}</p> */}

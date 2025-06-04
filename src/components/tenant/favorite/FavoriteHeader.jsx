@@ -60,12 +60,12 @@ function FavoriteHeader() {
               <p className="text-sm font-medium text-[#666666]">Showing 1-20 of 350 properties</p>
             </div>
           </div>
-          <div className="flex items-end justify-end bg-red-200">
+          <div className="flex items-end justify-end">
             <IconDropdown
               lists={['Today', 'Week', 'Month']}
               icon={<LuArrowUpDown className="text-white" />}
-              containerClass="w-[90px]" // container width
-              buttonClass="bg-primary w-[90px] text-white" // button style
+              containerClass="w-[125px]" // container width
+              buttonClass="bg-primary text-white" // button style
               optionClass="bg-white text-black" // option list style
               selectedOption={selectedOption}
               setSelectedOption={setSelectedOption}

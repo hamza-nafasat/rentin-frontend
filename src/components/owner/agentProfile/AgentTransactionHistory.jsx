@@ -46,7 +46,7 @@ function AgentTransactionHistory() {
                   : '';
           return (
             <div className="flex items-center gap-2">
-              <span className={`${bgClass} w-[85px] rounded-sm px-[10px] py-[3px] text-center capitalize`}>
+              <span className={`${bgClass} w-[85px] rounded-sm px-[10px] py-[3px] text-center font-bold capitalize`}>
                 {row.paymentStatus}
               </span>
             </div>

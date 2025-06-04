@@ -5,9 +5,10 @@ import Input from '@/components/shared/small/Input';
 import Image from 'next/image';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import Button from '@/components/shared/small/Button';
 
 function Setting() {
-  const [tab, setTab] = useState('Edit');
+  const [tab, setTab] = useState('Profile');
   return (
     <div>
       <div className="rounded-lg bg-white p-4">
@@ -22,51 +23,58 @@ function Setting() {
             </div>
           </div>
           <div className="flex items-center justify-end gap-4">
-            {['Change Password', 'Edit'].map((item, i) => (
+            {['Change Password', 'Profile'].map((item, i) => (
               <div key={i}>
-                <button
-                  className={`cursor-pointer rounded-lg px-4 py-2 text-[16px] text-white ${
-                    tab === item ? 'bg-[#112C33] font-semibold' : 'bg-[#A7A7A7] font-medium text-[#474950]'
+                <Button
+                  text={item}
+                  cn={`px-4 py-2 text-[16px] text-white ${
+                    tab === item ? 'bg-primary' : '!bg-buttonSecondary hover:!bg-gray-500'
                   }`}
                   onClick={() => setTab(item)}
                 >
                   {item}
-                </button>
+                </Button>
               </div>
             ))}
           </div>
         </div>
         <div className="mt-5">
           {tab === 'Change Password' && <ChangePassword />}
-          {tab === 'Edit' && (
-            <div>
-              <form action="">
-                <div className="grid grid-cols-1 items-center gap-5 sm:grid-cols-2">
-                  <Input shadow type={'text'} label={'First Name'} placeholder={'Your First Name'} />
-                  <Input shadow type={'text'} label={'Last Name'} placeholder={'Your Last Name'} />
-                  <Input shadow type={'email'} label={'Email'} placeholder={'Your Email'} />
-                  <div className="flex flex-col gap-2">
-                    <label className="text-sm text-[#666666] lg:text-base" htmlFor="">
-                      Number
-                    </label>
-                    <PhoneInput
-                      country={'us'}
-                      containerClass="phone-input-container"
-                      inputClass="phone-input-field"
-                      buttonClass="phone-input-button"
-                      inputProps={{
-                        name: 'phone',
-                        required: true,
-                        autoFocus: false,
-                        autoComplete: 'on',
-                      }}
-                    />
+          {tab === 'Profile' && (
+            <>
+              <div>
+                <form action="">
+                  <div className="grid grid-cols-1 items-center gap-5 sm:grid-cols-2">
+                    <Input shadow type={'text'} label={'First Name'} placeholder={'Your First Name'} />
+                    <Input shadow type={'text'} label={'Last Name'} placeholder={'Your Last Name'} />
+                    <Input shadow type={'email'} label={'Email'} placeholder={'Your Email'} />
+                    <div className="flex flex-col gap-2">
+                      <label className="text-sm text-[#666666] lg:text-base" htmlFor="">
+                        Number
+                      </label>
+                      <PhoneInput
+                        country={'us'}
+                        containerClass="phone-input-container"
+                        inputClass="phone-input-field"
+                        buttonClass="phone-input-button"
+                        inputProps={{
+                          name: 'phone',
+                          required: true,
+                          autoFocus: false,
+                          autoComplete: 'on',
+                        }}
+                      />
+                    </div>
+                    <Input shadow type={'text'} label={'ID Number'} placeholder={'Your ID Number'} />
+                    <Input shadow type={'text'} label={'Address'} placeholder={'Your Address'} />
                   </div>
-                  <Input shadow type={'text'} label={'ID Number'} placeholder={'Your ID Number'} />
-                  <Input shadow type={'text'} label={'Address'} placeholder={'Your Address'} />
-                </div>
-              </form>
-            </div>
+                </form>
+              </div>
+              <div className="mt-4 flex w-full items-center justify-end gap-4">
+                <Button cn={'!bg-buttonSecondary hover:!bg-gray-500'} text={'Edit'} />
+                <Button text={'Save'} />
+              </div>
+            </>
           )}
         </div>
       </div>

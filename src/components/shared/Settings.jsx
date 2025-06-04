@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ChangePassword from './ChangePassword';
 import EditProfile from './EditProfile';
 import Image from 'next/image';
+import Button from './small/Button';
 
 function Settings() {
   const [tab, setTab] = useState('Profile');
@@ -21,14 +22,13 @@ function Settings() {
         <div className="flex items-center justify-end gap-4">
           {['Change Password', 'Profile'].map((item, i) => (
             <div key={i}>
-              <button
-                className={`cursor-pointer rounded-md px-4 py-2 text-[16px] text-white ${
-                  tab === item ? 'bg-primary font-medium' : 'bg-[#A7A7A7] font-medium text-white'
-                }`}
+              <Button
+                text={item}
+                cn={`text-[16px]  ${tab === item ? 'bg-primary' : '!bg-buttonSecondary hover:!bg-gray-500'}`}
                 onClick={() => setTab(item)}
               >
                 {item}
-              </button>
+              </Button>
             </div>
           ))}
         </div>

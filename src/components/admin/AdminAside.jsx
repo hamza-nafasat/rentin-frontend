@@ -30,8 +30,8 @@ const AdminAside = ({ mobileNav, setMobileNav }) => {
   const pages = [
     {
       id: 1,
-      title: 'Admin',
-      link: '/agent',
+      title: 'Dashboard',
+      link: '/admin',
       icon: <DashboardIcon />,
     },
     {
