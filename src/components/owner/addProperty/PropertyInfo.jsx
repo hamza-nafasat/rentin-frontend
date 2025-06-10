@@ -77,14 +77,13 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
   const fileInputRef = useRef(null);
   const floorFileInputRef = useRef(null);
   const [image, setImage] = useState(null);
-  const [floorImage, setFloorImage] = useState(null);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [inputValue, setInputValue] = useState('');
-  const [selected, setSelected] = useState('option1');
   const [showInput1, setShowInput1] = useState(false);
-  const handleRentReasonChange1 = e => {
-    setShowInput1(e.target.id === 'Custom');
-  };
+  const [selectedBuilding, setSelectedBuilding] = useState('');
+
+  // const handleRentReasonChange1 = e => {
+  //   setShowInput1(e.target.id === 'Custom');
+  // };
+
   const options = [
     { label: 'Building A', id: 'building-a' },
     { label: 'Building B', id: 'building-b' },
@@ -98,63 +97,25 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
   const handleNext = useCallback(() => setCurrentStep(prevStep => prevStep + 1), [setCurrentStep]);
   const handlePrevious = useCallback(() => setCurrentStep(prevStep => prevStep - 1), [setCurrentStep]);
 
-  const handleImageUpload = useCallback(e => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setImage(imageUrl);
-    }
-  }, []);
-  const handleFloorImageUpload = useCallback(e => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const floorImageUrl = URL.createObjectURL(file);
-      setFloorImage(floorImageUrl);
-    }
-  }, []);
+  const handleRentReasonChange1 = e => {
+    const { id } = e.target;
+    setShowInput1(id === 'Custom');
 
-  const handleDrop = useCallback(e => {
-    e.preventDefault();
-    const file = e.dataTransfer.files?.[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setImage(imageUrl);
+    if (id !== 'Custom') {
+      updateField(index, 'building', id); // Save building ID for predefined options
+      setSelectedBuilding(id);
+    } else {
+      setSelectedBuilding(''); // Clear previously selected building
+      updateField(index, 'building', ''); // Optional: clear the field initially
     }
-  }, []);
-  const handleFloorDrop = useCallback(e => {
-    e.preventDefault();
-    const file = e.dataTransfer.files?.[0];
-    if (file) {
-      const floorImageUrl = URL.createObjectURL(file);
-      setFloorImage(floorImageUrl);
-    }
-  }, []);
+  };
 
-  const handleClick = useCallback(() => {
-    fileInputRef.current?.click();
-  }, []);
-  const handleFloorClick = useCallback(() => {
-    floorFileInputRef.current?.click();
-  }, []);
-
-  const handleButtonClick = useCallback(
-    event => {
-      event.stopPropagation();
-      handleClick();
-    },
-    [handleClick]
-  );
-  const handleFloorButtonClick = useCallback(
-    event => {
-      event.stopPropagation();
-      handleFloorClick();
-    },
-    [handleFloorClick]
-  );
-
-  const handleSelect = useCallback(option => {
-    console.log('Selected option:', option);
-  }, []);
+  // Handles typing in custom input
+  const handleCustomInputChange = e => {
+    const value = e.target.value;
+    setSelectedBuilding(value);
+    updateField(index, 'building', value); // Save custom input
+  };
 
   // Cleanup image URL when component unmounts
   useEffect(() => {
@@ -164,29 +125,52 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
       }
     };
   }, [image]);
-  const [isChecked, setIsChecked] = useState(false);
 
-  // Function to handle checkbox change
-  const handleCheckboxChange = event => {
-    setIsChecked(event.target.checked);
-  };
-  const [count, setCount] = useState(1);
+  const steps1 = [1, 2, 3, 4, 5];
+
+  // Case 2: Studio + numeric
+  const steps2 = ['Studio', 1, 2, 3, 4, 5];
+
+  // Case 3: Decimal steps
+  const steps3 = [1, 1.5, 2, 2.5, 3, 3.5];
+
   return (
     <div>
       <h4 className="text-textPrimary text-center text-base font-medium md:text-lg">Property Information</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-12">
-          <Input shadow label="Property Title" />
+          <Input
+            value={data.propertyTitle}
+            shadow
+            label="Property Title"
+            onChange={e => updateField(index, 'propertyTitle', e.target.value)}
+          />
         </div>
         <div className="lg:col-span-12">
-          <Textarea label="Description" placeholder="Enter a description for the image..." shadow={true} />
+          <Textarea
+            label="Description"
+            value={data.PropertyDescription}
+            onChange={e => updateField(index, 'PropertyDescription', e.target.value)}
+            placeholder="Enter a description for the image..."
+            shadow={true}
+          />
         </div>
         <div className="flex items-end lg:col-span-6">
-          <ValueAdjuster label="Bedrooms" value={count} onChange={setCount} />
+          <ValueAdjuster
+            label="Bedrooms"
+            value={data.bedRoom}
+            onChange={val => updateField(index, 'bedRoom', val)} // val = "3 sqft"
+            steps={steps2}
+          />
         </div>
         <div className="lg:col-span-6">
           {/* {formData[0].propertyType === 'condo' ? ( */}
-          <ValueAdjuster label="Bathrooms" value={count} onChange={setCount} />
+          <ValueAdjuster
+            label="Bathrooms"
+            value={data.bathRoom}
+            onChange={val => updateField(index, 'bathRoom', val)}
+            steps={steps3}
+          />
           {/* ) : (
             <Dropdown placeholder="select" label="BathRooms" options={BATHROOM_OPTIONS} shadow />
           )} */}
@@ -196,30 +180,48 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
             placeholder="0"
             label="Unit Area"
             options={FREQUENCY_OPTIONS}
-            defaultText=""
-            value={inputValue}
-            onChange={e => setInputValue(e.target.value)}
-            onSelect={option => setSelectedOption(option)}
-            shadow={true}
-            mainClassName="custom-dropdown"
+            onChange={val => updateField(index, 'area', val)} // val = "3 sqft"
             width="w--[79px]"
           />
         </div>
         <div className="lg:col-span-6">
-          <Input shadow placeholder="i. e A302" label="Unit Number (optional)" />
+          <Input
+            value={data.unitNum}
+            onChange={e => updateField(index, 'unitNum', e.target.value)}
+            shadow
+            placeholder="i. e A302"
+            label="Unit Number (optional)"
+          />
         </div>
         {/* <div className="lg:col-span-6">
           <Dropdown placeholder="select" label="Floor" options={FLOOR_OPTIONS} shadow />
         </div> */}
         <div className="lg:col-span-6">
-          <Dropdown placeholder="Unfurnished" label="Property Condition" options={CONDITION_OPTIONS} shadow />
+          <Dropdown
+            placeholder="Unfurnished"
+            onSelect={option => updateField(index, 'PropertyCondition', option.value)}
+            label="Property Condition"
+            options={CONDITION_OPTIONS}
+            shadow
+          />
         </div>
 
         <div className="lg:col-span-6">
-          <Dropdown placeholder="Building " label="Building Height" options={Building} shadow />
+          <Dropdown
+            placeholder="Building "
+            onSelect={option => updateField(index, 'buildingHeight', option.value)}
+            label="Building Height"
+            options={Building}
+            shadow
+          />
         </div>
         <div className="flex items-end lg:col-span-6">
-          <ValueAdjuster label="Floor" value={count} onChange={setCount} />
+          <ValueAdjuster
+            label="Floor"
+            value={data.floor}
+            onChange={val => updateField(index, 'floor', val)}
+            steps={steps1}
+          />
         </div>
         <div className="lg:col-span-12">
           <div className="flex h-full flex-col space-y-2">
@@ -228,28 +230,28 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
               {options.map(({ id, label }) => (
                 <div key={id} className="flex h-fit gap-2">
                   <label className={styles.radioItem} htmlFor={id}>
-                    <input id={id} type="radio" onChange={handleRentReasonChange1} name="option" />
+                    <input
+                      id={id}
+                      type="radio"
+                      onChange={handleRentReasonChange1}
+                      name="option"
+                      checked={selectedBuilding === id || (id === 'Custom' && showInput1)}
+                    />
                     <div className={styles.customRadio}></div>
                     <span>{label}</span>
                   </label>
                 </div>
-                // <div key={id} className="flex items-center gap-2">
-                //   <input id={id} type="radio" name="rentReason1" onChange={handleRentReasonChange1} />
-                //   <label className="text-[10px]" htmlFor={id}>
-                //     {label}
-                //   </label>
-                // </div>
               ))}
             </div>
-            {/* <p className="mt-2 text-sm text-gray-600">Selected: {selected}</p> */}
           </div>
         </div>
+
         <div className="lg:col-span-6">
           {showInput1 && (
             <div>
-              <label className="text-sm font-medium text-[#666666] lg:text-base">Select Building</label>
+              <label className="text-sm font-medium text-[#666666] lg:text-base">Enter Custom Building</label>
               <div className="mt-1">
-                <Input type="text" placeholder="Enter" />
+                <Input type="text" placeholder="Enter" value={selectedBuilding} onChange={handleCustomInputChange} />
               </div>
             </div>
           )}

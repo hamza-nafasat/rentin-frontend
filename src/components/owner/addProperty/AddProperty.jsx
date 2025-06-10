@@ -4,13 +4,17 @@ import FeatureAndAmenities from '@/components/owner/addProperty/FeatureAndAmenit
 import PhotosAndDetails from '@/components/owner/addProperty/PhotosAndDetails';
 import Pricing from '@/components/owner/addProperty/Pricing';
 import PropertyInfo from '@/components/owner/addProperty/PropertyInfo';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import Step from './Step';
+import provincesData from '@/data/addPropoerty/provinces.json';
+import districtsData from '@/data/addPropoerty/districts.json';
+import subdistrictsData from '@/data/addPropoerty/subdistricts.json';
 
 const AddProperty = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const steps = useMemo(() => ['Basic Info', 'Property Info', 'Feature & Amenities', 'Photos ', 'Pricing'], []);
 
+  // Define formData and updateField first
   const [formData, setFormData] = useState([
     {
       propertyType: '',
@@ -26,20 +30,175 @@ const AddProperty = () => {
       district: '',
       street: '',
       propertyStatus: '',
-    }, // for Component 1
-    { input1: '', input2: '', dropdown1: '', dropdown2: '' }, // for Component 2
-    { input1: '', input2: '', dropdown1: '', dropdown2: '' }, // ...
-    { input1: '', input2: '', dropdown1: '', dropdown2: '' },
-    { input1: '', input2: '', dropdown1: '', dropdown2: '' },
+    },
+    {
+      propertyTitle: '',
+      PropertyDescription: '',
+      bedRoom: '1',
+      bathRoom: '1',
+      area: '',
+      unitNum: '',
+      PropertyCondition: '',
+      buildingHeight: '',
+      floor: '1',
+      building: '',
+    },
+    { propertyFeature: [], amenities: [], rentalFeature: [], propertyView: [] },
+    { propertyImage: [], VerifyPropertyImage: [], floorPlanImage: [] },
+    { input1: '', input2: '', dropdown1: '', month: '1' },
   ]);
-  const updateField = (index, field, value) => {
+  console.log('formData', formData);
+
+  // Memoize updateField to ensure it's stable
+  const updateField = useCallback((index, field, value) => {
     setFormData(prev => {
       const updated = [...prev];
       updated[index][field] = value;
       return updated;
     });
-  };
-  console.log('data', formData);
+  }, []); // No dependencies needed as it only uses setState function
+
+  // Add new state for BasicInfo component
+  const [streetAddress, setStreetAddress] = useState('thailand');
+  const [selectedProvince, setSelectedProvince] = useState(null);
+  const [selectedDistrict, setSelectedDistrict] = useState(null);
+  const [selectedSubdistrict, setSelectedSubdistrict] = useState(null);
+  const [filteredDistricts, setFilteredDistricts] = useState([]);
+  const [filteredSubdistricts, setFilteredSubdistricts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState({
+    province: '',
+    district: '',
+    subdistrict: '',
+    address: '',
+  });
+  const [showSuggestions, setShowSuggestions] = useState({
+    province: false,
+    district: false,
+    subdistrict: false,
+  });
+
+  // Define handleSubdistrictClear first
+  const handleSubdistrictClear = useCallback(() => {
+    setSelectedSubdistrict(null);
+    setSearchTerm(prev => ({ ...prev, subdistrict: '' }));
+    updateField(0, 'subdistrict', '');
+  }, [updateField]);
+
+  // Then define handleInputChange which depends on handleSubdistrictClear
+  const handleInputChange = useCallback(
+    (field, value) => {
+      setSearchTerm(prev => ({ ...prev, [field]: value }));
+      setShowSuggestions(prev => ({ ...prev, [field]: true }));
+
+      // If the field is subdistrict and the value is empty, clear the selection
+      if (field === 'subdistrict' && !value) {
+        handleSubdistrictClear();
+      }
+    },
+    [handleSubdistrictClear]
+  );
+
+  const handleProvinceSelect = useCallback(option => {
+    setSelectedProvince(option.value);
+    setSearchTerm(prev => ({ ...prev, province: option.label }));
+    updateField(0, 'province', option.value);
+    setShowSuggestions(prev => ({ ...prev, province: false }));
+  }, []);
+
+  const handleDistrictSelect = useCallback(option => {
+    setSelectedDistrict(option.value);
+    setSearchTerm(prev => ({ ...prev, district: option.label }));
+    updateField(0, 'district', option.value);
+    updateField(0, 'postalCode', option.postalCode);
+    setShowSuggestions(prev => ({ ...prev, district: false }));
+  }, []);
+
+  const handleSubdistrictSelect = useCallback(
+    option => {
+      // If the same subdistrict is selected again, clear it
+      if (selectedSubdistrict === option.value) {
+        setSelectedSubdistrict(null);
+        setSearchTerm(prev => ({ ...prev, subdistrict: '' }));
+        updateField(0, 'subdistrict', '');
+      } else {
+        setSelectedSubdistrict(option.value);
+        setSearchTerm(prev => ({ ...prev, subdistrict: option.label }));
+        updateField(0, 'subdistrict', option.value);
+      }
+      setShowSuggestions(prev => ({ ...prev, subdistrict: false }));
+    },
+    [selectedSubdistrict, updateField]
+  );
+
+  const handleAddressChange = useCallback(e => {
+    setStreetAddress(e.target.value);
+  }, []);
+
+  // Update districts when province changes
+  useEffect(() => {
+    if (selectedProvince) {
+      const districts = districtsData
+        .filter(district => district.provinceCode.toString() === selectedProvince)
+        .map(district => ({
+          label: `${district.districtNameEn} (${district.districtNameTh})`,
+          value: district.districtCode.toString(),
+          postalCode: district.postalCode,
+        }));
+      setFilteredDistricts(districts);
+      setSelectedDistrict(null);
+      setSelectedSubdistrict(null);
+      setSearchTerm(prev => ({ ...prev, district: '', subdistrict: '' }));
+    } else {
+      setFilteredDistricts([]);
+    }
+  }, [selectedProvince]);
+
+  // Update subdistricts when district changes
+  useEffect(() => {
+    if (selectedDistrict) {
+      const subdistricts = subdistrictsData
+        .filter(subdistrict => subdistrict.districtCode.toString() === selectedDistrict)
+        .map(subdistrict => ({
+          label: `${subdistrict.subdistrictNameEn} (${subdistrict.subdistrictNameTh})`,
+          value: subdistrict.subdistrictCode.toString(),
+        }));
+      setFilteredSubdistricts(subdistricts);
+      setSelectedSubdistrict(null);
+      setSearchTerm(prev => ({ ...prev, subdistrict: '' }));
+    } else {
+      setFilteredSubdistricts([]);
+    }
+  }, [selectedDistrict]);
+
+  // Filter provinces based on search
+  const provinceOptions = useMemo(
+    () =>
+      provincesData.map(province => ({
+        label: `${province.provinceNameEn} (${province.provinceNameTh})`,
+        value: province.provinceCode.toString(),
+      })),
+    []
+  );
+
+  const filteredProvinces = useMemo(
+    () => provinceOptions.filter(province => province.label.toLowerCase().includes(searchTerm.province.toLowerCase())),
+    [provinceOptions, searchTerm.province]
+  );
+
+  const filteredDistrictOptions = useMemo(
+    () =>
+      filteredDistricts.filter(district => district.label.toLowerCase().includes(searchTerm.district.toLowerCase())),
+    [filteredDistricts, searchTerm.district]
+  );
+
+  const filteredSubdistrictOptions = useMemo(
+    () =>
+      filteredSubdistricts.filter(subdistrict =>
+        subdistrict.label.toLowerCase().includes(searchTerm.subdistrict.toLowerCase())
+      ),
+    [filteredSubdistricts, searchTerm.subdistrict]
+  );
+
   const stepComponents = useMemo(
     () => [
       <BasicInfo
@@ -49,6 +208,22 @@ const AddProperty = () => {
         index={0}
         updateField={updateField}
         formData={formData}
+        streetAddress={streetAddress}
+        searchTerm={searchTerm}
+        showSuggestions={showSuggestions}
+        setShowSuggestions={setShowSuggestions}
+        handleInputChange={handleInputChange}
+        handleProvinceSelect={handleProvinceSelect}
+        handleDistrictSelect={handleDistrictSelect}
+        handleSubdistrictSelect={handleSubdistrictSelect}
+        handleSubdistrictClear={handleSubdistrictClear}
+        handleAddressChange={handleAddressChange}
+        filteredProvinces={filteredProvinces}
+        filteredDistrictOptions={filteredDistrictOptions}
+        filteredSubdistrictOptions={filteredSubdistrictOptions}
+        selectedProvince={selectedProvince}
+        selectedDistrict={selectedDistrict}
+        selectedSubdistrict={selectedSubdistrict}
       />,
       <PropertyInfo
         key="property-info"
@@ -83,7 +258,25 @@ const AddProperty = () => {
         formData={formData}
       />,
     ],
-    [formData, setCurrentStep]
+    [
+      formData,
+      setCurrentStep,
+      streetAddress,
+      searchTerm,
+      showSuggestions,
+      handleInputChange,
+      handleProvinceSelect,
+      handleDistrictSelect,
+      handleSubdistrictSelect,
+      handleSubdistrictClear,
+      handleAddressChange,
+      filteredProvinces,
+      filteredDistrictOptions,
+      filteredSubdistrictOptions,
+      selectedProvince,
+      selectedDistrict,
+      selectedSubdistrict,
+    ]
   );
 
   return (

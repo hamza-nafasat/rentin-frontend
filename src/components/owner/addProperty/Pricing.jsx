@@ -9,14 +9,9 @@ import { BsPlus } from 'react-icons/bs';
 import { FaSearch } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
 
-const Pricing = ({ setCurrentStep }) => {
+const Pricing = ({ data, index, updateField, setCurrentStep, formData }) => {
   const [count, setCount] = useState(2);
   const handlePrevious = () => setCurrentStep(prevStep => prevStep - 1);
-  const frequencyOptions = [
-    { value: 'monthly', label: 'Monthly' },
-    { value: 'quarterly', label: 'Quarterly' },
-    { value: 'yearly', label: 'Yearly' },
-  ];
 
   const handleSelect = option => {
     console.log('Selected option:', option);
@@ -44,6 +39,7 @@ const Pricing = ({ setCurrentStep }) => {
   const handleCheckboxChange = event => {
     setIsChecked(event.target.checked);
   };
+  const month = [1, 2, 3, 4, 5];
 
   return (
     <div>
@@ -81,10 +77,22 @@ const Pricing = ({ setCurrentStep }) => {
             <div className="flex flex-col gap-4">
               <div className="grid grid-cols-12 gap-4">
                 <div className="col-span-12 mt-6 sm:col-span-6 md:col-span-4">
-                  <ValueAdjuster
+                  {/* <ValueAdjuster
                     label="Months"
                     value={count}
                     onChange={value => setCount(Math.max(2, Math.min(24, value)))}
+                  />
+                  <ValueAdjuster
+                    label="Floor"
+                    value={data.month}
+                    onChange={val => updateField(index, 'month', val)}
+                    steps={steps1}
+                  /> */}
+                  <ValueAdjuster
+                    label="Month"
+                    value={data.month}
+                    onChange={val => updateField(index, 'month', val)}
+                    steps={month}
                   />
                 </div>
                 <div className="col-span-12 sm:col-span-6 md:col-span-4">
@@ -101,8 +109,8 @@ const Pricing = ({ setCurrentStep }) => {
                   </div>
                   <div className="relative top-3.5">
                     <IconButton
-                      leftIcon={<IoClose className="text-3xl text-white" />}
-                      cn="!px-2 bg-primary !rounded-full !size-[60px] !text-white shadow-card"
+                      leftIcon={<IoClose className="text-xl text-white" />}
+                      cn="!px-2 bg-primary !rounded-full !size-[40px] !text-white shadow-card"
                       width="w-full"
                       onClick={() => handleRemoveCustomField(field.id)} // Remove specific custom field
                     />

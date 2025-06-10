@@ -92,7 +92,7 @@ const Button = ({ onClick, children, className }) => (
   </button>
 );
 
-const FeatureAndAmenities = ({ setCurrentStep }) => {
+const FeatureAndAmenities = ({ data, index, updateField, setCurrentStep, formData }) => {
   const handleNext = useCallback(() => setCurrentStep(prevStep => prevStep + 1), [setCurrentStep]);
   const handlePrevious = useCallback(() => setCurrentStep(prevStep => prevStep - 1), [setCurrentStep]);
   const handleSelect = selectedValues => {
@@ -103,21 +103,38 @@ const FeatureAndAmenities = ({ setCurrentStep }) => {
       <h4 className="text-textPrimary text-center text-base font-medium md:text-lg">Features & Amenities</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-6">
-          <DropdownCheckbox label="Property Feature" options={propertyFeatures} shadow />
+          <DropdownCheckbox
+            label="Property Feature"
+            options={propertyFeatures}
+            onSelect={val => updateField(index, 'propertyFeature', val)}
+            shadow
+          />
         </div>
 
         <div className="lg:col-span-6">
-          <DropdownCheckbox label="Amenities" options={amenities} shadow />
+          <DropdownCheckbox
+            label="Amenities"
+            options={amenities}
+            onSelect={val => updateField(index, 'amenities', val)}
+            shadow
+          />
         </div>
         <div className="lg:col-span-6">
-          <DropdownCheckbox label="Rental Feature" options={rentalFeatures} shadow />
+          <DropdownCheckbox
+            label="Rental Feature"
+            options={rentalFeatures}
+            onSelect={val => updateField(index, 'rentalFeature', val)}
+            shadow
+          />
         </div>
         <div className="lg:col-span-6">
           <DropdownCheckbox
             label="View from the property"
             options={propertyViews}
-            onSelect={handleSelect}
+            // onSelect={handleSelect}
+            onSelect={val => updateField(index, 'propertyView', val)}
             defaultText="Select fruits"
+            shadow
           />
           {/* <Dropdown label="View from the property" options={propertyViews} shadow /> */}
         </div>

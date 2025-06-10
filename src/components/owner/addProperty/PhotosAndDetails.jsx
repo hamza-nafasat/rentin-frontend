@@ -67,6 +67,7 @@ const PhotosAndDetails = ({ setCurrentStep }) => {
   const [floorImages, setFloorImages] = useState([]);
   const [hasFloorPlan, setHasFloorPlan] = useState(false);
   const [radioInput, setInputRadio] = useState('');
+  console.log('propertyImages', propertyImages);
 
   const propInputRef = useRef(null);
   const floorInputRef = useRef(null);

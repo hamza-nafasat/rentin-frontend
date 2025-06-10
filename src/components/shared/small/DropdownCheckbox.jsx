@@ -2,19 +2,6 @@
 import { useEffect, useRef, useState, useCallback, memo } from 'react';
 import { GoChevronDown } from 'react-icons/go';
 
-/**
- * Multi-select Dropdown component with checkboxes
- *
- * Props:
- * - options: array of { label, value }
- * - shadow: boolean to apply input shadow styling
- * - defaultText: placeholder when nothing is selected
- * - onSelect: callback(selectedValues: array) => void
- * - label: optional label text
- * - width: custom width class
- * - mainClassName: additional classes for button
- * - readOnly: disable interaction
- */
 const DropdownCheckbox = memo(
   ({
     options = [],
@@ -34,23 +21,39 @@ const DropdownCheckbox = memo(
     const idRef = useRef(`dropdown-${Math.random().toString(36).slice(2, 9)}`);
     const customInputRef = useRef(null);
 
-    // Toggle an option's selection
+    // Helper to normalize and split input into values
+    const normalizeAndSplitValues = str => {
+      return str
+        .split(',')
+        .map(s =>
+          s
+            .toLowerCase()
+            .trim()
+            .replace(/\s+/g, '_')
+            .replace(/[^a-z0-9_]/g, '')
+        )
+        .filter(Boolean); // remove empty strings
+    };
+
     const toggleValue = useCallback(
       option => {
         if (readOnly) return;
 
         if (option.value === 'others') {
-          setShowCustomInput(prev => !prev);
           if (!showCustomInput) {
-            // If opening custom input, focus it
+            // Showing input
+            setShowCustomInput(true);
             setTimeout(() => customInputRef.current?.focus(), 0);
-          } else if (customValue.trim()) {
-            // If closing and has value, add it to selections
+          } else {
+            // Hiding input and clearing values
+            const customValues = normalizeAndSplitValues(customValue);
             setSelectedValues(prev => {
-              const updated = [...prev, customValue];
+              const updated = prev.filter(v => !customValues.includes(v));
               onSelect?.(updated);
               return updated;
             });
+            setCustomValue('');
+            setShowCustomInput(false);
           }
           return;
         }
@@ -65,16 +68,16 @@ const DropdownCheckbox = memo(
       [readOnly, onSelect, showCustomInput, customValue]
     );
 
-    // Handle custom input change
     const handleCustomInputChange = useCallback(
       e => {
         const value = e.target.value;
         setCustomValue(value);
 
-        // Update selected values with custom input
+        const customValues = normalizeAndSplitValues(value);
+
         setSelectedValues(prev => {
-          const withoutCustom = prev.filter(v => v !== customValue);
-          const updated = value.trim() ? [...withoutCustom, value] : withoutCustom;
+          const filtered = prev.filter(v => !normalizeAndSplitValues(customValue).includes(v));
+          const updated = [...filtered, ...customValues];
           onSelect?.(updated);
           return updated;
         });
@@ -82,26 +85,22 @@ const DropdownCheckbox = memo(
       [customValue, onSelect]
     );
 
-    // Handle custom input blur
     const handleCustomInputBlur = useCallback(() => {
       if (!customValue.trim()) {
         setShowCustomInput(false);
       }
     }, [customValue]);
 
-    // Toggle dropdown open/close
     const toggleDropdown = useCallback(() => {
       if (!readOnly) setIsOpen(open => !open);
     }, [readOnly]);
 
-    // Close when clicking outside
     const handleClickOutside = useCallback(e => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setIsOpen(false);
       }
     }, []);
 
-    // Close on Escape key
     const handleKeyDown = useCallback(e => {
       if (e.key === 'Escape') setIsOpen(false);
     }, []);
@@ -115,7 +114,6 @@ const DropdownCheckbox = memo(
       };
     }, [handleClickOutside, handleKeyDown]);
 
-    // Compute display text based on selected values
     const displayText = selectedValues.length
       ? options
           .filter(opt => selectedValues.includes(opt.value))
@@ -124,7 +122,6 @@ const DropdownCheckbox = memo(
           .join(', ')
       : defaultText;
 
-    // CSS classes for button wrapper
     const buttonClasses = [
       shadow && 'shadow-input',
       readOnly ? 'cursor-not-allowed' : 'border-[#E0E0E9]',
@@ -159,7 +156,6 @@ const DropdownCheckbox = memo(
 
         {isOpen && !readOnly && (
           <ul className="shadow-card absolute z-10 mt-1 max-h-[200px] w-full overflow-y-auto rounded-lg bg-[#f7f7f7]">
-            {/* Dropdown header inside list */}
             {label && (
               <li className="border-b border-[#d3d3d3] px-4 py-2 text-sm font-medium text-[#666666]">{label}</li>
             )}
@@ -191,7 +187,7 @@ const DropdownCheckbox = memo(
                       value={customValue}
                       onChange={handleCustomInputChange}
                       onBlur={handleCustomInputBlur}
-                      placeholder="Enter custom value"
+                      placeholder="Enter comma-separated values"
                       className="focus:border-primary ml-2 flex-1 rounded border border-gray-300 px-2 py-1 text-sm focus:outline-none"
                       onClick={e => e.stopPropagation()}
                     />
@@ -208,5 +204,3 @@ const DropdownCheckbox = memo(
 
 DropdownCheckbox.displayName = 'DropdownCheckbox';
 export default DropdownCheckbox;
-
-// export default DropdownCheckbox
