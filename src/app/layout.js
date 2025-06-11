@@ -4,6 +4,7 @@ import './globals.css';
 import 'leaflet/dist/leaflet.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { StoreProvider } from '@/features/store';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -25,7 +26,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head></head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
-        {children}
+        <StoreProvider>{children}</StoreProvider>
+
         <Toaster position="top-right" />
       </body>
     </html>

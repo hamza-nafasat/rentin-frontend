@@ -7,17 +7,26 @@ import PhoneInput from 'react-phone-input-2';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import Dropdown from '../shared/small/Dropdown';
 import Link from 'next/link';
+import { useVerifyEmailMutation, useRegisterMutation } from '@/features/auth/authApi';
+import { toast } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { setUser } from '@/features/auth/authSlice';
 
 const options = [
   { option: 'Owner', value: 'owner' },
   { option: 'Tenant', value: 'tenant' },
-  { option: 'Agent', value: 'agent' },
+  // { option: 'Agent', value: 'agent' },
 ];
 
 const SignupForm = () => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [showOtp, setShowOtp] = useState(false);
-  const [formData, setFormData] = useState({
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
+  const [verifyEmail, { isLoading: isVerifying }] = useVerifyEmailMutation();
+  const [register, { isLoading: isRegistering }] = useRegisterMutation();
+
+  const initialFormState = {
     firstName: '',
     lastName: '',
     email: '',
@@ -27,7 +36,17 @@ const SignupForm = () => {
     otp: '',
     agreeToTerms: false,
     consent: false,
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormState);
+
+  const resetAllStates = () => {
+    setFormData(initialFormState);
+    setShowPassword(false);
+    setShowOtp(false);
+    setIsEmailVerified(false);
+  };
+
   const isFormValid =
     formData.firstName.trim() !== '' &&
     formData.lastName.trim() !== '' &&
@@ -44,15 +63,47 @@ const SignupForm = () => {
     const { name, checked } = e.target;
     setFormData(prev => ({ ...prev, [name]: checked }));
   };
-  const handleForm = e => {
+
+  const handleVerifyEmail = async e => {
     e.preventDefault();
-    console.log('formData', formData);
+    if (!formData.email) return;
+
+    try {
+      await verifyEmail({ email: formData.email }).unwrap();
+      setShowOtp(true);
+      toast.success('OTP sent to your email');
+    } catch (error) {
+      toast.error(error?.data?.message || 'Failed to verify email');
+    }
   };
 
-  const handleVerifyEmail = () => {
-    // Add verification logic here
-    setShowOtp(true);
-    console.log('Verifying email');
+  const handleForm = async e => {
+    e.preventDefault();
+
+    if (!isEmailVerified) {
+      toast.error('Please verify your email first');
+      return;
+    }
+
+    try {
+      const response = await register({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        contact: formData.phone,
+        password: formData.password,
+        role: formData.role,
+        otp: formData.otp,
+      }).unwrap();
+
+      // Store user data in Redux
+      dispatch(setUser(response));
+
+      toast.success('Registration successful!');
+      resetAllStates();
+    } catch (error) {
+      toast.error(error?.data?.message || 'Registration failed');
+    }
   };
 
   return (
@@ -73,20 +124,43 @@ const SignupForm = () => {
             type="email"
             value={formData.email}
             onChange={handleInputChange}
+            disabled={isEmailVerified}
           />
         </div>
         <div className="flex items-end lg:col-span-3">
           <button
-            disabled={!formData.email}
+            type="button"
+            disabled={!formData.email || isEmailVerified || isVerifying}
             onClick={handleVerifyEmail}
-            className={`${!formData.email ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'} bg-primary h-[3.5rem] w-full rounded-xl px-4 text-sm font-medium text-white md:text-base`}
+            className={`${
+              !formData.email || isEmailVerified || isVerifying ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+            } bg-primary h-[3.5rem] w-full rounded-xl px-4 text-sm font-medium text-white md:text-base`}
           >
-            Verify Email
+            {isVerifying ? 'Verifying...' : isEmailVerified ? 'Verified' : 'Verify Email'}
           </button>
         </div>
-        {showOtp && (
-          <div className="lg:col-span-12">
-            <Input shadow label="Enter OTP" name="otp" type="text" value={formData.otp} onChange={handleInputChange} />
+        {showOtp && !isEmailVerified && (
+          <div className="flex gap-2 lg:col-span-12">
+            <div className="flex-1">
+              <Input
+                shadow
+                label="Enter OTP"
+                name="otp"
+                type="text"
+                value={formData.otp}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="flex items-end">
+              <Button
+                width="w-[120px]"
+                height="h-[3.5rem]"
+                text="Verify OTP"
+                type="button"
+                onClick={() => setIsEmailVerified(true)}
+                disabled={!formData.otp}
+              />
+            </div>
           </div>
         )}
         <div className="lg:col-span-12">
@@ -167,10 +241,10 @@ const SignupForm = () => {
           <Button
             width="w-full md:w-[11.5rem]"
             height="h-[2.6875rem]"
-            text="Sign up"
+            text={isRegistering ? 'Signing up...' : 'Sign up'}
             type="submit"
-            disabled={!isFormValid}
-            cn={isFormValid ? '' : 'opacity-50 cursor-not-allowed'}
+            disabled={!isFormValid || !isEmailVerified || isRegistering}
+            cn={!isFormValid || !isEmailVerified || isRegistering ? 'opacity-50 cursor-not-allowed' : ''}
           />
           <div className="text-sm text-[#666666] lg:text-base">
             Already have an Account?{' '}
