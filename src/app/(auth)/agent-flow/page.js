@@ -22,7 +22,7 @@ function AgentFlow() {
 
   return (
     <AgentFlowLayout>
-      <div className="shadow-custom w-full rounded-[10px] bg-white px-5 py-[30px] md:px-10">
+      <div className="shadow-custom w-full rounded-[10px] bg-white px-5 py-[10px] md:px-10">
         <h2 className="text-textPrimary text-center text-xl font-semibold md:text-[22px]">
           On Demand Service Onboarding Flow
         </h2>
@@ -38,7 +38,9 @@ function AgentFlow() {
             />
           ))}
         </div>
-        <div className="mt-4 md:mt-6 2xl:mt-8">{stepComponents[currentStep]}</div>
+        <div className="scroll-0 mt-4 h-[calc(100vh-325px)] overflow-x-hidden overflow-y-scroll md:mt-2 2xl:mt-8 2xl:h-[calc(100vh-485px)]">
+          {stepComponents[currentStep]}
+        </div>
       </div>
     </AgentFlowLayout>
   );

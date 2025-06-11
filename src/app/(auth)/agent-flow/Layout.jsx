@@ -6,7 +6,7 @@ function AgentFlowLayout({ children }) {
   return (
     <div>
       <section className="h-full w-full bg-[url('/images/default/auth-bg.png')] bg-cover bg-bottom bg-no-repeat lg:h-screen">
-        <section className="scroll-0 relative container mx-auto grid h-full grid-cols-1 gap-8 overflow-auto px-5 py-10 lg:gap-[60px] lg:py-[80px]">
+        <section className="scroll-0 relative container mx-auto grid h-full grid-cols-1 gap-8 overflow-auto px-5 py-10 lg:gap-[60px] lg:py-[10px] 2xl:py-[80px]">
           <div className="flex flex-col items-start justify-start">
             <div className="mb-8">
               <Image

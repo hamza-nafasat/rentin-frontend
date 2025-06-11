@@ -56,9 +56,9 @@ const SignupForm = () => {
   };
 
   return (
-    <form className="w-full rounded-xl bg-white p-5 lg:px-[8%] lg:py-8" onSubmit={handleForm}>
+    <form className="w-full rounded-xl bg-white p-5 lg:px-[8%] lg:py-2 xl:py-8" onSubmit={handleForm}>
       <h6 className="text-text-textPrimary text-center text-xl font-semibold md:text-left lg:text-2xl">Sign up now</h6>
-      <div className="mt-5 grid grid-cols-1 gap-4 lg:mt-7 lg:grid-cols-12">
+      <div className="mt-5 grid grid-cols-1 gap-4 lg:mt-3 lg:grid-cols-12 lg:gap-2 xl:mt-7 2xl:gap-4">
         <div className="lg:col-span-6">
           <Input shadow label="First name" name="firstName" value={formData.firstName} onChange={handleInputChange} />
         </div>
