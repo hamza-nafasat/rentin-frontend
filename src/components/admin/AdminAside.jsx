@@ -10,11 +10,15 @@ import {
   Task,
 } from '@/assets/icon';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { MdLogout, MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { useLogoutMutation } from '@/features/auth/authApi';
+import { useDispatch } from 'react-redux';
+import { deleteUser } from '@/features/auth/authSlice';
+import { toast } from 'react-hot-toast';
 
 const AdminAside = ({ mobileNav, setMobileNav }) => {
   const pathname = usePathname();
@@ -106,7 +110,6 @@ const AdminAside = ({ mobileNav, setMobileNav }) => {
           height={isMenuOpen ? 35 : 38}
           alt="logo"
           className="mx-auto"
-          z
         />
 
         {/* Menu */}
@@ -142,6 +145,9 @@ const AdminAside = ({ mobileNav, setMobileNav }) => {
 export default AdminAside;
 
 const ProfileSec = ({ isMenuOpen }) => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [logout, { isLoading: isLoggingOut }] = useLogoutMutation();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -154,6 +160,27 @@ const ProfileSec = ({ isMenuOpen }) => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      // First clear the user data from Redux
+      dispatch(deleteUser());
+
+      // Then call the logout API
+      await logout().unwrap();
+
+      // Show success message
+      toast.success('Logged out successfully');
+
+      // Use window.location for a full page refresh to clear all state
+      window.location.href = '/login';
+    } catch (error) {
+      // If logout API fails, still clear local state and redirect
+      dispatch(deleteUser());
+      toast.error(error?.data?.message || 'Logout failed, but you have been logged out locally');
+      window.location.href = '/login';
+    }
+  };
 
   return (
     <div className="flex w-full items-center justify-between gap-4 border-t border-[#EBEBEB] px-3 pt-4">
@@ -184,17 +211,18 @@ const ProfileSec = ({ isMenuOpen }) => {
             >
               <Link
                 href="/admin/settings"
-                onClick={() => console.log('Settings clicked')}
+                onClick={() => setMenuOpen(false)}
                 className="flex w-full items-center justify-between px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
               >
                 <p>Settings</p>
                 <IoSettingsOutline />
               </Link>
               <button
-                onClick={() => console.log('Logout clicked')}
-                className="flex w-full items-center justify-between px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                onClick={handleLogout}
+                disabled={isLoggingOut}
+                className="flex w-full items-center justify-between px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                <p>Logout</p>
+                <p>{isLoggingOut ? 'Logging out...' : 'Logout'}</p>
                 <MdLogout />
               </button>
             </div>

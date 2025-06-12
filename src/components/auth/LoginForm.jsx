@@ -9,6 +9,7 @@ import { useLoginMutation } from '@/features/auth/authApi';
 import { useDispatch } from 'react-redux';
 import { setUser } from '@/features/auth/authSlice';
 import { toast } from 'react-hot-toast';
+import { getDefaultRouteForRole } from '@/utils/routingUtils';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -46,11 +47,24 @@ const LoginForm = () => {
       // Store user data in Redux
       dispatch(setUser(response));
 
+      // Extract role from response - handle the actual API response structure
+      const userRole = response?.data?.role;
+      console.log('userRole', userRole);
+
+      if (!userRole) {
+        console.error('No role found in login response:', response);
+        toast.error('Login successful but role not found. Please contact support.');
+        return;
+      }
+
+      // Get the default route for the user's role
+      const defaultRoute = getDefaultRouteForRole(userRole);
+
       toast.success('Login successful!');
       resetForm();
 
-      // You can add navigation here if needed
-      // router.push('/dashboard');
+      // Use window.location for a full page refresh to ensure clean state
+      window.location.href = defaultRoute;
     } catch (error) {
       toast.error(error?.data?.message || 'Login failed');
     }

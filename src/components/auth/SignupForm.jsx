@@ -11,6 +11,7 @@ import { useVerifyEmailMutation, useRegisterMutation } from '@/features/auth/aut
 import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { setUser } from '@/features/auth/authSlice';
+import { getDefaultRouteForRole } from '@/utils/routingUtils';
 
 const options = [
   { option: 'Owner', value: 'owner' },
@@ -85,6 +86,11 @@ const SignupForm = () => {
       return;
     }
 
+    if (!formData.agreeToTerms || !formData.consent) {
+      toast.error('Please agree to the terms and consent to receive communications');
+      return;
+    }
+
     try {
       const response = await register({
         firstName: formData.firstName,
@@ -99,8 +105,23 @@ const SignupForm = () => {
       // Store user data in Redux
       dispatch(setUser(response));
 
+      // Extract role from response
+      const userRole = response?.user?.role || response?.role || formData.role;
+
+      if (!userRole) {
+        console.error('No role found in registration response:', response);
+        toast.error('Registration successful but role not found. Please contact support.');
+        return;
+      }
+
+      // Get the default route for the user's role
+      const defaultRoute = getDefaultRouteForRole(userRole);
+
       toast.success('Registration successful!');
       resetAllStates();
+
+      // Use window.location for a full page refresh to ensure clean state
+      window.location.href = defaultRoute;
     } catch (error) {
       toast.error(error?.data?.message || 'Registration failed');
     }

@@ -12,6 +12,8 @@ import {
   ProposalsIcon,
   TenantIcon,
 } from '@/assets/icon';
+import { useLogoutMutation } from '@/features/auth/authApi';
+import { deleteUser } from '@/features/auth/authSlice';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
@@ -19,6 +21,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { MdLogout } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
 
 const Aside = ({ mobileNav, setMobileNav }) => {
   const { id } = useParams();
@@ -176,6 +179,8 @@ const ProfileSec = ({ isMenuOpen }) => {
   // Local state for the dropdown menu in the profile section.
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const dispatch = useDispatch();
+  const [logout, { isLoading: isLoggingOut }] = useLogoutMutation();
 
   // Close the dropdown if clicked outside
   useEffect(() => {
@@ -188,6 +193,26 @@ const ProfileSec = ({ isMenuOpen }) => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+  const handleLogout = async () => {
+    try {
+      // First clear the user data from Redux
+      dispatch(deleteUser());
+
+      // Then call the logout API
+      await logout().unwrap();
+
+      // Show success message
+      toast.success('Logged out successfully');
+
+      // Use window.location for a full page refresh to clear all state
+      window.location.href = '/login';
+    } catch (error) {
+      // If logout API fails, still clear local state and redirect
+      dispatch(deleteUser());
+      toast.error(error?.data?.message || 'Logout failed, but you have been logged out locally');
+      window.location.href = '/login';
+    }
+  };
 
   return (
     <div className="flex w-full items-center justify-between gap-4 border-t border-[#EBEBEB] px-3 pt-4">
@@ -228,10 +253,11 @@ const ProfileSec = ({ isMenuOpen }) => {
                 <IoSettingsOutline />
               </Link>
               <button
-                onClick={() => console.log('Logout clicked')}
-                className="flex w-full items-center justify-between px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                onClick={handleLogout}
+                disabled={isLoggingOut}
+                className="flex w-full items-center justify-between px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                <p>Logout</p>
+                <p>{isLoggingOut ? 'Logging out...' : 'Logout'}</p>
                 <MdLogout />
               </button>
             </div>
