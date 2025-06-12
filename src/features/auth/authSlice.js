@@ -15,6 +15,12 @@ const getStoredAuth = () => {
   return { user: null, isAuthenticated: false };
 };
 
+// Helper to extract user role
+const extractUserRole = userData => {
+  if (!userData) return null;
+  return userData.role || userData.user?.role || userData.user?.data?.role || userData.data?.role;
+};
+
 // Initialize from localStorage if available
 const initialState = getStoredAuth();
 
@@ -23,47 +29,40 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      // Add better null handling and debugging
       console.log('Setting user in Redux:', action.payload);
 
-      // Handle different user data formats with null checks
-      if (action.payload) {
-        if (typeof action.payload === 'object') {
-          // If payload has user property, it's from login/register
-          if (action.payload.user) {
-            state.user = action.payload;
-          } else {
-            // If payload is directly the user data (from profile API)
-            state.user = {
-              user: action.payload,
-              role: action.payload.role,
-            };
-          }
-          state.isAuthenticated = true;
-
-          // Persist auth state to localStorage
-          if (typeof window !== 'undefined') {
-            try {
-              localStorage.setItem('auth', JSON.stringify(state));
-            } catch (error) {
-              console.error('Error storing auth in localStorage:', error);
-            }
-          }
-        } else {
-          console.error('Invalid user payload format:', action.payload);
-        }
-      } else {
+      if (!action.payload) {
         console.warn('Received null/undefined user payload');
         state.user = null;
         state.isAuthenticated = false;
-
-        // Clear localStorage on logout/null user
         if (typeof window !== 'undefined') {
-          try {
-            localStorage.removeItem('auth');
-          } catch (error) {
-            console.error('Error removing auth from localStorage:', error);
-          }
+          localStorage.removeItem('auth');
+        }
+        return;
+      }
+
+      // Ensure proper user data structure
+      const userData = action.payload;
+      const role = extractUserRole(userData);
+
+      if (!role) {
+        console.error('No role found in user data:', userData);
+        return;
+      }
+
+      // Set state with proper structure
+      state.user = {
+        ...userData,
+        role: role,
+      };
+      state.isAuthenticated = true;
+
+      // Persist auth state to localStorage
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem('auth', JSON.stringify(state));
+        } catch (error) {
+          console.error('Error storing auth in localStorage:', error);
         }
       }
     },
@@ -75,6 +74,8 @@ const authSlice = createSlice({
       if (typeof window !== 'undefined') {
         try {
           localStorage.removeItem('auth');
+          localStorage.removeItem('user');
+          localStorage.removeItem('token');
         } catch (error) {
           console.error('Error removing auth from localStorage:', error);
         }

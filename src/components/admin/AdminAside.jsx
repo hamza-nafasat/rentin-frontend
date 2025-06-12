@@ -163,22 +163,55 @@ const ProfileSec = ({ isMenuOpen }) => {
 
   const handleLogout = async () => {
     try {
-      // First clear the user data from Redux
+      // First call the logout API to clear server-side session
+      await logout().unwrap();
+
+      // Clear Redux store
       dispatch(deleteUser());
 
-      // Then call the logout API
-      await logout().unwrap();
+      // Clear all auth-related localStorage
+      if (typeof window !== 'undefined') {
+        // Clear specific auth items
+        localStorage.removeItem('auth');
+        // Clear any other auth-related items
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+
+        // Clear all cookies
+        document.cookie.split(';').forEach(cookie => {
+          const [name] = cookie.trim().split('=');
+          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        });
+      }
 
       // Show success message
       toast.success('Logged out successfully');
 
-      // Use window.location for a full page refresh to clear all state
-      window.location.href = '/login';
+      // Force a full page reload to clear all state
+      window.location.replace('/login');
     } catch (error) {
-      // If logout API fails, still clear local state and redirect
+      console.error('Logout error:', error);
+
+      // Even if API fails, clear all local state
       dispatch(deleteUser());
-      toast.error(error?.data?.message || 'Logout failed, but you have been logged out locally');
-      window.location.href = '/login';
+
+      // Clear all auth-related localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('auth');
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+
+        // Clear all cookies
+        document.cookie.split(';').forEach(cookie => {
+          const [name] = cookie.trim().split('=');
+          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        });
+      }
+
+      toast.error('Logged out locally due to server error');
+
+      // Force a full page reload to clear all state
+      window.location.replace('/login');
     }
   };
 

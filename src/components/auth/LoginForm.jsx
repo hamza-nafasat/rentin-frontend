@@ -44,12 +44,20 @@ const LoginForm = () => {
         password: formData.password,
       }).unwrap();
 
-      // Store user data in Redux
-      dispatch(setUser(response));
+      // Store user data in Redux with proper structure
+      const userData = {
+        user: {
+          data: response.data || response,
+          role: response.data?.role || response.role,
+        },
+        isAuthenticated: true,
+      };
+      dispatch(setUser(userData));
 
-      // Extract role from response - handle the actual API response structure
-      const userRole = response?.data?.role;
-      console.log('userRole', userRole);
+      // Extract role from response with proper fallbacks
+      const userRole = response.data?.role || response.role;
+      console.log('Login response:', response);
+      console.log('Extracted role:', userRole);
 
       if (!userRole) {
         console.error('No role found in login response:', response);
@@ -66,6 +74,7 @@ const LoginForm = () => {
       // Use window.location for a full page refresh to ensure clean state
       window.location.href = defaultRoute;
     } catch (error) {
+      console.error('Login error:', error);
       toast.error(error?.data?.message || 'Login failed');
     }
   };

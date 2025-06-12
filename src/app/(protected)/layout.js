@@ -1,24 +1,23 @@
 'use client';
 
 import { useGetProfileQuery } from '@/features/auth/authApi';
-import { setUser } from '@/features/auth/authSlice';
+import { setUser, deleteUser } from '@/features/auth/authSlice';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AuthGuard from '@/components/auth/AuthGuard';
 import { useRouter } from 'next/navigation';
-import { getRedirectPath, isProtectedRoute } from '@/utils/routingUtils';
+import { getRedirectPath, getDefaultRouteForRole } from '@/utils/routingUtils';
 import Loader from '@/components/Loader';
 
 const ProtectedLayout = ({ children }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { data, isSuccess, isLoading, isError, isUninitialized } = useGetProfileQuery();
+  const { data, isSuccess, isLoading, isError, isUninitialized, error } = useGetProfileQuery();
   const { user, isAuthenticated } = useSelector(state => state.auth);
   const isRedirectingRef = useRef(false);
 
   // Helper to determine if redirection is crossing role boundaries
   const isCrossingRoleBoundaries = (currentPath, targetPath) => {
-    // Extract the role segment from path
     const getRoleFromPath = path => {
       if (path.startsWith('/admin')) return 'admin';
       if (path.startsWith('/owner')) return 'owner';
@@ -29,42 +28,92 @@ const ProtectedLayout = ({ children }) => {
 
     const currentRole = getRoleFromPath(currentPath);
     const targetRole = getRoleFromPath(targetPath);
-
     return currentRole !== targetRole && currentRole !== null && targetRole !== null;
   };
 
+  // Helper to safely extract user role
+  const getUserRole = userData => {
+    if (!userData) return null;
+    return userData.role || userData.user?.role || userData.data?.role;
+  };
+
+  // Helper to safely extract user ID
+  const getUserId = userData => {
+    if (!userData) return null;
+    return userData._id || userData.id || userData.user?._id || userData.user?.id;
+  };
+
+  // Check if we have valid auth state
+  const hasValidAuth = () => {
+    if (typeof window === 'undefined') return false;
+    try {
+      const storedAuth = localStorage.getItem('auth');
+      if (!storedAuth) return false;
+      const authData = JSON.parse(storedAuth);
+      return !!(authData?.user && authData?.isAuthenticated);
+    } catch {
+      return false;
+    }
+  };
+
   useEffect(() => {
-    // Skip if a redirect is already in progress
+    // Skip if redirect is in progress
     if (isRedirectingRef.current) {
+      console.log('ProtectedLayout: Redirect in progress, skipping check');
       return;
     }
 
+    // Debug state
+    console.log('ProtectedLayout State:', {
+      profile: { isSuccess, isLoading, isError, hasData: !!data?.data },
+      auth: {
+        hasUser: !!user,
+        isAuthenticated,
+        userRole: getUserRole(user),
+        userId: getUserId(user),
+        hasValidAuth: hasValidAuth(),
+      },
+      path: window.location.pathname,
+    });
+
+    // Handle invalid auth state
+    if (!hasValidAuth()) {
+      console.log('ProtectedLayout: Invalid auth state');
+      dispatch(deleteUser());
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('auth');
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+      }
+      window.location.replace('/login');
+      return;
+    }
+
+    // Handle profile data update
     if (isSuccess && data?.data) {
-      console.log('Profile data received in ProtectedLayout:', data.data);
-
-      // Update Redux store if needed
       const userData = data.data;
-      const userId = userData._id || userData.id;
-      const storeUserId = user?.user?._id || user?.user?.id || user?._id || user?.id;
+      const userId = getUserId(userData);
+      const storeUserId = getUserId(user);
 
+      // Update Redux store if user ID changed
       if (!storeUserId || storeUserId !== userId) {
+        console.log('ProtectedLayout: Updating user data');
         dispatch(setUser(userData));
       }
 
-      // Get user role and determine if redirect needed
-      const userRole = userData.role;
-      const currentPath = window.location.pathname;
-
+      // Handle role-based redirects
+      const userRole = getUserRole(userData);
       if (userRole && isAuthenticated) {
+        const currentPath = window.location.pathname;
         const redirectPath = getRedirectPath(currentPath, userRole);
 
         if (redirectPath) {
+          console.log('ProtectedLayout: Redirecting to', redirectPath);
           isRedirectingRef.current = true;
 
-          // Use window.location for cross-role redirects to ensure UI updates
+          // Use window.location for cross-role navigation
           if (isCrossingRoleBoundaries(currentPath, redirectPath)) {
-            console.log('Cross-role redirect in ProtectedLayout - using hard refresh');
-            window.location.href = redirectPath;
+            window.location.replace(redirectPath);
           } else {
             router.replace(redirectPath);
           }
@@ -72,21 +121,18 @@ const ProtectedLayout = ({ children }) => {
         }
       }
     } else if (!isLoading && !isUninitialized && isAuthenticated && user) {
-      // Handle case where we already have user in Redux
-      // Extract role safely from potentially different user object structures
-      const userRole = user?.role || user?.user?.role;
-
+      // Handle existing user data
+      const userRole = getUserRole(user);
       if (userRole) {
         const currentPath = window.location.pathname;
         const redirectPath = getRedirectPath(currentPath, userRole);
 
         if (redirectPath) {
+          console.log('ProtectedLayout: Redirecting to', redirectPath);
           isRedirectingRef.current = true;
 
-          // Use window.location for cross-role redirects to ensure UI updates
           if (isCrossingRoleBoundaries(currentPath, redirectPath)) {
-            console.log('Cross-role redirect in ProtectedLayout - using hard refresh');
-            window.location.href = redirectPath;
+            window.location.replace(redirectPath);
           } else {
             router.replace(redirectPath);
           }
@@ -95,21 +141,33 @@ const ProtectedLayout = ({ children }) => {
       }
     }
 
-    // Reset redirect flag when done
+    // Reset redirect flag
     isRedirectingRef.current = false;
+
+    return () => {
+      isRedirectingRef.current = false;
+    };
   }, [data, isSuccess, isLoading, isUninitialized, dispatch, router, user, isAuthenticated]);
 
-  // Show loader during initial data fetch
+  // Handle profile fetch errors
+  useEffect(() => {
+    if (isError) {
+      console.error('ProtectedLayout: Profile fetch error:', error);
+      dispatch(deleteUser());
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('auth');
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+      }
+      window.location.replace('/login');
+    }
+  }, [isError, error, dispatch]);
+
   if (isLoading || isUninitialized) {
+    console.log('ProtectedLayout: Loading profile');
     return <Loader />;
   }
 
-  // For error cases when user is not authenticated, let AuthGuard handle it
-  if (isError && !isAuthenticated) {
-    console.error('Error fetching profile:', isError);
-  }
-
-  // Let AuthGuard handle the role-based protection
   return <AuthGuard>{children}</AuthGuard>;
 };
 

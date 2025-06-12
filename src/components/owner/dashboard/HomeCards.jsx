@@ -17,7 +17,13 @@ const Card = ({ card }) => {
   return (
     <div className="shadow-card rounded-lg bg-white p-4">
       <div className="flex items-center gap-3">
-        <Image src={card.img} width={30} height={30} alt="image" />
+        <Image
+          src="/images/dashboard/rental.png"
+          alt="Rental"
+          width={24}
+          height={24}
+          style={{ width: 'auto', height: 'auto' }}
+        />
         <h6 className="text-textPrimary text-sm font-medium">{card.title}</h6>
       </div>
       <div className="mt-6">

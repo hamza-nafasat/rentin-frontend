@@ -4,18 +4,11 @@
 
 // Define route configurations with role permissions
 export const ROUTE_CONFIG = {
-  // User routes
-  '/': { roles: ['tenant'], exactMatch: true, redirectTo: role => getDefaultRouteForRole(role) },
-  '/tenant': { roles: ['tenant'], exactMatch: false },
-
-  // Admin routes
+  // Role-specific routes
   '/admin': { roles: ['admin'], exactMatch: false },
-
-  // Inspector routes
   '/owner': { roles: ['owner'], exactMatch: false },
+  '/tenant': { roles: ['tenant'], exactMatch: false },
   '/agent': { roles: ['agent'], exactMatch: false },
-
-  // Shared routes (authenticated users)
 
   // Public routes (no auth required)
   '/login': { roles: [], exactMatch: true, public: true },
@@ -33,33 +26,27 @@ export const ROUTE_CONFIG = {
 export const getRedirectPath = (currentPath, role) => {
   if (!role) return '/login';
 
-  // If user is trying to access public route while authenticated
-  const matchedRoute = Object.entries(ROUTE_CONFIG).find(([path, config]) => {
-    if (config.public) {
-      return (config.exactMatch && currentPath === path) || (!config.exactMatch && currentPath.startsWith(path));
-    }
-    return false;
+  // Handle public routes
+  const isPublicRoute = Object.entries(ROUTE_CONFIG).some(([path, config]) => {
+    if (!config.public) return false;
+    return config.exactMatch ? currentPath === path : currentPath.startsWith(path);
   });
 
-  if (matchedRoute) {
-    // Redirect authenticated users away from public routes
+  if (isPublicRoute) {
     return getDefaultRouteForRole(role);
   }
 
   // Check if user has access to current path
   const hasAccess = hasRouteAccess(currentPath, { role }, true);
-
   if (!hasAccess) {
-    // Send to role-specific home if no access
     return getDefaultRouteForRole(role);
   }
 
-  // Special case for root path - redirect to role-specific dashboard
+  // Special case for root path
   if (currentPath === '/' && getDefaultRouteForRole(role) !== '/') {
     return getDefaultRouteForRole(role);
   }
 
-  // No redirect needed
   return null;
 };
 
@@ -72,33 +59,20 @@ export const getRedirectPath = (currentPath, role) => {
  */
 export const hasRouteAccess = (pathname, user, isAuthenticated) => {
   // Public routes are accessible without authentication
-  const matchedPublicRoute = Object.entries(ROUTE_CONFIG).find(([route, config]) => {
-    return (
-      config.public && ((config.exactMatch && pathname === route) || (!config.exactMatch && pathname.startsWith(route)))
-    );
+  const isPublicRoute = Object.entries(ROUTE_CONFIG).some(([route, config]) => {
+    if (!config.public) return false;
+    return config.exactMatch ? pathname === route : pathname.startsWith(route);
   });
 
-  if (matchedPublicRoute) {
-    return true;
-  }
+  if (isPublicRoute) return true;
+  if (!isAuthenticated || !user?.role) return false;
 
-  // If not authenticated, deny access to protected routes
-  if (!isAuthenticated || !user || !user.role) {
-    return false;
-  }
-
-  // Find matching route configuration
-  for (const [route, config] of Object.entries(ROUTE_CONFIG)) {
+  // Check role-based access
+  return Object.entries(ROUTE_CONFIG).some(([route, config]) => {
+    if (config.public) return false;
     const pathMatches = config.exactMatch ? pathname === route : pathname.startsWith(route);
-
-    if (pathMatches) {
-      // If route requires roles and user has one of them, grant access
-      return !config.roles.length || config.roles.includes(user.role);
-    }
-  }
-
-  // Default to denying access
-  return false;
+    return pathMatches && (!config.roles.length || config.roles.includes(user.role));
+  });
 };
 
 /**
@@ -107,18 +81,13 @@ export const hasRouteAccess = (pathname, user, isAuthenticated) => {
  * @returns {string} - Default route for role
  */
 export const getDefaultRouteForRole = role => {
-  switch (role) {
-    case 'admin':
-      return '/admin';
-    case 'owner':
-      return '/owner';
-    case 'tenant':
-      return '/tenant';
-    case 'agent':
-      return '/agent';
-    default:
-      return '/login';
-  }
+  const roleRoutes = {
+    admin: '/admin',
+    owner: '/owner',
+    tenant: '/tenant',
+    agent: '/agent',
+  };
+  return roleRoutes[role] || '/login';
 };
 
 /**
@@ -127,14 +96,8 @@ export const getDefaultRouteForRole = role => {
  * @returns {boolean} - Whether path requires authentication
  */
 export const isProtectedRoute = pathname => {
-  // Check if path matches any public route
-  for (const [route, config] of Object.entries(ROUTE_CONFIG)) {
-    if (config.public) {
-      const pathMatches = config.exactMatch ? pathname === route : pathname.startsWith(route);
-      if (pathMatches) return false;
-    }
-  }
-
-  // All non-public routes require authentication
-  return true;
+  return !Object.entries(ROUTE_CONFIG).some(([route, config]) => {
+    if (!config.public) return false;
+    return config.exactMatch ? pathname === route : pathname.startsWith(route);
+  });
 };
