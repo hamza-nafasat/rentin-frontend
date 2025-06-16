@@ -1,9 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+const SERVER_URL = process.env.NEXT_PUBLIC_BASE_URL;
+console.log(SERVER_URL);
+
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://rentin-backend.onrender.com/api/auth',
+    baseUrl: `${SERVER_URL}/api/auth`,
     credentials: 'include',
   }),
   tagTypes: ['Profile'],

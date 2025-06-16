@@ -221,7 +221,14 @@ const BasicInfo = memo(
             />
           </div>
           <div className="lg:col-span-6">
-            <Input label="Country" value="Thailand" disabled shadow />
+            <Input
+              label="Country"
+              // value="Thailand"
+              value={data.country || ''}
+              // disabled
+              onChange={e => updateField(index, 'country', e.target.value)}
+              shadow
+            />
           </div>
 
           <div className="lg:col-span-6">

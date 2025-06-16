@@ -9,12 +9,14 @@ import Step from './Step';
 import provincesData from '@/data/addPropoerty/provinces.json';
 import districtsData from '@/data/addPropoerty/districts.json';
 import subdistrictsData from '@/data/addPropoerty/subdistricts.json';
+import { useCreatePropertyMutation } from '@/features/property/propertyApi';
 
 const AddProperty = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const steps = useMemo(() => ['Basic Info', 'Property Info', 'Feature & Amenities', 'Photos ', 'Pricing'], []);
 
   // Define formData and updateField first
+
   const [formData, setFormData] = useState([
     {
       propertyType: '',
@@ -30,6 +32,7 @@ const AddProperty = () => {
       district: '',
       street: '',
       propertyStatus: '',
+      country: '',
     },
     {
       propertyTitle: '',
@@ -48,6 +51,15 @@ const AddProperty = () => {
     { input1: '', input2: '', dropdown1: '', month: '1' },
   ]);
   console.log('formData', formData);
+  console.log(
+    'location',
+    formData[0].road,
+    formData[0].subDistrict,
+    formData[0].district,
+    formData[0].province,
+    formData[0].postalCode,
+    formData[0].country
+  );
 
   // Memoize updateField to ensure it's stable
   const updateField = useCallback((index, field, value) => {
@@ -59,12 +71,13 @@ const AddProperty = () => {
   }, []); // No dependencies needed as it only uses setState function
 
   // Add new state for BasicInfo component
-  const [streetAddress, setStreetAddress] = useState('thailand');
+  const [streetAddress, setStreetAddress] = useState('lahore');
   const [selectedProvince, setSelectedProvince] = useState(null);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
   const [selectedSubdistrict, setSelectedSubdistrict] = useState(null);
   const [filteredDistricts, setFilteredDistricts] = useState([]);
   const [filteredSubdistricts, setFilteredSubdistricts] = useState([]);
+  const [createProperty, { isLoading, isSuccess, error }] = useCreatePropertyMutation();
   const [searchTerm, setSearchTerm] = useState({
     province: '',
     district: '',
@@ -152,6 +165,61 @@ const AddProperty = () => {
       setFilteredDistricts([]);
     }
   }, [selectedProvince]);
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const formData = new FormData();
+
+    // Append text fields
+    formData.append('name', name);
+    formData.append('type', type);
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('propertyStatus', propertyStatus);
+    formData.append('building', building);
+    formData.append('buildingHeight', buildingHeight);
+    formData.append('latitude', latitude);
+    formData.append('longitude', longitude);
+    formData.append('bedrooms', bedrooms);
+    formData.append('bathrooms', bathrooms);
+    formData.append('unitArea', unitArea);
+    formData.append('unitAreaUnit', unitAreaUnit);
+    formData.append('unitNumber', unitNumber);
+    formData.append('floor', floor);
+    formData.append('condition', condition);
+    formData.append('propertyClassification', propertyClassification);
+    formData.append('propertyLocated', propertyLocated);
+    formData.append('contractRate', contractRate);
+    formData.append('securityDeposit', securityDeposit);
+    formData.append('deals', deals);
+
+    // Append arrays (stringify them)
+    formData.append('amenities', JSON.stringify(amenities));
+    formData.append('propertyFeatures', JSON.stringify(propertyFeatures));
+    formData.append('rentalFeatures', JSON.stringify(rentalFeatures));
+    formData.append('viewFromTheProperty', JSON.stringify(viewFromTheProperty));
+    formData.append('availability', JSON.stringify(availability)); // make sure it's an array of objects
+
+    // Append files
+    if (ownershipDocument) {
+      formData.append('ownershipDocument', ownershipDocument);
+    }
+
+    if (bluePrint) {
+      formData.append('bluePrint', bluePrint);
+    }
+
+    images.forEach(image => {
+      formData.append('images', image);
+    });
+
+    try {
+      await createProperty(formData).unwrap();
+      toast.success('Property created successfully!');
+    } catch (err) {
+      console.error(err);
+      toast.error(err?.data?.message || 'Failed to create property');
+    }
+  };
 
   // Update subdistricts when district changes
   useEffect(() => {
@@ -280,8 +348,31 @@ const AddProperty = () => {
   );
 
   return (
-    <div className="shadow-custom rounded-[10px] bg-white px-5 py-[30px] md:px-10">
+    //     <div className="shadow-custom rounded-[10px] bg-white px-5 py-[30px] md:px-10">
+    //       <h2 className="text-textPrimary text-center text-xl font-semibold md:text-[22px]">Add Property</h2>
+    //       <div className="mx-auto mt-4 flex max-w-[900px] flex-wrap items-center justify-between gap-4 md:mt-5 md:gap-8">
+    //         {steps.map((step, index) => (
+    //           <Step
+    //             key={step}
+    //             step={step}
+    //             index={index}
+    //             currentStep={currentStep}
+    //             setCurrentStep={setCurrentStep}
+    //             stepsLength={steps.length}
+    //           />
+    //         ))}
+    //       </div>
+    //       <div className="mt-4 md:mt-6 2xl:mt-8">{stepComponents[currentStep]}</div>
+    //     </div>
+    //   );
+    // };
+    <form
+      onSubmit={handleSubmit}
+      encType="multipart/form-data"
+      className="shadow-custom rounded-[10px] bg-white px-5 py-[30px] md:px-10"
+    >
       <h2 className="text-textPrimary text-center text-xl font-semibold md:text-[22px]">Add Property</h2>
+
       <div className="mx-auto mt-4 flex max-w-[900px] flex-wrap items-center justify-between gap-4 md:mt-5 md:gap-8">
         {steps.map((step, index) => (
           <Step
@@ -294,9 +385,18 @@ const AddProperty = () => {
           />
         ))}
       </div>
+
       <div className="mt-4 md:mt-6 2xl:mt-8">{stepComponents[currentStep]}</div>
-    </div>
+
+      {/* Show submit only on the last step */}
+      {currentStep === steps.length - 1 && (
+        <div className="mt-6 flex justify-center">
+          <button type="submit" className="bg-primary hover:bg-primaryDark rounded-lg px-6 py-2 text-white transition">
+            Submit Property
+          </button>
+        </div>
+      )}
+    </form>
   );
 };
-
 export default AddProperty;
