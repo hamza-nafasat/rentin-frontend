@@ -1,21 +1,20 @@
 'use client';
 
+import { useResetPasswordMutation } from '@/features/auth/authApi';
 import Link from 'next/link';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import toast from 'react-hot-toast';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import Button from '../shared/small/Button';
 import Input from '../shared/small/Input';
-import toast from 'react-hot-toast';
-import { useResetPasswordMutation } from '@/features/auth/authApi';
 
 const ResetPasswordForm = ({ resetToken }) => {
-  const router = useRouter();
   const [resetPassword, { isLoading }] = useResetPasswordMutation();
   const [formData, setFormData] = useState({
     password: '',
     confirmPassword: '',
   });
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -38,7 +37,6 @@ const ResetPasswordForm = ({ resetToken }) => {
       }).unwrap();
 
       toast.success(res.message || 'Password reset successfully!');
-      router.push('/login');
     } catch (err) {
       console.error('Reset error:', err);
       toast.error(err?.data?.message || 'Reset failed');
