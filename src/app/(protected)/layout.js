@@ -16,7 +16,7 @@ const ProtectedLayout = ({ children }) => {
   const { user, isAuthenticated } = useSelector(state => state.auth);
   const isRedirectingRef = useRef(false);
 
-  // Helper to determine if redirection is crossing role boundaries
+  // Helper to determine if redirection  crossing role boundaries
   const isCrossingRoleBoundaries = (currentPath, targetPath) => {
     const getRoleFromPath = path => {
       if (path.startsWith('/admin')) return 'admin';
@@ -170,5 +170,4 @@ const ProtectedLayout = ({ children }) => {
 
   return <AuthGuard>{children}</AuthGuard>;
 };
-
 export default ProtectedLayout;
