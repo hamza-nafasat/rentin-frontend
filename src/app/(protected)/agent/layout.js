@@ -1,6 +1,8 @@
+'use client';
 import Loader from '@/components/Loader';
 import AgentDashboardLayout from '@/components/shared/AgentDashboardLayout';
 import CustomLoading from '@/components/shared/small/CustomLoading';
+import { useSelector } from 'react-redux';
 
 const AgentLayout = ({ children }) => {
   const { user, isAuthenticated } = useSelector(state => state.auth);

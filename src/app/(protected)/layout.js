@@ -1,6 +1,5 @@
 'use client';
 
-import { useGetProfileQuery } from '@/features/auth/authApi';
 import { setUser, deleteUser } from '@/features/auth/authSlice';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +7,7 @@ import AuthGuard from '@/components/auth/AuthGuard';
 import { useRouter } from 'next/navigation';
 import { getRedirectPath, getDefaultRouteForRole } from '@/utils/routingUtils';
 import Loader from '@/components/Loader';
+import { useGetProfileQuery } from '@/features/auth/authApi';
 
 const ProtectedLayout = ({ children }) => {
   const dispatch = useDispatch();
