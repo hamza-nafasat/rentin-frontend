@@ -7,9 +7,13 @@ import toast from 'react-hot-toast';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import Button from '../shared/small/Button';
 import Input from '../shared/small/Input';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const ResetPasswordForm = ({}) => {
   const [resetPassword, { isLoading }] = useResetPasswordMutation();
+  const searchParams = useSearchParams();
+  const token = searchParams.get('token');
+  const router = useRouter();
   const [formData, setFormData] = useState({
     password: '',
     confirmPassword: '',
@@ -29,14 +33,19 @@ const ResetPasswordForm = ({}) => {
       toast.error('Both passwords should be same');
       return;
     }
+    if (!token) {
+      toast.error('Reset token missing from URL');
+      return;
+    }
 
     try {
       const res = await resetPassword({
-        resetToken: formData.resetToken,
+        resetToken: token,
         newPassword: formData.password,
       }).unwrap();
 
       toast.success(res.message || 'Password reset successfully!');
+      router.push('/login');
     } catch (err) {
       console.error('Reset error:', err);
       toast.error(err?.data?.message || 'Reset failed');
