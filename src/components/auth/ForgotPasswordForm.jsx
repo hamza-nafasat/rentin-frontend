@@ -14,8 +14,6 @@ const ForgotPasswordForm = () => {
   //   e.preventDefault();
   // };
   const handleForm = async e => {
-    console.log('sdfghjk');
-
     e.preventDefault();
 
     if (!email) {

@@ -8,7 +8,7 @@ import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import Button from '../shared/small/Button';
 import Input from '../shared/small/Input';
 
-const ResetPasswordForm = ({ resetToken }) => {
+const ResetPasswordForm = ({}) => {
   const [resetPassword, { isLoading }] = useResetPasswordMutation();
   const [formData, setFormData] = useState({
     password: '',
@@ -32,7 +32,7 @@ const ResetPasswordForm = ({ resetToken }) => {
 
     try {
       const res = await resetPassword({
-        resetToken,
+        resetToken: formData.resetToken,
         newPassword: formData.password,
       }).unwrap();
 
