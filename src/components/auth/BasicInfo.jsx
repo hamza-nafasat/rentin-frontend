@@ -5,32 +5,43 @@ import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import Button from '../shared/small/Button';
 
-const propertyOptions = [
-  { option: 'House', value: 'house' },
-  { option: 'Villa', value: 'villa' },
-  { option: 'Condo', value: 'condo' },
-  { option: 'Appartment', value: 'appartment' },
-  { option: 'Townhouse', value: 'townhouse' },
-  { option: 'Retail Space', value: 'retail space' },
-  { option: 'Office', value: 'office' },
+// const propertyOptions = [
+//   { option: 'House', value: 'house' },
+//   { option: 'Villa', value: 'villa' },
+//   { option: 'Condo', value: 'condo' },
+//   { option: 'Appartment', value: 'appartment' },
+//   { option: 'Townhouse', value: 'townhouse' },
+//   { option: 'Retail Space', value: 'retail space' },
+//   { option: 'Office', value: 'office' },
+// ];
+
+// const regionOptions = [
+//   { option: 'North Region', value: 'north-region' },
+//   { option: 'South Region', value: 'south-region' },
+//   { option: 'East Region', value: 'east-region' },
+//   { option: 'West Region', value: 'west-region' },
+// ];
+// const showDaysOptions = [{ option: 'Withing 7 days', value: '7-days' }];
+// const showHoursOptions = [{ option: 'Withing 12 hours', value: '12-hours' }];
+// const locationOptions = [{ option: 'Thailand', value: 'thailand' }];
+const experienceLevel = [
+  { option: '1 year', value: '1' },
+  { option: '3 year', value: '3' },
+  { option: '4 year', value: '4' },
+  { option: '5 year', value: '5' },
+  { option: '2 year', value: '2' },
 ];
 
-const regionOptions = [
-  { option: 'North Region', value: 'north-region' },
-  { option: 'South Region', value: 'south-region' },
-  { option: 'East Region', value: 'east-region' },
-  { option: 'West Region', value: 'west-region' },
+const serviceType = [
+  { option: 'Agent', value: 'agent' },
+  { option: 'Inspection', value: 'inspection' },
 ];
-const showDaysOptions = [{ option: 'Withing 7 days', value: '7-days' }];
-const showHoursOptions = [{ option: 'Withing 12 hours', value: '12-hours' }];
-const locationOptions = [{ option: 'Thailand', value: 'thailand' }];
-const subDistrictOptions = [{ option: 'Thailand', value: 'thailand' }];
 
 const BasicInfo = memo(({ setCurrentStep }) => {
-  const [streetAddress, setStreetAddress] = useState('thailand');
+  // const [streetAddress, setStreetAddress] = useState('thailand');
   const [image, setImage] = useState(null);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [inputValue, setInputValue] = useState('');
+  // const [selectedOption, setSelectedOption] = useState(null);
+  // const [inputValue, setInputValue] = useState('');
   const [codeSent, setCodeSent] = useState(false);
   const fileInputRef = useRef(null);
 
@@ -101,23 +112,23 @@ const BasicInfo = memo(({ setCurrentStep }) => {
           <Input shadow label="Last Name" />
         </div>
         <div className="lg:col-span-6">
-          <div className="grid grid-cols-12 gap-2">
+          <div className="grid grid-cols-12 items-end gap-2">
             {!codeSent ? (
               <>
                 <div className="col-span-9">
                   <Input shadow label="Email Address" />
                 </div>
-                <div className="col-span-3 flex items-end">
-                  <Button text={'send Code'} onClick={handleSendCode} />
+                <div className="col-span-3 flex justify-end">
+                  <Button cn="!h-[55px] !w-full" text={'send Code'} onClick={handleSendCode} />
                 </div>
               </>
             ) : (
               <>
-                <div className="col-span-9">
+                <div className="col-span-10">
                   <Input shadow label="OTP" />
                 </div>
-                <div className="col-span-3 flex items-end">
-                  <Button text={'verify'} onClick={handleVerifyCode} />
+                <div className="col-span-2 flex justify-end">
+                  <Button cn="!h-[55px] !w-full" text={'verify'} onClick={handleVerifyCode} />
                 </div>
               </>
             )}
@@ -128,22 +139,27 @@ const BasicInfo = memo(({ setCurrentStep }) => {
         </div>
 
         <div className="lg:col-span-6">
-          <Dropdown label="Experience Level" options={subDistrictOptions} shadow />
+          <Dropdown label="Experience Level" options={experienceLevel} shadow />
         </div>
         <div className="lg:col-span-6">
-          <Dropdown label="Service Type" options={subDistrictOptions} shadow />
+          <Dropdown label="Service Type" options={serviceType} shadow />
         </div>
 
         <div className="lg:col-span-12">
           <div
-            className="flex w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-4 hover:border-blue-500"
+            className="flex w-full flex-col items-center justify-center gap-1 rounded-lg border-2 border-dashed border-gray-300 p-4 hover:border-blue-500"
             onDragOver={e => e.preventDefault()}
             onDrop={handleDrop}
-            onClick={handleClick}
+            // onClick={handleClick}
           >
             <AiOutlineCloudUpload className="text-primary h-10 w-10" />
-            <p className="mt-2 text-xs text-[#0245a5]">Click here to upload your ownership documents</p>
-            <p className="mt-2 text-sm text-[#0245a5]">(Condo Title Deed, House Book, Land Title, Etc.)</p>
+            <p className="mt-2 text-xs text-[#0245a5]">Upload License/Certification</p>
+            <div className="flex gap-2">
+              <input type="checkbox" id="license" />
+              <label className="text-textSecondary text-[10px]" htmlFor="license">
+                I don't have a license yet
+              </label>
+            </div>
 
             <input type="file" accept="image/*" className="hidden" ref={fileInputRef} onChange={handleImageUpload} />
 

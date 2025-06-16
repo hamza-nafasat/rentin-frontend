@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import Dropdown from '../shared/small/Dropdown';
+import Input from '../shared/small/Input';
 
 function CommissionDetail({ setCurrentStep }) {
   const handlePrevious = useCallback(() => setCurrentStep(prevStep => prevStep - 1), [setCurrentStep]);
@@ -21,10 +22,15 @@ function CommissionDetail({ setCurrentStep }) {
       <h4 className="text-textPrimary text-center text-base font-medium md:text-lg">Service Area Selection</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-6">
-          <Dropdown placeholder="select" label="Country" options={BEDROOM_OPTIONS} shadow />
+          <Input shadow label={'Property Showing Base Price'} placeholder={'Enter fees'} />
         </div>
         <div className="lg:col-span-6">
-          <Dropdown placeholder="select" label="Country" options={BEDROOM_OPTIONS} shadow />
+          <Dropdown
+            placeholder={'Enter fees'}
+            label="Property Inspection Base Price"
+            options={BEDROOM_OPTIONS}
+            shadow
+          />
         </div>
         <div className="flex justify-end gap-[14px] lg:col-span-12">
           <button
