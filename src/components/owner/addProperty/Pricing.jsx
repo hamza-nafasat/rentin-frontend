@@ -9,8 +9,7 @@ import { BsPlus } from 'react-icons/bs';
 import { FaSearch } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
 
-const Pricing = ({ data, index, updateField, setCurrentStep, formData }) => {
-  const [count, setCount] = useState(2);
+const Pricing = ({ data, index, updateField, setCurrentStep, formData, onSubmit, isLoading }) => {
   const handlePrevious = () => setCurrentStep(prevStep => prevStep - 1);
 
   const handleSelect = option => {
@@ -19,7 +18,6 @@ const Pricing = ({ data, index, updateField, setCurrentStep, formData }) => {
 
   // State to manage the visibility of the customize input fields
   const [customFields, setCustomFields] = useState([]);
-  console.log('customFields', customFields);
 
   // Function to add a new custom field input
   const handleAddCustomField = () => {
@@ -33,60 +31,61 @@ const Pricing = ({ data, index, updateField, setCurrentStep, formData }) => {
       },
     ]);
   };
+
   useEffect(() => {
-    updateField(index, 'deals', customFields); // force index 4 to match the structure
-  }, [customFields]);
+    updateField(index, 'deals', customFields);
+  }, [customFields, index, updateField]);
+
   // Function to remove a specific custom field input
   const handleRemoveCustomField = id => {
     setCustomFields(prevFields => prevFields.filter(field => field.id !== id));
   };
 
-  const [isChecked, setIsChecked] = useState(false);
   const updateCustomField = (id, key, value) => {
     setCustomFields(prev => prev.map(field => (field.id === id ? { ...field, [key]: value } : field)));
   };
-  // Function to handle checkbox change
-  const handleCheckboxChange = event => {
-    setIsChecked(event.target.checked);
+
+  const month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+  // Handle add property button click
+  const handleAddProperty = () => {
+    if (onSubmit) {
+      onSubmit();
+    }
   };
-  const month = [1, 2, 3, 4, 5];
 
   return (
     <div>
       <h4 className="text-textColor text-center text-lg font-medium md:text-lg">Pricing</h4>
-      <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
+      <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="col-span-12">
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 sm:col-span-6">
               <InputWithRightContent
                 shadowWithRightContent
                 label="1 Month Contract"
+                value={data.oneMonth || ''}
                 onChange={e => updateField(index, 'oneMonth', e.target.value)}
-                // value={searchValue}
-                // onChange={e => setSearchValue(e.target.value)}
                 rightContent={'THB/Per month'}
               />
             </div>
             <div className="col-span-12 sm:col-span-6">
               <Input
                 shadow
+                value={data.oneMonthDeposit || ''}
                 onChange={e => updateField(index, 'oneMonthDeposit', e.target.value)}
                 label={'Security Deposit of Contract'}
               />
             </div>
           </div>
         </div>
+
         <div className="col-span-12">
           <div className="flex h-full">
-            <IconButton
-              text="Add contract"
-              leftIcon={<BsPlus />}
-              // rightIcon={<FaArrowRight />}
-              cn="!text-base"
-              onClick={handleAddCustomField} // Add new custom field
-            />
+            <IconButton text="Add contract" leftIcon={<BsPlus />} cn="!text-base" onClick={handleAddCustomField} />
           </div>
         </div>
+
         {customFields.map(field => (
           <div key={field.id} className="col-span-12">
             <div className="flex flex-col gap-4">
@@ -131,16 +130,24 @@ const Pricing = ({ data, index, updateField, setCurrentStep, formData }) => {
 
         <div className="col-span-12 flex justify-end gap-[14px]">
           <button
+            type="button"
             className="cursor-pointer rounded-sm bg-[#7C848DB2] px-5 py-[10px] text-sm font-medium text-white md:text-base"
             onClick={handlePrevious}
           >
             Previous
           </button>
-          <button className="bg-primary cursor-pointer rounded-sm px-5 py-[10px] text-sm font-medium text-white md:text-base">
-            Add Property
+          <button
+            type="button"
+            className={`bg-primary cursor-pointer rounded-sm px-5 py-[10px] text-sm font-medium text-white md:text-base ${
+              isLoading ? 'cursor-not-allowed opacity-50' : ''
+            }`}
+            onClick={handleAddProperty}
+            disabled={isLoading}
+          >
+            {isLoading ? 'Adding Property...' : 'Add Property'}
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
