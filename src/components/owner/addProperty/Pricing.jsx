@@ -4,7 +4,7 @@ import Input from '@/components/shared/small/Input';
 import ValueAdjuster from '@/components/shared/small/ValueAdjuster';
 import InputDropdown from '@/components/shared/small/InputDropdown';
 import InputWithRightContent from '@/components/shared/small/InputWithRightContent';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BsPlus } from 'react-icons/bs';
 import { FaSearch } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
@@ -19,22 +19,32 @@ const Pricing = ({ data, index, updateField, setCurrentStep, formData }) => {
 
   // State to manage the visibility of the customize input fields
   const [customFields, setCustomFields] = useState([]);
+  console.log('customFields', customFields);
 
   // Function to add a new custom field input
   const handleAddCustomField = () => {
     setCustomFields(prevFields => [
       ...prevFields,
-      { id: Date.now() }, // Use a unique id for each input field (can also be an incrementing counter)
+      {
+        id: Date.now(),
+        month: '',
+        rentPrice: '',
+        securityDeposit: '',
+      },
     ]);
   };
-
+  useEffect(() => {
+    updateField(index, 'deals', customFields); // force index 4 to match the structure
+  }, [customFields]);
   // Function to remove a specific custom field input
   const handleRemoveCustomField = id => {
     setCustomFields(prevFields => prevFields.filter(field => field.id !== id));
   };
 
   const [isChecked, setIsChecked] = useState(false);
-
+  const updateCustomField = (id, key, value) => {
+    setCustomFields(prev => prev.map(field => (field.id === id ? { ...field, [key]: value } : field)));
+  };
   // Function to handle checkbox change
   const handleCheckboxChange = event => {
     setIsChecked(event.target.checked);
@@ -51,13 +61,18 @@ const Pricing = ({ data, index, updateField, setCurrentStep, formData }) => {
               <InputWithRightContent
                 shadowWithRightContent
                 label="1 Month Contract"
+                onChange={e => updateField(index, 'oneMonth', e.target.value)}
                 // value={searchValue}
                 // onChange={e => setSearchValue(e.target.value)}
                 rightContent={'THB/Per month'}
               />
             </div>
             <div className="col-span-12 sm:col-span-6">
-              <Input shadow label={'Security Deposit of Contract'} />
+              <Input
+                shadow
+                onChange={e => updateField(index, 'oneMonthDeposit', e.target.value)}
+                label={'Security Deposit of Contract'}
+              />
             </div>
           </div>
         </div>
@@ -77,42 +92,35 @@ const Pricing = ({ data, index, updateField, setCurrentStep, formData }) => {
             <div className="flex flex-col gap-4">
               <div className="grid grid-cols-12 gap-4">
                 <div className="col-span-12 mt-6 sm:col-span-6 md:col-span-4">
-                  {/* <ValueAdjuster
-                    label="Months"
-                    value={count}
-                    onChange={value => setCount(Math.max(2, Math.min(24, value)))}
-                  />
-                  <ValueAdjuster
-                    label="Floor"
-                    value={data.month}
-                    onChange={val => updateField(index, 'month', val)}
-                    steps={steps1}
-                  /> */}
                   <ValueAdjuster
                     label="Month"
-                    value={data.month}
-                    onChange={val => updateField(index, 'month', val)}
+                    value={field.month}
+                    onChange={val => updateCustomField(field.id, 'month', val)}
                     steps={month}
                   />
                 </div>
                 <div className="col-span-12 sm:col-span-6 md:col-span-4">
                   <InputWithRightContent
                     label="Rent Price"
-                    // value={searchValue}
-                    // onChange={e => setSearchValue(e.target.value)}
-                    rightContent={'THB/Per month'}
+                    rightContent="THB/Per month"
+                    value={field.rentPrice}
+                    onChange={e => updateCustomField(field.id, 'rentPrice', e.target.value)}
                   />
                 </div>
                 <div className="col-span-12 flex items-center justify-between gap-3 md:col-span-4">
                   <div className="w-[100%]">
-                    <Input shadow label={'Security Deposit of Contract'} />
+                    <Input
+                      shadow
+                      label="Security Deposit of Contract"
+                      value={field.securityDeposit}
+                      onChange={e => updateCustomField(field.id, 'securityDeposit', e.target.value)}
+                    />
                   </div>
                   <div className="relative top-3.5">
                     <IconButton
                       leftIcon={<IoClose className="text-xl text-white" />}
                       cn="!px-2 bg-primary !rounded-full !size-[40px] !text-white shadow-card"
-                      width="w-full"
-                      onClick={() => handleRemoveCustomField(field.id)} // Remove specific custom field
+                      onClick={() => handleRemoveCustomField(field.id)}
                     />
                   </div>
                 </div>

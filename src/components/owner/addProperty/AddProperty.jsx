@@ -48,7 +48,7 @@ const AddProperty = () => {
     },
     { propertyFeature: [], amenities: [], rentalFeature: [], propertyView: [] },
     { propertyImage: [], VerifyPropertyImage: [], floorPlanImage: [] },
-    { input1: '', input2: '', dropdown1: '', month: '1' },
+    { oneMonth: '', oneMonthDeposit: '', deals: [] },
   ]);
   console.log('formData', formData);
   console.log(
@@ -114,14 +114,14 @@ const AddProperty = () => {
   const handleProvinceSelect = useCallback(option => {
     setSelectedProvince(option.value);
     setSearchTerm(prev => ({ ...prev, province: option.label }));
-    updateField(0, 'province', option.value);
+    updateField(0, 'province', option.label);
     setShowSuggestions(prev => ({ ...prev, province: false }));
   }, []);
 
   const handleDistrictSelect = useCallback(option => {
     setSelectedDistrict(option.value);
     setSearchTerm(prev => ({ ...prev, district: option.label }));
-    updateField(0, 'district', option.value);
+    updateField(0, 'district', option.label);
     updateField(0, 'postalCode', option.postalCode);
     setShowSuggestions(prev => ({ ...prev, district: false }));
   }, []);
@@ -136,7 +136,7 @@ const AddProperty = () => {
       } else {
         setSelectedSubdistrict(option.value);
         setSearchTerm(prev => ({ ...prev, subdistrict: option.label }));
-        updateField(0, 'subdistrict', option.value);
+        updateField(0, 'subdistrict', option.label);
       }
       setShowSuggestions(prev => ({ ...prev, subdistrict: false }));
     },
@@ -153,7 +153,7 @@ const AddProperty = () => {
       const districts = districtsData
         .filter(district => district.provinceCode.toString() === selectedProvince)
         .map(district => ({
-          label: `${district.districtNameEn} (${district.districtNameTh})`,
+          label: `${district.districtNameEn} `,
           value: district.districtCode.toString(),
           postalCode: district.postalCode,
         }));
@@ -227,7 +227,7 @@ const AddProperty = () => {
       const subdistricts = subdistrictsData
         .filter(subdistrict => subdistrict.districtCode.toString() === selectedDistrict)
         .map(subdistrict => ({
-          label: `${subdistrict.subdistrictNameEn} (${subdistrict.subdistrictNameTh})`,
+          label: `${subdistrict.subdistrictNameEn}`,
           value: subdistrict.subdistrictCode.toString(),
         }));
       setFilteredSubdistricts(subdistricts);
@@ -242,7 +242,7 @@ const AddProperty = () => {
   const provinceOptions = useMemo(
     () =>
       provincesData.map(province => ({
-        label: `${province.provinceNameEn} (${province.provinceNameTh})`,
+        label: `${province.provinceNameEn}`,
         value: province.provinceCode.toString(),
       })),
     []
