@@ -18,8 +18,7 @@ const locationSlice = createSlice({
 });
 
 export const { setCoordinates, clearCoordinates } = locationSlice.actions;
-
-// Selector
 export const selectCoordinates = state => state.location.coordinates;
 
+// ✅ Export only the reducer!
 export default locationSlice.reducer;

@@ -51,11 +51,11 @@ const AddProperty = () => {
     { propertyImage: [], VerifyPropertyImage: [], floorPlanImage: [] },
     { oneMonth: '', oneMonthDeposit: '', deals: [] },
   ]);
-  console.log('hgfd', formData);
   console.log('jmssksksk', coordinates);
+  console.log('formData', formData);
 
   // Add new state for BasicInfo component
-  const [streetAddress, setStreetAddress] = useState('lahore');
+  const [streetAddress, setStreetAddress] = useState('');
   const [selectedProvince, setSelectedProvince] = useState(null);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
   const [selectedSubdistrict, setSelectedSubdistrict] = useState(null);
@@ -73,7 +73,27 @@ const AddProperty = () => {
     district: false,
     subdistrict: false,
   });
+  console.log('streetAddress', streetAddress);
+  useEffect(() => {
+    const { road, province, district, subdistrict, postalCode, country } = formData[0];
 
+    if (road && province && district && subdistrict && postalCode && country) {
+      const formattedAddress = `${road}, ${province} Province, ${district} District, ${subdistrict} Subdistrict, ${postalCode}, ${country}`;
+      console.log('newewe', formattedAddress);
+
+      setStreetAddress(formattedAddress);
+    } else {
+      console.log('nelsewewe');
+      setStreetAddress('');
+    }
+  }, [
+    formData[0].road,
+    formData[0].province,
+    formData[0].district,
+    formData[0].subDistrict,
+    formData[0].postalCode,
+    formData[0].country,
+  ]);
   // Memoize updateField to ensure it's stable
   const updateField = useCallback((index, field, value) => {
     setFormData(prev => {

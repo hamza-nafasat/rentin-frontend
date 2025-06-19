@@ -1,23 +1,19 @@
 'use client';
-const { configureStore } = require('@reduxjs/toolkit');
-// const { authApi } = require('./features/auth/authApi');
+
+import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+
 import { authApi } from './auth/authApi';
 import authSlice from './auth/authSlice';
 import { propertyApi } from './property/propertyApi';
-import locationSlice from './location/locationSlice';
-// import { sensorApi } from './features/sensor/sensorApi';
-// import authSlice from './features/auth/authSlice';
-// import buildingSlice from './features/building/buildingSlice';
+import locationReducer from './location/locationSlice'; // ✅ notice the name
+
 const store = configureStore({
   reducer: {
     [authSlice.name]: authSlice.reducer,
-
-    // [buildingSlice.name]: buildingSlice.reducer,
     [authApi.reducerPath]: authApi.reducer,
-    // [sensorApi.reducerPath]: sensorApi.reducer,
     [propertyApi.reducerPath]: propertyApi.reducer,
-    location: locationSlice,
+    location: locationReducer, // ✅ reducer only!
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(authApi.middleware, propertyApi.middleware),
 });
@@ -26,4 +22,4 @@ const StoreProvider = ({ children }) => {
   return <Provider store={store}>{children}</Provider>;
 };
 
-export { StoreProvider };
+export { store, StoreProvider };

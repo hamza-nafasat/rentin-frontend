@@ -3,6 +3,8 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { FaMapMarkerAlt } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCoordinates, setCoordinates } from '@/features/location/locationSlice';
 
 const iconMarkup = renderToStaticMarkup(<FaMapMarkerAlt style={{ color: 'red', fontSize: '2rem' }} />);
 const customDivIcon = L.divIcon({
@@ -539,8 +541,9 @@ const MapWithLocation = ({ location }) => {
   const [error, setError] = useState('');
   const [addressDetails, setAddressDetails] = useState(null);
   const defaultCenter = [51.505, -0.09];
-  console.log('position', position);
-
+  const dispatch = useDispatch();
+  const coordinates = useSelector(selectCoordinates);
+  console.log('coordinates', coordinates);
   useEffect(() => {
     if (location) {
       getCoordinates(location).then(result => {
@@ -549,6 +552,8 @@ const MapWithLocation = ({ location }) => {
           setError('');
           // Store address details for display
           setAddressDetails(result.addressDetails);
+
+          dispatch(setCoordinates(result.coordinates));
         } else {
           setError('Location not found. Please try a more specific address.');
           setPosition(null);
