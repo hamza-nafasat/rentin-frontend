@@ -50,51 +50,23 @@ const InfoSection = ({ title, columns, data }) => (
   </section>
 );
 
-// Renders a single icon + label with divider
-const IconItem = ({ Icon, label }) => (
+// Renders a single label with divider
+const LabelItem = ({ label }) => (
   <div className="flex flex-col gap-2.5">
     <div className="flex gap-2">
-      <Icon />
       <p className="text-xs text-[#5F5F5F]">{label}</p>
     </div>
     <div className="border-t-1 border-[#5F5F5F]" />
   </div>
 );
 
-// Renders a grid of IconItems in columns
-const IconSection = ({ title, columns, data }) => (
+// Renders a grid of LabelItems in 4 columns per row
+const FeatureSection = ({ title, data }) => (
   <section>
     <h2 className="text-sm font-semibold">{title}</h2>
-    <div className={`grid grid-cols-1 gap-5 lg:grid-cols-${columns} mt-[17.5px]`}>
-      {data.map((colItems, colIdx) => (
-        <div key={colIdx} className="flex flex-col gap-2.5">
-          {colItems.map((item, idx) => {
-            const IconComponent = {
-              Balcony,
-              Barbeque,
-              Bath,
-              Canal,
-              Cctv,
-              City,
-              Furnished,
-              Garden,
-              GreenView,
-              Guard,
-              Gym,
-              Internet,
-              Maids,
-              Parking,
-              Pool,
-              Private,
-              Renovated,
-              Security,
-              Study,
-              Theatre,
-              Wardrobe,
-            }[item.icon];
-            return <IconItem key={idx} Icon={IconComponent} label={item.label} />;
-          })}
-        </div>
+    <div className="mt-[17.5px] grid grid-cols-1 gap-5 lg:grid-cols-4">
+      {data.map((item, idx) => (
+        <LabelItem key={idx} label={item} />
       ))}
     </div>
   </section>
@@ -107,15 +79,17 @@ export default function Description({
   furnishing,
   security,
   views,
+  data,
 }) {
+  // console.log('datadatadatadata', data.data);
+
   return (
     <div>
       <h1 className="mb-3.5 text-[18px] font-semibold">Description</h1>
       <p className="text-sm text-[#5F5F5FCC]">
-        Experience unparalleled luxury and sophistication at The Crest Sukhumvit 34, located in one
-        of Bangkok's most sought-after neighborhoods. This exceptional residence effortlessly blends
-        contemporary design with timeless elegance, offering a lifestyle of comfort and refinement
-        in the heart of the city.
+        Experience unparalleled luxury and sophistication at The Crest Sukhumvit 34, located in one of Bangkok's most
+        sought-after neighborhoods. This exceptional residence effortlessly blends contemporary design with timeless
+        elegance, offering a lifestyle of comfort and refinement in the heart of the city.
       </p>
 
       <section className="mt-5">
@@ -123,10 +97,10 @@ export default function Description({
         <div className="mt-3.5 flex flex-col gap-2 px-5">
           <InfoSection title="Rental Agreement Details" columns={2} data={rentalAgreementDetails} />
           <InfoSection title="Payment History & Dues" columns={2} data={paymentHistory} />
-          <IconSection title="Amenities" columns={4} data={amenities} />
-          <IconSection title="Furnishing" columns={4} data={furnishing} />
-          <IconSection title="Security and Safety" columns={3} data={security} />
-          <IconSection title="Views and Direction" columns={4} data={views} />
+          <FeatureSection title="Amenities" data={amenities} />
+          <FeatureSection title="Furnishing" data={furnishing} />
+          <FeatureSection title="Security and Safety" data={security} />
+          <FeatureSection title="Views and Direction" data={views} />
         </div>
       </section>
     </div>

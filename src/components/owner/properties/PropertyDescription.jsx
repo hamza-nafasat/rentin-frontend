@@ -65,53 +65,32 @@ const paymentHistory = [
 ];
 
 const amenities = [
-  [
-    { icon: 'Balcony', label: 'Balcony' },
-    { icon: 'Balcony', label: 'Big Balcony' },
-    { icon: 'Parking', label: 'Parking' },
-  ],
-  [
-    { icon: 'Garden', label: 'Garden' },
-    { icon: 'Gym', label: 'Gym' },
-    { icon: 'Maids', label: 'Maids Room' },
-  ],
-  [
-    { icon: 'Pool', label: 'Swimming Pool' },
-    { icon: 'Internet', label: 'Hi Speed Internet' },
-    { icon: 'Private', label: 'Private Garden' },
-  ],
-  [
-    { icon: 'Study', label: 'Study Room' },
-    { icon: 'Bath', label: 'Bathtub' },
-    { icon: 'Barbeque', label: 'Barbecue Area' },
-  ],
+  'Balcony',
+  'Big Balcony',
+  'Parking',
+  'Garden',
+  'Gym',
+  'Maids Room',
+  'Swimming Pool',
+  'Hi Speed Internet',
+  'Private Garden',
+  'Study Room',
+  'Bathtub',
+  'Barbecue Area',
 ];
 
-const furnishing = [
-  [{ icon: 'Wardrobe', label: 'Build in Wardrobe' }],
-  [{ icon: 'Furnished', label: 'Fully Furnished' }],
-  [{ icon: 'Renovated', label: 'Renovated' }],
-  [{ icon: 'Theatre', label: 'TV/Home Theatre' }],
-];
+const furnishing = ['Build in Wardrobe', 'Fully Furnished', 'Renovated', 'TV/Home Theatre'];
 
-const security = [
-  [{ icon: 'Guard', label: 'Security Guard' }],
-  [{ icon: 'Security', label: '24-hour Security' }],
-  [{ icon: 'Cctv', label: 'Cctv' }],
-];
+const security = ['Security Guard', '24-hour Security', 'CCTV'];
 
-const views = [
-  [{ icon: 'Canal', label: 'Canal View' }],
-  [{ icon: 'City', label: 'City View' }],
-  [{ icon: 'Garden', label: 'Garden View' }],
-  [{ icon: 'GreenView', label: 'Green View' }],
-];
+const views = ['Canal View', 'City View', 'Garden View', 'Green View'];
 
-function PropertyDescription() {
+function PropertyDescription({ data }) {
   return (
     <section className="grid grid-cols-1 gap-4 lg:grid-cols-12">
       <section className="shadow-card rounded-lg bg-white px-5 py-3.5 lg:col-span-8">
         <Description
+          data={data}
           rentalAgreementDetails={rentalAgreementDetails}
           paymentHistory={paymentHistory}
           amenities={amenities}
