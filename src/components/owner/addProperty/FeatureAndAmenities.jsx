@@ -3,22 +3,22 @@ import Dropdown from '@/components/shared/small/Dropdown';
 import DropdownCheckbox from '@/components/shared/small/DropdownCheckbox';
 
 const propertyFeatures = [
-  { option: 'Private Gym / Fitness Room', value: 'private_gym_fitness_room' },
-  { option: 'Private Lift', value: 'private_lift' },
-  { option: 'Private Sauna', value: 'private_sauna' },
-  { option: 'Jacuzzi / Hot Tub', value: 'jacuzzi_hot_tub' },
-  { option: 'Corner Unit', value: 'corner_unit' },
-  { option: 'Maids Quarters / Staff Room', value: 'maids_quarters_staff_room' },
-  { option: 'Duplex', value: 'duplex' },
-  { option: 'Penthouse', value: 'penthouse' },
-  { option: 'Full Western Kitchen', value: 'full_western_kitchen' },
+  { option: 'Private Gym / Fitness Room', value: 'Private Gym/Fitness Room' },
+  { option: 'Private Lift', value: 'Private Lift' },
+  { option: 'Private Sauna', value: 'Private Sauna' },
+  { option: 'Jacuzzi / Hot Tub', value: 'Jacuzzi hot tub' },
+  { option: 'Corner Unit', value: 'Corner unit' },
+  { option: 'Maids Quarters / Staff Room', value: 'Maids quarters staff room' },
+  { option: 'Duplex', value: 'Duplex' },
+  { option: 'Penthouse', value: 'Penthouse' },
+  { option: 'Full Western Kitchen', value: 'Full western kitchen' },
   { option: 'Bathtub', value: 'bathtub' },
-  { option: 'Fully Renovated', value: 'fully_renovated' },
-  { option: 'Renovated Kitchen', value: 'renovated_kitchen' },
-  { option: 'Renovated Bathroom', value: 'renovated_bathroom' },
-  { option: 'Smart Home', value: 'smart_home' },
-  { option: 'Media Room / Home Theater', value: 'media_room_home_theater' },
-  { option: 'Balcony / Outdoor Terrace', value: 'balcony_outdoor_terrace' },
+  { option: 'Fully Renovated', value: 'Fully renovated' },
+  { option: 'Renovated Kitchen', value: 'Renovated kitchen' },
+  { option: 'Renovated Bathroom', value: 'Renovated bathroom' },
+  { option: 'Smart Home', value: 'Smart home' },
+  { option: 'Media Room / Home Theater', value: 'Media room home theater' },
+  { option: 'Balcony / Outdoor Terrace', value: 'Balcony outdoor terrace' },
   { option: 'Others', value: 'others' },
 ];
 
@@ -83,6 +83,12 @@ const propertyViews = [
   { option: 'Others', value: 'others' },
 ];
 
+const securityFeatures = [
+  { option: 'CCTV', value: 'cctv' },
+  { option: 'Guards', value: 'guards' },
+  { option: 'Gated Community', value: 'gated_community' },
+];
+
 const Button = ({ onClick, children, className }) => (
   <button
     onClick={onClick}
@@ -116,6 +122,14 @@ const FeatureAndAmenities = ({ data, index, updateField, setCurrentStep, formDat
             label="Amenities"
             options={amenities}
             onSelect={val => updateField(index, 'amenities', val)}
+            shadow
+          />
+        </div>
+        <div className="lg:col-span-6">
+          <DropdownCheckbox
+            label="Security"
+            options={securityFeatures}
+            onSelect={val => updateField(index, 'security', val)}
             shadow
           />
         </div>

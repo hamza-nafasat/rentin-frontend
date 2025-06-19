@@ -51,8 +51,6 @@ const AddProperty = () => {
     { propertyImage: [], VerifyPropertyImage: [], floorPlanImage: [] },
     { oneMonth: '', oneMonthDeposit: '', deals: [] },
   ]);
-  console.log('jmssksksk', coordinates);
-  console.log('formData', formData);
 
   // Add new state for BasicInfo component
   const [streetAddress, setStreetAddress] = useState('');
@@ -73,17 +71,74 @@ const AddProperty = () => {
     district: false,
     subdistrict: false,
   });
+
+  const extractCoordinates = useCallback(coordinatesData => {
+    if (!coordinatesData) return { latitude: null, longitude: null };
+
+    // If coordinates is an object with lat/lng properties
+    if (coordinatesData.latitude !== undefined && coordinatesData.longitude !== undefined) {
+      return {
+        latitude: coordinatesData.latitude,
+        longitude: coordinatesData.longitude,
+      };
+    }
+
+    // If coordinates is an object with latitude/longitude properties
+    if (coordinatesData.latitude !== undefined && coordinatesData.longitude !== undefined) {
+      return {
+        latitude: coordinatesData.latitude,
+        longitude: coordinatesData.longitude,
+      };
+    }
+
+    // If coordinates is a string like "lat,lng"
+    if (typeof coordinatesData === 'string' && coordinatesData.includes(',')) {
+      const [latitude, longitude] = coordinatesData.split(',').map(coord => parseFloat(coord.trim()));
+      return { latitude, longitude };
+    }
+
+    // If coordinates is an array [lat, lng]
+    if (Array.isArray(coordinatesData) && coordinatesData.length >= 2) {
+      return {
+        latitude: parseFloat(coordinatesData[0]),
+        longitude: parseFloat(coordinatesData[1]),
+      };
+    }
+
+    return { lat: null, lng: null };
+  }, []);
+  console.log('jmssksksk', coordinates);
+  console.log('formData', formData);
   console.log('streetAddress', streetAddress);
+  // useEffect(() => {
+  //   const { road, province, district, subdistrict, postalCode, country } = formData[0];
+
+  //   if (road && province && district && subdistrict && postalCode && country) {
+  //     const formattedAddress = `${road}, ${province} Province, ${district} District, ${subdistrict} Subdistrict, ${postalCode}, ${country}`;
+  //     console.log('newewe', formattedAddress);
+
+  //     setStreetAddress(formattedAddress);
+  //   } else {
+  //     console.log('nelsewewe');
+  //     setStreetAddress('');
+  //   }
+  // }, [
+  //   formData[0].road,
+  //   formData[0].province,
+  //   formData[0].district,
+  //   formData[0].subDistrict,
+  //   formData[0].postalCode,
+  //   formData[0].country,
+  // ]);
+
   useEffect(() => {
     const { road, province, district, subdistrict, postalCode, country } = formData[0];
 
     if (road && province && district && subdistrict && postalCode && country) {
       const formattedAddress = `${road}, ${province} Province, ${district} District, ${subdistrict} Subdistrict, ${postalCode}, ${country}`;
-      console.log('newewe', formattedAddress);
-
+      console.log('Formatted street address:', formattedAddress);
       setStreetAddress(formattedAddress);
     } else {
-      console.log('nelsewewe');
       setStreetAddress('');
     }
   }, [
@@ -212,11 +267,20 @@ const AddProperty = () => {
       const photos = formData[3];
       const pricing = formData[4];
 
+      if (!photos.propertyImage || photos.propertyImage.length < 5) {
+        alert('Please upload at least 5 property images');
+        return;
+      }
+      if (!photos.VerifyPropertyImage || photos.VerifyPropertyImage.length === 0) {
+        alert('Please upload ownership document');
+        return;
+      }
       const fullAddress =
         `${basicInfo.road || ''}, ${basicInfo.subDistrict || ''}, ${basicInfo.district || ''}, ${basicInfo.province || ''} ${basicInfo.postalCode || ''}, ${basicInfo.country || ''}`
           .replace(/,\s*,/g, ',')
           .replace(/^,\s*|,\s*$/g, '');
 
+      const { latitude, longitude } = extractCoordinates(coordinates);
       const formDataToSend = new FormData();
 
       // Append basic info
@@ -255,6 +319,7 @@ const AddProperty = () => {
       appendArrayToFormData(formDataToSend, 'amenities', features.amenities);
       appendArrayToFormData(formDataToSend, 'rentalFeatures', features.rentalFeature);
       appendArrayToFormData(formDataToSend, 'viewFromTheProperty', features.propertyView);
+      appendArrayToFormData(formDataToSend, 'security', features.security);
 
       // Append pricing
       formDataToSend.append('contractRate[rate]', pricing.oneMonth);
@@ -267,31 +332,89 @@ const AddProperty = () => {
 
       formDataToSend.append('deals', JSON.stringify(cleanedDeals));
 
+      if (latitude !== null && longitude !== null) {
+        formDataToSend.append('latitude', latitude.toString());
+        formDataToSend.append('longitude', longitude.toString());
+        //console.log('Adding coordinates to FormData - Lat:', lat, 'Lng:', lng);
+      } else {
+        console.warn('No valid coordinates found to send to backend');
+      }
+
+      if (coordinates && coordinates.latitude && coordinates.longitude) {
+        formDataToSend.append('latitude', coordinates.latitude);
+        formDataToSend.append('longitude', coordinates.longitude);
+      }
+
       // Append images
+      // if (photos.propertyImage && photos.propertyImage.length > 0) {
+      //   photos.propertyImage.forEach(image => {
+      //     formDataToSend.append('images', image);
+      //   });
+      // }
       if (photos.propertyImage && photos.propertyImage.length > 0) {
         photos.propertyImage.forEach(image => {
-          formDataToSend.append('images', image);
+          // If image is a File object, append it directly
+          // If it's a URL string (from existing data), skip it for now
+          if (image instanceof File) {
+            formDataToSend.append('images', image);
+          }
         });
       }
+
+      // if (photos.VerifyPropertyImage && photos.VerifyPropertyImage.length > 0) {
+      //   photos.VerifyPropertyImage.forEach(image => {
+      //     formDataToSend.append('ownershipDocument', image);
+      //   });
+      // }
+
+      // if (photos.floorPlanImage && photos.floorPlanImage.length > 0) {
+      //   photos.floorPlanImage.forEach(image => {
+      //     formDataToSend.append('bluePrint', image);
+      //   });
+
+      // }
 
       if (photos.VerifyPropertyImage && photos.VerifyPropertyImage.length > 0) {
         photos.VerifyPropertyImage.forEach(image => {
-          formDataToSend.append('ownershipDocument', image);
+          if (image instanceof File) {
+            formDataToSend.append('ownershipDocument', image);
+          }
         });
       }
 
+      // Append floor plan images (multiple files) - only if they exist
       if (photos.floorPlanImage && photos.floorPlanImage.length > 0) {
         photos.floorPlanImage.forEach(image => {
-          formDataToSend.append('bluePrint', image);
+          if (image instanceof File) {
+            formDataToSend.append('bluePrint', image);
+          }
         });
+      }
+
+      //     // Call the API
+      //     await createProperty(formDataToSend).unwrap();
+
+      //     console.log('Property created successfully!');
+      //   } catch (err) {
+      //     console.error('Error creating property:', err);
+      //   }
+      // };
+      console.log('FormData contents:');
+      for (let [key, value] of formDataToSend.entries()) {
+        console.log(key, value);
       }
 
       // Call the API
-      await createProperty(formDataToSend).unwrap();
+      const result = await createProperty(formDataToSend).unwrap();
 
-      console.log('Property created successfully!');
+      console.log('Property created successfully!', result);
+      //alert('Property created successfully!');
+
+      // Reset form or redirect as needed
+      // You might want to redirect to property list or reset the form
     } catch (err) {
       console.error('Error creating property:', err);
+      //alert('Error creating property: ' + (err.data?.message || err.message || 'Unknown error'));
     }
   };
 
