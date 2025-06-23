@@ -3,11 +3,11 @@ import React from 'react';
 import { FaStar } from 'react-icons/fa';
 import { PiMapPinFill } from 'react-icons/pi';
 
-function MapHover({ image, name, status, location }) {
+function MapHover({ image, name, status, location, rent }) {
   return (
     <div className="flex items-center justify-between gap-1" style={{ width: '355px' }}>
       <div className="relative h-[92px] w-[115px] overflow-hidden rounded-lg bg-red-200">
-        <Image src={image} alt={name} layout="fill" objectFit="cover" unoptimized={true} className="rounded-lg" />
+        <Image src={image} alt={name} fill style={{ objectFit: 'cover' }} unoptimized={true} className="rounded-lg" />
       </div>
       <div className="w-full p-1">
         <div className="flex flex-col">
@@ -31,7 +31,7 @@ function MapHover({ image, name, status, location }) {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-semibold">
-              $388.00
+              TBH {rent?.toLocaleString() || '0'}
               <span className="text-xs font-semibold text-[#0245a5]">/month</span>
             </p>
           </div>

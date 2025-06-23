@@ -28,36 +28,33 @@ const Modal = ({ onClose, children, width }) => {
 };
 
 const PropertiesImageSlider = ({
-  mainImages = [
-    '/images/dashboard/property-card-1.png',
-    '/images/dashboard/property-two.jpeg',
-    '/images/dashboard/property-three.jpeg',
-    '/images/dashboard/property-four.jpeg',
-  ],
-  sideImages = [
-    '/images/dashboard/side-image.png',
-    '/images/dashboard/side-image-2.png',
-    '/images/dashboard/side-image-3.png',
-    '/images/dashboard/property-card-1.png',
-  ],
+  mainImages = ['/images/placeholder-property.jpg'],
+  sideImages = [],
   propertyFeatures = [
-    { icon: 'BedIcon', label: 'Bed', count: 2 },
-    { icon: 'BathIcon', label: 'Bath', count: 2 },
-    { icon: 'SqmIcon', label: 'Sqm', count: 2 },
-    { icon: 'FloorsIcon', label: 'Floors', count: 2 },
+    { icon: 'BedIcon', label: 'Bed', count: 0 },
+    { icon: 'BathIcon', label: 'Bath', count: 0 },
+    { icon: 'SqmIcon', label: 'Sqm', count: 0 },
+    { icon: 'FloorsIcon', label: 'Floors', count: 1 },
   ],
   propertyInfo = {
-    title: 'The Crest Sukhumvit 34, Bangkok',
-    address: '778 Sukhumvit Road, Khong Tan, Khlong Toei, Bangkok',
-    price: 243,
+    title: 'Property Title',
+    address: 'Address not available',
+    price: 0,
     status: 'Available',
   },
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  // Combine main and side images for the modal carousel
-  const allImages = [...mainImages, ...sideImages];
+  // Ensure we have at least one image for main images
+  const validMainImages = mainImages.length > 0 ? mainImages : ['/images/placeholder-property.jpg'];
+  const validSideImages = sideImages.length > 0 ? sideImages : [];
+
+  // Combine all images for modal and side grid logic
+  const allImages = [...validMainImages, ...validSideImages];
+
+  // For side grid: show all images except the first one from the combined array
+  const sideGridImages = allImages.slice(1); // Skip the first image
 
   // Open modal with the correct starting slide
   const openModal = index => {
@@ -68,8 +65,8 @@ const PropertiesImageSlider = ({
   const closeModal = () => {
     setModalOpen(false);
   };
+
   const [currentIndex, setCurrentIndex] = useState(0);
-  console.log('currentIndex', currentIndex);
 
   return (
     <>
@@ -81,36 +78,38 @@ const PropertiesImageSlider = ({
               modules={[Navigation, Pagination]}
               slidesPerView={1}
               spaceBetween={10}
-              loop
+              loop={validMainImages.length > 1}
               navigation={{ nextEl: '.custom-prev', prevEl: '.custom-next' }}
               pagination={{ clickable: true }}
               onSlideChange={swiper => {
-                // Swiper uses realIndex for actual index (ignores duplicated slides in loop)
                 setCurrentIndex(swiper.realIndex);
               }}
             >
-              {mainImages.map((img, i) => (
+              {validMainImages.map((img, i) => (
                 <SwiperSlide key={i}>
                   <div>
                     <Image
                       src={img}
                       width={700}
                       height={380}
-                      alt={`Main image ${i + 1}`}
+                      alt={`${propertyInfo.title} - Image ${i + 1}`}
                       className="h-[380px] w-full rounded-lg object-cover"
+                      unoptimized={true}
                     />
                   </div>
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className="absolute top-[50%] z-50 flex w-full translate-y-[-50%] items-center justify-between px-6">
-              <div className="custom-next grid place-items-center rounded-full bg-white p-1">
-                <IoIosArrowBack className="text-primary -ml-[2px] cursor-pointer text-base" />
+            {validMainImages.length > 1 && (
+              <div className="absolute top-[50%] z-50 flex w-full translate-y-[-50%] items-center justify-between px-6">
+                <div className="custom-next grid place-items-center rounded-full bg-white p-1">
+                  <IoIosArrowBack className="text-primary -ml-[2px] cursor-pointer text-base" />
+                </div>
+                <div className="custom-prev grid place-items-center rounded-full bg-white p-1">
+                  <IoIosArrowBack className="text-primary -mr-[2px] rotate-180 cursor-pointer text-base" />
+                </div>
               </div>
-              <div className="custom-prev grid place-items-center rounded-full bg-white p-1">
-                <IoIosArrowBack className="text-primary -mr-[2px] rotate-180 cursor-pointer text-base" />
-              </div>
-            </div>
+            )}
             <button
               onClick={() => openModal(currentIndex)}
               className="bg-primary absolute top-[90%] left-[96%] z-50 cursor-pointer rounded-lg p-2 py-1.5 text-[12px] text-white"
@@ -119,41 +118,61 @@ const PropertiesImageSlider = ({
             </button>
           </div>
         </div>
-        {/* Right Section */}
+
+        {/* Right Section - Side Grid Images */}
         <div className="grid grid-cols-2 grid-rows-2 gap-4 lg:col-span-4">
-          {sideImages.slice(0, 3).map((img, i) => (
-            <div key={i} className="relative cursor-pointer" onClick={() => openModal(mainImages.length + i)}>
-              <Image
-                src={img}
-                alt={`Side image ${i + 1}`}
-                width={221}
-                height={185}
-                className="h-[180px] w-full rounded-lg object-cover"
-              />
-            </div>
-          ))}
-          {sideImages.length > 3 && (
-            <div className="relative cursor-pointer" onClick={() => openModal(mainImages.length + 3)}>
-              <Image
-                src={sideImages[3]}
-                alt="Side image 4"
-                width={221}
-                height={185}
-                className="h-[180px] w-full rounded-lg object-cover"
-              />
-              {sideImages.length > 4 && (
-                <p className="absolute inset-0 grid place-items-center rounded-lg bg-black/40 text-2xl font-medium text-white md:text-[41px]">
-                  +{sideImages.length - 4}
-                </p>
+          {sideGridImages.length > 0 ? (
+            <>
+              {sideGridImages.slice(0, 3).map((img, i) => (
+                <div key={i} className="relative cursor-pointer" onClick={() => openModal(1 + i)}>
+                  <Image
+                    src={img}
+                    alt={`${propertyInfo.title} - Image ${2 + i}`}
+                    width={221}
+                    height={185}
+                    className="h-[180px] w-full rounded-lg object-cover"
+                    unoptimized={true}
+                  />
+                </div>
+              ))}
+              {sideGridImages.length > 3 && (
+                <div className="relative cursor-pointer" onClick={() => openModal(4)}>
+                  <Image
+                    src={sideGridImages[3]}
+                    alt={`${propertyInfo.title} - Image 5`}
+                    width={221}
+                    height={185}
+                    className="h-[180px] w-full rounded-lg object-cover"
+                    unoptimized={true}
+                  />
+                  {sideGridImages.length > 4 && (
+                    <p className="absolute inset-0 grid place-items-center rounded-lg bg-black/40 text-2xl font-medium text-white md:text-[41px]">
+                      +{sideGridImages.length - 4}
+                    </p>
+                  )}
+                </div>
               )}
+            </>
+          ) : (
+            // Show message when no additional images beyond the first 4
+            <div className="col-span-2 row-span-2 flex items-center justify-center rounded-lg bg-gray-100">
+              <p className="text-sm text-gray-500">No additional images</p>
             </div>
           )}
         </div>
+
+        {/* Property Info Section */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:col-span-12">
           <div className="space-y-2">
             <div className="flex items-center gap-4">
               <span className="text-xl font-semibold text-black">{propertyInfo.title}</span>
-              <span className="rounded-lg bg-[#34C75926] px-2 py-1.5 text-sm font-bold text-[#34C759]">
+              <span
+                className={`rounded-lg px-2 py-1.5 text-sm font-bold ${
+                  propertyInfo.status === 'Available'
+                    ? 'bg-[#34C75926] text-[#34C759]'
+                    : 'bg-[#FF3B3026] text-[#FF3B30]'
+                }`}
+              >
                 {propertyInfo.status}
               </span>
             </div>
@@ -167,6 +186,7 @@ const PropertiesImageSlider = ({
               Edit
             </button>
           </div>
+
           {/* Property Features */}
           <div className="flex items-center justify-center gap-8 md:justify-end">
             {propertyFeatures.map((item, index) => {
@@ -198,6 +218,7 @@ const PropertiesImageSlider = ({
               initialSlide={selectedIndex}
               slidesPerView={1}
               spaceBetween={10}
+              loop={allImages.length > 1}
               navigation={{ nextEl: '.modal-next', prevEl: '.modal-prev' }}
               pagination={{ clickable: true }}
               className="h-full"
@@ -207,22 +228,27 @@ const PropertiesImageSlider = ({
                   <div className="relative h-full">
                     <Image
                       src={img}
-                      alt={`Carousel image ${i + 1}`}
+                      alt={`${propertyInfo.title} - Image ${i + 1}`}
                       layout="fill"
                       objectFit="cover"
                       className="rounded-lg"
+                      unoptimized={true}
                     />
                   </div>
                 </SwiperSlide>
               ))}
             </Swiper>
             {/* Custom navigation arrows for modal */}
-            <div className="modal-prev absolute top-1/2 left-4 z-50 flex size-5 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-white">
-              <IoIosArrowBack className="text-primary -ml-[2px] cursor-pointer text-lg" />
-            </div>
-            <div className="modal-next absolute top-1/2 right-4 z-50 flex size-5 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-white">
-              <IoIosArrowBack className="text-primary -ml-[2px] rotate-180 cursor-pointer text-lg" />
-            </div>
+            {allImages.length > 1 && (
+              <>
+                <div className="modal-prev absolute top-1/2 left-4 z-50 flex size-8 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-white shadow-lg">
+                  <IoIosArrowBack className="text-primary -ml-[2px] cursor-pointer text-lg" />
+                </div>
+                <div className="modal-next absolute top-1/2 right-4 z-50 flex size-8 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-white shadow-lg">
+                  <IoIosArrowBack className="text-primary -ml-[2px] rotate-180 cursor-pointer text-lg" />
+                </div>
+              </>
+            )}
           </div>
         </Modal>
       )}

@@ -27,6 +27,14 @@ export const propertyApi = createApi({
       providesTags: ['Property'],
     }),
 
+    getPropertiesByOwnerId: builder.query({
+      query: ownerId => ({
+        url: `/owner/${ownerId}`, // Adjust based on your backend route
+        method: 'GET',
+      }),
+      providesTags: ['Property'],
+    }),
+
     getSingleProperty: builder.query({
       query: propertyId => ({
         url: `/single/${propertyId}`,
@@ -78,6 +86,7 @@ export const {
   useHireAgentMutation,
   useGetMyAgentsQuery,
   useGetOwnerTenantsQuery,
+  useGetPropertiesByOwnerIdQuery,
 } = propertyApi;
 
 export const resetPropertyApiState = propertyApi.util.resetApiState;

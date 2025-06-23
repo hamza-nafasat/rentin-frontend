@@ -40,12 +40,18 @@ const getCoordinates = async locationName => {
   return null;
 };
 
-const HouseMap = ({ location, image, name, status }) => {
+const HouseMap = ({ location, image, name, status, latitude, longitude, rent }) => {
   const [position, setPosition] = useState(null);
   const [error, setError] = useState('');
   const defaultCenter = [51.505, -0.09];
-
   useEffect(() => {
+    // First try to use provided lat/lng coordinates
+    if (latitude && longitude) {
+      const coords = [parseFloat(latitude), parseFloat(longitude)];
+      setPosition(coords);
+      setError('');
+      return;
+    }
     if (location) {
       getCoordinates(location).then(coords => {
         if (coords) {
@@ -57,7 +63,7 @@ const HouseMap = ({ location, image, name, status }) => {
         }
       });
     }
-  }, [location]);
+  }, [location, latitude, longitude]);
 
   // Prevent rendering on server-side if window is not defined.
   if (typeof window === 'undefined') {
@@ -92,7 +98,7 @@ const HouseMap = ({ location, image, name, status }) => {
             }}
           >
             <Tooltip direction="top" offset={[0, -30]} opacity={1} className="custom-tooltip">
-              <MapHover image={image} name={name} status={status} location={location} />
+              <MapHover image={image} name={name} status={status} location={location} rent={rent} />
             </Tooltip>
           </Marker>
         )}
