@@ -4,6 +4,8 @@ import { useState, useMemo, useCallback } from 'react';
 import DataTable from 'react-data-table-component';
 import ProposalModal from './ProposalModal';
 import { GoArrowUpRight } from 'react-icons/go';
+import Modal from '@/components/shared/small/Modal';
+import Content6 from '@/components/tenant/popups/Content6';
 
 const ProposalSummary = () => {
   const [modal, setModal] = useState(false);
@@ -27,7 +29,10 @@ const ProposalSummary = () => {
     setSelectedRow(null);
     setModal(false);
   }, []);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const requestModal = () => {
+    setIsModalOpen(true);
+  };
   const columns = useMemo(
     () => [
       {
@@ -74,12 +79,20 @@ const ProposalSummary = () => {
       {
         name: 'Actions',
         selector: row => (
-          <button
-            className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
-            onClick={() => modalOpenHandler(row)}
-          >
-            View
-          </button>
+          <div className="flex gap-2">
+            <button
+              className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
+              onClick={() => modalOpenHandler(row)}
+            >
+              View
+            </button>
+            <button
+              className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
+              onClick={requestModal}
+            >
+              Action
+            </button>
+          </div>
         ),
       },
     ],
@@ -99,6 +112,13 @@ const ProposalSummary = () => {
 
   return (
     <section className="shadow-card rounded-lg border bg-white p-4 lg:p-5">
+      <div>
+        {isModalOpen && (
+          <Modal width={500} onClose={() => setIsModalOpen(false)} title="Visit Request">
+            <Content6 />
+          </Modal>
+        )}
+      </div>
       <div className="text-textPrimary text-sm font-semibold">Proposal Summary</div>
       <DataTable
         data={proposalSummaryData}
