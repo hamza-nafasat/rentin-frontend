@@ -67,7 +67,7 @@ function ShowBuildingHours() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <h2 className="text-[20px] font-semibold text-[#32343C]">Select a Preferred Day</h2>
       <div className="my-3 flex w-full items-center justify-between gap-2 overflow-auto px-3">
         <button onClick={() => handlePrevDay(-110)} className="cursor-pointer text-[#0245A5] disabled:opacity-30">
