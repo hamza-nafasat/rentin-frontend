@@ -15,6 +15,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { MdLogout } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { deleteUser } from '@/features/auth/authSlice';
+
 import { useLogoutMutation } from '@/features/auth/authApi';
 
 const TenantAside = ({ mobileNav, setMobileNav }) => {
@@ -164,6 +167,8 @@ const LinkItem = ({ page, pathname, isMenuOpen, setMobileNav }) => {
 
 const ProfileSec = ({ isMenuOpen }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const dispatch = useDispatch();
+
   const [logout, { isLoading: isLoggingOut }] = useLogoutMutation();
 
   const menuRef = useRef(null);

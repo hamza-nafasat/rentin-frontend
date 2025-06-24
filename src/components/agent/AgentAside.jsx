@@ -17,6 +17,8 @@ import { BsThreeDots } from 'react-icons/bs';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { MdLogout } from 'react-icons/md';
 import { useLogoutMutation } from '@/features/auth/authApi';
+import { useDispatch } from 'react-redux';
+import { deleteUser } from '@/features/auth/authSlice';
 
 const AgentAside = ({ mobileNav, setMobileNav }) => {
   const { id } = useParams();
@@ -154,6 +156,7 @@ const LinkItem = ({ page, pathname, isMenuOpen, setMobileNav }) => {
 const ProfileSec = ({ isMenuOpen }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [logout, { isLoading: isLoggingOut }] = useLogoutMutation();
+  const dispatch = useDispatch();
 
   const menuRef = useRef(null);
 
