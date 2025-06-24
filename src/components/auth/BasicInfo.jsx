@@ -5,25 +5,6 @@ import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import Button from '../shared/small/Button';
 
-// const propertyOptions = [
-//   { option: 'House', value: 'house' },
-//   { option: 'Villa', value: 'villa' },
-//   { option: 'Condo', value: 'condo' },
-//   { option: 'Appartment', value: 'appartment' },
-//   { option: 'Townhouse', value: 'townhouse' },
-//   { option: 'Retail Space', value: 'retail space' },
-//   { option: 'Office', value: 'office' },
-// ];
-
-// const regionOptions = [
-//   { option: 'North Region', value: 'north-region' },
-//   { option: 'South Region', value: 'south-region' },
-//   { option: 'East Region', value: 'east-region' },
-//   { option: 'West Region', value: 'west-region' },
-// ];
-// const showDaysOptions = [{ option: 'Withing 7 days', value: '7-days' }];
-// const showHoursOptions = [{ option: 'Withing 12 hours', value: '12-hours' }];
-// const locationOptions = [{ option: 'Thailand', value: 'thailand' }];
 const experienceLevel = [
   { option: '1 year', value: '1' },
   { option: '3 year', value: '3' },
@@ -35,9 +16,10 @@ const experienceLevel = [
 const serviceType = [
   { option: 'Agent', value: 'agent' },
   { option: 'Inspection', value: 'inspection' },
+  { option: 'Both', value: 'both' },
 ];
 
-const BasicInfo = memo(({ setCurrentStep }) => {
+const BasicInfo = memo(({ data, index, updateField, setCurrentStep, formData }) => {
   // const [streetAddress, setStreetAddress] = useState('thailand');
   const [image, setImage] = useState(null);
   // const [selectedOption, setSelectedOption] = useState(null);
@@ -106,10 +88,16 @@ const BasicInfo = memo(({ setCurrentStep }) => {
       <h4 className="text-textPrimary text-center text-base font-medium md:text-lg">Basic Information</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-6">
-          <Input shadow label="First Name" />
+          <Input
+            value={data.unitNum}
+            onChange={e => updateField(index, 'unitNum', e.target.value)}
+            shadow
+            placeholder="i. e A302"
+            label="Unit Number (optional)"
+          />
         </div>
         <div className="lg:col-span-6">
-          <Input shadow label="Last Name" />
+          <Input shadow label="User Name" />
         </div>
         <div className="lg:col-span-6">
           <div className="grid grid-cols-12 items-end gap-2">

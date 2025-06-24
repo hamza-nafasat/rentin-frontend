@@ -2,33 +2,35 @@ import React, { useCallback } from 'react';
 import Dropdown from '../shared/small/Dropdown';
 import Input from '../shared/small/Input';
 
-function CommissionDetail({ setCurrentStep }) {
+function CommissionDetail({ index, data, formData, setFormData, updateField, setCurrentStep }) {
   const handlePrevious = useCallback(() => setCurrentStep(prevStep => prevStep - 1), [setCurrentStep]);
-  const BEDROOM_OPTIONS = [
-    { option: '1 Bedroom', value: '1' },
-    { option: '2 Bedrooms', value: '2' },
-    { option: '3 Bedrooms', value: '3' },
-    { option: '4+ Bedrooms', value: '4plus' },
-  ];
 
-  const BATHROOM_OPTIONS = [
-    { option: '1 Bathroom', value: '1' },
-    { option: '2 Bathrooms', value: '2' },
-    { option: '3+ Bathrooms', value: '3plus' },
-  ];
+  console.log(formData);
 
   return (
     <div>
       <h4 className="text-textPrimary text-center text-base font-medium md:text-lg">Service Area Selection</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-6">
-          <Input shadow label={'Property Showing Base Price'} placeholder={'Enter fees'} />
+          <Input
+            key={index}
+            shadow
+            value={data.basePrice}
+            onChange={e => updateField(index, 'basePrice', e.target.value)}
+            label={'Property Showing Base Price'}
+            placeholder={'Enter fees'}
+          />
         </div>
         <div className="lg:col-span-6">
-          <Dropdown
+          <Input
+            value={data.inspectionPrice}
+            onChange={e => {
+              const update = [...formData];
+              update[index] = e.target.value;
+              setFormData(update);
+            }}
             placeholder={'Enter fees'}
             label="Property Inspection Base Price"
-            options={BEDROOM_OPTIONS}
             shadow
           />
         </div>

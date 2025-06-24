@@ -1130,7 +1130,7 @@ const tenantsCardsData = [
     img: '/images/properties/dollar.png',
   },
   {
-    title: 'lease Ending Soon',
+    title: 'Lease Ending Soon',
     value: '09',
     para: 'These properties are waiting for admin approval to go live.',
     img: '/images/properties/dollar.png',

@@ -147,7 +147,6 @@ const FeatureAndAmenities = ({ data, index, updateField, setCurrentStep, formDat
             options={propertyViews}
             // onSelect={handleSelect}
             onSelect={val => updateField(index, 'propertyView', val)}
-            defaultText="Select fruits"
             shadow
           />
           {/* <Dropdown label="View from the property" options={propertyViews} shadow /> */}

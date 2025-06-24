@@ -3,19 +3,56 @@ import BasicInfo from '@/components/auth/BasicInfo';
 import CommissionDetail from '@/components/auth/CommissionDetail';
 import ServiceArea from '@/components/auth/ServiceArea';
 import Step from '@/components/owner/addProperty/Step';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import AgentFlowLayout from './Layout';
 
 function AgentFlow() {
   const [currentStep, setCurrentStep] = useState(0);
 
+  const [formData, setFormData] = useState([{}, {}, { basePrice: '', inspectionPrice: '' }]);
+
+  const updateField = useCallback((index, field, value) => {
+    setFormData(prev => {
+      const updated = [...prev];
+      updated[index][field] = value;
+      return updated;
+    });
+  }, []);
+
+  // const updateField = useCallback((index, field, value) => {
+  //   const updated = [...formData];
+  //   updated[index] = { ...updated[index], [field]: value };
+  //   setFormData(updated);
+  // }, []);
+
   const steps = useMemo(() => ['Basic Info', 'Service Area', 'Commission Detail'], []);
 
   const stepComponents = useMemo(
     () => [
-      <BasicInfo key="basic-info" setCurrentStep={setCurrentStep} />,
-      <ServiceArea key="service-area" setCurrentStep={setCurrentStep} />,
-      <CommissionDetail key="commission-detail" setCurrentStep={setCurrentStep} />,
+      <BasicInfo
+        index={0}
+        data={formData[0]}
+        formData={formData}
+        setFormData={setFormData}
+        key="basic-info"
+        setCurrentStep={setCurrentStep}
+      />,
+      <ServiceArea
+        index={1}
+        formData={formData[1]}
+        setFormData={setFormData}
+        key="service-area"
+        setCurrentStep={setCurrentStep}
+      />,
+      <CommissionDetail
+        index={2}
+        data={formData[2]}
+        formData={formData}
+        updateField={updateField}
+        setFormData={setFormData}
+        key="commission-detail"
+        setCurrentStep={setCurrentStep}
+      />,
     ],
     [setCurrentStep]
   );

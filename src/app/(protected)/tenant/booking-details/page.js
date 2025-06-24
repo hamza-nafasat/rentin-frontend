@@ -106,13 +106,13 @@ function BookingDetails() {
             <h3 className="text-lg font-semibold">Your booking details</h3>
             <div className="mt-6 flex items-stretch justify-between space-x-8">
               <div>
-                <p className="font-medium">Move-in</p>
+                <p className="font-medium">Start Date</p>
                 <p className="text-lg font-semibold">Sun 27 Apr 2025</p>
                 <p className="font-medium">14:00-15:00</p>
               </div>
               <div className="w-px bg-gray-300" />
               <div>
-                <p className="font-medium">Move-out</p>
+                <p className="font-medium">End Date</p>
                 <p className="text-lg font-semibold">Mon 28 Apr 2025</p>
                 <p className="font-medium">10:00-11:00</p>
               </div>

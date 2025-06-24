@@ -313,11 +313,12 @@ import 'swiper/css/pagination';
 import { useState, useRef, useEffect } from 'react';
 import styles from './PropertyInfo.module.css';
 import Image from 'next/image';
-import Input from '@/components/shared/small/Input';
+// import Input from '@/components/shared/small/Input';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { AiOutlineCloudUpload, AiOutlineClose } from 'react-icons/ai';
 import { IoIosArrowBack } from 'react-icons/io';
+import Button from '@/components/shared/small/Button';
 
 const ImageCarousel = ({ images = [] }) => {
   const key = `swiper-${images.length}`;
@@ -515,12 +516,7 @@ const PhotosAndDetails = ({ setCurrentStep, data, index, updateField, formData }
 
   // Handle floor plan checkbox
   const handleFloorPlanChange = e => {
-    setHasFloorPlan(e.target.checked);
-    if (!e.target.checked) {
-      // Clear floor plan images if checkbox is unchecked
-      updateField(index, 'floorPlanImage', []);
-      setErrors(prev => ({ ...prev, floorImages: '' }));
-    }
+    setHasFloorPlan(!hasFloorPlan);
   };
 
   return (
@@ -577,6 +573,71 @@ const PhotosAndDetails = ({ setCurrentStep, data, index, updateField, formData }
             </div>
           )}
         </div>
+
+        {/* Floor plan checkbox */}
+        <div className="flex items-center lg:col-span-12">
+          <label className="flex items-center space-x-2">
+            <Button text={'I have a floor plan?'} onClick={handleFloorPlanChange} />
+            <span className="text-base font-medium"></span>
+          </label>
+        </div>
+
+        {/* Floor Plan Uploader */}
+        {hasFloorPlan && (
+          <div className="lg:col-span-12">
+            <label className="text-base font-semibold">
+              Floor Plan Images <span className="text-red-500">*</span>
+            </label>
+            <div
+              className={`mt-2 flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed p-4 hover:border-blue-500 ${
+                errors.floorImages ? 'border-red-300' : 'border-gray-300'
+              }`}
+              onDragOver={e => e.preventDefault()}
+              onDrop={onFloorDrop}
+              onClick={onFloorClick}
+            >
+              <AiOutlineCloudUpload className="text-primary h-10 w-10" />
+              <p className="mt-2 text-xs text-[#0245a5]">Click or drag to upload</p>
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                className="hidden"
+                ref={floorInputRef}
+                onChange={onFloorFiles}
+              />
+            </div>
+            {errors.floorImages && <p className="mt-1 text-sm text-red-500">{errors.floorImages}</p>}
+
+            {floorImages.length > 0 && (
+              <div className="mt-3">
+                <div className="flex flex-wrap gap-2">
+                  {floorImages.map((file, idx) => (
+                    <div key={idx} className="relative h-20 w-20 overflow-hidden rounded-lg">
+                      <Image
+                        src={typeof file === 'string' ? file : URL.createObjectURL(file)}
+                        alt=""
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeFloor(idx)}
+                        className="absolute top-1 right-1 rounded-full bg-white p-1"
+                      >
+                        <AiOutlineClose size={12} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                {/* Carousel */}
+                <div className="mt-4 w-full">
+                  <ImageCarousel images={floorImages} />
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Radio buttons for ownership verification */}
         <div className="flex flex-col gap-3 lg:col-span-12">
@@ -688,76 +749,6 @@ const PhotosAndDetails = ({ setCurrentStep, data, index, updateField, formData }
             </div>
           )}
         </div>
-
-        {/* Floor plan checkbox */}
-        <div className="flex items-center lg:col-span-12">
-          <label className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              checked={hasFloorPlan}
-              onChange={handleFloorPlanChange}
-              className="h-5 w-5 text-blue-600"
-            />
-            <span className="text-base font-medium">I have a floor plan?</span>
-          </label>
-        </div>
-
-        {/* Floor Plan Uploader */}
-        {hasFloorPlan && (
-          <div className="lg:col-span-12">
-            <label className="text-base font-semibold">
-              Floor Plan Images <span className="text-red-500">*</span>
-            </label>
-            <div
-              className={`mt-2 flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed p-4 hover:border-blue-500 ${
-                errors.floorImages ? 'border-red-300' : 'border-gray-300'
-              }`}
-              onDragOver={e => e.preventDefault()}
-              onDrop={onFloorDrop}
-              onClick={onFloorClick}
-            >
-              <AiOutlineCloudUpload className="text-primary h-10 w-10" />
-              <p className="mt-2 text-xs text-[#0245a5]">Click or drag to upload</p>
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                className="hidden"
-                ref={floorInputRef}
-                onChange={onFloorFiles}
-              />
-            </div>
-            {errors.floorImages && <p className="mt-1 text-sm text-red-500">{errors.floorImages}</p>}
-
-            {floorImages.length > 0 && (
-              <div className="mt-3">
-                <div className="flex flex-wrap gap-2">
-                  {floorImages.map((file, idx) => (
-                    <div key={idx} className="relative h-20 w-20 overflow-hidden rounded-lg">
-                      <Image
-                        src={typeof file === 'string' ? file : URL.createObjectURL(file)}
-                        alt=""
-                        layout="fill"
-                        objectFit="cover"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeFloor(idx)}
-                        className="absolute top-1 right-1 rounded-full bg-white p-1"
-                      >
-                        <AiOutlineClose size={12} />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-                {/* Carousel */}
-                <div className="mt-4 w-full">
-                  <ImageCarousel images={floorImages} />
-                </div>
-              </div>
-            )}
-          </div>
-        )}
 
         {/* Navigation */}
         <div className="flex justify-end gap-4 lg:col-span-12">

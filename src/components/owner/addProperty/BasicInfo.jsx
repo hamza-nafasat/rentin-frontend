@@ -4,9 +4,7 @@ import Input from '@/components/shared/small/Input';
 import dynamic from 'next/dynamic';
 import { memo, useRef, useEffect } from 'react';
 import ShowBuildingHours from './ShowBuildingHours';
-import provincesData from '@/data/addPropoerty/provinces.json';
-import districtsData from '@/data/addPropoerty/districts.json';
-import subdistrictsData from '@/data/addPropoerty/subdistricts.json';
+
 import Dropdown from '@/components/shared/small/Dropdown';
 
 const MapWithLocation = dynamic(() => import('./MapWithLocation'), {
@@ -26,24 +24,6 @@ const propertyOptions = [
   { option: 'Shop Space', value: 'shop space' },
 ];
 
-const weekDayOptions = [
-  { option: 'Monday', value: 'monday' },
-  { option: 'Tuesday', value: 'tuesday' },
-  { option: 'Wednesday', value: 'wednesday' },
-  { option: 'Thursday', value: 'thursday' },
-  { option: 'Friday', value: 'friday' },
-  { option: 'Saturday', value: 'saturday' },
-  { option: 'Sunday', value: 'sunday' },
-];
-
-const regionOptions = [
-  { option: 'North Region', value: 'north-region' },
-  { option: 'South Region', value: 'south-region' },
-  { option: 'East Region', value: 'east-region' },
-  { option: 'West Region', value: 'west-region' },
-];
-
-const subDistrictOptions = [{ option: 'Thailand', value: 'thailand' }];
 const propertyStatus = [
   { option: 'Available', value: 'available' },
   { option: 'Rented', value: 'rented' },
@@ -125,7 +105,7 @@ const BasicInfo = memo(
     return (
       <div>
         <h4 className="text-textPrimary text-center text-base font-medium md:text-lg">Property Information</h4>
-        <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
+        <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <Dropdown
               label="Property types"
@@ -240,8 +220,8 @@ const BasicInfo = memo(
             />
           </div>
           {data.propertyStatus === 'available' && (
-            <div className="flex justify-start lg:col-span-12">
-              <div className="shadow-card rounded-lg border bg-white p-3">
+            <div className="flex justify-center lg:col-span-12">
+              <div className="shadow-card w-[100%] rounded-lg border bg-white p-3 md:w-[80%]">
                 <ShowBuildingHours />
               </div>
             </div>
@@ -257,7 +237,7 @@ const BasicInfo = memo(
               Next
             </button>
           </div>
-        </form>
+        </div>
       </div>
     );
   }

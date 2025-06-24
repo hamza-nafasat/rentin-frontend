@@ -51,6 +51,7 @@ const Pricing = ({ data, index, updateField, setCurrentStep, formData, onSubmit,
   const handleAddProperty = () => {
     if (onSubmit) {
       onSubmit();
+      console.log('asdjkasdjhgasdjhgasdjhsgdjhg', formData);
     }
   };
 
@@ -62,18 +63,21 @@ const Pricing = ({ data, index, updateField, setCurrentStep, formData, onSubmit,
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 sm:col-span-6">
               <InputWithRightContent
-                shadowWithRightContent
+                shadow
                 label="1 Month Contract"
                 value={data.oneMonth || ''}
                 onChange={e => updateField(index, 'oneMonth', e.target.value)}
-                rightContent={'THB/Per month'}
+                // value={searchValue}
+                // onChange={e => setSearchValue(e.target.value)}
+                rightContent={'THB'}
               />
             </div>
             <div className="col-span-12 sm:col-span-6">
-              <Input
-                shadow
+              <InputWithRightContent
                 value={data.oneMonthDeposit || ''}
                 onChange={e => updateField(index, 'oneMonthDeposit', e.target.value)}
+                shadow
+                rightContent={'THB'}
                 label={'Security Deposit of Contract'}
               />
             </div>

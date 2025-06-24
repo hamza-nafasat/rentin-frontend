@@ -126,13 +126,71 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
     };
   }, [image]);
 
-  const steps1 = [1, 2, 3, 4, 5];
+  const floors = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+    32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+  ];
 
   // Case 2: Studio + numeric
-  const steps2 = ['Studio', 1, 2, 3, 4, 5];
+  const bedRooms = [
+    'Studio',
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+  ];
 
   // Case 3: Decimal steps
-  const steps3 = [1, 1.5, 2, 2.5, 3, 3.5];
+  const bathrooms = [
+    1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14,
+    14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20,
+  ];
 
   return (
     <div>
@@ -160,7 +218,7 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
             label="Bedrooms"
             value={data.bedRoom}
             onChange={val => updateField(index, 'bedRoom', val)} // val = "3 sqft"
-            steps={steps2}
+            steps={bedRooms}
           />
         </div>
         <div className="lg:col-span-6">
@@ -169,7 +227,7 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
             label="Bathrooms"
             value={data.bathRoom}
             onChange={val => updateField(index, 'bathRoom', val)}
-            steps={steps3}
+            steps={bathrooms}
           />
           {/* ) : (
             <Dropdown placeholder="select" label="BathRooms" options={BATHROOM_OPTIONS} shadow />
@@ -220,7 +278,7 @@ const PropertyInfo = ({ data, index, updateField, setCurrentStep, formData }) =>
             label="Floor"
             value={data.floor}
             onChange={val => updateField(index, 'floor', val)}
-            steps={steps1}
+            steps={floors}
           />
         </div>
         <div className="lg:col-span-12">
