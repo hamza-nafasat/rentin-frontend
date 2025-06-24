@@ -12,12 +12,14 @@ import subdistrictsData from '@/data/addPropoerty/subdistricts.json';
 import { useCreatePropertyMutation } from '@/features/property/propertyApi';
 import { selectCoordinates } from '@/features/location/locationSlice';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 const AddProperty = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const coordinates = useSelector(selectCoordinates);
   const steps = useMemo(() => ['Basic Info', 'Property Info', 'Feature & Amenities', 'Photos ', 'Pricing'], []);
-
+  const router = useRouter();
   const [formData, setFormData] = useState([
     {
       propertyType: '',
@@ -257,9 +259,121 @@ const AddProperty = () => {
     }
   }, [selectedDistrict]);
 
+  const validateBasicInfo = () => {
+    const basicInfo = formData[0];
+    if (!basicInfo.propertyType) {
+      toast.error('Please select property type');
+      return false;
+    }
+    if (!basicInfo.projectName) {
+      toast.error('Please enter project name');
+      return false;
+    }
+    if (
+      !basicInfo.road ||
+      !basicInfo.province ||
+      !basicInfo.district ||
+      !basicInfo.subdistrict ||
+      !basicInfo.postalCode
+    ) {
+      toast.error('Please fill in all address fields');
+      return false;
+    }
+    if (!basicInfo.propertyStatus) {
+      toast.error('Please select property status');
+      return false;
+    }
+    return true;
+  };
+
+  const validatePropertyInfo = () => {
+    const propertyInfo = formData[1];
+    if (!propertyInfo.propertyTitle) {
+      toast.error('Please enter property title');
+      return false;
+    }
+    if (!propertyInfo.PropertyDescription) {
+      toast.error('Please enter property description');
+      return false;
+    }
+    if (!propertyInfo.area) {
+      toast.error('Please enter property area');
+      return false;
+    }
+    if (!propertyInfo.unitNum) {
+      toast.error('Please enter unit number');
+      return false;
+    }
+    if (!propertyInfo.PropertyCondition) {
+      toast.error('Please select property condition');
+      return false;
+    }
+    return true;
+  };
+
+  const validateFeaturesAndAmenities = () => {
+    const features = formData[2];
+    if (!features.propertyFeature || features.propertyFeature.length === 0) {
+      toast.error('Please select at least one property feature');
+      return false;
+    }
+    if (!features.amenities || features.amenities.length === 0) {
+      toast.error('Please select at least one amenity');
+      return false;
+    }
+    return true;
+  };
+
+  const validatePhotos = () => {
+    const photos = formData[3];
+    if (!photos.propertyImage || photos.propertyImage.length < 5) {
+      toast.error('Please upload at least 5 property images');
+      return false;
+    }
+    if (!photos.VerifyPropertyImage || photos.VerifyPropertyImage.length === 0) {
+      toast.error('Please upload ownership document');
+      return false;
+    }
+    return true;
+  };
+
+  const validatePricing = () => {
+    const pricing = formData[4];
+    if (!pricing.oneMonth) {
+      toast.error('Please enter monthly rate');
+      return false;
+    }
+    if (!pricing.oneMonthDeposit) {
+      toast.error('Please enter security deposit');
+      return false;
+    }
+    return true;
+  };
+
   // Fixed handleSubmit function - no longer needs event parameter
   const handleSubmit = async () => {
     try {
+      // Validate all sections before submitting
+      if (!validateBasicInfo()) {
+        setCurrentStep(0);
+        return;
+      }
+      if (!validatePropertyInfo()) {
+        setCurrentStep(1);
+        return;
+      }
+      if (!validateFeaturesAndAmenities()) {
+        setCurrentStep(2);
+        return;
+      }
+      if (!validatePhotos()) {
+        setCurrentStep(3);
+        return;
+      }
+      if (!validatePricing()) {
+        setCurrentStep(4);
+        return;
+      }
       // Extract data from formData array
       const basicInfo = formData[0];
       const propertyInfo = formData[1];
@@ -403,13 +517,17 @@ const AddProperty = () => {
       for (let [key, value] of formDataToSend.entries()) {
         console.log(key, value);
       }
+      const loadingToast = toast.loading('Creating property...');
 
       // Call the API
       const result = await createProperty(formDataToSend).unwrap();
 
       console.log('Property created successfully!', result);
       //alert('Property created successfully!');
-
+      toast.dismiss(loadingToast);
+      toast.success('Property created successfully!');
+      console.log('Property created successfully!', result);
+      router.push('/owner/properties');
       // Reset form or redirect as needed
       // You might want to redirect to property list or reset the form
     } catch (err) {
