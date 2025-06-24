@@ -15,6 +15,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { MdLogout } from 'react-icons/md';
+import { useLogoutMutation } from '@/features/auth/authApi';
 
 const TenantAside = ({ mobileNav, setMobileNav }) => {
   const { id } = useParams();
@@ -163,6 +164,8 @@ const LinkItem = ({ page, pathname, isMenuOpen, setMobileNav }) => {
 
 const ProfileSec = ({ isMenuOpen }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [logout, { isLoading: isLoggingOut }] = useLogoutMutation();
+
   const menuRef = useRef(null);
 
   // Close the dropdown if clicked outside
@@ -176,6 +179,60 @@ const ProfileSec = ({ isMenuOpen }) => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      // First call the logout API to clear server-side session
+      await logout().unwrap();
+
+      // Clear Redux store
+      dispatch(deleteUser());
+
+      // Clear all auth-related localStorage
+      if (typeof window !== 'undefined') {
+        // Clear specific auth items
+        localStorage.removeItem('auth');
+        // Clear any other auth-related items
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+
+        // Clear all cookies
+        document.cookie.split(';').forEach(cookie => {
+          const [name] = cookie.trim().split('=');
+          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        });
+      }
+
+      // Show success message
+      toast.success('Logged out successfully');
+
+      // Force a full page reload to clear all state
+      window.location.replace('/login');
+    } catch (error) {
+      console.error('Logout error:', error);
+
+      // Even if API fails, clear all local state
+      dispatch(deleteUser());
+
+      // Clear all auth-related localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('auth');
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+
+        // Clear all cookies
+        document.cookie.split(';').forEach(cookie => {
+          const [name] = cookie.trim().split('=');
+          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        });
+      }
+
+      toast.error('Logged out locally due to server error');
+
+      // Force a full page reload to clear all state
+      window.location.replace('/login');
+    }
+  };
 
   return (
     <div className="flex w-full items-center justify-between gap-4 border-t border-[#EBEBEB] px-3 pt-4">
@@ -216,10 +273,11 @@ const ProfileSec = ({ isMenuOpen }) => {
                 <IoSettingsOutline />
               </Link>
               <button
-                onClick={() => console.log('Logout clicked')}
+                onClick={handleLogout}
+                disabled={isLoggingOut}
                 className="flex w-full items-center justify-between px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
               >
-                <p>Logout</p>
+                <p>{isLoggingOut ? 'Logging out...' : 'Logout'}</p>
                 <MdLogout />
               </button>
             </div>
