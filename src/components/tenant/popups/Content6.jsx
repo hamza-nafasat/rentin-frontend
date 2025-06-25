@@ -8,7 +8,7 @@ import InputDate from '../forms/InputDate';
 import InputTime from '../forms/InputTime';
 import Buttons from './Buttons';
 import Input from '@/components/shared/small/Input';
-function Content6() {
+function Content6({ cancelHandle, acceptHandle }) {
   return (
     <div className="flex flex-col">
       <PropertyImage />
@@ -44,7 +44,13 @@ function Content6() {
         </form>
       </div>
       <div className="mt-2 flex justify-end gap-2">
-        <Buttons text1={'Rejected'} cn={'!bg-[#E35454]'} text2={'Accept'} />
+        <Buttons
+          cancelHandle={cancelHandle}
+          acceptHandle={acceptHandle}
+          text1={'Rejected'}
+          cn={'!bg-[#E35454]'}
+          text2={'Accept'}
+        />
       </div>
     </div>
   );

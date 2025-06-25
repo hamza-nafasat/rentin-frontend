@@ -6,6 +6,7 @@ import ProposalModal from './ProposalModal';
 import { GoArrowUpRight } from 'react-icons/go';
 import Modal from '@/components/shared/small/Modal';
 import Content6 from '@/components/tenant/popups/Content6';
+import Content7 from '@/components/tenant/popups/Content7';
 
 const ProposalSummary = () => {
   const [modal, setModal] = useState(false);
@@ -30,8 +31,19 @@ const ProposalSummary = () => {
     setModal(false);
   }, []);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const requestModal = () => {
+  const [isModalOpen1, setIsModalOpen1] = useState(false);
+  const openRequestModal = () => {
     setIsModalOpen(true);
+  };
+  const openRequestModal1 = () => {
+    setIsModalOpen1(true);
+  };
+  const closeRequestModal = () => {
+    setIsModalOpen(false);
+    openRequestModal1();
+  };
+  const closeRequestModal1 = () => {
+    setIsModalOpen1(false);
   };
   const columns = useMemo(
     () => [
@@ -88,7 +100,7 @@ const ProposalSummary = () => {
             </button>
             <button
               className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
-              onClick={requestModal}
+              onClick={openRequestModal}
             >
               Action
             </button>
@@ -109,13 +121,24 @@ const ProposalSummary = () => {
       </div>
     );
   }
+  const acceptHandle = () => {
+    console.log('accept');
+  };
+  const cancelHandle = () => {
+    console.log('accept');
+  };
 
   return (
     <section className="shadow-card rounded-lg border bg-white p-4 lg:p-5">
       <div>
         {isModalOpen && (
-          <Modal width={500} onClose={() => setIsModalOpen(false)} title="Visit Request">
-            <Content6 />
+          <Modal width={500} onClose={closeRequestModal} title="Visit Request">
+            <Content6 cancelHandle={cancelHandle} acceptHandle={acceptHandle} />
+          </Modal>
+        )}
+        {isModalOpen1 && (
+          <Modal width={500} onClose={closeRequestModal1} title="Visit Request">
+            <Content7 cancelHandle={cancelHandle} acceptHandle={acceptHandle} />
           </Modal>
         )}
       </div>

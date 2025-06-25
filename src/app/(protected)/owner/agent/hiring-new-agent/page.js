@@ -1,7 +1,10 @@
+'use client';
 import NewAgentCard from '@/components/owner/newAgent/NewAgentCard';
 import NewAgentCardHeader from '@/components/owner/newAgent/NewAgentCardHeader';
 import NewAgentHeader from '@/components/owner/newAgent/NewAgentHeader';
-import React from 'react';
+import Modal from '@/components/shared/small/Modal';
+import Content8 from '@/components/tenant/popups/Content8';
+import React, { useState } from 'react';
 
 function HiringNewAgent() {
   const cardsData = [
@@ -76,17 +79,36 @@ function HiringNewAgent() {
       price: '4,200$',
     },
   ];
+  const sendContract = () => {
+    console.log('send');
+    openRequestModal();
+  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openRequestModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeRequestModal = () => {
+    setIsModalOpen(false);
+  };
+  const sendRequest = () => {
+    console.log('send request');
+  };
+  const cancelHandle = () => {
+    console.log('cancelHandle request');
+  };
   return (
     <div>
+      {isModalOpen && (
+        <Modal width={500} onClose={closeRequestModal} title="Visit Request">
+          <Content8 cancelHandle={cancelHandle} acceptHandle={sendRequest} />
+        </Modal>
+      )}
       <NewAgentHeader />
-      <section
-        className="mt-4 rounded-lg bg-white p-4"
-        style={{ boxShadow: '0px 2px 12px 0px #3582E71A' }}
-      >
+      <section className="mt-4 rounded-lg bg-white p-4" style={{ boxShadow: '0px 2px 12px 0px #3582E71A' }}>
         <NewAgentCardHeader />
         <div className="mt-5 grid max-h-[800px] grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
           {cardsData.map((data, index) => (
-            <NewAgentCard key={index} data={data} />
+            <NewAgentCard sendContract={sendContract} key={index} data={data} />
           ))}
         </div>
       </section>

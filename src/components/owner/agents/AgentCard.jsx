@@ -5,12 +5,12 @@ import { FaRegEdit } from 'react-icons/fa';
 import { PiMapPinFill } from 'react-icons/pi';
 import { TbStarFilled } from 'react-icons/tb';
 import { useRouter } from 'next/navigation';
-import { Chat } from '@/assets/icon';
+import { Chat, MessageUser } from '@/assets/icon';
 import { GoBookmarkFill } from 'react-icons/go';
 import { IoHomeOutline } from 'react-icons/io5';
 import { GoArrowUpRight } from 'react-icons/go';
 
-const AgentCard = ({ data, role }) => {
+const AgentCard = ({ data, role, sendContract }) => {
   const router = useRouter();
   const handleViewDetails = () => {
     if (role === 'agent') {
@@ -67,17 +67,9 @@ const AgentCard = ({ data, role }) => {
           </div>
         </div>
 
-        <div className="flex items-center justify-center border-t border-[#d8d8d8dc] pt-[8px]">
-          <button
-            onClick={handleViewDetails}
-            // onClick={() => router.push(`/owner/agent/agent-profile/${data?._id}`)}
-            className="bg-primary cursor-pointer rounded-lg px-4 py-2"
-          >
-            <div className="flex items-center gap-1">
-              <p className="text-xs text-white">View Details</p>
-              <GoArrowUpRight className="text-md font-semibold text-white" />
-            </div>
-          </button>
+        <div className="flex items-center justify-center gap-4 border-t border-[#d8d8d8dc] pt-[8px]">
+          <Button onClick={handleViewDetails} text={'View Details'} icon={<GoArrowUpRight />} />
+          <Button text={'Hire Agent'} icon={<MessageUser />} onClick={sendContract} />
         </div>
       </div>
     </div>
@@ -85,3 +77,15 @@ const AgentCard = ({ data, role }) => {
 };
 
 export default AgentCard;
+
+const Button = ({ className, text, icon, ...rest }) => {
+  return (
+    <button
+      {...rest}
+      className={`${className} bg-primary flex cursor-pointer items-center gap-2 space-x-4 rounded px-4 py-2 text-sm font-medium text-white hover:bg-[#01367f]`}
+    >
+      {text}
+      {icon}
+    </button>
+  );
+};

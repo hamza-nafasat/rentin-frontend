@@ -7,7 +7,7 @@ import { GoArrowUpRight } from 'react-icons/go';
 import { MessageUser } from '@/assets/icon';
 import { useRouter } from 'next/navigation';
 
-const NewAgentCard = ({ data }) => {
+const NewAgentCard = ({ data, sendContract }) => {
   const router = useRouter();
   // Destructure the data object
   const { inspectionImage, userImage, name, address, role, service, price, id } = data;
@@ -66,6 +66,7 @@ const NewAgentCard = ({ data }) => {
               // onClick={() => router.push(`/owner/tenants/tenants-profile/${tenant?.id}`)}
               text={'Hire Agent'}
               icon={<MessageUser />}
+              onClick={sendContract}
             />
           </div>
         </div>

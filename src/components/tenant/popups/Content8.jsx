@@ -10,7 +10,7 @@ import Modal from '@/components/shared/small/Modal';
 import Buttons from './Buttons';
 import ViewBuilding from './ViewBuildingContent';
 import Input from '@/components/shared/small/Input';
-function Content8() {
+function Content8({ cancelHandle, sendRequest }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="flex flex-col">
@@ -43,7 +43,13 @@ function Content8() {
         </form>
       </div>
       <div className="mt-3 flex justify-end gap-2">
-        <Buttons text1={'Back'} cn={'!bg-[#5390E0]'} text2={'Send Contract'} />
+        <Buttons
+          cancelHandle={cancelHandle}
+          acceptHandle={sendRequest}
+          text1={'Back'}
+          cn={'!bg-[#5390E0]'}
+          text2={'Send Contract'}
+        />
       </div>
       <div>
         {isModalOpen && (
