@@ -6,11 +6,15 @@ import { BsPatchCheckFill } from 'react-icons/bs';
 import { GoArrowUpRight } from 'react-icons/go';
 import { MessageUser } from '@/assets/icon';
 import { useRouter } from 'next/navigation';
+import { MdEmail } from 'react-icons/md';
 
 const NewAgentCard = ({ data, sendContract }) => {
   const router = useRouter();
-  // Destructure the data object
-  const { inspectionImage, userImage, name, address, role, service, price, id } = data;
+
+  const { inspectionImage, userImage, name, address, role, service, price, id, email, serviceType, originalFee } = data;
+
+  const displayImage =
+    userImage && userImage !== '/images/agent/UserProfile.png' ? userImage : '/images/agent/UserProfile.png';
 
   return (
     <div className="relative h-full min-h-[283px] w-full rounded-lg border bg-white p-2">
@@ -22,17 +26,21 @@ const NewAgentCard = ({ data, sendContract }) => {
           alt="Property Background"
           className="mx-auto rounded-t-lg object-contain"
         />
+
         <div className="absolute -bottom-5 left-1/2 z-10 h-[75px] w-[75px] -translate-x-1/2 transform">
           <Image
-            src={userImage}
+            src={displayImage}
             width={75}
             height={75}
             alt="Profile Image"
             className="shadow-card h-[75px] w-[75px] rounded-full border-4 border-white"
+            onError={e => {
+              e.target.src = '/images/agent/UserProfile.png';
+            }}
           />
         </div>
       </div>
-      {/* Additional card content */}
+
       <div className="mt-4 flex w-full flex-col gap-1">
         <div className="flex items-center justify-between">
           <div>
@@ -42,16 +50,20 @@ const NewAgentCard = ({ data, sendContract }) => {
             <FaBookmark className="text-primary" />
           </div>
         </div>
+
         <div className="text-primary flex items-center gap-1">
           <IoHomeOutline />
           <span className="text-xs font-medium">{address}</span>
         </div>
+
         <div className="flex items-center gap-2">
           <h1 className="text-xs font-medium">{role}</h1>
         </div>
+
         <div>
           <p className="text-base font-medium">{price}</p>
         </div>
+
         <div className="mt-5 flex items-center justify-center gap-4">
           <div className="flex h-6 items-center justify-end rounded-[2px]">
             <Button

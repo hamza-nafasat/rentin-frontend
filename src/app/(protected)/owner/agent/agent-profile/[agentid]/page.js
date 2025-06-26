@@ -4,7 +4,7 @@ import React from 'react';
 function AgentProfile() {
   return (
     <div>
-      <span className="text-[22px] font-semibold">Properties Views</span>
+      <span className="text-[22px] font-semibold">Agent Profile</span>
       <Profile />
     </div>
   );

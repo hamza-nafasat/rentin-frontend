@@ -9,6 +9,7 @@ import { propertyApi } from './property/propertyApi';
 import locationReducer from './location/locationSlice';
 import { ratingApi } from './rating/ratingApi';
 import { userApi } from './user/userApi';
+import { agentApi } from './agent/agentApi';
 
 const store = configureStore({
   reducer: {
@@ -17,10 +18,17 @@ const store = configureStore({
     [propertyApi.reducerPath]: propertyApi.reducer,
     [ratingApi.reducerPath]: ratingApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
+    [agentApi.reducerPath]: agentApi.reducer,
     location: locationReducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(authApi.middleware, propertyApi.middleware, ratingApi.middleware, userApi.middleware),
+    getDefaultMiddleware().concat(
+      authApi.middleware,
+      propertyApi.middleware,
+      ratingApi.middleware,
+      userApi.middleware,
+      agentApi.middleware
+    ),
 });
 
 const StoreProvider = ({ children }) => {
