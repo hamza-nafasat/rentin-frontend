@@ -60,7 +60,7 @@ function MyAgents({ role, data, isLoading, isError, error }) {
   };
 
   const agents = getAgents(data);
-  console.log('getAgents', getAgents);
+  // console.log('getAgents', getAgents);
 
   return (
     <section className="mt-4 rounded-lg bg-white p-4" style={{ boxShadow: '0px 2px 12px 0px #3582E71A' }}>
@@ -78,7 +78,7 @@ function MyAgents({ role, data, isLoading, isError, error }) {
           isLoading={isLoading}
           isError={isError}
           error={error}
-          data={agents}
+          data={data}
           renderItem={agent => <AgentCard data={agent} key={agent._id} role={role} sendContract={sendContract} />}
         />
       </div>

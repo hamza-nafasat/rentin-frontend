@@ -39,7 +39,7 @@ const AgentCard = ({ data, role, sendContract }) => {
           <TbStarFilled className="text-md text-[#FAD400]" />
         </div>
         <div>
-          <span className="text-textSecondary text-xs">{data?.ratings}/5</span>
+          <span className="text-textSecondary text-xs">{data?.taskType}/5</span>
         </div>
       </div>
       <div className="absolute top-2 right-2 cursor-pointer">
@@ -66,7 +66,9 @@ const AgentCard = ({ data, role, sendContract }) => {
             <p className="text-xs text-[#0245a5]">Task:</p>
           </div>
           <div>
-            <p className="text-xs font-semibold">{data?.task}</p>
+            {data?.tasks?.map(item => (
+              <p className="text-xs font-semibold">{item?.taskType}</p>
+            ))}
           </div>
         </div>
 
