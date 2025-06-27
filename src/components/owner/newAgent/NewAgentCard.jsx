@@ -10,6 +10,7 @@ import { MdEmail } from 'react-icons/md';
 
 const NewAgentCard = ({ data, sendContract }) => {
   const router = useRouter();
+  console.log('datadatadatadatadatadatadata', data);
 
   const { inspectionImage, userImage, name, address, role, service, price, id, email, serviceType, originalFee } = data;
 
@@ -67,7 +68,7 @@ const NewAgentCard = ({ data, sendContract }) => {
         <div className="mt-5 flex items-center justify-center gap-4">
           <div className="flex h-6 items-center justify-end rounded-[2px]">
             <Button
-              onClick={() => router.push(`/owner/agent/agent-profile/${id}`)}
+              onClick={() => router.push(`/owner/agent/agent-profile/${data.id}`)}
               className="!bg-buttonSecondary hover:!bg-gray-500"
               text={'View Profile'}
               icon={<GoArrowUpRight />}

@@ -13,16 +13,12 @@ import { useGetAgentDetailsByIdQuery } from '@/features/agent/agentApi';
 
 function BasicDetails() {
   const params = useParams();
-  console.log('helloooo', params?.id);
+  // console.log('helloooo', params?.id);
+  console.log('helloooo', params?.agentid);
 
-  const agentId = params?.id;
+  const agentId = params?.agentid;
 
-  const {
-    data: agentResponse,
-    isLoading: loading,
-    error,
-    refetch,
-  } = useGetAgentDetailsByIdQuery('685ba8966516ca439cf938df');
+  const { data: agentResponse, isLoading: loading, error, refetch } = useGetAgentDetailsByIdQuery(agentId);
 
   const agentData = agentResponse?.data;
 

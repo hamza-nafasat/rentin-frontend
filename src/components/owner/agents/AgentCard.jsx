@@ -21,10 +21,13 @@ const AgentCard = ({ data, role, sendContract }) => {
       console.warn('Unknown role:', role);
     }
   };
+
+  console.log('datadatadatadatadatadata', data);
+
   return (
     <div className="shadow-card relative h-full min-h-[255px] w-full min-w-[270px] rounded-lg">
       <Image
-        src={data?.image}
+        src={data?.image?.url}
         width={270}
         height={225}
         className="absolute inset-0 h-full w-full rounded-lg object-cover"
@@ -46,7 +49,7 @@ const AgentCard = ({ data, role, sendContract }) => {
         <div className="flex items-end justify-between gap-2">
           <div>
             <h6 className="text-xs font-bold text-[#FDAC3B]">{data?.speciality}</h6>
-            <h4 className="text-textPrimary text-sm leading-none font-semibold md:text-base">{data?.name}</h4>
+            <h4 className="text-textPrimary text-sm leading-none font-semibold md:text-base">{data?.firstName}</h4>
           </div>
           <span
             className={`flex size-[18px] items-center justify-center rounded-xs bg-[#1D7FFF1A] text-xs font-semibold text-[#0245A5]`}

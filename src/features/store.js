@@ -10,6 +10,7 @@ import locationReducer from './location/locationSlice';
 import { ratingApi } from './rating/ratingApi';
 import { userApi } from './user/userApi';
 import { agentApi } from './agent/agentApi';
+import { superAdminApi } from './superAdmin/superAdminApi';
 
 const store = configureStore({
   reducer: {
@@ -19,6 +20,7 @@ const store = configureStore({
     [ratingApi.reducerPath]: ratingApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     [agentApi.reducerPath]: agentApi.reducer,
+    [superAdminApi.reducerPath]: superAdminApi.reducer,
     location: locationReducer,
   },
   middleware: getDefaultMiddleware =>
@@ -27,7 +29,8 @@ const store = configureStore({
       propertyApi.middleware,
       ratingApi.middleware,
       userApi.middleware,
-      agentApi.middleware
+      agentApi.middleware,
+      superAdminApi.middleware
     ),
 });
 
