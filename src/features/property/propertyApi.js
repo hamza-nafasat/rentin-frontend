@@ -81,6 +81,13 @@ export const propertyApi = createApi({
       }),
       providesTags: ['Tenants'],
     }),
+    getAgentAllProperty: builder.query({
+      query: () => ({
+        url: '/agent-all',
+        method: 'GET',
+      }),
+      // providesTags: ['Tenants'],
+    }),
   }),
 });
 
@@ -96,6 +103,7 @@ export const {
   useGetMyAgentsQuery,
   useGetOwnerTenantsQuery,
   useGetPropertiesByOwnerIdQuery,
+  useGetAgentAllPropertyQuery,
 } = propertyApi;
 
 export const resetPropertyApiState = propertyApi.util.resetApiState;
