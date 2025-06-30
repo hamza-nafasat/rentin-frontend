@@ -26,9 +26,30 @@ export const ratingApi = createApi({
       }),
       providesTags: ['Ratings'],
     }),
+    postAgentRating: builder.mutation({
+      query: data => ({
+        url: '/agent',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['Ratings'],
+    }),
+
+    getRatingsByAgent: builder.query({
+      query: agentId => ({
+        url: `/agent/${agentId}`,
+        method: 'GET',
+      }),
+      providesTags: ['Ratings'],
+    }),
   }),
 });
 
-export const { usePostRatingMutation, useGetRatingsByPropertyQuery } = ratingApi;
+export const {
+  usePostRatingMutation,
+  useGetRatingsByPropertyQuery,
+  usePostAgentRatingMutation,
+  useGetRatingsByAgentQuery,
+} = ratingApi;
 
 export const resetRatingApiState = ratingApi.util.resetApiState;

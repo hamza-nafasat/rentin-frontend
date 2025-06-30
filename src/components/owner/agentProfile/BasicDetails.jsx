@@ -10,22 +10,47 @@ import { MessageUser } from '@/assets/icon';
 import UserReviewsCard from '../properties/UserReviewsCard';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 import { useGetAgentDetailsByIdQuery } from '@/features/agent/agentApi';
+import { useGetRatingsByAgentQuery } from '@/features/rating/ratingApi';
 
 function BasicDetails() {
   const params = useParams();
-  // console.log('helloooo', params?.id);
-  console.log('helloooo', params?.agentid);
 
   const agentId = params?.agentid;
 
   const { data: agentResponse, isLoading: loading, error, refetch } = useGetAgentDetailsByIdQuery(agentId);
 
-  const agentData = agentResponse?.data;
+  const {
+    data: ratingsResponse,
+    isLoading: ratingsLoading,
+    error: ratingsError,
+  } = useGetRatingsByAgentQuery(agentId, {
+    skip: !agentId,
+  });
 
-  // Format available days for display
+  const agentData = agentResponse?.data;
+  const ratingsData = ratingsResponse?.ratings || [];
+
+  const calculateAverageRating = ratings => {
+    if (!ratings || ratings.length === 0) return 0;
+    const total = ratings.reduce((sum, rating) => sum + (rating.rate || 0), 0);
+    return (total / ratings.length).toFixed(1);
+  };
+
+  const formatReviewsForCard = ratings => {
+    if (!ratings || ratings.length === 0) return [];
+
+    return ratings.map(rating => ({
+      id: rating._id || rating.id,
+      name: rating.user?.name || 'Anonymous',
+      image: rating.user?.image?.url || '/images/properties/Bg.png',
+      rating: rating.rate || 0,
+      comment: rating.comment || '',
+      date: rating.createdAt ? new Date(rating.createdAt).toLocaleDateString() : 'N/A',
+    }));
+  };
+
   const formatAvailableDays = days => {
     if (!days || !Array.isArray(days) || days.length === 0) return 'Not specified';
-    // Remove brackets and clean up the string
     return days[0]
       .replace(/[\[\]]/g, '')
       .split(',')
@@ -33,10 +58,14 @@ function BasicDetails() {
       .join(', ');
   };
 
-  // Format location string
   const formatLocation = (area, city, country) => {
     const locationParts = [area, city, country].filter(Boolean);
     return locationParts.join(', ') || 'Location not specified';
+  };
+
+  const renderStars = rating => {
+    const numericRating = parseFloat(rating) || 0;
+    return [...Array(5)].map((_, i) => (i < Math.floor(numericRating) ? <FaStar key={i} /> : <FaRegStar key={i} />));
   };
 
   if (loading) {
@@ -79,6 +108,9 @@ function BasicDetails() {
       </div>
     );
   }
+
+  const averageRating = calculateAverageRating(ratingsData);
+  const formattedReviews = formatReviewsForCard(ratingsData);
 
   return (
     <div className="flex w-full flex-col gap-4">
@@ -226,18 +258,17 @@ function BasicDetails() {
             <div className="flex items-center justify-between">
               <p className="text-lg font-semibold">Reviews</p>
               <div className="flex items-center gap-3">
-                <p className="text-lg font-semibold">4.0</p>
-                <div className="flex text-[#ECBA0B]">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaRegStar />
-                </div>
+                <p className="text-lg font-semibold">{ratingsData.length > 0 ? averageRating : '0.0'}</p>
+                <div className="flex text-[#ECBA0B]">{renderStars(averageRating)}</div>
               </div>
             </div>
+            <div className="mt-2 flex items-center justify-between">
+              <p className="text-sm text-gray-600">
+                Based on {ratingsData.length} review{ratingsData.length !== 1 ? 's' : ''}
+              </p>
+            </div>
             <div className="mt-4">
-              <UserReviewsCard />
+              <UserReviewsCard reviews={formattedReviews} isLoading={ratingsLoading} error={ratingsError} />
             </div>
           </div>
         </div>

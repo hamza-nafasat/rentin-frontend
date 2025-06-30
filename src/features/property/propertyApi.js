@@ -26,6 +26,13 @@ export const propertyApi = createApi({
       }),
       providesTags: ['Property'],
     }),
+    getMyAllAgentProperties: builder.query({
+      query: () => ({
+        url: '/my-agent-all',
+        method: 'GET',
+      }),
+      providesTags: ['Property'],
+    }),
 
     getPropertiesByOwnerId: builder.query({
       query: ownerId => ({
@@ -81,6 +88,8 @@ export const {
   useCreatePropertyMutation,
   useGetAllPropertiesQuery,
   useGetMyAllPropertiesQuery,
+
+  useGetMyAllAgentPropertiesQuery,
   useGetSinglePropertyQuery,
   useDeleteSinglePropertyMutation,
   useHireAgentMutation,

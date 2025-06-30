@@ -11,6 +11,7 @@ import { ratingApi } from './rating/ratingApi';
 import { userApi } from './user/userApi';
 import { agentApi } from './agent/agentApi';
 import { superAdminApi } from './superAdmin/superAdminApi';
+import { visitRequestApi } from './visitRequest/visitRequestApi';
 
 const store = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ const store = configureStore({
     [userApi.reducerPath]: userApi.reducer,
     [agentApi.reducerPath]: agentApi.reducer,
     [superAdminApi.reducerPath]: superAdminApi.reducer,
+    [visitRequestApi.reducerPath]: visitRequestApi.reducer,
     location: locationReducer,
   },
   middleware: getDefaultMiddleware =>
@@ -30,7 +32,8 @@ const store = configureStore({
       ratingApi.middleware,
       userApi.middleware,
       agentApi.middleware,
-      superAdminApi.middleware
+      superAdminApi.middleware,
+      visitRequestApi.middleware
     ),
 });
 

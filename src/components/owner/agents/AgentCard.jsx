@@ -13,7 +13,7 @@ import { GoArrowUpRight } from 'react-icons/go';
 const AgentCard = ({ data, role, sendContract }) => {
   const router = useRouter();
   const handleViewDetails = () => {
-    if (role === 'agent') {
+    if (role === 'owner') {
       router.push(`/owner/agent/agent-profile/${data?._id}`);
     } else if (role === 'admin') {
       router.push(`/admin/users/agent/agent-profile/${data?._id}`);
@@ -21,6 +21,7 @@ const AgentCard = ({ data, role, sendContract }) => {
       console.warn('Unknown role:', role);
     }
   };
+  console.log('datatata', data);
 
   console.log('datadatadatadatadatadata', data);
 
@@ -39,7 +40,7 @@ const AgentCard = ({ data, role, sendContract }) => {
           <TbStarFilled className="text-md text-[#FAD400]" />
         </div>
         <div>
-          <span className="text-textSecondary text-xs">{data?.taskType}/5</span>
+          <span className="text-textSecondary text-xs">{data?.averageRating}/5</span>
         </div>
       </div>
       <div className="absolute top-2 right-2 cursor-pointer">

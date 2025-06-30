@@ -11,6 +11,8 @@ const InspectionCard = ({ data }) => {
   const router = useRouter();
   // Destructure the data object
   const { inspectionImage, userImage, name, address, role, service, price, id } = data;
+  const displayImage =
+    userImage && userImage !== '/images/agent/UserProfile.png' ? userImage : '/images/agent/UserProfile.png';
 
   return (
     <div className="shadow-card relative h-full min-h-[283px] w-full rounded-lg border bg-white p-2">
@@ -24,7 +26,7 @@ const InspectionCard = ({ data }) => {
         />
         <div className="absolute -bottom-5 left-1/2 z-10 h-[75px] w-[75px] -translate-x-1/2 transform">
           <Image
-            src={data.userImage}
+            src={displayImage}
             width={75}
             height={75}
             alt="Profile Image"
@@ -47,12 +49,18 @@ const InspectionCard = ({ data }) => {
           <span className="text-xs font-medium">{address}</span>
         </div>
         <div className="flex items-center gap-2">
-          <h1 className="text-xs font-medium">{role}</h1>
+          <h1 className="text-xs font-medium">
+            {role === 'Both'
+              ? 'Property Agent & Certified Inspection Officer'
+              : role === 'Agent'
+                ? 'Property Agent'
+                : 'Certified Inspection Officer'}
+          </h1>
           <BsPatchCheckFill className="text-primary" />
         </div>
-        <div>
+        {/* <div>
           <p className="text-xs font-medium">{service}</p>
-        </div>
+        </div> */}
         <div>
           <p className="text-base font-medium">{price}</p>
         </div>
