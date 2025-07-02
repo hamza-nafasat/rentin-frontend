@@ -1,6 +1,7 @@
 'use client';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import SendButton from '@/components/shared/small/Button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { ChevronLeft, Send, UploadCloud } from 'lucide-react';
@@ -10,6 +11,8 @@ import { useEffect } from 'react';
 import { PiLinkSimpleBold } from 'react-icons/pi';
 import Image from 'next/image';
 import { IoClose } from 'react-icons/io5';
+import Modal from '@/components/shared/small/Modal';
+import Content8 from '@/components/tenant/popups/Content8';
 
 const agents = [
   {
@@ -83,6 +86,7 @@ export default function ChatPage() {
     Zyan: [],
     Sarah: [],
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Simple helper to detect URLs (for link preview, if needed)
   const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -260,24 +264,27 @@ export default function ChatPage() {
         {/* Chat Window */}
         <Card className="flex flex-1 flex-col rounded-lg py-0 shadow-none">
           {/* Chat Header */}
-          <CardHeader className="flex flex-row items-center space-x-4 border-b p-4">
-            <Button size="icon" variant="ghost" className="sm:hidden" onClick={() => setIsSidebarVisible(true)}>
-              <ChevronLeft />
-            </Button>
-            <Avatar>
-              <AvatarImage src={selectedUser?.avatar} alt={selectedUser?.name} />
-              <AvatarFallback>{selectedUser?.name[0]}</AvatarFallback>
-            </Avatar>
-            <div>
-              <p className="font-medium">{selectedUser?.name}</p>
-              <p
-                className={`text-sm font-medium capitalize ${
-                  selectedUser?.status === 'online' ? 'text-[#36CE00]' : 'text-red-600'
-                }`}
-              >
-                {selectedUser?.status}
-              </p>
+          <CardHeader className="flex flex-row items-center justify-between border-b p-4">
+            <div className="flex flex-row items-center space-x-4">
+              <Button size="icon" variant="ghost" className="sm:hidden" onClick={() => setIsSidebarVisible(true)}>
+                <ChevronLeft />
+              </Button>
+              <Avatar>
+                <AvatarImage src={selectedUser?.avatar} alt={selectedUser?.name} />
+                <AvatarFallback>{selectedUser?.name[0]}</AvatarFallback>
+              </Avatar>
+              <div>
+                <p className="font-medium">{selectedUser?.name}</p>
+                <p
+                  className={`text-sm font-medium capitalize ${
+                    selectedUser?.status === 'online' ? 'text-[#36CE00]' : 'text-red-600'
+                  }`}
+                >
+                  {selectedUser?.status}
+                </p>
+              </div>
             </div>
+            <SendButton text={'Send Contract'} onClick={() => setIsModalOpen(true)} />
           </CardHeader>
 
           {/* Chat Content */}
@@ -399,6 +406,13 @@ export default function ChatPage() {
             )}
           </CardFooter>
         </Card>
+        <div>
+          {isModalOpen && (
+            <Modal width={500} onClose={() => setIsModalOpen(false)} title="Confirm Your Viewing Request">
+              <Content8 />
+            </Modal>
+          )}
+        </div>
       </div>
     </>
   );

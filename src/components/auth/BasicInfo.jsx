@@ -88,13 +88,7 @@ const BasicInfo = memo(({ data, index, updateField, setCurrentStep, formData }) 
       <h4 className="text-textPrimary text-center text-base font-medium md:text-lg">Basic Information</h4>
       <form className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-12">
         <div className="lg:col-span-6">
-          <Input
-            value={data.unitNum}
-            onChange={e => updateField(index, 'unitNum', e.target.value)}
-            shadow
-            placeholder="i. e A302"
-            label="Unit Number (optional)"
-          />
+          <Input shadow label="Legal Name" />
         </div>
         <div className="lg:col-span-6">
           <Input shadow label="User Name" />

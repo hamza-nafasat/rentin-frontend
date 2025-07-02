@@ -220,9 +220,11 @@ const BasicInfo = memo(
             />
           </div>
           {data.propertyStatus === 'available' && (
-            <div className="flex flex-col items-center justify-center lg:col-span-12">
-              <label className="mb-4 text-sm font-bold text-[#666666] lg:text-2xl">Select date and time</label>
-              <div className="shadow-card rounded-lg border bg-white p-3">
+            <div className="flex flex-col items-center justify-center gap-2 lg:col-span-12">
+              <label htmlFor="" className="text-[24px] font-semibold text-[#32343C]">
+                Show Date and Time
+              </label>
+              <div className="shadow-card w-full rounded-lg border bg-white p-3 md:w-[80%] lg:max-w-4xl">
                 <ShowBuildingHours />
               </div>
             </div>
