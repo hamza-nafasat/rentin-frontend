@@ -254,7 +254,6 @@ const ProposalSummary = () => {
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [selectedVisitRequestId, setSelectedVisitRequestId] = useState(null);
   const [selectedShowOption, setSelectedShowOption] = useState('');
-  console.log('hallo', selectedShowOption, selectedVisitRequestId);
 
   // API hooks
   const { data: visitRequestsData, isLoading, error } = useGetAllVisitRequestsQuery();
@@ -329,48 +328,11 @@ const ProposalSummary = () => {
         }).unwrap();
         closeRequestModal1();
       } else if (selectedShowOption === 'existing') {
-        // console.log('nest');
-
-        // // Navigate to existing agents page with visit request ID
-        // // router.push(`/owner/agent`);
-        // router.push({
-        //   pathname: '/owner/agent',
-        //   query: { id: selectedVisitRequestId },
-        // });
-
-        if (!selectedVisitRequestId) {
-          console.error('selectedVisitRequestId is missing');
-          return;
-        }
-
-        router.push({
-          pathname: '/owner/agent',
-          query: { id: String(selectedVisitRequestId) },
-        });
-      } else if (selectedShowOption === 'existing') {
-        console.log('Navigating to existing agent page with ID:', selectedVisitRequestId);
-
-        if (!selectedVisitRequestId || typeof selectedVisitRequestId !== 'string') {
-          console.error('Invalid visit request ID:', selectedVisitRequestId);
-          return;
-        }
-
-        router.push({
-          pathname: '/owner/agent',
-          query: { id: selectedVisitRequestId },
-        });
+        // Navigate to existing agents page with visit request ID
+        router.push(`/owner/agent=${selectedVisitRequestId}`);
       } else if (selectedShowOption === 'new') {
-        console.log('Navigating to new agent page with ID:', selectedVisitRequestId);
-
-        if (!selectedVisitRequestId || typeof selectedVisitRequestId !== 'string') {
-          console.error('Invalid visit request ID:', selectedVisitRequestId);
-          return;
-        }
-
-        router.push({
-          pathname: '/owner/agent/hiring-new-agent',
-          query: { id: selectedVisitRequestId },
-        });
+        // Navigate to new agents page with visit request ID
+        router.push(`/owner/agent/hiring-new-agent=${selectedVisitRequestId}`);
       }
     } catch (error) {
       console.error('Error accepting visit request:', error);

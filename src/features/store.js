@@ -12,6 +12,8 @@ import { userApi } from './user/userApi';
 import { agentApi } from './agent/agentApi';
 import { superAdminApi } from './superAdmin/superAdminApi';
 import { visitRequestApi } from './visitRequest/visitRequestApi';
+import visitRequestReducer from './visitRequest/visitRequestSlice';
+import { messageApi } from './message/messageApi';
 
 const store = configureStore({
   reducer: {
@@ -23,7 +25,9 @@ const store = configureStore({
     [agentApi.reducerPath]: agentApi.reducer,
     [superAdminApi.reducerPath]: superAdminApi.reducer,
     [visitRequestApi.reducerPath]: visitRequestApi.reducer,
+    [messageApi.reducerPath]: messageApi.reducer,
     location: locationReducer,
+    visitRequest: visitRequestReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(
@@ -33,7 +37,8 @@ const store = configureStore({
       userApi.middleware,
       agentApi.middleware,
       superAdminApi.middleware,
-      visitRequestApi.middleware
+      visitRequestApi.middleware,
+      messageApi.middleware
     ),
 });
 
