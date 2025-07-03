@@ -76,10 +76,10 @@ const NewAgentCard = ({ data, sendContract }) => {
           </div>
           <div className="flex h-6 items-center justify-end rounded-[2px]">
             <Button
-              // onClick={() => router.push(`/owner/tenants/tenants-profile/${tenant?.id}`)}
+              onClick={() => router.push(`/owner/messages?agent=${data.id}`)}
               text={'Hire Agent'}
               icon={<MessageUser />}
-              onClick={sendContract}
+              //onClick={sendContract}
             />
           </div>
         </div>

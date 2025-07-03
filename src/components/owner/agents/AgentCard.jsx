@@ -75,7 +75,11 @@ const AgentCard = ({ data, role, sendContract }) => {
 
         <div className="flex items-center justify-center gap-4 border-t border-[#d8d8d8dc] pt-[8px]">
           <Button onClick={handleViewDetails} text={'View Details'} icon={<GoArrowUpRight />} />
-          <Button text={'Hire Agent'} icon={<MessageUser />} onClick={sendContract} />
+          <Button
+            text={'Hire Agent'}
+            icon={<MessageUser />}
+            onClick={() => router.push(`/owner/messages?agent=${data._id}`)}
+          />
         </div>
       </div>
     </div>

@@ -75,7 +75,7 @@ const InspectionCard = ({ data }) => {
           </div>
           <div className="flex h-6 items-center justify-end rounded-[2px]">
             <Button
-              //onClick={() => router.push(`/owner/${tenant?.id}`)}
+              onClick={() => router.push(`/owner/messages?agent=${id}`)}
               text={'Hire Agent'}
               icon={<MessageUser />}
             />

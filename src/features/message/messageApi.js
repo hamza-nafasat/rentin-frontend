@@ -68,7 +68,21 @@ export const messageApi = createApi({
       query: role => `/user/chats?role=${role}`,
       providesTags: ['Chat'],
     }),
+    getUserById: builder.query({
+      query: userId => `/user/${userId}`,
+      providesTags: (result, error, userId) => [{ type: 'User', id: userId }],
+    }),
+    // Optional: endpoint to create a new chat
+    createChat: builder.mutation({
+      query: ({ receiverId, message }) => ({
+        url: '/create-chat',
+        method: 'POST',
+        body: { receiverId, message },
+      }),
+      invalidatesTags: ['Chat'],
+    }),
   }),
 });
 
-export const { useGetMessagesByChatIdQuery, useGetChatsByRoleQuery } = messageApi;
+export const { useGetMessagesByChatIdQuery, useGetChatsByRoleQuery, useGetUserByIdQuery, useCreateChatMutation } =
+  messageApi;

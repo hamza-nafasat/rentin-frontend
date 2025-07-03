@@ -329,10 +329,10 @@ const ProposalSummary = () => {
         closeRequestModal1();
       } else if (selectedShowOption === 'existing') {
         // Navigate to existing agents page with visit request ID
-        router.push(`/owner/agent=${selectedVisitRequestId}`);
+        router.push(`/owner/agent?visitRequestId=${selectedVisitRequestId}`);
       } else if (selectedShowOption === 'new') {
         // Navigate to new agents page with visit request ID
-        router.push(`/owner/agent/hiring-new-agent=${selectedVisitRequestId}`);
+        router.push(`/owner/agent/hiring-new-agent?visitRequestId=${selectedVisitRequestId}`);
       }
     } catch (error) {
       console.error('Error accepting visit request:', error);
