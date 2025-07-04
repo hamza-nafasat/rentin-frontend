@@ -2310,18 +2310,15 @@ import Content8 from '@/components/tenant/popups/Content8';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'next/navigation';
 import socketService from '@/utils/socket';
-<<<<<<< Updated upstream
 import {
   useGetMessagesByChatIdQuery,
   useGetChatsByRoleQuery,
   useGetUserByIdQuery,
   useCreateChatMutation,
 } from '@/features/message/messageApi';
-=======
 import { useGetMessagesByChatIdQuery, useGetChatsByRoleQuery } from '@/features/message/messageApi';
 import PropertiesView from '../properties/PropertiesView';
 import ShowPropertyCards from '../properties/ShowPropertyCards';
->>>>>>> Stashed changes
 
 // Helper function to generate chat ID from two user IDs
 const generateChatId = (userId1, userId2) => {
