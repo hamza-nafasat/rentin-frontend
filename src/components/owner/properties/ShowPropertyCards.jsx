@@ -1,105 +1,95 @@
-import { useGetMyAllPropertiesQuery } from '@/features/property/propertyApi';
+'use client';
+import Button from '@/components/shared/small/Button';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 
-const properties = [
-  {
-    id: 1,
-    image: '/images/properties/PropertyView.png',
-    title: 'Charming Homes in Thailand',
-    address: '123 Sunset Road, Phuket, Thailand',
-    price: '$243',
-    period: 'pre month',
-    publishDate: 'Apr 29,2024',
-    views: '321',
-    interestedTenants: '34',
-  },
-  {
-    id: 2,
-    image: '/images/properties/PropertyView.png',
-    title: 'Charming Homes in Thailand',
-    address: '123 Sunset Road, Phuket, Thailand',
-    price: '$243',
-    period: 'pre month',
-    publishDate: 'Apr 29,2024',
-    views: '321',
-    interestedTenants: '34',
-  },
-  {
-    id: 3,
-    image: '/images/properties/PropertyView.png',
-    title: 'Charming Homes in Thailand',
-    address: '123 Sunset Road, Phuket, Thailand',
-    price: '$243',
-    period: 'pre month',
-    publishDate: 'Apr 29,2024',
-    views: '321',
-    interestedTenants: '34',
-  },
-  {
-    id: 4,
-    image: '/images/properties/PropertyView.png',
-    title: 'Charming Homes in Thailand',
-    address: '123 Sunset Road, Phuket, Thailand',
-    price: '$243',
-    period: 'pre month',
-    publishDate: 'Apr 29,2024',
-    views: '321',
-    interestedTenants: '34',
-  },
-  {
-    id: 5,
-    image: '/images/properties/PropertyView.png',
-    title: 'Charming Homes in Thailand',
-    address: '123 Sunset Road, Phuket, Thailand',
-    price: '$243',
-    period: 'pre month',
-    publishDate: 'Apr 29,2024',
-    views: '321',
-    interestedTenants: '34',
-  },
-];
-const selectPropertyHandle = () => {
-  console.log('hsdcgjs');
-};
+function ShowPropertyCards({ properties = [], onPropertySelect, setIsModalOpen1, isLoading, error }) {
+  const [selectBuilding, setSelectBuilding] = useState();
 
-function ShowPropertyCards() {
-  const { data: propertiesResponse, isLoading, isError, error } = useGetMyAllPropertiesQuery();
-  console.log('propertiesResponse', propertiesResponse);
-  const properties = propertiesResponse || [];
-  console.log('properties', properties);
+  const selectHandle = (propertyId, property) => {
+    console.log('Selected property ID:', propertyId);
+    setSelectBuilding(propertyId);
+    if (onPropertySelect) {
+      onPropertySelect(property);
+    }
+  };
+
+  const handleNext = () => {
+    if (selectBuilding) {
+      const selectedProperty = properties.find(p => p._id === selectBuilding);
+      if (selectedProperty && onPropertySelect) {
+        onPropertySelect(selectedProperty);
+      }
+      if (setIsModalOpen1) {
+        setIsModalOpen1(true);
+      }
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className="flex h-[460px] items-center justify-center">
+        <div className="text-gray-500">Loading properties...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex h-[460px] items-center justify-center">
+        <div className="text-red-500">Error loading properties</div>
+      </div>
+    );
+  }
+
+  if (!properties || properties.length === 0) {
+    return (
+      <div className="flex h-[460px] items-center justify-center">
+        <div className="text-gray-500">No properties found</div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-[800px] overflow-x-auto lg:w-full">
       {/* Header Section */}
 
       {/* Properties List */}
       <div className="flex h-[460px] flex-col gap-2 overflow-auto">
-        {propertiesResponse.map(property => (
-          <div key={property._id} onClick={selectPropertyHandle()} className="flex flex-col gap-2.5">
+        {properties.map(property => (
+          <div
+            key={property._id}
+            onClick={() => selectHandle(property._id, property)}
+            className={`flex cursor-pointer flex-col gap-2.5 rounded border p-2 ${
+              selectBuilding === property._id ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+            }`}
+          >
             {/* Left Section: Image and Details */}
             <div className="col-span-6">
               <div className="flex gap-3.5">
                 <div>
                   <Image
-                    src={data?.images?.[0]?.url || '/images/placeholder-property.jpg'}
+                    src={property?.images?.[0]?.url || '/images/placeholder-property.jpg'}
                     width={182}
                     height={100}
-                    alt="icon"
+                    alt="property image"
+                    className="rounded object-cover"
                   />
                 </div>
                 <div className="flex flex-col justify-between p-1">
                   <div>
                     <h1 className="text-base font-semibold text-[#0245a5]">
-                      {' '}
-                      {data?.propertyTitle || data?.projectName || 'Untitled Property'}
+                      {property?.propertyTitle || property?.projectName || 'Untitled Property'}
                     </h1>
                   </div>
                   <div>
-                    <h6 className="text-textSecondary text-xs font-normal">{property.address}</h6>
+                    <h6 className="text-textSecondary text-xs font-normal">
+                      {property?.address || 'Address not available'}
+                    </h6>
                   </div>
                   <div>
                     <span className="text-base font-semibold">
-                      {property.price}
+                      ${property?.contractRate?.rate || 'N/A'}
                       <span className="text-textSecondary text-[8px] font-semibold">{property.period}</span>
                     </span>
                   </div>
@@ -111,10 +101,11 @@ function ShowPropertyCards() {
           </div>
         ))}
       </div>
+      <div className="mt-4 flex justify-center">
+        <Button text={'Next'} onClick={handleNext} disabled={!selectBuilding} />
+      </div>
     </div>
   );
 }
 
 export default ShowPropertyCards;
-
-// export default ShowPropertyCards
