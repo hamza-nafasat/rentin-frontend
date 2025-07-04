@@ -2310,12 +2310,18 @@ import Content8 from '@/components/tenant/popups/Content8';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'next/navigation';
 import socketService from '@/utils/socket';
+<<<<<<< Updated upstream
 import {
   useGetMessagesByChatIdQuery,
   useGetChatsByRoleQuery,
   useGetUserByIdQuery,
   useCreateChatMutation,
 } from '@/features/message/messageApi';
+=======
+import { useGetMessagesByChatIdQuery, useGetChatsByRoleQuery } from '@/features/message/messageApi';
+import PropertiesView from '../properties/PropertiesView';
+import ShowPropertyCards from '../properties/ShowPropertyCards';
+>>>>>>> Stashed changes
 
 // Helper function to generate chat ID from two user IDs
 const generateChatId = (userId1, userId2) => {
@@ -2961,8 +2967,13 @@ export default function ChatPage({ userId: propUserId }) {
         </Card>
         <div>
           {isModalOpen && (
-            <Modal width={500} onClose={() => setIsModalOpen(false)} title="Confirm Your Viewing Request">
-              <Content8 />
+            <Modal
+              width={'w-[300px] md:w-[400px] lg:w-[700px] xl:w-[400px]'}
+              onClose={() => setIsModalOpen(false)}
+              title="Confirm Your Viewing Request"
+            >
+              {/* <Content8 /> */}
+              <ShowPropertyCards />
             </Modal>
           )}
         </div>
