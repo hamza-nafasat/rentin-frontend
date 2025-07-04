@@ -53,7 +53,7 @@ function Content3() {
         </form>
       </div>
       <div className="mt-2 flex justify-end gap-2">
-        <Buttons text1={'Back'} cn={'!bg-[#E35454]'} text2={'Confirm'} />
+        <Buttons text1={'Back'} cn={'!bg-[#E35454] hover:!bg-red-500'} text2={'Confirm'} />
       </div>
     </div>
   );

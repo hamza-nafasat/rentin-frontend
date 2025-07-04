@@ -165,11 +165,12 @@
 'use client';
 import React from 'react';
 import PropertyImage from './PropertyImage';
-import Image from 'next/image';
 import Buttons from './Buttons';
 import Input from '@/components/shared/small/Input';
 
 function Content6({ cancelHandle, acceptHandle, visitRequestData }) {
+  console.log(visitRequestData);
+
   if (!visitRequestData) {
     return (
       <div className="flex h-32 items-center justify-center">
@@ -189,7 +190,7 @@ function Content6({ cancelHandle, acceptHandle, visitRequestData }) {
           type: 'For Rent',
           images: [
             visitRequestData.propertyImage
-              ? visitRequestData.propertyImage.replace(/^http:/, 'https:')
+              ? visitRequestData?.propertyImage.replace(/^http:/, 'https:')
               : '/images/browser-property/Properties.png',
             visitRequestData.propertyImage
               ? visitRequestData.propertyImage.replace(/^http:/, 'https:')
@@ -197,8 +198,8 @@ function Content6({ cancelHandle, acceptHandle, visitRequestData }) {
           ],
           price: visitRequestData.contractRate ? `${visitRequestData.contractRate}` : '$0',
           rentPrice: visitRequestData.contractRate ? `${visitRequestData.contractRate}` : '$0',
-          beds: visitRequestData.bedRooms || 0,
-          baths: visitRequestData.bathRooms || 0,
+          beds: visitRequestData?.bedRooms || 0,
+          baths: visitRequestData?.bathRooms || 0,
           area: visitRequestData.unitArea || 0,
           kitchens: 1,
           garages: 0,
@@ -261,7 +262,7 @@ function Content6({ cancelHandle, acceptHandle, visitRequestData }) {
           cancelHandle={cancelHandle}
           acceptHandle={acceptHandle}
           text1={'Reject'}
-          cn={'!bg-[#E35454]'}
+          cn={'!bg-[#E35454] hover:!bg-red-500'}
           text2={'Accept'}
         />
       </div>

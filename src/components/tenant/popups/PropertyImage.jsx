@@ -82,10 +82,6 @@ import React from 'react';
 import BrowsePropertyCard from '../browserProperty/BrowsePropertyCard';
 
 export default function PropertyImage({ children, propertyData }) {
-  // Debug: Log the received data
-  console.log('PropertyImage received propertyData:', propertyData);
-
-  // Use provided propertyData or fallback to default data
   const data = propertyData
     ? [propertyData]
     : [
@@ -113,12 +109,13 @@ export default function PropertyImage({ children, propertyData }) {
   console.log('PropertyImage final data array:', data);
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       {data?.map(property => (
-        <div key={property.id}>
+        <div key={property?.id}>
           <BrowsePropertyCard cn={'!h-fit'} data={property} Children={children} />
         </div>
       ))}
+      <div> {children}</div>
     </div>
   );
 }

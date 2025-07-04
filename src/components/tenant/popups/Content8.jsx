@@ -10,17 +10,13 @@ import Modal from '@/components/shared/small/Modal';
 import Buttons from './Buttons';
 import ViewBuilding from './ViewBuildingContent';
 import Input from '@/components/shared/small/Input';
-function Content8({ cancelHandle, sendRequest }) {
+import Button from '@/components/shared/small/Button';
+function Content8({ cancelHandle, sendRequest, data }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="flex flex-col">
-      <PropertyImage>
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="mb-2 ml-2 cursor-pointer rounded-[2px] bg-[#0245A5] px-5 py-1.25 text-[14px] text-white"
-        >
-          View Building
-        </button>
+      <PropertyImage propertyData={data}>
+        <Button text={'View Building'} onClick={() => setIsModalOpen(true)} />
       </PropertyImage>
       <div>
         <form action="">
@@ -47,7 +43,7 @@ function Content8({ cancelHandle, sendRequest }) {
           cancelHandle={cancelHandle}
           acceptHandle={sendRequest}
           text1={'Back'}
-          cn={'!bg-[#5390E0]'}
+          cn={'!bg-[#5390E0] hover:!bg-blue-400'}
           text2={'Send Contract'}
         />
       </div>

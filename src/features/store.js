@@ -14,6 +14,7 @@ import { superAdminApi } from './superAdmin/superAdminApi';
 import { visitRequestApi } from './visitRequest/visitRequestApi';
 import visitRequestReducer from './visitRequest/visitRequestSlice';
 import { messageApi } from './message/messageApi';
+import selectedId from './selectedId/selecetdId';
 
 const store = configureStore({
   reducer: {
@@ -26,6 +27,7 @@ const store = configureStore({
     [superAdminApi.reducerPath]: superAdminApi.reducer,
     [visitRequestApi.reducerPath]: visitRequestApi.reducer,
     [messageApi.reducerPath]: messageApi.reducer,
+    [selectedId.name]: selectedId.reducer,
     location: locationReducer,
     visitRequest: visitRequestReducer,
   },

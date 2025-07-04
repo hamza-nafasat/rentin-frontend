@@ -7,6 +7,7 @@ import InputTime from '../forms/InputTime';
 import Buttons from './Buttons';
 import Image from 'next/image';
 import Input from '@/components/shared/small/Input';
+import Button from '@/components/shared/small/Button';
 
 function Content13() {
   return (
@@ -83,7 +84,7 @@ function Content13() {
       </div>
       <div className="mt-3 flex flex-wrap items-center justify-between">
         <div className="mt-2 flex gap-2">
-          <Buttons text1={'Reject'} cn={'!bg-[#E35454]'} cn2={'!hidden'} />
+          <Button text={'Reject'} cn="!bg-[#E35454] hover:!bg-red-500" />
         </div>
         <div className="flex items-center justify-end gap-10">
           <h1 className="text-[16px] font-bold text-[#32343C]">Total Amount </h1>

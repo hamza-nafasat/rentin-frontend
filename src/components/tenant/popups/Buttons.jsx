@@ -5,12 +5,12 @@ export default function Buttons({ text1, text2, cn, cn2, cancelHandle, acceptHan
   return (
     <div className="flex justify-end gap-2">
       <Button
-        cn={`!h-fit !w-fit !cursor-pointer !rounded-[2px] !px-5 !py-1.5 !text-[14px] !text-white ${cn}`}
+        cn={`bg-primary cursor-pointer place-items-center rounded-lg px-4 py-2 text-sm font-medium text-white hover:bg-[#01367f] ${cn}`}
         text={text1}
         onClick={cancelHandle}
       />
       <Button
-        cn={`!h-fit !w-fit !cursor-pointer !rounded-[2px] !px-5 !py-1.5 !text-[14px] !text-white ${cn2}`}
+        cn={`bg-primary cursor-pointer place-items-center rounded-lg px-4 py-2 text-sm font-medium text-white hover:bg-[#01367f] ${cn2}`}
         text={text2}
         onClick={acceptHandle}
       />

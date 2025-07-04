@@ -698,18 +698,14 @@ export default function ChatPage({ userId: propUserId }) {
               <ShowPropertyCards
                 properties={properties}
                 onPropertySelect={handlePropertySelect}
-                setIsModalOpen1={setIsModalOpen1}
+                // setIsModalOpen1={setIsModalOpen1}
                 isLoading={propertiesLoading}
                 error={propertiesError}
               />
             </Modal>
           )}
           {isModalOpen1 && (
-            <Modal
-              width={'w-[300px] md:w-[400px] lg:w-[700px] xl:w-[900px]'}
-              onClose={() => setIsModalOpen1(false)}
-              title="Confirm Your Viewing Request"
-            >
+            <Modal width={500} onClose={() => setIsModalOpen1(false)} title="Confirm Your Viewing Request">
               <Content8 selectedProperty={selectedProperty} />
             </Modal>
           )}

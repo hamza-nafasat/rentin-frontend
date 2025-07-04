@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import Tab1 from '@/components/tenant/popups/Tab1';
-import { useState } from 'react';
 import Tab2 from '@/components/tenant/popups/Tab2';
 import Tab3 from '@/components/tenant/popups/Tab3';
 import Tab4 from '@/components/tenant/popups/Tab4';

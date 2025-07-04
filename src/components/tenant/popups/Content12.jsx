@@ -62,7 +62,7 @@ function Content12() {
           <p className="py-2.5 text-[24px] font-semibold text-[#32343C]">$1200</p>
         </div>
         <div className="mt-2 flex basis-[100%] justify-end gap-2 sm:basis-[49%]">
-          <Buttons text1={'Cancel'} cn={'!bg-[#E35454]'} text2={'Confirm'} />
+          <Buttons text1={'Cancel'} cn={'!bg-[#E35454] hover:!bg-red-500'} text2={'Confirm'} />
         </div>
       </div>
     </div>

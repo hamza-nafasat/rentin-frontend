@@ -141,7 +141,7 @@ function Content2() {
       </div>
 
       <div className="mt-2 flex justify-end gap-2">
-        <Buttons text1="Cancel" cn="!bg-[#E35454]" text2="Next" />
+        <Buttons text1="Cancel" cn={'!bg-[#E35454] hover:!bg-red-500'} text2="Next" />
       </div>
     </div>
   );

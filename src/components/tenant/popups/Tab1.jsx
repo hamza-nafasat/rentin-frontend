@@ -13,11 +13,7 @@ export default function Tab1() {
       </div>
       <div>
         {isModalOpen && (
-          <Modal
-            width={500}
-            onClose={() => setIsModalOpen(false)}
-            title="Confirm Your Viewing Request"
-          >
+          <Modal width={500} onClose={() => setIsModalOpen(false)} title="Confirm Your Viewing Request">
             <Content1 />
           </Modal>
         )}

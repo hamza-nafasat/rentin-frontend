@@ -150,7 +150,7 @@ function Content7({ selectedOption, onOptionChange, onConfirm, onBack, visitRequ
       <div className="mt-3 flex justify-end gap-2">
         <Buttons
           text1={'Back'}
-          cn={'!bg-[#5390E0]'}
+          cn={'!bg-[#5390E0] hover:!bg-blue-400'}
           text2={'Confirm Selection'}
           cancelHandle={onBack}
           acceptHandle={onConfirm}

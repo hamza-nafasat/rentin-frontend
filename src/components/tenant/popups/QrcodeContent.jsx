@@ -62,7 +62,7 @@ function QrcodeContent() {
         </ul>
       </div>
       <div className="mt-3 flex justify-end gap-2">
-        <Buttons text1={'Cancel'} Color1={'bg-[#E35454]'} text2={'Download Slip'} />
+        <Buttons text1={'Cancel'} cn={'!bg-[#E35454] hover:!bg-red-500'} text2={'Download Slip'} />
       </div>
     </div>
   );

@@ -6,18 +6,27 @@ import { myAgentData, myPropertiesData } from '@/data/data';
 import Modal from '@/components/shared/small/Modal';
 import Content8 from '@/components/tenant/popups/Content8';
 import DataState from '@/components/shared/small/DataState';
+import { useRouter } from 'next/navigation';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAgentId } from '@/features/selectedId/selecetdId';
 
 function MyAgents({ role, data, isLoading, isError, error }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
+  const dispatch = useDispatch();
   const openRequestModal = () => {
     setIsModalOpen(true);
   };
   const closeRequestModal = () => {
     setIsModalOpen(false);
   };
-  const sendContract = () => {
-    console.log('senrtt');
-    openRequestModal();
+  const buildingId = useSelector(state => state.selectedId.buildingId);
+
+  console.log('buildingId', buildingId);
+
+  const sendContract = id => {
+    dispatch(setAgentId(id));
+    router.push('/owner/messages');
   };
   const sendRequest = () => {
     console.log('send request');

@@ -14,7 +14,7 @@ export default function Content1() {
         </h1>
       </div>
       <div className="flex justify-end gap-2">
-        <Buttons text1={'Cancel'} cn={'!bg-[#E35454]'} text2={'Proceed to Visit'} />
+        <Buttons text1={'Cancel'} cn={'!bg-[#E35454] hover:!bg-red-500'} text2={'Proceed to Visit'} />
       </div>
     </div>
   );

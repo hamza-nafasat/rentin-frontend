@@ -5,17 +5,26 @@ import NewAgentHeader from '@/components/owner/newAgent/NewAgentHeader';
 import Modal from '@/components/shared/small/Modal';
 import Content8 from '@/components/tenant/popups/Content8';
 import { useGetAgentsByServiceTypeQuery } from '@/features/agent/agentApi';
+import { setAgentId } from '@/features/selectedId/selecetdId';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 function HiringNewAgent() {
   const [selectedService, setSelectedService] = useState('Show');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   const { data: agentsResponse, isLoading, isError, error } = useGetAgentsByServiceTypeQuery(selectedService);
 
-  const sendContract = () => {
-    console.log('send');
-    openRequestModal();
+  const buildingId = useSelector(state => state.selectedId.buildingId);
+
+  console.log('buildingId', buildingId);
+
+  const sendContract = id => {
+    dispatch(setAgentId(id));
+    router.push(`/owner/messages`);
   };
 
   const openRequestModal = () => {

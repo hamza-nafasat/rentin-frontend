@@ -1,15 +1,12 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import PropertyImage from './PropertyImage';
-import InputText from '../forms/InputText';
-import Move from '../forms/Move';
-import InputTime from '../forms/InputTime';
-import Image from 'next/image';
 import Buttons from './Buttons';
-import InputDate from '../forms/InputDate';
 import Input from '@/components/shared/small/Input';
 
 function Content16() {
+  const [formData, setFormData] = useState({ fullName: '', inspectionAmount: '', date: '2025-05-05', time: '14:30' });
+
   return (
     <div className="flex flex-col">
       <PropertyImage />
@@ -34,7 +31,7 @@ function Content16() {
         </form>
       </div>
       <div className="mt-4 flex justify-end gap-2">
-        <Buttons text1={'Cancel'} cn={'!bg-[#E35454]'} text2={'Send: Proposal'} />
+        <Buttons text1={'Cancel'} cn={'!bg-[#E35454] hover:!bg-red-500'} text2={'Send Proposal'} />
       </div>
     </div>
   );

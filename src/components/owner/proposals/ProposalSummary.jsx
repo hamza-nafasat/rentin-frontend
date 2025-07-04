@@ -231,7 +231,7 @@
 
 'use client';
 import { tableStyles } from '@/data/data';
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import ProposalModal from './ProposalModal';
 import { GoArrowUpRight } from 'react-icons/go';
@@ -245,6 +245,8 @@ import {
   useAcceptVisitRequestMutation,
 } from '@/features/visitRequest/visitRequestApi';
 import { useRouter } from 'next/navigation';
+import { useDispatch, useSelector } from 'react-redux';
+import { setBuildingId } from '@/features/selectedId/selecetdId';
 
 const ProposalSummary = () => {
   const router = useRouter();
@@ -262,6 +264,8 @@ const ProposalSummary = () => {
   });
   const [rejectVisitRequest] = useRejectVisitRequestMutation();
   const [acceptVisitRequest] = useAcceptVisitRequestMutation();
+
+  const dispatch = useDispatch();
 
   const modalOpenHandler = useCallback(row => {
     setSelectedRow(row);
@@ -417,7 +421,7 @@ const ProposalSummary = () => {
             >
               View
             </button>
-            {row.status === 'pending' && (
+            {row.status && (
               <button
                 className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
                 onClick={() => openRequestModal(row.visitRequestId, row)} // Pass the row as well

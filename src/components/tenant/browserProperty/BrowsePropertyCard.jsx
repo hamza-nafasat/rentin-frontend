@@ -8,7 +8,7 @@ function BrowsePropertyCard({ data }) {
     <div className="shadow-card h-full w-full cursor-pointer rounded-lg border bg-white lg:h-[440px]">
       <div className="relative h-[239px] w-full">
         <Image
-          src={data?.images[0]}
+          src={data?.images[0]?.url ? data?.images[0].url : data?.images[0]}
           width={368}
           height={239}
           alt="icon"

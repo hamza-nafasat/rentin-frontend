@@ -9,17 +9,13 @@ import Modal from '@/components/shared/small/Modal';
 import Buttons from './Buttons';
 import ViewBuilding from './ViewBuildingContent';
 import Input from '@/components/shared/small/Input';
+import Button from '@/components/shared/small/Button';
 function Content9() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="flex flex-col">
       <PropertyImage>
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="mb-2 ml-2 cursor-pointer rounded-[2px] bg-[#0245A5] px-5 py-1.25 text-[14px] text-white"
-        >
-          View Building
-        </button>
+        <Button text={'View Building'} onClick={() => setIsModalOpen(true)} />
       </PropertyImage>
       <div>
         <form action="">
@@ -42,7 +38,7 @@ function Content9() {
         </form>
       </div>
       <div className="mt-3 flex justify-end gap-2">
-        <Buttons text1={'Reject'} cn={'!bg-[#E35454]'} text2={'Accept'} />
+        <Buttons text1={'Reject'} cn={'!bg-[#E35454] hover:!bg-red-500'} text2={'Accept'} />
       </div>
       <div>
         {isModalOpen && (
