@@ -57,6 +57,10 @@ export const visitRequestApi = createApi({
       query: id => `/visit/${id}`,
       providesTags: ['VisitRequest'],
     }),
+    getPropertyRequestById: builder.query({
+      query: id => `/property/${id}`,
+      providesTags: ['VisitRequest'],
+    }),
   }),
 });
 
@@ -67,6 +71,7 @@ export const {
   useGetAllVisitRequestsQuery,
   useGetPendingVisitRequestsQuery,
   useGetVisitRequestByIdQuery,
+  useGetPropertyRequestByIdQuery,
 } = visitRequestApi;
 
 export const resetVisitRequestApiState = visitRequestApi.util.resetApiState;
