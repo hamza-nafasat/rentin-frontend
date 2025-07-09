@@ -16,7 +16,7 @@ const HouseMap = dynamic(() => import('./HouseMap'), {
   ssr: false,
 });
 
-function PropertyDetailsSlider({ data, onClose }) {
+function PropertyDetailsSlider({ data, onClose, setIsModalOpen }) {
   // console.log("data",data);
 
   const [selectedTab, setSelectedTab] = useState('overview');
@@ -141,7 +141,7 @@ function PropertyDetailsSlider({ data, onClose }) {
                 </div>
               </div>
               <div className="flex flex-col justify-center gap-4 md:flex-row">
-                <Button cn={''} text="Visit Now" />
+                <Button cn={''} onClick={() => setIsModalOpen(true)} text="Visit Now" />
                 <Button cn={''} text="Book Now" />
               </div>
               <div className="mt-5">

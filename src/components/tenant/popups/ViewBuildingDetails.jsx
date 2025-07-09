@@ -69,7 +69,7 @@ export default function ViewBuildingDetails() {
         <h1 className="text-[16px] font-semibold text-[#32343C]">Rental Agreement Details</h1>
         <div className="my-2 grid grid-cols-1 grid-rows-5 gap-x-5 sm:grid-cols-2 sm:grid-rows-3">
           {payment.map((item, index) => (
-            <h1 className="flex items-center justify-between border-b py-2 text-[12px] text-[#5F5F5F]">
+            <h1 key={index} className="flex items-center justify-between border-b py-2 text-[12px] text-[#5F5F5F]">
               <span>{item.label}</span>
               <span>{item.count}</span>
             </h1>

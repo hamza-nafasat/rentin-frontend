@@ -1,7 +1,7 @@
 import React from 'react';
 import Buttons from './Buttons';
 
-export default function Content1() {
+export default function Content1({ setIsModalOpen, setIsModalOpen1 }) {
   return (
     <div className="flex flex-col">
       <div>
@@ -14,7 +14,18 @@ export default function Content1() {
         </h1>
       </div>
       <div className="flex justify-end gap-2">
-        <Buttons text1={'Cancel'} cn={'!bg-[#E35454] hover:!bg-red-500'} text2={'Proceed to Visit'} />
+        <Buttons
+          cancelHandle={() => {
+            setIsModalOpen(false);
+          }}
+          text1={'Cancel'}
+          cn={'!bg-[#E35454] hover:!bg-red-500'}
+          text2={'Proceed to Visit'}
+          acceptHandle={() => {
+            setIsModalOpen(false);
+            setIsModalOpen1(true);
+          }}
+        />
       </div>
     </div>
   );
