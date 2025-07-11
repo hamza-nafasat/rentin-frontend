@@ -157,7 +157,7 @@ function BrowsePropertyCard({ data }) {
           <div className="flex flex-col items-center justify-center gap-2 lg:flex-row">
             <SqftIcon />
             <p className="text-primary text-sm font-semibold">{mappedData?.area} </p>
-            <p className="text-primary text-sm font-semibold"> Sqft</p>
+            {/* <p className="text-primary text-sm font-semibold"> Sqft</p> */}
           </div>
         </div>
       </div>

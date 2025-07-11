@@ -5,12 +5,9 @@ import PropertyDescription from '@/components/owner/properties/PropertyDescripti
 import { useGetSinglePropertyQuery } from '@/features/property/propertyApi';
 
 const PropertyDetails = ({ params }) => {
-  // Get the property ID from the URL parameters
   const { id: propertyId } = use(params);
 
   const { data, error, isLoading } = useGetSinglePropertyQuery(propertyId);
-
-  console.log('property', data);
 
   // Loading state
   if (isLoading) {

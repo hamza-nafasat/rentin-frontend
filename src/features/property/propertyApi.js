@@ -26,6 +26,13 @@ export const propertyApi = createApi({
       }),
       providesTags: ['Property'],
     }),
+    getAllProperties: builder.query({
+      query: () => ({
+        url: '/all',
+        method: 'GET',
+      }),
+      providesTags: ['Property'],
+    }),
     getMyAllAgentProperties: builder.query({
       query: () => ({
         url: '/my-agent-all',
