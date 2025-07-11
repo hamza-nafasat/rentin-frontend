@@ -203,7 +203,7 @@ function Content8({ cancelHandle, sendRequest, data, selectedProperty, selectedT
       </div>
       <div>
         {isModalOpen && (
-          <Modal width={500} onClose={() => setIsModalOpen(false)}>
+          <Modal width={'w-full sm:!w-[750px]'} onClose={() => setIsModalOpen(false)}>
             <ViewBuilding data={data} />
           </Modal>
         )}

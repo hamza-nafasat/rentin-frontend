@@ -92,50 +92,52 @@ export default function ViewBuildingImages({ data }) {
 
   return (
     <div>
-      <div className="flex flex-col items-center gap-2 sm:flex-row">
-        <div>
-          <Image src={mainImage} width={428} height={382} alt="Property main image" className="object-cover" />
+      <div className="grid gap-3 md:grid-cols-12">
+        <div className="md:col-span-7">
+          <Image
+            src={mainImage}
+            width={428}
+            height={382}
+            alt="Property main image"
+            className="h-full w-full rounded-lg object-cover"
+          />
         </div>
-        <div className="flex gap-2 sm:flex-col">
-          <div className="flex gap-2">
-            <div>
-              <Image
-                src={displayImages[0]?.url}
-                width={106}
-                height={185}
-                alt="Property image 1"
-                className="object-cover"
-              />
-            </div>
-            <div>
-              <Image
-                src={displayImages[1]?.url}
-                width={106}
-                height={185}
-                alt="Property image 2"
-                className="object-cover"
-              />
-            </div>
+        <div className="grid grid-cols-2 gap-3 md:col-span-5">
+          <div>
+            <Image
+              src={displayImages[0]?.url}
+              width={106}
+              height={185}
+              alt="Property image 1"
+              className="h-full w-full rounded-lg object-cover"
+            />
           </div>
-          <div className="flex gap-2">
-            <div>
-              <Image
-                src={displayImages[2]?.url}
-                width={106}
-                height={185}
-                alt="Property image 3"
-                className="object-cover"
-              />
-            </div>
-            <div>
-              <Image
-                src={displayImages[3]?.url}
-                width={106}
-                height={185}
-                alt="Property image 4"
-                className="object-cover"
-              />
-            </div>
+          <div>
+            <Image
+              src={displayImages[1]?.url}
+              width={106}
+              height={185}
+              alt="Property image 2"
+              className="h-full w-full rounded-lg object-cover"
+            />
+          </div>
+          <div>
+            <Image
+              src={displayImages[2]?.url}
+              width={106}
+              height={185}
+              alt="Property image 3"
+              className="h-full w-full rounded-lg object-cover"
+            />
+          </div>
+          <div>
+            <Image
+              src={displayImages[3]?.url}
+              width={106}
+              height={185}
+              alt="Property image 4"
+              className="h-full w-full rounded-lg object-cover"
+            />
           </div>
         </div>
       </div>
