@@ -63,6 +63,11 @@ const rentalFeatures = [
   { option: 'Others', value: 'others' },
 ];
 
+const availabilityOptions = [
+  { option: 'Rent', value: 'rent' },
+  { option: 'Sale', value: 'sale' },
+];
+
 const propertyViews = [
   { option: 'Blocked / Obstructed View', value: 'blocked_view' },
   { option: 'Unblocked / Open View', value: 'open_view' },
@@ -150,6 +155,14 @@ const FeatureAndAmenities = ({ data, index, updateField, setCurrentStep, formDat
             shadow
           />
           {/* <Dropdown label="View from the property" options={propertyViews} shadow /> */}
+        </div>
+        <div className="lg:col-span-6">
+          <Dropdown
+            label="Property For"
+            options={availabilityOptions}
+            onSelect={val => updateField(index, 'rentalFeature', val)}
+            shadow
+          />
         </div>
 
         <div className="flex justify-end gap-[14px] lg:col-span-12">

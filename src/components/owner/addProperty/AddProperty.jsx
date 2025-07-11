@@ -51,7 +51,7 @@ const AddProperty = () => {
     },
     { propertyFeature: [], amenities: [], rentalFeature: [], propertyView: [] },
     { propertyImage: [], VerifyPropertyImage: [], floorPlanImage: [] },
-    { oneMonth: '', oneMonthDeposit: '', deals: [] },
+    { visitRequestPrice: '', propertyPrice: '', oneMonth: '', oneMonthDeposit: '', deals: [] },
   ]);
 
   // Add new state for BasicInfo component

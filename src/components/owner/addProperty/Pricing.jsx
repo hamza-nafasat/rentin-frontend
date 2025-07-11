@@ -62,6 +62,22 @@ const Pricing = ({ data, index, updateField, setCurrentStep, formData, onSubmit,
         <div className="col-span-12">
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 sm:col-span-6">
+              <Input
+                shadow
+                value={data.visitRequestPrice || ''}
+                onChange={e => updateField(index, 'visitRequestPrice', e.target.value)}
+                label="Visit Request Price"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <Input
+                shadow
+                value={data.propertyPrice || ''}
+                onChange={e => updateField(index, 'propertyPrice', e.target.value)}
+                label="Property Price"
+              />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
               <InputWithRightContent
                 shadow
                 label="1 Month Contract"
