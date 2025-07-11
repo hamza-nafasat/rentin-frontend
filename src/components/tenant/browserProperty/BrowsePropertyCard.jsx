@@ -97,6 +97,8 @@ function BrowsePropertyCard({ data }) {
     rooms: data?.rooms || 7,
     description: data?.description || 'Beautiful property',
     status: data?.propertyStatus || data?.status || 'available',
+    propertyFor: data?.propertyFor,
+    totalPrice: data?.totalPrice,
   };
 
   return (
@@ -117,7 +119,7 @@ function BrowsePropertyCard({ data }) {
 
         <div className="absolute top-2 left-2">
           <div className="text-secondaryy rounded-lg border bg-white px-1 py-[2px] text-sm shadow">
-            <p className="text-xs font-bold capitalize">{mappedData?.type}</p>
+            <p className="text-xs font-bold capitalize">For {mappedData?.propertyFor}</p>
           </div>
         </div>
         <div className="absolute right-2 bottom-2">
@@ -132,7 +134,7 @@ function BrowsePropertyCard({ data }) {
         </div>
         <div className="mt-4 flex flex-col">
           <div className="flex flex-col items-center justify-between lg:flex-row">
-            <p className="text-[22px] font-semibold">{mappedData?.price}</p>
+            <p className="text-[22px] font-semibold">${mappedData?.totalPrice}</p>
             <p className="text-[22px] font-semibold">
               {mappedData?.rentPrice}
               <span className="text-textSecondary text-sm font-semibold">/month</span>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Buttons from './Buttons';
 
-export default function Content1({ setIsModalOpen, setIsModalOpen1 }) {
+export default function Content1({ visitPrice, setIsModalOpen, setIsModalOpen1 }) {
   return (
     <div className="flex flex-col">
       <div>
@@ -10,7 +10,7 @@ export default function Content1({ setIsModalOpen, setIsModalOpen1 }) {
           <br></br> proceeding.
         </p>
         <h1 className="mb-3 text-[16px] sm:text-[18px]">
-          <span className="font-bold">Visit Fee: $300</span> (Non-refundable)
+          <span className="font-bold">Visit Fee: ${visitPrice}</span> (Non-refundable)
         </h1>
       </div>
       <div className="flex justify-end gap-2">

@@ -4,10 +4,10 @@ import PropertyImage from './PropertyImage';
 import Move from '../forms/Move';
 import Buttons from './Buttons';
 import Input from '@/components/shared/small/Input';
-function Content4({ setIsModalOpen2, setIsModalOpen3 }) {
+function Content4({ setIsModalOpen2, setIsModalOpen3, data }) {
   return (
     <div className="flex flex-col">
-      <PropertyImage />
+      <PropertyImage propertyData={data} />
       <div>
         <form action="">
           <div className="mt-3 flex flex-wrap justify-between">

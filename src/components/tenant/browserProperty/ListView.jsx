@@ -37,17 +37,21 @@ function ListView({ handleCloseSlider, handleCardClick, selectedProperty, houses
           title={'Confirm Your Viewing Request'}
           onClose={() => setIsModalOpen(false)}
         >
-          <Content1 setIsModalOpen={setIsModalOpen} setIsModalOpen1={setIsModalOpen1} />
+          <Content1
+            visitPrice={selectedProperty?.visitPrice}
+            setIsModalOpen={setIsModalOpen}
+            setIsModalOpen1={setIsModalOpen1}
+          />
         </Modal>
       )}
       {isModalOpen1 && (
         <Modal width={'w-full sm:w-[550px]'} onClose={() => setIsModalOpen1(false)} title="Visit Request">
-          <Content2 setIsModalOpen1={setIsModalOpen1} setIsModalOpen2={setIsModalOpen2} />
+          <Content2 data={selectedProperty} setIsModalOpen1={setIsModalOpen1} setIsModalOpen2={setIsModalOpen2} />
         </Modal>
       )}
       {isModalOpen2 && (
         <Modal width={'w-full sm:w-[550px]'} onClose={() => setIsModalOpen2(false)} title="Preview Your Visit Request">
-          <Content4 setIsModalOpen2={setIsModalOpen2} setIsModalOpen3={setIsModalOpen3} />
+          <Content4 data={selectedProperty} setIsModalOpen2={setIsModalOpen2} setIsModalOpen3={setIsModalOpen3} />
         </Modal>
       )}
       {isModalOpen3 && (
