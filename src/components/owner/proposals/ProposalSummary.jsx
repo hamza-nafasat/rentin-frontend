@@ -358,7 +358,7 @@ const ProposalSummary = () => {
 
     return visitRequestsData.data.map((request, index) => ({
       proposalId: request._id,
-      propertyName: `Property ${index + 1}`, // You might want to populate this from the property data
+      projectName: `Property ${index + 1}`, // You might want to populate this from the property data
       proposalType: 'Property Visit',
       sentTo: 'Owner', // This might need to be adjusted based on your data structure
       dateSent: request.date,
@@ -376,7 +376,7 @@ const ProposalSummary = () => {
       },
       {
         name: 'Property',
-        selector: row => row.propertyName,
+        selector: row => row.projectName,
       },
       {
         name: 'Proposal Type',
