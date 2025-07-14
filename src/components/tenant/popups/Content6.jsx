@@ -64,51 +64,37 @@ function Content6({ cancelHandle, acceptHandle, visitRequestData }) {
         }}
       />
 
-      <div className="mt-3">
-        <form>
-          <div>
-            <Input shadow type={'text'} label={'Full Name'} value={visitRequestData.tenantName || ''} readOnly />
-          </div>
-          <div className="mt-3 flex flex-wrap justify-between">
-            <div className="basis-[100%] sm:basis-[49%]">
-              <Input shadow type={'text'} label={'Visit Date'} value={visitRequestData.visitDate || ''} readOnly />
-            </div>
-            <div className="basis-[100%] sm:basis-[49%]">
-              <Input shadow type={'text'} label={'Visit Time'} value={visitRequestData.time || ''} readOnly />
-            </div>
-          </div>
-          <div className="mt-3 flex flex-wrap justify-between">
-            <div className="basis-[100%] sm:basis-[49%]">
-              <Input shadow type={'text'} label={'Nationality'} value={visitRequestData.nationality || ''} readOnly />
-            </div>
-            <div className="basis-[100%] sm:basis-[49%]">
-              <Input
-                shadow
-                type={'text'}
-                label={'Number of Occupants'}
-                value={visitRequestData.numOfOccupants || ''}
-                readOnly
-              />
-            </div>
-          </div>
-          <div className="mt-3 flex flex-wrap justify-between">
-            <div className="basis-[100%] sm:basis-[49%]">
-              <Input
-                shadow
-                type={'text'}
-                label={'Purpose of Rental'}
-                value={visitRequestData.purposeOfRental || ''}
-                readOnly
-              />
-            </div>
-            <div className="basis-[100%] sm:basis-[49%]">
-              <Input shadow type={'text'} label={'Move In Date'} value={visitRequestData.moveInDate || ''} readOnly />
-            </div>
-          </div>
-          <div className="mt-3">
-            <Input shadow type={'text'} label={'Move Out Date'} value={visitRequestData.moveOutDate || ''} readOnly />
-          </div>
-        </form>
+      <div className="mt-3 grid grid-cols-2 gap-4">
+        <div className="col-span-2 md:col-span-1">
+          <Input shadow type={'text'} label={'Full Name'} value={visitRequestData.tenantName || ''} readOnly />
+        </div>
+        <div className="col-span-2 md:col-span-1">
+          <Input shadow type={'text'} label={'Visit Date'} value={visitRequestData.visitDate || ''} readOnly />
+        </div>
+        <div className="col-span-2 md:col-span-1">
+          <Input shadow type={'text'} label={'Visit Time'} value={visitRequestData.time || ''} readOnly />
+        </div>
+        <div className="col-span-2 md:col-span-1">
+          <Input shadow type={'text'} label={'Nationality'} value={visitRequestData.nationality || ''} readOnly />
+        </div>
+        <div className="col-span-2 md:col-span-1">
+          <Input
+            shadow
+            type={'text'}
+            label={'Number of Occupants'}
+            value={visitRequestData.numOfOccupants || ''}
+            readOnly
+          />
+        </div>
+        <div className="col-span-2 md:col-span-1">
+          <Input
+            shadow
+            type={'text'}
+            label={'Purpose of Rental'}
+            value={visitRequestData.purposeOfRental || ''}
+            readOnly
+          />
+        </div>
       </div>
       <div className="mt-4 flex justify-end gap-2">
         <Buttons

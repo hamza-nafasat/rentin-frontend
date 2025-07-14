@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-import Dropdown from '@/components/shared/small/Dropdown';
 import DropdownCheckbox from '@/components/shared/small/DropdownCheckbox';
 
 const propertyFeatures = [
@@ -156,15 +155,6 @@ const FeatureAndAmenities = ({ data, index, updateField, setCurrentStep, formDat
           />
           {/* <Dropdown label="View from the property" options={propertyViews} shadow /> */}
         </div>
-        <div className="lg:col-span-6">
-          <Dropdown
-            label="Property For"
-            options={availabilityOptions}
-            onSelect={val => updateField(index, 'rentalFeature', val)}
-            shadow
-          />
-        </div>
-
         <div className="flex justify-end gap-[14px] lg:col-span-12">
           <Button onClick={handlePrevious} className="bg-[#7C848DB2]">
             Previous
