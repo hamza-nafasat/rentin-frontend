@@ -92,12 +92,14 @@ const TenantProposal = () => {
             >
               View
             </button>
-            <button
-              className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
-              onClick={() => setIsModalOpen(true)}
-            >
-              Action
-            </button>
+            {row.status === 'pending' && (
+              <button
+                className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
+                onClick={() => setIsModalOpen(true)}
+              >
+                Action
+              </button>
+            )}
           </div>
         ),
       },
