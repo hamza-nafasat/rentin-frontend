@@ -1,15 +1,20 @@
 'use client';
 import ProposalModal from '@/components/owner/proposals/ProposalModal';
+import Modal from '@/components/shared/small/Modal';
 import { proposalSummaryData, tableStyles } from '@/data/data';
 import { useState, useMemo, useCallback } from 'react';
 import DataTable from 'react-data-table-component';
 // import ProposalModal from './ProposalModal';
 import { GoArrowUpRight } from 'react-icons/go';
+import Content13 from '../popups/Content13';
+import Content14 from '../popups/Content14';
 
 const TenantProposal = () => {
   const [modal, setModal] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen1, setIsModalOpen1] = useState(false);
 
   // Simulate data loading
   useMemo(() => {
@@ -80,12 +85,20 @@ const TenantProposal = () => {
       {
         name: 'Actions',
         selector: row => (
-          <button
-            className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
-            onClick={() => modalOpenHandler(row)}
-          >
-            View
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
+              onClick={() => modalOpenHandler(row)}
+            >
+              View
+            </button>
+            <button
+              className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
+              onClick={() => setIsModalOpen(true)}
+            >
+              Action
+            </button>
+          </div>
         ),
       },
     ],
@@ -185,6 +198,27 @@ const TenantProposal = () => {
             </div>
           </div>
         </ProposalModal>
+      )}
+      {isModalOpen && (
+        <Modal
+          width={''}
+          title="Contract Verification"
+          onClose={() => {
+            setIsModalOpen(false);
+          }}
+        >
+          <Content13 />
+        </Modal>
+      )}
+      {isModalOpen1 && (
+        <Modal
+          title="Booking Successful! 🎉"
+          onClose={() => {
+            setIsModalOpen1(false);
+          }}
+        >
+          <Content14 />
+        </Modal>
       )}
     </section>
   );

@@ -247,12 +247,14 @@ import {
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBuildingId } from '@/features/selectedId/selecetdId';
+import Content12 from '@/components/tenant/popups/Content12';
 
 const ProposalSummary = () => {
   const router = useRouter();
   const [modal, setModal] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [selectedVisitRequestId, setSelectedVisitRequestId] = useState(null);
   const [selectedShowOption, setSelectedShowOption] = useState('');
@@ -266,6 +268,8 @@ const ProposalSummary = () => {
   const [acceptVisitRequest] = useAcceptVisitRequestMutation();
 
   const dispatch = useDispatch();
+
+  console.log(visitRequestsData);
 
   const modalOpenHandler = useCallback(row => {
     setSelectedRow(row);
@@ -283,12 +287,22 @@ const ProposalSummary = () => {
     setIsModalOpen(true);
   };
 
+  const openBookingModal = (visitRequestId, row) => {
+    setSelectedVisitRequestId(visitRequestId);
+    setSelectedRow(row);
+    setIsBookingModalOpen(true);
+  };
+
   const openRequestModal1 = () => {
     setIsModalOpen1(true);
   };
 
   const closeRequestModal = () => {
     setIsModalOpen(false);
+  };
+
+  const closeBookingModal = () => {
+    setIsBookingModalOpen(false);
   };
 
   const closeRequestModal1 = () => {
@@ -421,10 +435,14 @@ const ProposalSummary = () => {
             >
               View
             </button>
-            {row.status && (
+            {row.status === 'pending' && (
               <button
                 className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
-                onClick={() => openRequestModal(row.visitRequestId, row)} // Pass the row as well
+                onClick={() =>
+                  row.proposalType === 'Property Visit'
+                    ? openRequestModal(row.visitRequestId, row)
+                    : openBookingModal(row.visitRequestId, row)
+                } // Pass the row as well
               >
                 Action
               </button>
@@ -461,6 +479,11 @@ const ProposalSummary = () => {
   return (
     <section className="shadow-card rounded-lg border bg-white p-4 lg:p-5">
       <div>
+        {isBookingModalOpen && visitRequestDetails && (
+          <Modal title={'Booking Request'} onClose={closeBookingModal}>
+            <Content12 />
+          </Modal>
+        )}
         {isModalOpen && visitRequestDetails && (
           <Modal width={500} onClose={closeRequestModal} title="Visit Request">
             <Content6
