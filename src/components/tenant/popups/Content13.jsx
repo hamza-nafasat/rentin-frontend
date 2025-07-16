@@ -78,7 +78,7 @@ function Content13() {
           <h1 className="text-[16px] font-bold text-[#32343C]">Total Amount </h1>
           <p className="py-2.5 text-[24px] font-semibold text-[#32343C]">$1200</p>
         </div>
-        <Button text={'Next'} />
+        {/* <Button text={'Next'} /> */}
       </div>
     </div>
   );

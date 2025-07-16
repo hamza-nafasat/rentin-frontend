@@ -5,6 +5,8 @@ import { FaBookmark } from 'react-icons/fa';
 
 function BrowsePropertyCard({ data }) {
   // Map API response to expected format
+  console.log('browse datA', data);
+
   const mappedData = {
     id: data?._id || data?.id,
     city: data?.city || 'Bangkok',

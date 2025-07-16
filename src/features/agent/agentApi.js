@@ -83,11 +83,20 @@ export const agentApi = createApi({
       }),
       providesTags: ['Agent'],
     }),
+    assignTask: builder.mutation({
+      query: data => ({
+        url: '/assign',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['Task'],
+    }),
   }),
 });
 
 export const {
   useAcceptAgentTaskMutation,
+  useAssignTaskMutation,
   useCompleteAgentTaskMutation,
   useGetTasksByStatusQuery,
   useUpdateAgentAvailabilityMutation,

@@ -24,7 +24,6 @@ export default function PropertyImage({ children, propertyData }) {
     unitArea: propertyData.unitArea,
     propertyFor: propertyData.propertyFor,
     propertyType: propertyData.propertyType,
-    // Add any other fields your BrowsePropertyCard expects
   };
 
   return (

@@ -177,11 +177,12 @@ import UserReviewsCard from '@/components/owner/properties/UserReviewsCard';
 import Button from '@/components/shared/small/Button';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { MdLocationPin } from 'react-icons/md';
 import { GoArrowUpRight } from 'react-icons/go';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 // import HouseMap from './HouseMap';
 const HouseMap = dynamic(() => import('./HouseMap'), {
@@ -192,30 +193,29 @@ function PropertyDetailsSlider({ data, onClose, setIsModalOpen }) {
   // console.log("data",data);
 
   const [selectedTab, setSelectedTab] = useState('overview');
+  const router = useRouter();
+  const [isReady, setIsReady] = useState(false);
 
   // Function to handle tab click
   const handleTabClick = tab => {
     setSelectedTab(tab);
   };
 
-  // Get the lowest rent price from deals array
-  // const getLowestRentPrice = () => {
-  //   if (data?.deals && data.deals.length > 0) {
-  //     const lowestDeal = data.deals.reduce((min, deal) => (deal.rent < min.rent ? deal : min));
-  //     return `$${lowestDeal.rent}`;
-  //   }
-  //   return data?.totalPrice ? `$${data.totalPrice}` : 'Price not available';
-  // };
-
-  // Get property images with fallback
   const getPropertyImages = () => {
     if (data?.images && data.images.length > 0) {
       return data.images.map(img => img.url);
     }
-    return ['/images/placeholder-property.jpg']; // Add a placeholder image
+    return ['/images/placeholder-property.jpg'];
   };
 
   const propertyImages = getPropertyImages();
+
+  useEffect(() => {
+    // Check if router is ready and mounted
+    if (router.isReady) {
+      setIsReady(true);
+    }
+  }, [router.isReady]);
 
   return (
     <div className="scroll-0 h-full overflow-y-auto p-5">
@@ -332,80 +332,9 @@ function PropertyDetailsSlider({ data, onClose, setIsModalOpen }) {
                 </div>
               </div>
 
-              {/* Property Features
-              {data?.propertyFeatures && data.propertyFeatures.length > 0 && (
-                <div className="my-5">
-                  <p className="mb-2 text-base font-semibold">Property Features</p>
-                  <div className="flex flex-wrap gap-2">
-                    {data.propertyFeatures.map((feature, index) => (
-                      <span key={index} className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700">
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )} */}
-
-              {/* Amenities
-              {data?.amenities && data.amenities.length > 0 && (
-                <div className="my-5">
-                  <p className="mb-2 text-base font-semibold">Amenities</p>
-                  <div className="flex flex-wrap gap-2">
-                    {data.amenities.map((amenity, index) => (
-                      <span key={index} className="rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-700">
-                        {amenity.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )} */}
-
-              {/* Property Details
-              <div className="my-5">
-                <p className="mb-2 text-base font-semibold">Property Details</p>
-                <div className="grid grid-cols-2 gap-2 text-sm">
-                  <div>
-                    <span className="font-medium">Type:</span> {data?.propertyType || 'N/A'}
-                  </div>
-                  <div>
-                    <span className="font-medium">Status:</span> {data?.propertyStatus || 'N/A'}
-                  </div>
-                  <div>
-                    <span className="font-medium">Building:</span> {data?.building || 'N/A'}
-                  </div>
-                  <div>
-                    <span className="font-medium">Floor:</span> {data?.floor || 'N/A'}
-                  </div>
-                  <div>
-                    <span className="font-medium">Unit:</span> {data?.unitNumber || 'N/A'}
-                  </div>
-                  <div>
-                    <span className="font-medium">Condition:</span> {data?.condition?.replace(/_/g, ' ') || 'N/A'}
-                  </div>
-                </div>
-              </div> */}
-
-              {/* Deals
-              {data?.deals && data.deals.length > 0 && (
-                <div className="my-5">
-                  <p className="mb-2 text-base font-semibold">Available Deals</p>
-                  <div className="space-y-2">
-                    {data.deals.map((deal, index) => (
-                      <div key={index} className="rounded-lg bg-gray-50 p-3">
-                        <div className="flex items-center justify-between">
-                          <span className="font-medium">{deal.duration} months</span>
-                          <span className="font-semibold text-green-600">${deal.rent}/month</span>
-                        </div>
-                        <div className="text-sm text-gray-600">Security Deposit: ${deal.securityDeposit}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )} */}
-
               <div className="flex flex-col justify-center gap-4 md:flex-row">
-                <Button cn={''} onClick={() => setIsModalOpen(true)} text="Visit Now" />
-                <Button cn={''} text="Book Now" />
+                <Button cn={''} onClick={() => setIsModalOpen(true)} text="Visit Request" />
+                <Button cn={''} onClick={() => router.push(`/tenant/booking-details/${data?._id}`)} text="Rent Now" />
               </div>
               <div className="mt-5">
                 <HouseMap

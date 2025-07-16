@@ -15,6 +15,7 @@ import { visitRequestApi } from './visitRequest/visitRequestApi';
 import visitRequestReducer from './visitRequest/visitRequestSlice';
 import { messageApi } from './message/messageApi';
 import selectedId from './selectedId/selecetdId';
+import { bookingRequestApi } from './booking/bookingRequestApi';
 
 const store = configureStore({
   reducer: {
@@ -28,6 +29,8 @@ const store = configureStore({
     [visitRequestApi.reducerPath]: visitRequestApi.reducer,
     [messageApi.reducerPath]: messageApi.reducer,
     [selectedId.name]: selectedId.reducer,
+    [bookingRequestApi.reducerPath]: bookingRequestApi.reducer,
+
     location: locationReducer,
     visitRequest: visitRequestReducer,
   },
@@ -37,6 +40,7 @@ const store = configureStore({
       propertyApi.middleware,
       ratingApi.middleware,
       userApi.middleware,
+      bookingRequestApi.middleware,
       agentApi.middleware,
       superAdminApi.middleware,
       visitRequestApi.middleware,

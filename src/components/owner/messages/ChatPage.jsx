@@ -2958,6 +2958,7 @@ export default function ChatPage({ userId: propUserId }) {
             <Modal width={500} onClose={handleCloseModals} title="Confirm Your Viewing Request">
               <Content8
                 data={completePropertyData}
+                tenants={tenants}
                 selectedProperty={completePropertyData}
                 selectedTenant={selectedTenant}
                 agentId={selectedUser?._id}
