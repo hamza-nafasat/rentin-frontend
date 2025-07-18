@@ -59,7 +59,9 @@ import React from 'react';
 import PropertyImage from './PropertyImage';
 import Buttons from './Buttons';
 
-function Content7({ selectedOption, onOptionChange, onConfirm, onBack, visitRequestData }) {
+function Content7({ selectedOption, onOptionChange, onConfirm, onBack, visitRequestData, selectedRow }) {
+  console.log('visit data in 7', visitRequestData);
+
   return (
     <div className="flex flex-col">
       <p className="px-2 text-[13.4px] text-[#32343C]">
@@ -83,11 +85,16 @@ function Content7({ selectedOption, onOptionChange, onConfirm, onBack, visitRequ
                     ? visitRequestData.propertyImage.replace(/^http:/, 'https:')
                     : '/images/browser-property/Properties.png',
                 ],
+                contractRate: {
+                  rate: visitRequestData.contractRate || 0,
+                },
                 price: visitRequestData.contractRate ? `${visitRequestData.contractRate}` : '$0',
                 rentPrice: visitRequestData.contractRate ? `${visitRequestData.contractRate}` : '$0',
+                bedRooms: parseInt(visitRequestData.bedRooms) || 0,
                 beds: parseInt(visitRequestData.bedRooms) || 0,
+                bathRooms: parseInt(visitRequestData.bathRooms) || 0,
                 baths: parseInt(visitRequestData.bathRooms) || 0,
-                area: parseInt(visitRequestData.unitArea) || 0,
+                unitArea: visitRequestData.unitArea || '0 Sqm',
                 kitchens: 1,
                 garages: 0,
                 latitude: 13.736717,

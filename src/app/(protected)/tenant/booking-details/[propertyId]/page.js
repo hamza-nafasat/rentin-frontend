@@ -2078,7 +2078,7 @@ import { bookingHouses } from '@/data/data';
 import React, { useState, useEffect } from 'react';
 import { useGetSinglePropertyQuery } from '@/features/property/propertyApi';
 import { use } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useCreateBookingRequestMutation } from '@/features/booking/bookingRequestApi'; // adjust path as needed
 import { toast } from 'react-hot-toast';
 
@@ -2112,6 +2112,7 @@ function BookingDetails() {
   const [visaType, setVisaType] = useState('');
   const [customVisaType, setCustomVisaType] = useState('');
   const [specialRequests, setSpecialRequests] = useState('');
+  const router = useRouter();
 
   const { data, error, isLoading } = useGetSinglePropertyQuery(parms.propertyId);
   const [createBookingRequest, { isLoading: isCreatingBooking }] = useCreateBookingRequestMutation();
@@ -2563,7 +2564,7 @@ function BookingDetails() {
         occupation: selectedOccupation,
         startDate: moveInDate,
         endDate: moveOutDate,
-        arrivalTime: '14:00-15:00', // You can make this dynamic if needed
+        arrivalTime: '14:00-15:00',
         requestDescription: specialRequests,
         name: fullName,
         visaType: finalVisaType,
@@ -2572,8 +2573,31 @@ function BookingDetails() {
       const response = await createBookingRequest(requestData).unwrap();
       toast.success('Booking request sent successfully!');
 
-      // Optionally reset form or redirect
-      // navigate('/my-bookings') or reset form fields
+      // Clear the form
+      setFullName('');
+      setSelectedCountry('');
+      setSelectedCountryCode('');
+      setSelectedCity('');
+      setSelectedNationality('');
+      setSelectedOccupation('');
+      setMoveInDate('');
+      setMoveOutDate('');
+      setNumOfOccupants('');
+      setCustomOccupants('');
+      setPurpose('');
+      setCustomPurpose('');
+      setVisaType('');
+      setCustomVisaType('');
+      setSpecialRequests('');
+      setShowInput1(false);
+      setShowInput2(false);
+      setShowInput3(false);
+      setBookingDetails(null);
+      setPriceDetails(null);
+      setAvailableCities([]);
+
+      // Redirect to /tenant
+      router.push('/tenant');
     } catch (error) {
       console.error('Error sending booking request:', error);
       toast.error(error?.data?.message || 'Failed to send booking request');

@@ -66,6 +66,21 @@ export const bookingRequestApi = createApi({
       }),
       providesTags: ['BookingRequest'],
     }),
+    getTenantBookingRequest: builder.query({
+      query: id => ({
+        url: `/tenant/${id}`,
+        method: 'GET',
+      }),
+      providesTags: ['BookingRequest'],
+    }),
+    acknowledgedBookingRequest: builder.mutation({
+      query: data => ({
+        url: '/acknowledge',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['BookingRequest'],
+    }),
   }),
 });
 
@@ -76,6 +91,8 @@ export const {
   useGetAllBookingRequestsQuery,
   useGetPendingBookingRequestsQuery,
   useGetSingleBookingRequestQuery,
+  useGetTenantBookingRequestQuery,
+  useAcknowledgedBookingRequestMutation,
 } = bookingRequestApi;
 
 export const resetBookingRequestApiState = bookingRequestApi.util.resetApiState;
