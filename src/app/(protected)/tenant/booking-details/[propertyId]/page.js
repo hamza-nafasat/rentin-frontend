@@ -2078,9 +2078,12 @@ import { bookingHouses } from '@/data/data';
 import React, { useState, useEffect } from 'react';
 import { useGetSinglePropertyQuery } from '@/features/property/propertyApi';
 import { use } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useCreateBookingRequestMutation } from '@/features/booking/bookingRequestApi'; // adjust path as needed
 import { toast } from 'react-hot-toast';
+import PaymentModal from '@/components/shared/small/PaymentModal';
+import { FaCircleCheck } from 'react-icons/fa6';
+import { BiSolidError } from 'react-icons/bi';
 
 function BookingDetails() {
   const parms = useParams();
@@ -2116,6 +2119,19 @@ function BookingDetails() {
 
   const { data, error, isLoading } = useGetSinglePropertyQuery(parms.propertyId);
   const [createBookingRequest, { isLoading: isCreatingBooking }] = useCreateBookingRequestMutation();
+
+  const searchParams = useSearchParams();
+
+  const handleClearStatus = () => {
+    const params = new URLSearchParams(searchParams.toString());
+    // console.log(params.get('status'));
+    params.delete('status');
+    // console.log(params.get('status'));
+    router.replace(`?${params}`);
+    // params.delete('status');
+    // console.log('params', `${params.toString()}`);
+    // router.replace(`?${params.toString()}`);
+  };
 
   // Fetch countries and nationalities on component mount
   useEffect(() => {
@@ -2605,249 +2621,277 @@ function BookingDetails() {
   };
 
   return (
-    <div className="rounded-lg bg-white p-6">
-      <div className="flex items-center justify-center">
-        <p className="text-xl font-semibold">Rent Form</p>
-      </div>
-      <div className="mt-6 grid grid-cols-12 gap-6">
-        {/* LEFT COLUMN */}
-        <div className="col-span-12 space-y-4 lg:col-span-4">
-          <div>
-            <BrowsePropertyCard data={data?.data} />
-          </div>
-
-          {/* Show booking details only when dates are selected and calculated */}
-          {bookingDetails && (
-            <div className="shadow-card rounded-lg border bg-white p-5">
-              <h3 className="text-lg font-semibold">Your booking details</h3>
-              <div className="mt-6 flex items-stretch justify-between space-x-8">
-                <div>
-                  <p className="font-medium">Start Date</p>
-                  <p className="text-lg font-semibold">{bookingDetails.startDate}</p>
-                  <p className="font-medium">14:00-15:00</p>
-                </div>
-                <div className="w-px bg-gray-300" />
-                <div>
-                  <p className="font-medium">End Date</p>
-                  <p className="text-lg font-semibold">{bookingDetails.endDate}</p>
-                  <p className="font-medium">10:00-11:00</p>
-                </div>
-              </div>
-              <div className="mt-4">
-                <h4 className="font-medium">Total Length of Stay:</h4>
-                <h4 className="text-lg font-semibold">
-                  {bookingDetails.totalDays} days ({bookingDetails.totalMonths} month
-                  {bookingDetails.totalMonths > 1 ? 's' : ''})
-                </h4>
-              </div>
-            </div>
-          )}
-
-          {/* Show price summary only when price is calculated */}
-          {priceDetails && (
-            <div className="shadow-card rounded-lg border bg-white p-5">
-              <h1 className="text-lg font-semibold">Your Price Summary</h1>
-              <div className="mt-6 flex justify-between">
-                <h3 className="font-medium">Rental Amount:</h3>
-                <h3 className="text-base font-bold">${priceDetails.rentalAmount}</h3>
-              </div>
-              {priceDetails.dealApplied && (
-                <div className="mt-2 text-xs text-green-600">
-                  Deal applied: {priceDetails.dealApplied.duration} month deal at ${priceDetails.dealApplied.rent}/day
-                </div>
-              )}
-              <div className="mt-3">
-                <div className="flex justify-between">
-                  <h3 className="font-medium">Security Deposit:</h3>
-                  <h3 className="text-base font-bold">${priceDetails.securityDeposit}</h3>
-                </div>
-                <p className="mt-1 text-xs font-medium text-[#32343CB2]/70">
-                  A security deposit is required at the time of booking and will be fully refunded when you vacate the
-                  property in its original condition.
-                </p>
-              </div>
-              <div className="mt-5 flex justify-between">
-                <h1 className="text-[22px] font-medium">Total Amount</h1>
-                <h1 className="text-[22px] font-medium">${priceDetails.totalAmount}</h1>
-              </div>
-            </div>
-          )}
+    <>
+      <div className="rounded-lg bg-white p-6">
+        <div className="flex items-center justify-center">
+          <p className="text-xl font-semibold">Rent Form</p>
         </div>
+        <div className="mt-6 grid grid-cols-12 gap-6">
+          {/* LEFT COLUMN */}
+          <div className="col-span-12 space-y-4 lg:col-span-4">
+            <div>
+              <BrowsePropertyCard data={data?.data} />
+            </div>
 
-        {/* RIGHT COLUMN */}
-        <div className="col-span-12 lg:col-span-8">
-          <div className="grid grid-cols-12 gap-4">
-            <div className="col-span-12 md:col-span-6">
-              <Input
-                shadow
-                label="Full Legal Name"
-                placeholder="Enter first name"
-                type="text"
-                value={fullName}
-                onChange={e => setFullName(e.target.value)}
-              />
-            </div>
-            <div className="col-span-12 md:col-span-6">
-              <Dropdown
-                label="Current Country"
-                options={countries}
-                onChange={handleCountryChange}
-                loading={loadingCountries}
-                placeholder={loadingCountries ? 'Loading countries...' : 'Select country'}
-              />
-            </div>
-            <div className="col-span-12 md:col-span-6">
-              <Dropdown
-                label="City of Residence"
-                options={availableCities}
-                disabled={!selectedCountryCode}
-                loading={loadingCities}
-                placeholder={
-                  !selectedCountryCode ? 'Select country first' : loadingCities ? 'Loading cities...' : 'Select city'
-                }
-                onChange={value => setSelectedCity(value)}
-              />
-            </div>
-            <div className="col-span-12 md:col-span-6">
-              <Dropdown
-                label="Nationality"
-                options={nationalities}
-                loading={loadingNationalities}
-                placeholder={loadingNationalities ? 'Loading nationalities...' : 'Select nationality'}
-                onChange={value => setSelectedNationality(value)}
-              />
-            </div>
-            <div className="col-span-12">
-              <Dropdown
-                label="Occupation"
-                options={occupationOptions}
-                onChange={value => setSelectedOccupation(value)}
-              />
-            </div>
-            <div className="col-span-12 md:col-span-6">
-              <Input
-                shadow
-                label="Start Date"
-                placeholder="Enter Start Date"
-                type="date"
-                value={moveInDate}
-                onChange={e => setMoveInDate(e.target.value)}
-              />
-            </div>
-            <div className="col-span-12 md:col-span-6">
-              <Input
-                shadow
-                label="End Date"
-                placeholder="Enter End Date"
-                type="date"
-                value={moveOutDate}
-                onChange={e => setMoveOutDate(e.target.value)}
-              />
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <h1 className="text-[#32343CB2]">Number of Guests Staying</h1>
-              <div className="mt-2.5 grid grid-cols-1 gap-2">
-                {reasonOptions1.map(({ id, label }) => (
-                  <div key={id} className="flex items-center gap-2">
-                    <input id={id} type="radio" name="rentReason1" value={label} onChange={handleRentReasonChange1} />
-                    <label className="text-[13px]" htmlFor={id}>
-                      {label}
-                    </label>
+            {/* Show booking details only when dates are selected and calculated */}
+            {bookingDetails && (
+              <div className="shadow-card rounded-lg border bg-white p-5">
+                <h3 className="text-lg font-semibold">Your booking details</h3>
+                <div className="mt-6 flex items-stretch justify-between space-x-8">
+                  <div>
+                    <p className="font-medium">Start Date</p>
+                    <p className="text-lg font-semibold">{bookingDetails.startDate}</p>
+                    <p className="font-medium">14:00-15:00</p>
                   </div>
-                ))}
-                {showInput1 && (
-                  <div className="mt-8">
-                    <Input
-                      shadow
-                      type="text"
-                      placeholder="Enter custom number"
-                      value={customOccupants}
-                      onChange={e => setCustomOccupants(e.target.value)}
-                    />
+                  <div className="w-px bg-gray-300" />
+                  <div>
+                    <p className="font-medium">End Date</p>
+                    <p className="text-lg font-semibold">{bookingDetails.endDate}</p>
+                    <p className="font-medium">10:00-11:00</p>
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <h4 className="font-medium">Total Length of Stay:</h4>
+                  <h4 className="text-lg font-semibold">
+                    {bookingDetails.totalDays} days ({bookingDetails.totalMonths} month
+                    {bookingDetails.totalMonths > 1 ? 's' : ''})
+                  </h4>
+                </div>
+              </div>
+            )}
+
+            {/* Show price summary only when price is calculated */}
+            {priceDetails && (
+              <div className="shadow-card rounded-lg border bg-white p-5">
+                <h1 className="text-lg font-semibold">Your Price Summary</h1>
+                <div className="mt-6 flex justify-between">
+                  <h3 className="font-medium">Rental Amount:</h3>
+                  <h3 className="text-base font-bold">${priceDetails.rentalAmount}</h3>
+                </div>
+                {priceDetails.dealApplied && (
+                  <div className="mt-2 text-xs text-green-600">
+                    Deal applied: {priceDetails.dealApplied.duration} month deal at ${priceDetails.dealApplied.rent}/day
                   </div>
                 )}
-              </div>
-            </div>
-            <div className="col-span-12 sm:col-span-6">
-              <h1 className="text-[#32343CB2]">Primary Reason for Renting</h1>
-              <div className="mt-2.5 grid grid-cols-1 gap-2">
-                {reasonOptions2.map(({ id, label }) => (
-                  <div key={id} className="flex items-center gap-2">
-                    <input id={id} type="radio" name="rentReason2" value={label} onChange={handleRentReasonChange2} />
-                    <label className="text-[13px]" htmlFor={id}>
-                      {label}
-                    </label>
+                <div className="mt-3">
+                  <div className="flex justify-between">
+                    <h3 className="font-medium">Security Deposit:</h3>
+                    <h3 className="text-base font-bold">${priceDetails.securityDeposit}</h3>
                   </div>
-                ))}
-                {showInput2 && (
+                  <p className="mt-1 text-xs font-medium text-[#32343CB2]/70">
+                    A security deposit is required at the time of booking and will be fully refunded when you vacate the
+                    property in its original condition.
+                  </p>
+                </div>
+                <div className="mt-5 flex justify-between">
+                  <h1 className="text-[22px] font-medium">Total Amount</h1>
+                  <h1 className="text-[22px] font-medium">${priceDetails.totalAmount}</h1>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* RIGHT COLUMN */}
+          <div className="col-span-12 lg:col-span-8">
+            <div className="grid grid-cols-12 gap-4">
+              <div className="col-span-12 md:col-span-6">
+                <Input
+                  shadow
+                  label="Full Legal Name"
+                  placeholder="Enter first name"
+                  type="text"
+                  value={fullName}
+                  onChange={e => setFullName(e.target.value)}
+                />
+              </div>
+              <div className="col-span-12 md:col-span-6">
+                <Dropdown
+                  label="Current Country"
+                  options={countries}
+                  onChange={handleCountryChange}
+                  loading={loadingCountries}
+                  placeholder={loadingCountries ? 'Loading countries...' : 'Select country'}
+                />
+              </div>
+              <div className="col-span-12 md:col-span-6">
+                <Dropdown
+                  label="City of Residence"
+                  options={availableCities}
+                  disabled={!selectedCountryCode}
+                  loading={loadingCities}
+                  placeholder={
+                    !selectedCountryCode ? 'Select country first' : loadingCities ? 'Loading cities...' : 'Select city'
+                  }
+                  onChange={value => setSelectedCity(value)}
+                />
+              </div>
+              <div className="col-span-12 md:col-span-6">
+                <Dropdown
+                  label="Nationality"
+                  options={nationalities}
+                  loading={loadingNationalities}
+                  placeholder={loadingNationalities ? 'Loading nationalities...' : 'Select nationality'}
+                  onChange={value => setSelectedNationality(value)}
+                />
+              </div>
+              <div className="col-span-12">
+                <Dropdown
+                  label="Occupation"
+                  options={occupationOptions}
+                  onChange={value => setSelectedOccupation(value)}
+                />
+              </div>
+              <div className="col-span-12 md:col-span-6">
+                <Input
+                  shadow
+                  label="Start Date"
+                  placeholder="Enter Start Date"
+                  type="date"
+                  value={moveInDate}
+                  onChange={e => setMoveInDate(e.target.value)}
+                />
+              </div>
+              <div className="col-span-12 md:col-span-6">
+                <Input
+                  shadow
+                  label="End Date"
+                  placeholder="Enter End Date"
+                  type="date"
+                  value={moveOutDate}
+                  onChange={e => setMoveOutDate(e.target.value)}
+                />
+              </div>
+              <div className="col-span-12 sm:col-span-6">
+                <h1 className="text-[#32343CB2]">Number of Guests Staying</h1>
+                <div className="mt-2.5 grid grid-cols-1 gap-2">
+                  {reasonOptions1.map(({ id, label }) => (
+                    <div key={id} className="flex items-center gap-2">
+                      <input id={id} type="radio" name="rentReason1" value={label} onChange={handleRentReasonChange1} />
+                      <label className="text-[13px]" htmlFor={id}>
+                        {label}
+                      </label>
+                    </div>
+                  ))}
+                  {showInput1 && (
+                    <div className="mt-8">
+                      <Input
+                        shadow
+                        type="text"
+                        placeholder="Enter custom number"
+                        value={customOccupants}
+                        onChange={e => setCustomOccupants(e.target.value)}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="col-span-12 sm:col-span-6">
+                <h1 className="text-[#32343CB2]">Primary Reason for Renting</h1>
+                <div className="mt-2.5 grid grid-cols-1 gap-2">
+                  {reasonOptions2.map(({ id, label }) => (
+                    <div key={id} className="flex items-center gap-2">
+                      <input id={id} type="radio" name="rentReason2" value={label} onChange={handleRentReasonChange2} />
+                      <label className="text-[13px]" htmlFor={id}>
+                        {label}
+                      </label>
+                    </div>
+                  ))}
+                  {showInput2 && (
+                    <div className="mt-1">
+                      <Input
+                        shadow
+                        type="text"
+                        placeholder="Specify other reason"
+                        value={customPurpose}
+                        onChange={e => setCustomPurpose(e.target.value)}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="col-span-12 sm:col-span-12">
+                <h1 className="text-[#32343CB2]">Visa Type for Thailand</h1>
+                <div className="mt-2.5 flex flex-wrap gap-2">
+                  {reasonOptions3.map(({ id, label }) => (
+                    <div key={id} className="flex items-center gap-1 rounded px-2 py-1">
+                      <input id={id} type="radio" name="rentReason3" value={label} onChange={handleRentReasonChange3} />
+                      <label className="text-[13px]" htmlFor={id}>
+                        {label}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+                {showInput3 && (
                   <div className="mt-1">
                     <Input
                       shadow
                       type="text"
-                      placeholder="Specify other reason"
-                      value={customPurpose}
-                      onChange={e => setCustomPurpose(e.target.value)}
+                      placeholder="Specify other visa type"
+                      value={customVisaType}
+                      onChange={e => setCustomVisaType(e.target.value)}
                     />
                   </div>
                 )}
               </div>
             </div>
-
-            <div className="col-span-12 sm:col-span-12">
-              <h1 className="text-[#32343CB2]">Visa Type for Thailand</h1>
-              <div className="mt-2.5 flex flex-wrap gap-2">
-                {reasonOptions3.map(({ id, label }) => (
-                  <div key={id} className="flex items-center gap-1 rounded px-2 py-1">
-                    <input id={id} type="radio" name="rentReason3" value={label} onChange={handleRentReasonChange3} />
-                    <label className="text-[13px]" htmlFor={id}>
-                      {label}
-                    </label>
-                  </div>
-                ))}
+            <div className="mt-6">
+              <div>
+                <h1 className="text-base font-semibold">Special requests</h1>
+                <h1 className="text-xs font-semibold text-[#32343CB2]/70">
+                  Special requests cannot be guaranteed – but the property will do its best to meet your needs. You can
+                  always make a special request after your booking is complete!
+                </h1>
               </div>
-              {showInput3 && (
-                <div className="mt-1">
-                  <Input
-                    shadow
-                    type="text"
-                    placeholder="Specify other visa type"
-                    value={customVisaType}
-                    onChange={e => setCustomVisaType(e.target.value)}
-                  />
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="mt-6">
-            <div>
-              <h1 className="text-base font-semibold">Special requests</h1>
-              <h1 className="text-xs font-semibold text-[#32343CB2]/70">
-                Special requests cannot be guaranteed – but the property will do its best to meet your needs. You can
-                always make a special request after your booking is complete!
-              </h1>
-            </div>
-            <div className="mt-5">
-              <h1 className="">
-                Please write your requests in English or Thai. <span className="text-[10px]">(optional)</span>
-              </h1>
-              <textarea
-                className="h-[200px] w-full rounded-lg border"
-                value={specialRequests}
-                onChange={e => setSpecialRequests(e.target.value)}
-              />
+              <div className="mt-5">
+                <h1 className="">
+                  Please write your requests in English or Thai. <span className="text-[10px]">(optional)</span>
+                </h1>
+                <textarea
+                  className="h-[200px] w-full rounded-lg border"
+                  value={specialRequests}
+                  onChange={e => setSpecialRequests(e.target.value)}
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Footer Buttons */}
-      <div className="mt-6 flex items-center justify-end">
-        <div className="flex gap-4">
-          <Button cn="!bg-buttonSecondary hover:!bg-gray-500" text="Cancel" />
-          <Button text="Send Rent Request" onClick={handleSendRentRequest} disabled={isCreatingBooking} />
+        {/* Footer Buttons */}
+        <div className="mt-6 flex items-center justify-end">
+          <div className="flex gap-4">
+            <Button cn="!bg-buttonSecondary hover:!bg-gray-500" text="Cancel" />
+            <Button text="Send Rent Request" onClick={handleSendRentRequest} disabled={isCreatingBooking} />
+          </div>
         </div>
       </div>
-    </div>
+      {searchParams.get('status') === 'success' && (
+        <PaymentModal onClose={handleClearStatus}>
+          <div className="flex w-full flex-col items-center gap-6 overflow-auto">
+            <FaCircleCheck fill="#34C759" size={67} />
+            <div className="flex w-full flex-col gap-3">
+              <h3 className="text-textPrimary text-2xl font-semibold">Payment Successful</h3>
+              <p className="text-textPrimary text-base">
+                Your payment was completed successfully. Thank you for your purchase!
+              </p>
+            </div>
+          </div>
+        </PaymentModal>
+      )}
+      {searchParams.get('status') === 'failed' && (
+        <PaymentModal onClose={handleClearStatus}>
+          <div className="flex w-full flex-col items-center gap-6 overflow-auto">
+            <BiSolidError fill="#FF9500" size={67} />
+            <div className="flex w-full flex-col gap-3">
+              <h3 className="text-textPrimary text-2xl font-semibold">Payment Failed</h3>
+              <p className="text-textPrimary text-base">
+                Something went wrong while processing your payment. Please try again or use a different method.
+              </p>
+            </div>
+          </div>
+        </PaymentModal>
+      )}
+    </>
   );
 }
 

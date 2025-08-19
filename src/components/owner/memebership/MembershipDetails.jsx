@@ -9,7 +9,7 @@ import Modal from '@/components/shared/small/Modal';
 import { RxCross2 } from 'react-icons/rx';
 import { FaCircleCheck } from 'react-icons/fa6';
 import { BiSolidError } from 'react-icons/bi';
-import PaymentModal from './PaymentModal';
+import PaymentModal from '../../shared/small/PaymentModal';
 
 const MembershipDetails = () => {
   const [tab, setTab] = useState('Subcription Plans');
