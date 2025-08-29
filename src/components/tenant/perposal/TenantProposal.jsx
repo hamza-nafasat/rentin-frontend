@@ -244,6 +244,7 @@ import Content13 from '../popups/Content13';
 import Content14 from '../popups/Content14';
 import { useGetTenantProposalsQuery } from '@/features/Proposal/proposalApi';
 import { useGetTenantBookingRequestQuery } from '@/features/booking/bookingRequestApi';
+import Buttons from '../popups/Buttons';
 
 const TenantProposal = () => {
   const [modal, setModal] = useState(false);
@@ -252,6 +253,7 @@ const TenantProposal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [selectedBookingId, setSelectedBookingId] = useState(null);
+  const [rejectModal, setRejectModal] = useState(false);
   const { data: proposalsData, error, refetch } = useGetTenantProposalsQuery();
 
   const {
@@ -387,14 +389,14 @@ const TenantProposal = () => {
               View
             </button>
             {/* Show Action button only for Booking requests with accepted status, not for Visit requests or completed status */}
-            {row.type === 'Booking' && row.status === 'accepted' && (
-              <button
-                className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
-                onClick={() => handleActionClick(row)}
-              >
-                Action
-              </button>
-            )}
+            {/* {row.type === 'Booking' && row.status === 'accepted' && ( */}
+            <button
+              className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
+              onClick={() => handleActionClick(row)}
+            >
+              Action
+            </button>
+            {/* )} */}
           </div>
         ),
       },
@@ -515,6 +517,8 @@ const TenantProposal = () => {
             isLoading={bookingLoading}
             error={bookingError}
             bookingRequestId={selectedBookingId}
+            setRejectModal={setRejectModal}
+            setIsModalOpen={setIsModalOpen}
             onAcknowledgeSuccess={handleAcknowledgeSuccess}
           />
         </Modal>
@@ -522,6 +526,13 @@ const TenantProposal = () => {
       {isModalOpen1 && (
         <Modal title="Booking Successful! 🎉" onClose={handleContent14Close}>
           <Content14 />
+        </Modal>
+      )}
+      {rejectModal && (
+        <Modal width={'w-full sm:w-[502px]'} title="Rejection Successful!" onClose={() => setRejectModal(false)}>
+          <div>
+            <p className="px-2 text-[14px] text-[#32343C]">The owner's proposal was successfully rejected.</p>
+          </div>
         </Modal>
       )}
     </section>
