@@ -10,7 +10,15 @@ import Input from '@/components/shared/small/Input';
 import Button from '@/components/shared/small/Button';
 import { useAcknowledgedBookingRequestMutation } from '@/features/booking/bookingRequestApi';
 
-function Content13({ bookingRequestData, isLoading, error, bookingRequestId, onAcknowledgeSuccess }) {
+function Content13({
+  bookingRequestData,
+  isLoading,
+  error,
+  bookingRequestId,
+  onAcknowledgeSuccess,
+  setRejectModal,
+  setIsModalOpen,
+}) {
   const [acknowledgeBookingRequest, { isLoading: acknowledgeLoading }] = useAcknowledgedBookingRequestMutation();
   const [acknowledgeError, setAcknowledgeError] = useState(null);
 
@@ -268,7 +276,14 @@ function Content13({ bookingRequestData, isLoading, error, bookingRequestId, onA
 
       <div className="mt-3 flex flex-wrap items-center justify-between">
         <div className="mt-2 flex gap-2">
-          <Button text={'Reject'} cn="!bg-[#E35454] hover:!bg-red-500" />
+          <Button
+            text={'Reject'}
+            onClick={() => {
+              setIsModalOpen(false);
+              setRejectModal(true);
+            }}
+            cn="!bg-[#E35454] hover:!bg-red-500"
+          />
           <Button
             text={acknowledgeLoading ? 'Processing...' : 'Acknowledge'}
             cn="!bg-[#34C759] hover:!bg-green-500"
