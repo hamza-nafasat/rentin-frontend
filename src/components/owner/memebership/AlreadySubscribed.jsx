@@ -1,13 +1,30 @@
 'use client';
+import { useEffect, useState } from 'react';
 import { alreadySubscribedData, tableStyles } from '@/data/data';
 import DataTable from 'react-data-table-component';
 
-const AlreadySubscribed = () => {
+const AlreadySubscribed = ({ userSubscription }) => {
+  const [subscriptionData, setSubscriptionData] = useState([]);
+
+  useEffect(() => {
+    if (userSubscription) {
+      // Create subscription data based on user's current subscription
+      const subscriptionRecord = {
+        planName: userSubscription.name,
+        startDate: new Date(userSubscription.current_period_start * 1000).toLocaleDateString(),
+        endDate: new Date(userSubscription.current_period_end * 1000).toLocaleDateString(),
+        status: userSubscription.status === 'active' ? 'Active' : 'Inactive',
+      };
+      setSubscriptionData([subscriptionRecord]);
+    } else {
+      setSubscriptionData([]);
+    }
+  }, [userSubscription]);
   return (
     <section className="shadow-card rounded-lg border bg-white p-4 lg:p-5">
       <div className="text-textPrimary text-sm font-semibold">Proposal Summary</div>
       <DataTable
-        data={alreadySubscribedData}
+        data={subscriptionData.length > 0 ? subscriptionData : alreadySubscribedData}
         columns={columns}
         selectableRowsHighlight
         customStyles={tableStyles}
@@ -17,8 +34,6 @@ const AlreadySubscribed = () => {
     </section>
   );
 };
-
-export default AlreadySubscribed;
 
 const columns = [
   {
@@ -67,3 +82,5 @@ const columns = [
     ),
   },
 ];
+
+export default AlreadySubscribed;

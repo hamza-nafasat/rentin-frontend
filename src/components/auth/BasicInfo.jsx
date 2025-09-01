@@ -14,9 +14,9 @@ const experienceLevel = [
 ];
 
 const serviceType = [
-  { option: 'Agent', value: 'agent' },
-  { option: 'Inspection', value: 'inspection' },
-  { option: 'Both', value: 'both' },
+  { option: 'Show', value: 'Show' },
+  { option: 'Inspection', value: 'Inspection' },
+  { option: 'Both', value: 'Both' },
 ];
 
 const BasicInfo = memo(({ data, index, updateField, setCurrentStep, formData }) => {

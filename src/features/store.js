@@ -17,6 +17,7 @@ import { messageApi } from './message/messageApi';
 import selectedId from './selectedId/selecetdId';
 import { bookingRequestApi } from './booking/bookingRequestApi';
 import { proposalApi } from './Proposal/proposalApi';
+import { stripeApi } from './stripe/stripeApi';
 
 const store = configureStore({
   reducer: {
@@ -32,6 +33,7 @@ const store = configureStore({
     [selectedId.name]: selectedId.reducer,
     [bookingRequestApi.reducerPath]: bookingRequestApi.reducer,
     [proposalApi.reducerPath]: proposalApi.reducer,
+    [stripeApi.reducerPath]: stripeApi.reducer,
 
     location: locationReducer,
     visitRequest: visitRequestReducer,
@@ -47,7 +49,8 @@ const store = configureStore({
       superAdminApi.middleware,
       visitRequestApi.middleware,
       messageApi.middleware,
-      proposalApi.middleware
+      proposalApi.middleware,
+      stripeApi.middleware
     ),
 });
 

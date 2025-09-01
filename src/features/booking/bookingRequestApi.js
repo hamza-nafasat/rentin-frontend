@@ -81,6 +81,14 @@ export const bookingRequestApi = createApi({
       }),
       invalidatesTags: ['BookingRequest'],
     }),
+    rejectBookingContract: builder.mutation({
+      query: data => ({
+        url: '/tenant/reject',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['BookingRequest'],
+    }),
   }),
 });
 
@@ -93,6 +101,7 @@ export const {
   useGetSingleBookingRequestQuery,
   useGetTenantBookingRequestQuery,
   useAcknowledgedBookingRequestMutation,
+  useRejectBookingContractMutation,
 } = bookingRequestApi;
 
 export const resetBookingRequestApiState = bookingRequestApi.util.resetApiState;

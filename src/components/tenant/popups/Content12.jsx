@@ -403,7 +403,14 @@ function Content12({ bookingRequestData, onAccept, onReject, onCancel }) {
           <Move moveInDate={moveInDate} moveOutDate={moveOutDate} />
         </div>
         <div className="col-span-2 md:col-span-1">
-          <Input shadow type={'time'} label={'Your arrival time'} value={arrivalTime} readOnly />
+          <Input
+            shadow
+            type={'text'}
+            label={'Arrival time'}
+            placeholder={'14:00-15:00'}
+            value={arrivalTime || ''}
+            readOnly
+          />
         </div>
         <div className="col-span-2 md:col-span-1">
           <Input shadow type={'text'} label={'Rent Amount'} value={`$${totalRent}`} readOnly />

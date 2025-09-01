@@ -83,6 +83,14 @@ export const authApi = createApi({
         },
       }),
     }),
+    giveConsent: builder.mutation({
+      query: formData => ({
+        url: '/consent',
+        method: 'POST',
+        body: formData,
+      }),
+      invalidatesTags: ['Profile'],
+    }),
   }),
 });
 
@@ -95,6 +103,7 @@ export const {
   useVerifyEmailMutation,
   useForgetPasswordMutation,
   useResetPasswordMutation,
+  useGiveConsentMutation,
 } = authApi;
 
 export const resetAuthApiState = authApi.util.resetApiState;
