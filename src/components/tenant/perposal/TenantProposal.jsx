@@ -154,14 +154,14 @@ const TenantProposal = () => {
               View
             </button>
             {/* Show Action button only for Booking requests with accepted status, not for Visit requests or completed status */}
-            {/* {row.type !== 'Booking' && row.status !== 'accepted' && ( */}
-            <button
-              className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
-              onClick={() => handleActionClick(row)}
-            >
-              Action
-            </button>
-            {/* )} */}
+            {row.type === 'Booking' && row.status === 'accepted' && (
+              <button
+                className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
+                onClick={() => handleActionClick(row)}
+              >
+                Action
+              </button>
+            )}
           </div>
         ),
       },
