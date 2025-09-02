@@ -16,6 +16,7 @@ const TenantProposal = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
+  const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const { data: proposalsData, error, refetch } = useGetTenantProposalsQuery();
 
@@ -153,14 +154,14 @@ const TenantProposal = () => {
               View
             </button>
             {/* Show Action button only for Booking requests with accepted status, not for Visit requests or completed status */}
-            {row.type === 'Booking' && row.status === 'accepted' && (
-              <button
-                className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
-                onClick={() => handleActionClick(row)}
-              >
-                Action
-              </button>
-            )}
+            {/* {row.type !== 'Booking' && row.status !== 'accepted' && ( */}
+            <button
+              className="bg-primary cursor-pointer rounded-[4px] px-4 py-[2px] text-xs font-medium text-white"
+              onClick={() => handleActionClick(row)}
+            >
+              Action
+            </button>
+            {/* )} */}
           </div>
         ),
       },
@@ -282,12 +283,25 @@ const TenantProposal = () => {
             error={bookingError}
             bookingRequestId={selectedBookingId}
             onAcknowledgeSuccess={handleAcknowledgeSuccess}
+            setIsRejectModalOpen={setIsRejectModalOpen}
+            setIsModalOpen={setIsModalOpen}
           />
         </Modal>
       )}
       {isModalOpen1 && (
-        <Modal title="Booking Successful! 🎉" onClose={handleContent14Close}>
+        <Modal width={'w-full md:w-[650px]'} title="Booking Successful! 🎉" onClose={handleContent14Close}>
           <Content14 />
+        </Modal>
+      )}
+      {isRejectModalOpen && (
+        <Modal
+          width={'w-full md:w-[702px]'}
+          title="Rejection Successful! 🎉"
+          onClose={() => setIsRejectModalOpen(false)}
+        >
+          <p className="px-2 text-[14px] text-[#32343C]">
+            Congratulations! You have rejected the proposal successfully.
+          </p>
         </Modal>
       )}
     </section>

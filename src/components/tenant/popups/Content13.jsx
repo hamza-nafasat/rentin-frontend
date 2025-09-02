@@ -15,13 +15,19 @@ import {
 import { downloadRentalContract, previewRentalContract } from '@/utils/pdfGenerator';
 import { toast } from 'react-hot-toast';
 
-function Content13({ bookingRequestData, isLoading, error, bookingRequestId, onAcknowledgeSuccess }) {
+function Content13({
+  bookingRequestData,
+  isLoading,
+  error,
+  bookingRequestId,
+  onAcknowledgeSuccess,
+  setIsRejectModalOpen,
+  setIsModalOpen,
+}) {
   const [acknowledgeBookingRequest, { isLoading: acknowledgeLoading }] = useAcknowledgedBookingRequestMutation();
   const [acknowledgeError, setAcknowledgeError] = useState(null);
   const [rejectBookingContract, { isLoading: rejectLoading }] = useRejectBookingContractMutation();
   const [rejectError, setRejectError] = useState(null);
-  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
-  const [pdfError, setPdfError] = useState(null);
 
   console.log('booking data in modal', bookingRequestData);
 
@@ -44,74 +50,12 @@ function Content13({ bookingRequestData, isLoading, error, bookingRequestId, onA
         bookingRequestId: bookingRequestId,
       }).unwrap();
       toast.success('Contract rejected successfully!');
-      onAcknowledgeSuccess(); // Close modal or refresh data
+      onAcknowledgeSuccess();
+      setIsRejectModalOpen(true);
+      setIsModalOpen(false);
+      // Close modal or refresh data
     } catch (error) {
       setRejectError(error?.data?.message || 'Failed to reject booking contract');
-    }
-  };
-
-  const handleDownloadContract = async () => {
-    if (!bookingRequestData) {
-      alert('No booking data available to generate contract');
-      return;
-    }
-
-    try {
-      setIsGeneratingPdf(true);
-      setPdfError(null);
-
-      // Validate essential data
-      if (!bookingRequestData.tenantName) {
-        throw new Error('Tenant name is required for contract generation');
-      }
-
-      const safeFileName = (bookingRequestData.tenantName || 'tenant').replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
-
-      const filename = `rental-contract-${safeFileName}-${new Date().toISOString().split('T')[0]}.pdf`;
-
-      await downloadRentalContract(bookingRequestData, filename);
-
-      // Show success message
-      const successDiv = document.createElement('div');
-      successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50';
-      successDiv.textContent = 'Contract downloaded successfully!';
-      document.body.appendChild(successDiv);
-      setTimeout(() => {
-        document.body.removeChild(successDiv);
-      }, 3000);
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-      const errorMessage = error.message || 'Failed to generate PDF. Please try again.';
-      setPdfError(errorMessage);
-      alert(errorMessage);
-    } finally {
-      setIsGeneratingPdf(false);
-    }
-  };
-
-  const handlePreviewContract = async () => {
-    if (!bookingRequestData) {
-      alert('No booking data available to generate contract');
-      return;
-    }
-
-    try {
-      setIsGeneratingPdf(true);
-      setPdfError(null);
-
-      // Validate essential data
-      if (!bookingRequestData.tenantName) {
-        throw new Error('Tenant name is required for contract generation');
-      }
-
-      await previewRentalContract(bookingRequestData);
-    } catch (error) {
-      console.error('Error previewing PDF:', error);
-      const errorMessage = error.message || 'Failed to preview PDF. Please try again.';
-      setPdfError(errorMessage);
-      alert(errorMessage);
-    } finally {
-      setIsGeneratingPdf(false);
     }
   };
 
@@ -282,45 +226,6 @@ function Content13({ bookingRequestData, isLoading, error, bookingRequestId, onA
             value={`$${Number(data.securityDeposit) || 0}`}
             readOnly
           />
-        </div>
-      </div>
-
-      {/* PDF Error Display */}
-      {pdfError && (
-        <div className="mt-3 rounded-md bg-red-50 p-4">
-          <div className="text-sm text-red-700">PDF Error: {pdfError}</div>
-        </div>
-      )}
-
-      <div className="mt-3">
-        <p className="text-[16px] font-semibold text-[#32343C]">Click to view and Accept To Complete a Booking</p>
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
-          <div className="basis-[100%] bg-[#ECECECB2] sm:basis-[59%]">
-            <button
-              onClick={handlePreviewContract}
-              disabled={isGeneratingPdf}
-              className="flex w-full items-center gap-3 px-5 py-3 text-[16px] font-medium text-[#374151] transition-colors hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              <Image src="/images/default/pdf.png" width={30} height={31} alt="icon" />
-              {isGeneratingPdf ? 'Generating Preview...' : 'Contract File.pdf'}
-            </button>
-          </div>
-          <div>
-            <button
-              onClick={handleDownloadContract}
-              disabled={isGeneratingPdf}
-              className="flex cursor-pointer items-center gap-3 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              <div className="flex gap-2">
-                <p className="rounded-[2px] bg-[#0245A5] px-4 py-3.5 text-[14px] text-white transition-colors hover:bg-blue-600 disabled:bg-gray-400">
-                  {isGeneratingPdf ? 'Generating...' : 'Download Contract'}
-                </p>
-                <span>
-                  <Image src="/images/default/download.png" width={'49'} height={'49'} alt="icon" />
-                </span>
-              </div>
-            </button>
-          </div>
         </div>
       </div>
 
